@@ -1,0 +1,11 @@
+{
+  "name": "@hivemq/ui-theme",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "@chakra-ui/react": "^2.8.2"
+  }
+}
