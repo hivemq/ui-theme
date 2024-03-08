@@ -8,7 +8,9 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "postinstall": "chakra-cli tokens ../theme/src/main.ts"
+    "generate": "pnpm generate:theme",
+    "generate:theme": "chakra-cli tokens ../theme/src/main.ts",
+    "postinstall": "pnpm generate"
   },
   "dependencies": {
     "react": "^18.2.0",
