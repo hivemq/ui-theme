@@ -1,11 +1,11 @@
-import React from 'react'
+import * as React from 'react'
 
 import { Button } from '@chakra-ui/react'
 
 function App() {
   return (
     <>
-      <Button variant="outline">Hello</Button>
+      <Button variant="solid" background='success.'>Hello</Button>
     </>
   )
 }
