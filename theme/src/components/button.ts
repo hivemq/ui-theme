@@ -135,7 +135,7 @@ export const buttonTheme = defineStyleConfig({
     borderRadius: '6px',
     boxSizing: 'content-box',
     fontWeight: 500,
-    transition: 'all 0.3s ease-in-out',
+    transition: 'all 0.15s ease-in-out',
     cursor: 'pointer !important',
     _hover: {
       cursor: 'pointer !important',
