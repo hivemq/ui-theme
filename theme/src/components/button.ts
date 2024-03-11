@@ -79,6 +79,7 @@ const link = defineStyle({
   background: 'transparent',
   borderColor: 'transparent',
   padding: '0 !important',
+  height: 'inherit !important',
   _hover: {
     textDecoration: 'underline'
   },
