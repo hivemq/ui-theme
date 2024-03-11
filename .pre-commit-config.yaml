@@ -1,0 +1,11 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
+  hooks:
+  - id: no-commit-to-branch
+    args: ['--pattern', '^(?!((fix|feature|ci|chore|refactor|documentation|test)\/[a-zA-Z0-9\-]+)$).*']
+- repo: https://github.com/homebysix/pre-commit-macadmin
+  rev: v1.12.4
+  hooks:
+  - id: check-git-config-email
+    args: ['--domains', 'hivemq.com']
