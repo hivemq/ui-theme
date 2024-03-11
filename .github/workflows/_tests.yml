@@ -1,0 +1,61 @@
+on:
+  workflow_call:
+
+jobs:
+  unit_tests:
+    runs-on: ubuntu-latest
+
+    steps:
+       - uses: actions/checkout@v3
+
+       - uses: ./.github/actions/setup
+
+       - name: 📝 Run frontend unit tests
+         run: pnpm test:unit:ci
+         shell: bash
+
+  integration_tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ./.github/actions/setup
+        with:
+          run_install: true
+
+      # Run frontend integration test with the Cypress runner
+      # https://github.com/cypress-io/github-action
+      - name: 📝 Run integration tests
+        uses: cypress-io/github-action@c8b086ac389f43967b149b87d5f9cfe73f4ed20e
+        with:
+          component: true
+          install: false
+          headed: false
+          browser: chrome
+          command: pnpm test:integration
+          build: npx cypress info
+        env:
+          # Enables Cypress debugging logs, very useful if Cypress crashes, like out-of-memory issues.
+          # DEBUG: "cypress:*" # Enable all logs. See https://docs.cypress.io/guides/references/troubleshooting.html#Print-DEBUG-logs
+          DEBUG: "cypress:server:util:process_profiler" # Enable logs for "memory and CPU usage". See https://docs.cypress.io/guides/references/troubleshooting.html#Log-memory-and-CPU-usage
+          NODE_ENV: production
+
+      - name: ⬆️ Upload Images
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-screenshots
+          path: ./cypress/screenshots
+          if-no-files-found: ignore
+          retention-days: 5
+
+      - name: ⬆️ Upload Videos
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-videos
+          path: ./cypress/videos
+          if-no-files-found: ignore
+          retention-days: 5

@@ -1,0 +1,39 @@
+# Setup release drafter to automatically generate drafts for release candidates
+# with the right labels and version
+# Release drafter version: v5.24.0 - https://github.com/release-drafter/release-drafter/commits/v5.24.0
+# Pinned action to the top commit - https://github.com/release-drafter/release-drafter/commit/65c5fb495d1e69aa8c08a3317bc44ff8aabe9772
+
+name: ✍️ Release Drafter
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+jobs:
+  draft_release:
+    name: 'Draft Theme release'
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ./.github/actions/setup
+
+      - uses: release-drafter/release-drafter@65c5fb495d1e69aa8c08a3317bc44ff8aabe9772
+        id: releaseDrafter
+        with:
+          config-name: configs/draft-release.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: cd ./theme
+
+      - run: pnpm version ${{ steps.releaseDrafter.outputs.resolved_version }} --git-tag-version=false --allow-same-version
+
+      - uses: EndBug/add-and-commit@v9
+        with:
+          message: "chore: bump version ${{ steps.releaseDrafter.outputs.resolved_version }}"

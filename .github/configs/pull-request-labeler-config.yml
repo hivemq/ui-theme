@@ -1,0 +1,11 @@
+# Define automatic pull request label strategy.
+# Based on the following project where you can also find additional config options.
+# 🪛 https://github.com/TimonVS/pr-labeler-action/
+
+"bug": ['fix/*']
+"documentation": ['documentation/*']
+"test": ['test/*']
+"chore": ['chore/*']
+"enhancement": ["feature/*"]
+"refactor": ["refactor/*"]
+"ci": ["ci/*"]

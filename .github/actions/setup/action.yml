@@ -1,0 +1,27 @@
+name: "Setup Nodejs environment"
+description: "Setup Nodejs environment including all dependencies to execute runtime jobs"
+inputs:
+  run_install:
+    description: Run the install pnpm command
+    default: "false"
+
+runs:
+  using: "composite"
+  steps:
+    - uses: pnpm/action-setup@v2
+      name: Install pnpm
+      id: pnpm-install
+      with:
+        version: 8.14.0
+        run_install: ${{ inputs.run_install }}
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18.16.0
+        registry-url: https://npm.pkg.github.com
+        scope: '@hivemq'
+        cache: 'pnpm'
+
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile

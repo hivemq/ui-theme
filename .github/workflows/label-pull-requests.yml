@@ -1,0 +1,28 @@
+# Action to label pull requests based on the pre commit config that can be found here:
+# 🪛 https://github.com/hivemq-cloud/hivemq-cloud/blob/develop/.pre-commit-config.yaml
+# ---
+# This action is a prerequisite to allow us to use release-drafter
+# https://github.com/release-drafter/release-drafter
+
+name: 🛠️ Pull Request Management
+
+on:
+  pull_request:
+    types: [opened]
+
+permissions:
+  contents: read
+
+jobs:
+  label_pull_request:
+    name: 'Add labels'
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      # Pin to tag version 4.1.1 https://github.com/TimonVS/pr-labeler-action/commits/v4.1.1
+      - uses: TimonVS/pr-labeler-action@8b99f404a073744885d8021d1de4e40c6eaf38e2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          configuration-path: .github/configs/pull-request-labeler-config.yml
