@@ -5,7 +5,7 @@ import { Button } from '@chakra-ui/react'
 function App() {
   return (
     <>
-      <Button variant="solid" background='success.'>Hello</Button>
+      <Button variant="solid" background='surface.360'>Hello</Button>
     </>
   )
 }
