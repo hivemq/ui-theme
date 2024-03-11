@@ -68,6 +68,10 @@ importers:
         version: 5.1.5
 
   theme:
+    dependencies:
+      '@chakra-ui/theme-tools':
+        specifier: ^2.1.2
+        version: 2.1.2(@chakra-ui/styled-system@2.9.2)
     devDependencies:
       '@chakra-ui/react':
         specifier: ^2.8.2
