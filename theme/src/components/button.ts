@@ -147,6 +147,11 @@ export const buttonTheme = defineStyleConfig({
       transition: 'none',
       transform: 'scale(0.9)'
     },
+    _disabled: {
+      _active: {
+        transform: 'none'
+      }
+    }
   },
   variants,
   sizes,
