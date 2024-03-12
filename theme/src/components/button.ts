@@ -26,7 +26,7 @@ const secondary = defineStyle({
   _disabled: {
     background: 'surface.100',
     borderColor: 'surface.100',
-    color: 'surface.300',
+    color: 'surface.700',
   }
 })
 
@@ -40,10 +40,9 @@ const dangerous = defineStyle({
     borderColor: 'destructive.500',
   },
   _disabled: {
-    background: 'destructive.100',
-    borderColor: 'destructive.100',
-    color: 'destructive.700',
-    opacity: '0.5'
+    background: 'surface.100',
+    borderColor: 'surface.100',
+    color: 'surface.700',
   }
 })
 
@@ -135,7 +134,7 @@ export const buttonTheme = defineStyleConfig({
     borderRadius: '6px',
     boxSizing: 'content-box',
     fontWeight: 500,
-    transition: 'all 0.15s ease-in-out',
+    transition: 'all 0.1s ease-in-out',
     cursor: 'pointer !important',
     _hover: {
       cursor: 'pointer !important',
