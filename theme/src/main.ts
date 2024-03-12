@@ -41,6 +41,7 @@ export const theme = extendBaseTheme({
       },
     }),
   },
+  // TODO: Define colors that match out theme @oli / @eric
   colors: {
     primary: {
       200: '#FFF2CC',

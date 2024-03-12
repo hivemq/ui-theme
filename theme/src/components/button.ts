@@ -141,7 +141,12 @@ export const buttonTheme = defineStyleConfig({
     },
     _focusVisible: {
       outline: '2px solid #264EA1'
-    }
+    },
+    // TODO: define active interaction state - Till then it will be scale
+    _active: {
+      transition: 'none',
+      transform: 'scale(0.9)'
+    },
   },
   variants,
   sizes,
