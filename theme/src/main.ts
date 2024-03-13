@@ -53,7 +53,7 @@ export const colors = {
     "700": "#641B12",
     "800": "#320E09",
   },
-}
+} as const
 
 export const styles = {
   global: (props: StyleFunctionProps) => ({
@@ -61,13 +61,13 @@ export const styles = {
       bg: mode('surface.50', 'surface.900')(props),
     },
   }),
-}
+} as const
 
 // TODO: Define colors that match out theme @oli / @eric
 export const components = {
   Button: buttonTheme,
   Heading: headingTheme,
-}
+} as const
 
 export const theme = extendBaseTheme({
   fonts,
