@@ -4,6 +4,7 @@ import {
 } from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
 import { buttonTheme } from './components/button'
+import { headingTheme } from './components/headings'
 
 function formatFonts(fontArray: string[]): string {
   return fontArray.map((font) => `"${font}"`).join(',')
@@ -86,5 +87,6 @@ export const theme = extendBaseTheme({
   },
   components: {
     Button: buttonTheme,
+    Heading: headingTheme,
   },
 })
