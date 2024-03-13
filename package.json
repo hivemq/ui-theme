@@ -6,6 +6,7 @@
   "description": "",
   "scripts": {
     "dev": "pnpm run --recursive --if-present --filter './testing' dev",
+    "build": "pnpm run --recursive --if-present --filter './theme' build",
     "generate": "pnpm run --recursive --if-present generate"
   },
   "keywords": [],

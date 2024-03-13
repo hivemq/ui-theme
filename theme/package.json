@@ -1,13 +1,37 @@
 {
   "name": "@hivemq/ui-theme",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {},
-  "devDependencies": {
-    "@chakra-ui/react": "^2.8.2"
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.es.d.ts",
+  "publishConfig": {
+    "types": "./dist/index.es.d.ts",
+    "main": "./dist/index.cjs.js",
+    "module": "./dist/index.es.js"
   },
-  "dependencies": {
+  "engines": {
+    "node": "20",
+    "pnpm": "8"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm build:types && pnpm build:lib",
+    "build:lib": "vite build",
+    "build:types": "tsc --emitDeclarationOnly"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": "^2.8.2",
     "@chakra-ui/theme-tools": "^2.1.2"
+  },
+  "devDependencies": {
+    "@chakra-ui/react": "^2.8.2",
+    "@chakra-ui/theme-tools": "^2.1.2",
+    "@types/node": "^20.11.26",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.4",
+    "vite-plugin-dts": "^3.7.3"
   }
 }
