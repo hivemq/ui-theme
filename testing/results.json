@@ -1,0 +1,55 @@
+{
+  "numTotalTestSuites": 4,
+  "numPassedTestSuites": 4,
+  "numFailedTestSuites": 0,
+  "numPendingTestSuites": 0,
+  "numTotalTests": 2,
+  "numPassedTests": 2,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "numTodoTests": 0,
+  "startTime": 1710342432745,
+  "success": true,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Buttons"
+          ],
+          "fullName": " Buttons Visual test all button variants",
+          "status": "passed",
+          "title": "Visual test all button variants",
+          "duration": 591,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1710342748430,
+      "endTime": 1710342749021,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/aschujko/projects/work/ui-theme/testing/src/views/Buttons.safetest.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Headings"
+          ],
+          "fullName": " Headings Visual test all heading variants",
+          "status": "passed",
+          "title": "Visual test all heading variants",
+          "duration": 470,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1710342749060,
+      "endTime": 1710342749530,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/aschujko/projects/work/ui-theme/testing/src/views/Headings.safetest.tsx"
+    }
+  ]
+}

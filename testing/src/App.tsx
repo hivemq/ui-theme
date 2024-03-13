@@ -1,12 +1,14 @@
 import * as React from 'react'
 
-import { Buttons } from './views/buttons'
-import { Box } from '@chakra-ui/react'
+import { theme } from '@hivemq/ui-theme'
+import { ChakraBaseProvider, Box } from '@chakra-ui/react'
+
+import { Buttons } from './views/Buttons'
 import { Headings } from './views/headings'
 
 function App() {
   return (
-    <>
+    <ChakraBaseProvider theme={theme}>
       <Box p={8}>
         <Headings />
       </Box>
@@ -15,7 +17,7 @@ function App() {
         <Buttons />
       </Box>
       <hr />
-    </>
+    </ChakraBaseProvider>
   )
 }
 

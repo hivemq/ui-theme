@@ -1,15 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
+import { bootstrap } from 'safetest/react';
 
-import { theme, } from '../../theme/src/main.ts'
+const root = ReactDOM.createRoot(document.getElementById('root')!);
 
-import { ChakraBaseProvider } from '@chakra-ui/react'
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ChakraBaseProvider theme={theme}>
+bootstrap({
+  element: (
+    <React.StrictMode>
       <App />
-    </ChakraBaseProvider>
-  </React.StrictMode>,
-)
+    </React.StrictMode>
+  ),
+  importGlob: import.meta.glob('./**/*.safetest.{j,t}s{,x}'),
+  render: (element) => root.render(element),
+});
