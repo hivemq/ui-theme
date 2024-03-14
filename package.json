@@ -8,7 +8,9 @@
     "build": "pnpm run --recursive --if-present --filter './theme' build",
     "generate": "pnpm run --recursive --if-present generate",
     "predev": "pnpm build && pnpm generate",
-    "dev": "pnpm predev && pnpm run --recursive --if-present --filter './testing' dev"
+    "dev": "pnpm predev && pnpm run --recursive --if-present --filter './testing' dev",
+    "test": "pnpm run --recursive --if-present test",
+    "test:ci": "pnpm run --recursive --if-present test:ci"
   },
   "keywords": [],
   "author": "",

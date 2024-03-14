@@ -2,13 +2,13 @@
   "name": "@hivemq/ui-theme",
   "version": "0.0.0",
   "type": "module",
-  "main": "./dist/index.cjs.js",
+  "main": "./dist/index.es.js",
   "module": "./dist/index.es.js",
   "types": "./dist/index.es.d.ts",
   "publishConfig": {
-    "types": "./dist/index.es.d.ts",
-    "main": "./dist/index.cjs.js",
-    "module": "./dist/index.es.js"
+    "main": "./dist/index.es.js",
+    "module": "./dist/index.es.js",
+    "types": "./dist/index.es.d.ts"
   },
   "engines": {
     "node": "20",

@@ -11,6 +11,8 @@
     "generate": "pnpm generate:theme",
     "generate:theme": "chakra-cli tokens ../theme/src/main.ts",
     "postinstall": "pnpm generate",
+    "test": "pnpm safetest",
+    "test:ci": "pnpm safetest:ci",
     "safetest": "cross-env OPT_URL=${OPT_URL:-http://localhost:3000/} vitest --config vite.safetest.config",
     "safetest:ci": "rm -f artifacts.json && pnpm safetest -- --run --bail=5",
     "safetest:regenerate-screenshots": "pnpm safetest -- --run --update"
