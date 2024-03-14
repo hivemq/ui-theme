@@ -1,6 +1,4 @@
-import * as React from 'react'
-
-import { theme } from '@hivemq/ui-theme'
+import { theme } from '../../theme/src/main'
 import { ChakraBaseProvider, Box } from '@chakra-ui/react'
 
 import { Buttons } from './views/Buttons'
