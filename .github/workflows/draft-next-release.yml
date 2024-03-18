@@ -9,6 +9,10 @@ on:
   push:
     branches:
       - main
+    paths:
+      - '.github/workflows/release-drafter.yml'
+      - 'testing/**'
+      - 'theme/**'
   workflow_dispatch: {}
 
 jobs:
@@ -30,9 +34,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: cd ./theme
-
+      # Run version bumping on the theme package
       - run: pnpm version ${{ steps.releaseDrafter.outputs.resolved_version }} --git-tag-version=false --allow-same-version
+        working-directory: ./theme
 
       - uses: EndBug/add-and-commit@v9
         with:
