@@ -20,7 +20,8 @@
   "scripts": {
     "build": "pnpm build:types && pnpm build:lib",
     "build:lib": "vite build",
-    "build:types": "tsc --emitDeclarationOnly"
+    "build:types": "tsc --emitDeclarationOnly",
+    "publish:dry": "pnpm publish --no-git-checks --dry-run"
   },
   "peerDependencies": {
     "@chakra-ui/react": "^2.8.2",

@@ -1,0 +1,11 @@
+# unselect all file
+**
+
+# allow list certain files
+!package.json
+!README.md
+!index.d.ts
+!dist/**
+
+# disallow list
+dist/cypress.config.d.ts
