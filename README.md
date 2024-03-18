@@ -1,4 +1,41 @@
-# HiveMQ Themes
+# @hivemq/ui-theme
+
+This package contains the theme for all HiveMQ ChakraUI Projects.
+
+## Setup .npmrc
+
+To install the theme, you have to add the following line to your `.npmrc` file:
+
+```bash
+@hivemq:registry=https://npm.pkg.github.com
+```
+
+## Install Peer Dependencies
+
+To install the peer dependencies, use the following command:
+
+```bash
+pnpm add @chakra-ui/react @emotion/react @emotion/styled framer-motion
+```
+
+## Install CLI tools
+
+Each project has to generate the types for the theme, it cannot be exported by default.
+Therefore we have to install the following dependency to our project.
+
+```bash
+pnpm add @chakra-ui/cli
+```
+
+And also include the generation to our postinstall command
+
+```json
+{
+  "scripts": {
+    "postinstall": "chakra-cli tokens @hivemq/ui-theme"
+  }
+}
+```
 
 ## Install Theme
 
@@ -39,25 +76,4 @@ Then you can import these fonts ether in your `main.ts` file or `global.css` fil
 @import '../node_modules/@fontsource/raleway/700.css';
 @import '../node_modules/@fontsource/raleway/800.css';
 @import '../node_modules/@fontsource/raleway/900.css';
-```
-
-> [!NOTE]  
-> Handle the gotchas in documentation
-
-## Gotchas
-
-Each project has to generate the types for the theme, it cannot be exported by default
-
-```bash
-pnpm install @chakra-ui/cli
-```
-
-And then set as a postinstall command in the `package.json`
-
-```json
-{
-  "scripts": {
-    "postinstall": "chakra-cli tokens ../theme/src/main.ts"
-  }
-}
 ```
