@@ -12,12 +12,12 @@ runs:
       name: Install pnpm
       id: pnpm-install
       with:
-        version: 8.14.0
+        version: 8.15.4
         run_install: ${{ inputs.run_install }}
 
     - uses: actions/setup-node@v3
       with:
-        node-version: 18.16.0
+        node-version: 20.11.1
         registry-url: https://npm.pkg.github.com
         scope: '@hivemq'
         cache: 'pnpm'
