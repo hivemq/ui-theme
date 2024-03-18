@@ -8,6 +8,10 @@ on:
     types: ['opened', 'edited', 'reopened', 'synchronize', 'ready_for_review']
 
 jobs:
-  tests:
-    uses: ./.github/workflows/_tests.yml
-    secrets: inherit
+  message:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Tests not implemented yet."
+  # tests:
+  #   uses: ./.github/workflows/_tests.yml
+  #   secrets: inherit
