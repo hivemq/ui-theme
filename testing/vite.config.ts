@@ -2,9 +2,10 @@
 
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { resolve } from 'path';
 
 const env = process.env.NODE_ENV || 'development';
+import packageConfig from './package.json';
+import { fileURLToPath } from 'url';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,14 +16,12 @@ export default defineConfig({
   //alias
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src')
+      '@': fileURLToPath(new URL("./src", import.meta.url))
     }
   },
-  test: {
-    globals: true,
-    reporters: ['basic', 'json'],
-    outputFile: 'results.json',
-    setupFiles: ['setup-safetest'],
-    include: ['**/*.safetest.?(c|m)[jt]s?(x)'],
+  build: {
+    rollupOptions: {
+      external: [...Object.keys(packageConfig.dependencies), ...Object.keys(packageConfig.devDependencies)],
+    },
   },
 })
