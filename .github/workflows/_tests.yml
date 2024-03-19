@@ -15,10 +15,10 @@ jobs:
       - name: start server
         run: |
           pnpm dev &
-          sleep 20
+          sleep 30
           echo "Server started"
           sleep 10
-          exit_with_success
+          pnpm test:ci
 
       # # Run frontend integration test with the Cypress runner
       # # https://github.com/cypress-io/github-action
