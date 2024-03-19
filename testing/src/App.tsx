@@ -1,8 +1,8 @@
 import { theme } from '../../theme/src/main'
 import { ChakraBaseProvider, Box } from '@chakra-ui/react'
 
-import { Buttons } from '@/views/Buttons'
-import { Headings } from '@/views/Headings'
+import { Buttons } from '@/views/buttons1'
+import { Headings } from '@/views/headings1'
 import { Colors } from '@/views/Colors'
 
 function App() {

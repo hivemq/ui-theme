@@ -3,7 +3,7 @@ import { render } from 'safetest/react';
 import { ChakraBaseProvider } from '@chakra-ui/react';
 import { theme } from '@hivemq/ui-theme'
 
-import { Headings } from '@/views/Headings.tsx';
+import { Headings } from '@/views/headings1';
 
 // Whole App testing
 describe('Headings', () => {
