@@ -17,6 +17,7 @@ jobs:
           pnpm dev &
           sleep 30
           echo "Server started"
+          pnpx playwright install
           sleep 10
           pnpm test:ci
 
