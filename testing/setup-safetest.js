@@ -6,7 +6,7 @@ setup({
   // https://github.com/kolodny/safetest/issues/18
   matchImageSnapshotOptions: {
     failureThreshold: 10_000,
-    failureThresholdType: 'pixels',
+    failureThresholdType: 'pixel',
   },
   ciOptions: {
     usingArtifactsDir: 'artifacts',
