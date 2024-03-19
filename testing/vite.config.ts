@@ -11,6 +11,12 @@ export default defineConfig({
   server: {
     port: env === 'test' ? 3001 : 3000
   },
+  //alias
+  resolve: {
+    alias: {
+      '@': '/src'
+    }
+  },
   test: {
     globals: true,
     reporters: ['basic', 'json'],
