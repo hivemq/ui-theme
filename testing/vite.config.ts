@@ -2,6 +2,7 @@
 
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { resolve } from 'path';
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -14,7 +15,7 @@ export default defineConfig({
   //alias
   resolve: {
     alias: {
-      '@': '/src'
+      '@': resolve(__dirname, './src')
     }
   },
   test: {
