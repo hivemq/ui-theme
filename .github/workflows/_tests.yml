@@ -15,9 +15,6 @@ jobs:
 
       - name: 🧪 start server and run tests
         run: |
-          echo "navigate to testing directory"
-          cd testing
-
           pnpm dev &
           sleep 30
 
@@ -27,6 +24,9 @@ jobs:
           echo "Install Browser"
           pnpx playwright install
           sleep 10
+
+          echo "navigate to testing directory"
+          cd testing
 
           echo "Run tests"
           pnpm test:ci
