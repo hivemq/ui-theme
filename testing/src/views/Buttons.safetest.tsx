@@ -1,8 +1,9 @@
 import { describe, it, expect } from 'safetest/vitest';
 import { render } from 'safetest/react';
-import { Buttons } from './Buttons';
 import { ChakraBaseProvider } from '@chakra-ui/react';
-import { theme } from '@hivemq/ui-theme'
+import { theme } from '@hivemq/ui-theme';
+
+import { Buttons } from '@/views/Buttons';
 
 // Whole App testing
 describe('Buttons', () => {

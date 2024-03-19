@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
@@ -14,8 +14,8 @@
     "test": "pnpm safetest",
     "test:ci": "pnpm safetest:ci",
     "safetest": "cross-env OPT_URL=${OPT_URL:-http://localhost:3000/} vitest --config vite.safetest.config",
-    "safetest:ci": "rm -f artifacts.json && pnpm safetest -- --run --bail=5",
-    "safetest:regenerate-screenshots": "pnpm safetest -- --run --update"
+    "safetest:ci": "rm -f artifacts.json && pnpm safetest --run --bail=5",
+    "safetest:regenerate-screenshots": "pnpm safetest --run --update"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",

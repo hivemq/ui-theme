@@ -1,5 +1,5 @@
 import { HStack, Heading, VStack, Text } from '@chakra-ui/react'
-import { colors } from '../../../theme/src/main'
+import { colors } from '@/../../theme/src/main'
 
 const BORDER_WIDTH_IN_PIXEL = 2
 
