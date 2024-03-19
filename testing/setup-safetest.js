@@ -5,8 +5,8 @@ setup({
   bootstrappedAt: require.resolve('./src/main.tsx'),
   // https://github.com/kolodny/safetest/issues/18
   matchImageSnapshotOptions: {
-    failureThreshold: 2,
-    failureThresholdType: 'percent',
+    failureThreshold: 10_000,
+    failureThresholdType: 'pixels',
   },
   ciOptions: {
     usingArtifactsDir: 'artifacts',
