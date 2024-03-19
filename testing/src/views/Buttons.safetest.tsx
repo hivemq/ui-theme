@@ -3,7 +3,7 @@ import { render } from 'safetest/react';
 import { ChakraBaseProvider } from '@chakra-ui/react';
 import { theme } from '@hivemq/ui-theme';
 
-import { Buttons } from '@/views/Buttons';
+import { Buttons } from '@/views/Buttons.tsx';
 
 // Whole App testing
 describe('Buttons', () => {
