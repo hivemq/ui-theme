@@ -13,10 +13,12 @@ jobs:
           run_install: true
 
       - name: start server
-        run: pnpm dev
-
-      - name: echo what happened
-        run: echo "done"
+        run: |
+          pnpm dev &
+          sleep 5
+          echo "Server started"
+          sleep 10
+          exit_with_success
 
       # # Run frontend integration test with the Cypress runner
       # # https://github.com/cypress-io/github-action
