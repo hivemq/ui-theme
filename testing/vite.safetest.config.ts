@@ -11,7 +11,7 @@ export default defineConfig({
     testTimeout: 30000,
     reporters: ['basic', 'json'],
     outputFile: 'results.json',
-    setupFiles: ['setup-safetest'],
+    setupFiles: ['setup-safetest.js'],
     include: ['**/*.safetest.?(c|m)[jt]s?(x)'],
     threads: process.env.CI ? true : false,
     inspect: process.env.CI ? false : true,
