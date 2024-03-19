@@ -2,7 +2,8 @@ on:
   workflow_call:
 
 jobs:
-  unit_tests:
+  visual_tests:
+    name: 🎨 Visual Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -12,19 +13,23 @@ jobs:
         with:
           run_install: true
 
-      - name: start server
+      - name: 🧪 start server and run tests
         run: |
+          echo "navigate to testing directory"
+          cd testing
+
           pnpm dev &
           sleep 30
-          echo "Server started"
-          pnpx playwright install chrome
-          sleep 10
-          pnpm test:ci
 
-      # # Run frontend integration test with the Cypress runner
-      # # https://github.com/cypress-io/github-action
-      # - name: 📝 Run visual tests
-      #   run: pnpm test:ci
+          echo "Server started"
+          sleep 5
+
+          echo "Install Browser"
+          pnpx playwright install
+          sleep 10
+
+          echo "Run tests"
+          pnpm test:ci
 
       # - name: ⬆️ Upload Images
       #   if: failure()
