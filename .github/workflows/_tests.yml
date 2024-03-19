@@ -33,6 +33,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: visual-test-screenshots
-          path: ./testing/__image_snapshots__/__diff_output__
+          path: artifacts/image_diffs
           if-no-files-found: ignore
           retention-days: 2
