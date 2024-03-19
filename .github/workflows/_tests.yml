@@ -28,11 +28,11 @@ jobs:
           echo "Run tests"
           pnpm test:ci
 
-      # - name: ⬆️ Upload Images
-      #   if: failure()
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: visual-test-screenshots
-      #     path: ./testing/__image_snapshots__/__diff_output__
-      #     if-no-files-found: ignore
-      #     retention-days: 5
+      - name: ⬆️ Upload Difference Images
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: visual-test-screenshots
+          path: ./testing/__image_snapshots__/__diff_output__
+          if-no-files-found: ignore
+          retention-days: 2
