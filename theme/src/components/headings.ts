@@ -8,7 +8,6 @@ const h1 = defineStyle({
   lineHeight: '2.25rem'
 })
 
-
 const h2 = defineStyle({
   fontFamily: "Raleway",
   fontSize: '1.5rem',
@@ -16,7 +15,6 @@ const h2 = defineStyle({
   fontWeight: '700',
   lineHeight: '2rem'
 })
-
 
 const h3 = defineStyle({
   fontFamily: "Raleway",
@@ -48,13 +46,29 @@ const variants = {
   h3,
   h4,
   h5
-}
+} as const
+
+type HeaderVariant = typeof variants
+
+const variantMap = new Map(Object.entries(variants))
+const DEFAULT_VARIANT = h1
 
 export const headingTheme = defineStyleConfig({
-  baseStyle: {
-  },
+  baseStyle: defineStyle((props) => {
+    let selectedVariant: HeaderVariant[keyof HeaderVariant] | undefined
+
+    if (props.variant && variantMap.has(props.variant)) {
+      selectedVariant = variantMap.get(props.variant)
+    }
+
+    if (!!props.as && variantMap.has(props.as)) {
+      selectedVariant = variantMap.get(props.as)
+    }
+
+    return selectedVariant || DEFAULT_VARIANT
+  }),
   variants,
   defaultProps: {
-    variant: "h1",
+    variant: undefined,
   }
 })

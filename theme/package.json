@@ -24,10 +24,12 @@
     "publish:dry": "pnpm publish --no-git-checks --dry-run"
   },
   "peerDependencies": {
+    "@chakra-ui/anatomy": "^2.2.2",
     "@chakra-ui/react": "^2.8.2",
     "@chakra-ui/theme-tools": "^2.1.2"
   },
   "devDependencies": {
+    "@chakra-ui/anatomy": "^2.2.2",
     "@chakra-ui/react": "^2.8.2",
     "@chakra-ui/theme-tools": "^2.1.2",
     "@types/node": "^20.11.26",
