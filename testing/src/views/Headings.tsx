@@ -6,7 +6,7 @@ export function Headings() {
   return (
     <>
       {headings.map(heading => (
-        <Heading as={heading} variant={heading}>
+        <Heading as={heading} key={`header_${heading}`} >
           {heading.toUpperCase()} (Heading {heading[1]})
         </Heading>
       ))}
