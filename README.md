@@ -2,7 +2,9 @@
 
 This package contains the theme for all HiveMQ ChakraUI Projects.
 
-## Setup .npmrc
+## Importing this library
+
+### Setup .npmrc
 
 To install the theme, you have to add the following line to your `.npmrc` file:
 
@@ -10,7 +12,7 @@ To install the theme, you have to add the following line to your `.npmrc` file:
 @hivemq:registry=https://npm.pkg.github.com
 ```
 
-## Install Peer Dependencies
+### Install Peer Dependencies
 
 To install the peer dependencies, use the following command:
 
@@ -18,7 +20,7 @@ To install the peer dependencies, use the following command:
 pnpm add @chakra-ui/react @emotion/react @emotion/styled framer-motion
 ```
 
-## Install CLI tools
+### Install CLI tools
 
 Each project has to generate the types for the theme, it cannot be exported by default.
 Therefore we have to install the following dependency to our project.
@@ -37,7 +39,7 @@ And also include the generation to our postinstall command
 }
 ```
 
-## Install Theme
+### Install Theme
 
 To install a theme, use the following command:
 
@@ -45,7 +47,7 @@ To install a theme, use the following command:
 pnpm add @hivemq/ui-theme
 ```
 
-## Install Font-Faces
+### Install Font-Faces
 
 Fonts are not being installed by the theme itself, so you have to install them per project.
 For that you can use the following command to install the fonts you want to use in your project.
@@ -77,3 +79,27 @@ Then you can import these fonts ether in your `main.ts` file or `global.css` fil
 @import '../node_modules/@fontsource/raleway/800.css';
 @import '../node_modules/@fontsource/raleway/900.css';
 ```
+
+## Troubleshooting
+
+### Unauthorized error
+#### Context
+You added this library as a dependency to your repository's package.json.
+
+#### Possible Errors
+- `error An unexpected error occurred: "https://npm.pkg.github.com/@hivemq%2fui-theme: unauthenticated: User cannot be authenticated with the token provided.".`
+- `error An unexpected error occurred: "https://npm.pkg.github.com/download/@hivemq/ui-theme/0.2.0/ca9f1eaf504872aad12d56766542624d511169fa: Request failed \"401 Unauthorized\"".`
+
+#### Resolution
+1. [Generate a new personal token for your GitHub user](https://docs.github.com/en/enterprise-server@3.9/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token).
+  - Choose `Generate new token (classic)`.
+  - In the scope, select at least `read:packages`.
+  - Remember to copy the generated token before it disappears.
+1. Add the following line to your `.npmrc` file:
+  ```
+  //npm.pkg.github.com/:_authToken=your_new_token
+  ```
+1. Re-run your repository's installation step (e.g. `yarn install`).
+
+#### If the problem persists
+Check that your user has permissions to access https://github.com/hivemq. You might need to contact an admin to help you out.
