@@ -100,11 +100,7 @@ You added this library as a dependency to your repository's package.json.
 export NPM_TOKEN=${YOUR_TOKEN}
 ```
 where `YOUR_TOKEN` is the token you obtained from Github remember to refresh your terminal after adding the it. (e.g. `source ~/.bashrc` depending on your shell)
-3. Add the following line to your `.npmrc` file:
-  ```bash
-  //npm.pkg.github.com/:_authToken=${NPM_TOKEN}
-  ```
-4. Re-run your repository's installation step (e.g. `yarn install`).
+3. Re-run your repository's installation step (e.g. `yarn install`).
 
 #### If the problem persists
 Check that your user has permissions to access https://github.com/hivemq. You might need to contact an admin to help you out.
