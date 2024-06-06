@@ -91,7 +91,8 @@ You added this library as a dependency to your repository's package.json.
 - `error An unexpected error occurred: "https://npm.pkg.github.com/download/@hivemq/ui-theme/0.2.0/ca9f1eaf504872aad12d56766542624d511169fa: Request failed \"401 Unauthorized\"".`
 
 #### Resolution
-1. [Generate a new personal token for your GitHub user](https://docs.github.com/en/enterprise-server@3.9/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token).
+1. Read the [Generate a new personal token for your GitHub user](https://docs.github.com/en/enterprise-server@3.9/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token) guide
+  - Click on [Developer Settings](https://github.com/settings/apps) on GitHub, then on `Personal access tokens`.
   - Choose `Generate new token (classic)`.
   - In the scope, select at least `read:packages`.
   - Remember to copy the generated token before it disappears.
