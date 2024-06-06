@@ -99,8 +99,11 @@ You added this library as a dependency to your repository's package.json.
 2. Save your new token to an environment variable (e.g. in `~/.bashrc` or `~/.zshrc`):
 ```bash
 export NPM_TOKEN=${YOUR_TOKEN}
+//npm.pkg.github.com/:_authToken=${YOUR_TOKEN}
 ```
-where `YOUR_TOKEN` is the token you obtained from Github remember to refresh your terminal after adding the it. (e.g. `source ~/.bashrc` depending on your shell)
+where `${YOUR_TOKEN}` is the token you obtained from Github remember to refresh your terminal after adding the it. (e.g. `source ~/.bashrc` depending on your shell)
+Note that with the second line, you should not need to run `npm login`.
+
 3. Re-run your repository's installation step (e.g. `yarn install`).
 
 #### Resolution - try 2
