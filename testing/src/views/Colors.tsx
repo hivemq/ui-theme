@@ -27,10 +27,10 @@ export function Colors({withText = false}: {withText?: boolean}) {
                       <div style={styles}>
                       </div>
                       {withText && (
-                        <Text fontFamily="monospace">
-                          <Text>{_key}.{weight}</Text>
-                          <Text color="neutrals.500">{colorValue}</Text>
-                        </Text>
+                        <div>
+                          <Text fontFamily="monospace">{_key}.{weight}</Text>
+                          <Text fontFamily="monospace" color={colors.neutrals['500']}>{colorValue}</Text>
+                        </div>
                       )}
                     </VStack>
                   )
