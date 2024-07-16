@@ -6,6 +6,7 @@ import { mode } from '@chakra-ui/theme-tools'
 import { buttonTheme } from './components/button'
 import { headingTheme } from './components/headings'
 
+import * as colors from './foundations/colors'
 import semanticColors from './style-guide/computedSemanticColors'
 
 export const fonts = {
@@ -31,6 +32,7 @@ export const components = {
 export const theme = extendBaseTheme({
   fonts,
   colors: {
+    ...colors,
     ...semanticColors
   },
   styles,

@@ -4,7 +4,7 @@ import * as colors from '@/../../theme/src/foundations/colors'
 const BORDER_WIDTH_IN_PIXEL = 2
 
 export function Colors({withText = false}: {withText?: boolean}) {
-  const ELEMENT_WIDTH = (withText ? 150 : 50) - BORDER_WIDTH_IN_PIXEL
+  const ELEMENT_WIDTH = (withText ? 100 : 50) - BORDER_WIDTH_IN_PIXEL
 
   return (
     <>
@@ -28,8 +28,8 @@ export function Colors({withText = false}: {withText?: boolean}) {
                       </div>
                       {withText && (
                         <div>
-                          <Text fontFamily="monospace">{_key}.{weight}</Text>
-                          <Text fontFamily="monospace" color={colors.neutrals['500']}>{colorValue}</Text>
+                          <Text fontFamily="monospace" fontSize="xs">{_key}.{weight}</Text>
+                          <Text fontFamily="monospace" fontSize="xs" color={colors.neutrals['500']}>{colorValue}</Text>
                         </div>
                       )}
                     </VStack>
