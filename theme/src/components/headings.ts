@@ -1,44 +1,25 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
-const h1 = defineStyle({
-  fontFamily: "Raleway",
-  fontSize: '2rem',
-  fontStyle: 'normal',
-  fontWeight: '800',
-  lineHeight: '2.25rem'
-})
+function headingStyle(fontSizeRem: number, lineHeightRem: number) {
+  return defineStyle({
+    fontFamily: 'Raleway',
+    fontStyle: 'normal',
+    fontWeight: '800',
+    fontSize: `${fontSizeRem}rem`,
+    lineHeight: `${lineHeightRem}rem`,
+    letterSpacing: `-${0.02 * fontSizeRem}rem` // -2%
+  })
+}
 
-const h2 = defineStyle({
-  fontFamily: "Raleway",
-  fontSize: '1.5rem',
-  fontStyle: 'normal',
-  fontWeight: '700',
-  lineHeight: '2rem'
-})
+const h1 = headingStyle(2.25, 2.75)
 
-const h3 = defineStyle({
-  fontFamily: "Raleway",
-  fontSize: '1.25rem',
-  fontStyle: 'normal',
-  fontWeight: '600',
-  lineHeight: '2rem'
-})
+const h2 = headingStyle(1.875, 2.25)
 
-const h4 = defineStyle({
-  fontFamily: "Raleway",
-  fontSize: '1rem',
-  fontStyle: 'normal',
-  fontWeight: '600',
-  lineHeight: '1.75rem'
-})
+const h3 = headingStyle(1.125, 1.5)
 
-const h5 = defineStyle({
-  fontFamily: "Raleway",
-  fontSize: '0.875rem',
-  fontStyle: 'normal',
-  fontWeight: '500',
-  lineHeight: '1.75rem'
-})
+const h4 = headingStyle(1, 1.25)
+
+const h5 = headingStyle(.875, 1)
 
 const variants = {
   h1,
