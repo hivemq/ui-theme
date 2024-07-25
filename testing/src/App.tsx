@@ -5,6 +5,7 @@ import { Buttons } from '@/views/Buttons'
 import { Headings } from '@/views/Headings'
 import { Colors } from '@/views/Colors'
 import { SemanticColors } from '@/views/SemanticColors'
+import {Links} from "@/views/Links.tsx";
 
 function App() {
   return (
@@ -29,6 +30,10 @@ function App() {
         <Buttons />
       </Box>
       <hr />
+      <Heading variant="h1"> Links</Heading>
+      <Box p={8}>
+        <Links />
+      </Box>
     </ChakraBaseProvider>
   )
 }
