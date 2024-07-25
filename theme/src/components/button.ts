@@ -89,27 +89,35 @@ const ghost = defineStyle({
   }
 })
 
-const link = defineStyle({
-  background: 'transparent',
-  borderColor: 'transparent',
-  padding: '0 !important',
-  height: 'inherit !important',
-  _hover: {
-    textDecoration: 'underline'
-  },
-  _disabled: {
-    textDecoration: 'none',
-    color: 'neutrals.300'
-  }
-})
-
 const variants = {
   primary,
   secondary,
   dangerous,
   outline,
   ghost,
-  link,
+}
+
+const xs = defineStyle({
+  height: '0.5rem'
+})
+
+const sm = defineStyle({
+  height: '1rem'
+})
+
+const md = defineStyle({
+  height: '1.5rem'
+})
+
+const lg = defineStyle({
+  height: '2rem'
+})
+
+const sizes = {
+  xs,
+  sm,
+  md,
+  lg
 }
 
 export const buttonTheme = defineStyleConfig({
@@ -144,6 +152,7 @@ export const buttonTheme = defineStyleConfig({
     }
   },
   variants,
+  sizes,
   defaultProps: {
     variant: "secondary"
   }
