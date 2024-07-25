@@ -14,7 +14,7 @@ function App() {
         <Colors withText />
       </Box>
       <hr />
-      <Heading variant="h1">Semantic Colors</Heading>
+   <Heading variant="h1">Semantic Colors</Heading>
       <Box p={8}>
         <SemanticColors withText />
       </Box>
