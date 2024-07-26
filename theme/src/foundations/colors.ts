@@ -1,4 +1,5 @@
-const percentageToHex = (percentage: number) => `0${Math.floor(percentage*255/100).toString(16)}`.slice(-2).toUpperCase()
+const percentageToHex = (percentage: number) =>
+  `0${Math.floor((percentage * 255) / 100).toString(16)}`.slice(-2).toUpperCase()
 
 export const amber = {
   700: '#3B2C00',
@@ -9,7 +10,7 @@ export const amber = {
   200: '#F2E7C4',
   100: '#FCF6E3',
   50: '#FCF9F0',
-  alpha: `#FFC000${percentageToHex(30)}`
+  alpha: `#FFC000${percentageToHex(30)}`,
 } as const
 
 export const blue = {
@@ -21,7 +22,7 @@ export const blue = {
   200: '#BCD7F1',
   100: '#E8F3FC',
   50: '#F2F7FC',
-  alpha: `#006ED6${percentageToHex(15)}`
+  alpha: `#006ED6${percentageToHex(15)}`,
 } as const
 
 export const green = {
@@ -33,12 +34,12 @@ export const green = {
   200: '#D5F8DB',
   100: '#EBFCEE',
   50: '#F4FCF5',
-  alpha: `#5DDF75${percentageToHex(25)}`
+  alpha: `#5DDF75${percentageToHex(25)}`,
 } as const
 
 export const neutrals = {
   950: '#0E0D0A',
-  900: "#171612",
+  900: '#171612',
   800: '#2A2925',
   700: '#403E3A',
   600: '#706E67',
@@ -49,7 +50,7 @@ export const neutrals = {
   100: '#F0F0F0',
   50: '#FAFAFA',
   WHITE: '#FFFFFF',
-  alpha: `#706E67${percentageToHex(30)}`
+  alpha: `#706E67${percentageToHex(30)}`,
 } as const
 
 export const orange = {
@@ -61,7 +62,7 @@ export const orange = {
   200: '#FDE0BE',
   100: '#FCF1E3',
   50: '#FCF7F0',
-  alpha: `#FF8800${percentageToHex(20)}`
+  alpha: `#FF8800${percentageToHex(20)}`,
 } as const
 
 export const purple = {
@@ -73,7 +74,7 @@ export const purple = {
   200: '#D9D3F0',
   100: '#F3F0FC',
   50: '#F8F7FC',
-  alpha: `#6D47F7${percentageToHex(15)}`
+  alpha: `#6D47F7${percentageToHex(15)}`,
 } as const
 
 export const red = {
@@ -85,5 +86,5 @@ export const red = {
   200: '#F0D5DA',
   100: '#FCF2F4',
   50: '#FCF7F8',
-  alpha: `#E80E34${percentageToHex(15)}`
+  alpha: `#E80E34${percentageToHex(15)}`,
 } as const

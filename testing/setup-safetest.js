@@ -1,16 +1,14 @@
-import { setup } from 'safetest/setup';
+import { setup } from 'safetest/setup'
 
 setup({
   // eslint-disable-next-line no-undef
   bootstrappedAt: require.resolve('./src/main.tsx'),
   // https://github.com/kolodny/safetest/issues/18
   matchImageSnapshotOptions: {
-    customDiffConfig: {
-      threshold: 10000,
-    },
-    failureThresholdType: 'pixel',
+    failureThreshold: 0.0001,
+    failureThresholdType: 'percent',
   },
   ciOptions: {
     usingArtifactsDir: 'artifacts',
   },
-});
+})
