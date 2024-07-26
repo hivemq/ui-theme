@@ -1,11 +1,12 @@
-import { theme } from '../../theme/src/main'
-import { Box, ChakraBaseProvider, Heading } from '@chakra-ui/react'
+import {theme} from '../../theme/src/main'
+import {Box, ChakraBaseProvider, Heading} from '@chakra-ui/react'
 
-import { Buttons } from '@/views/Buttons'
-import { Headings } from '@/views/Headings'
-import { Colors } from '@/views/Colors'
-import { SemanticColors } from '@/views/SemanticColors'
-import {Links} from "@/views/Links.tsx";
+import {Buttons} from '@/views/Buttons'
+import {Headings} from '@/views/Headings'
+import {Colors} from '@/views/Colors'
+import {SemanticColors} from '@/views/SemanticColors'
+import {Links} from '@/views/Links.tsx'
+import {Alerts} from '@/views/Alerts.tsx'
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Colors withText />
       </Box>
       <hr />
-   <Heading variant="h1">Semantic Colors</Heading>
+      <Heading variant="h1">Semantic Colors</Heading>
       <Box p={8}>
         <SemanticColors withText />
       </Box>
@@ -30,9 +31,14 @@ function App() {
         <Buttons />
       </Box>
       <hr />
-      <Heading variant="h1"> Links</Heading>
+      <Heading variant="h1">Links</Heading>
       <Box p={8}>
         <Links />
+      </Box>
+      <hr />
+      <Heading variant="h1">Alerts</Heading>
+      <Box p={8}>
+        <Alerts />
       </Box>
     </ChakraBaseProvider>
   )
