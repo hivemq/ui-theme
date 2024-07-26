@@ -6,7 +6,7 @@ setup({
   // https://github.com/kolodny/safetest/issues/18
   matchImageSnapshotOptions: {
     // CI is installing a different version of chromium and ffmpeg than the one we use locally
-    failureThreshold: 0.022,
+    failureThreshold: 0.05,
     failureThresholdType: 'percent',
   },
   ciOptions: {
