@@ -5,7 +5,8 @@ setup({
   bootstrappedAt: require.resolve('./src/main.tsx'),
   // https://github.com/kolodny/safetest/issues/18
   matchImageSnapshotOptions: {
-    failureThreshold: 0.0001,
+    // CI is installing a different version of chromium and ffmpeg than the one we use locally
+    failureThreshold: 0.022,
     failureThresholdType: 'percent',
   },
   ciOptions: {

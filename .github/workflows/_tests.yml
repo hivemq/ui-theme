@@ -29,13 +29,13 @@ jobs:
           sleep 40
 
           echo "Server started"
-          sleep 5
+          sleep 1
 
           echo "Install Chromium Browser"
           pnpx playwright@1.42.1 install chromium
 
           # Oli told me sleep longer
-          sleep 50
+          sleep 15
 
           echo "Run tests"
           pnpm test:ci
