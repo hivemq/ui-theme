@@ -26,7 +26,7 @@ jobs:
       - name: 🧪 start server and run tests
         run: |
           pnpm dev &
-          sleep 40
+          sleep 30
 
           echo "Server started"
           sleep 1
@@ -34,8 +34,8 @@ jobs:
           echo "Install Chromium Browser"
           pnpx playwright@1.42.1 install chromium
 
-          # Oli told me sleep longer
-          sleep 15
+          echo "Oli told me sleep 😴"
+          sleep 1
 
           echo "Run tests"
           pnpm test:ci
