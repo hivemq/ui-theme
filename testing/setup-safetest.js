@@ -7,7 +7,7 @@ setup({
   matchImageSnapshotOptions: {
     comparisonMethod: 'ssim',
     // CI is installing a different version of chromium and ffmpeg than the one we use locally
-    failureThreshold: '0.05',
+    failureThreshold: 0.05,
     failureThresholdType: 'percent',
     capture: 'viewport',
   },
