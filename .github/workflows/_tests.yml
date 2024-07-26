@@ -32,7 +32,7 @@ jobs:
           sleep 5
 
           echo "Install Chromium Browser"
-          pnpx playwright install chromium
+          pnpx playwright@1.42.1 install chromium
 
           # Oli told me sleep longer
           sleep 50
