@@ -31,9 +31,11 @@ jobs:
           echo "Server started"
           sleep 5
 
-          echo "Install Browser"
-          pnpx playwright install
-          sleep 10
+          echo "Install Chromium Browser"
+          pnpx playwright install chromium
+
+          # Oli told me sleep longer
+          sleep 50
 
           echo "Run tests"
           pnpm test:ci
