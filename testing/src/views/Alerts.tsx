@@ -1,7 +1,13 @@
 import {Alert, AlertDescription, AlertIcon, AlertTitle, Box, Heading, HStack,} from '@chakra-ui/react'
 
 export function Alerts() {
-  const variants = ['success', 'error', 'warning', 'info']
+  const variants: Array<'success' | 'error' | 'warning' | 'info'> = [
+    'success',
+    'error',
+    'warning',
+    'info',
+  ]
+
 
   return (
     <>
@@ -12,7 +18,7 @@ export function Alerts() {
               <Heading variant="h2" mb={2}>
                 {variant.charAt(0).toUpperCase() + variant.slice(1)}
               </Heading>
-              <Alert status={variant}>
+              <Alert variant={variant}>
                 <AlertIcon />
                 <Box flex="1">
                   <AlertTitle>
