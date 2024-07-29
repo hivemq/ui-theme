@@ -1,9 +1,10 @@
-import { HStack, Heading, VStack, Text } from '@chakra-ui/react'
+import {Heading, HStack, Text, VStack} from '@chakra-ui/react'
 import * as colors from '@/../../theme/src/foundations/colors'
+import copy from 'copy-to-clipboard'
 
 const BORDER_WIDTH_IN_PIXEL = 2
 
-export function Colors({withText = false}: {withText?: boolean}) {
+export function Colors({ withText = false }: { withText?: boolean }) {
   const ELEMENT_WIDTH = (withText ? 100 : 50) - BORDER_WIDTH_IN_PIXEL
 
   return (
@@ -23,13 +24,25 @@ export function Colors({withText = false}: {withText?: boolean}) {
                   }
 
                   return (
-                    <VStack alignItems="start" gap={1} key={_key + weight}>
-                      <div style={styles}>
-                      </div>
+                    <VStack
+                      alignItems="start"
+                      gap={1}
+                      key={_key + weight}
+                      onClick={() =>
+                        copy(colorValue, {
+                          message: `Color ${colorValue} copied.`,
+                        })
+                      }
+                    >
+                      <div style={styles} />
                       {withText && (
                         <div>
-                          <Text fontFamily="monospace" fontSize="xs">{_key}.{weight}</Text>
-                          <Text fontFamily="monospace" fontSize="xs" color={colors.neutrals['500']}>{colorValue}</Text>
+                          <Text fontFamily="monospace" fontSize="xs">
+                            {_key}.{weight}
+                          </Text>
+                          <Text fontFamily="monospace" fontSize="xs" color={colors.neutrals['500']}>
+                            {colorValue}
+                          </Text>
                         </div>
                       )}
                     </VStack>

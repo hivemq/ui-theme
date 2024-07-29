@@ -19,5 +19,8 @@
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "copy-to-clipboard": "^3.3.3"
   }
 }
