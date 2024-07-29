@@ -8,7 +8,6 @@ export function Alerts() {
     'info',
   ]
 
-
   return (
     <>
       <HStack width="100%" gap={8} alignItems="start">
@@ -18,7 +17,7 @@ export function Alerts() {
               <Heading variant="h2" mb={2}>
                 {variant.charAt(0).toUpperCase() + variant.slice(1)}
               </Heading>
-              <Alert variant={variant}>
+              <Alert variant={variant} status={variant}>
                 <AlertIcon />
                 <Box flex="1">
                   <AlertTitle>
