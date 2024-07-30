@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'safetest/vitest';
-import { render } from 'safetest/react';
-import { ChakraBaseProvider } from '@chakra-ui/react';
+import { ChakraBaseProvider } from '@chakra-ui/react'
 import { theme } from '@hivemq/ui-theme'
+import { render } from 'safetest/react'
+import { describe, expect, it } from 'safetest/vitest'
 
-import { Headings } from '@/views/Headings';
+import { Headings } from '@/views/Headings'
 
 // Whole App testing
 describe('Headings', () => {
@@ -12,8 +12,8 @@ describe('Headings', () => {
       <ChakraBaseProvider theme={theme}>
         <Headings />
       </ChakraBaseProvider>
-    ));
+    ))
 
-    expect(await page.screenshot()).toMatchImageSnapshot();
-  });
-});
+    expect(await page.screenshot()).toMatchImageSnapshot()
+  })
+})

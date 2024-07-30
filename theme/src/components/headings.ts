@@ -7,7 +7,7 @@ function headingStyle(fontSizeRem: number, lineHeightRem: number) {
     fontWeight: '800',
     fontSize: `${fontSizeRem}rem`,
     lineHeight: `${lineHeightRem}rem`,
-    letterSpacing: `-${0.02 * fontSizeRem}rem` // -2%
+    letterSpacing: `-${0.02 * fontSizeRem}rem`, // -2%
   })
 }
 
@@ -19,14 +19,14 @@ const h3 = headingStyle(1.125, 1.5)
 
 const h4 = headingStyle(1, 1.25)
 
-const h5 = headingStyle(.875, 1)
+const h5 = headingStyle(0.875, 1)
 
 const variants = {
   h1,
   h2,
   h3,
   h4,
-  h5
+  h5,
 } as const
 
 type HeaderVariant = typeof variants
@@ -51,5 +51,5 @@ export const headingTheme = defineStyleConfig({
   variants,
   defaultProps: {
     variant: undefined,
-  }
+  },
 })

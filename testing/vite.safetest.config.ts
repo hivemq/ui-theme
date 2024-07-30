@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
 
-import { defineConfig } from 'vite';
-import base from './vite.config';
+import { defineConfig } from 'vite'
+import base from './vite.config'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,7 +13,7 @@ export default defineConfig({
     outputFile: 'results.json',
     setupFiles: ['setup-safetest.js'],
     include: ['**/*.safetest.?(c|m)[jt]s?(x)'],
-    threads: process.env.CI ? true : false,
-    inspect: process.env.CI ? false : true,
+    threads: !!process.env.CI,
+    inspect: !process.env.CI,
   },
-});
+})

@@ -1,29 +1,24 @@
-import {defineStyle, defineStyleConfig} from "@chakra-ui/react";
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
-const base = defineStyle({
+const base = defineStyle({})
 
-})
-
-const external = defineStyle({
-
-})
-
+const external = defineStyle({})
 
 const variants = {
-    base,
-    external,
+  base,
+  external,
 }
 
 export const linkTheme = defineStyleConfig({
-    baseStyle: {
-        fontSize: '1rem',
-        textDecoration: 'underline',
-        fontWeight: 500,
-        cursor: 'pointer !important',
-        _hover: {
-            cursor: 'pointer !important',
-        },
-        color: "blue.500"
+  baseStyle: {
+    fontSize: '1rem',
+    textDecoration: 'underline',
+    fontWeight: 500,
+    cursor: 'pointer !important',
+    _hover: {
+      cursor: 'pointer !important',
     },
-    variants
+    color: 'blue.500',
+  },
+  variants,
 })

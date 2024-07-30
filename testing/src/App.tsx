@@ -1,11 +1,11 @@
-import { theme } from '../../theme/src/main'
 import { Box, ChakraBaseProvider, Heading } from '@chakra-ui/react'
+import { theme } from '../../theme/src/main'
 
 import { Buttons } from '@/views/Buttons'
-import { Headings } from '@/views/Headings'
 import { Colors } from '@/views/Colors'
-import { SemanticColors } from '@/views/SemanticColors'
+import { Headings } from '@/views/Headings'
 import { Links } from '@/views/Links.tsx'
+import { SemanticColors } from '@/views/SemanticColors'
 
 function App() {
   return (

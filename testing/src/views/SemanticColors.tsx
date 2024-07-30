@@ -1,20 +1,20 @@
-import { HStack, Heading, Text, VStack } from '@chakra-ui/react'
-import * as semanticColors from '@/../../theme/src/style-guide/semanticColors'
-import computedSemanticColors from '@/../../theme/src/style-guide/computedSemanticColors'
-import { ColorCategory, ColorsInCategories } from '@/../../theme/src/style-guide/types'
 import { neutrals } from '@/../../theme/src/foundations/colors'
+import computedSemanticColors from '@/../../theme/src/style-guide/computedSemanticColors'
+import * as semanticColors from '@/../../theme/src/style-guide/semanticColors'
+import type { ColorCategory, ColorsInCategories } from '@/../../theme/src/style-guide/types'
+import { HStack, Heading, Text, VStack } from '@chakra-ui/react'
 
 const BORDER_WIDTH_IN_PIXEL = 1
 const BORDER_COLOR_LIGHT = neutrals['900']
 const BORDER_COLOR_DARK = neutrals.WHITE
 
-export function SemanticColors({withText = false}: {withText?: boolean}) {
+export function SemanticColors({ withText = false }: { withText?: boolean }) {
   const SIZE = 40
 
   const columnStyle = {
     border: `1px solid ${neutrals['300']}`,
     borderRadius: 12,
-    padding: 20
+    padding: 20,
   }
 
   return (
@@ -23,7 +23,9 @@ export function SemanticColors({withText = false}: {withText?: boolean}) {
         {Object.entries(semanticColors as ColorsInCategories).map(([category, value]) => {
           return (
             <VStack alignItems="start" style={columnStyle} key={category + value}>
-              <Heading variant="h2" marginBottom="4">{category}</Heading>
+              <Heading variant="h2" marginBottom="4">
+                {category}
+              </Heading>
 
               <VStack alignItems="start">
                 {Object.entries(value).map(([colorName, colorValue]) => {
@@ -35,17 +37,17 @@ export function SemanticColors({withText = false}: {withText?: boolean}) {
                   const styles = {
                     width: SIZE,
                     height: SIZE,
-                    borderRadius: 999
+                    borderRadius: 999,
                   }
                   const lightCircle = {
                     ...styles,
                     backgroundColor: mappedColor.light,
-                    border: `${BORDER_WIDTH_IN_PIXEL}px solid ${BORDER_COLOR_LIGHT}`
+                    border: `${BORDER_WIDTH_IN_PIXEL}px solid ${BORDER_COLOR_LIGHT}`,
                   }
                   const darkCircle = {
                     ...styles,
                     backgroundColor: mappedColor.dark,
-                    border: `${BORDER_WIDTH_IN_PIXEL}px solid ${BORDER_COLOR_DARK}`
+                    border: `${BORDER_WIDTH_IN_PIXEL}px solid ${BORDER_COLOR_DARK}`,
                   }
 
                   const pillStyle = {
@@ -57,16 +59,16 @@ export function SemanticColors({withText = false}: {withText?: boolean}) {
                     paddingRight: withText ? 16 : 4,
                     borderRadius: 999,
                     alignItems: 'center',
-                    width: 160
+                    width: 160,
                   }
                   const lightPill = {
                     ...pillStyle,
-                    backgroundColor: neutrals.WHITE
+                    backgroundColor: neutrals.WHITE,
                   }
                   const darkPill = {
                     ...pillStyle,
                     backgroundColor: neutrals['900'],
-                    border: 'none'
+                    border: 'none',
                   }
 
                   if (category === 'border') {
@@ -78,26 +80,28 @@ export function SemanticColors({withText = false}: {withText?: boolean}) {
 
                   return (
                     <HStack alignItems="center" gap={2} key={category + colorName}>
-                    {withText && (
-                      <Text fontFamily="monospace" minWidth="150" fontSize="small">
-                        {colorName}
-                      </Text>
-                    )}
+                      {withText && (
+                        <Text fontFamily="monospace" minWidth="150" fontSize="small">
+                          {colorName}
+                        </Text>
+                      )}
                       <HStack>
                         <div style={lightPill}>
-                          <div style={lightCircle}>
-                          </div>
+                          <div style={lightCircle} />
                           {withText && (
-                            <Text color={neutrals['800']} fontSize="small">{colorValue.light}</Text>
+                            <Text color={neutrals['800']} fontSize="small">
+                              {colorValue.light}
+                            </Text>
                           )}
                         </div>
                       </HStack>
                       <HStack>
                         <div style={darkPill}>
-                          <div style={darkCircle}>
-                          </div>
+                          <div style={darkCircle} />
                           {withText && (
-                            <Text color={neutrals.WHITE} fontSize="small">{colorValue.dark}</Text>
+                            <Text color={neutrals.WHITE} fontSize="small">
+                              {colorValue.dark}
+                            </Text>
                           )}
                         </div>
                       </HStack>
