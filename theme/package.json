@@ -19,6 +19,10 @@
     "build:types": "tsc --emitDeclarationOnly",
     "publish:dry": "pnpm publish --no-git-checks --dry-run"
   },
+  "engines": {
+    "node": "20",
+    "pnpm": "9"
+  },
   "peerDependencies": {
     "@chakra-ui/anatomy": "^2.2.2",
     "@chakra-ui/react": "^2.8.2",

@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "description": "",
   "scripts": {
     "build": "pnpm run --recursive --if-present --filter './theme' build",
     "generate": "pnpm run --recursive --if-present generate",
@@ -17,8 +16,10 @@
     "lint:format:write": "biome format --write ./",
     "lint:all": "pnpm run lint:check && pnpm run lint:format"
   },
-  "keywords": [],
-  "author": "",
+  "engines": {
+    "node": "20",
+    "pnpm": "9"
+  },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
     "typescript": "^5.2.2"

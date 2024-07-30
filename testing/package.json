@@ -16,6 +16,10 @@
     "safetest:ci": "rm -f artifacts.json && pnpm safetest --run --bail=5",
     "safetest:regenerate-screenshots": "pnpm safetest --run --update"
   },
+  "engines": {
+    "node": "20",
+    "pnpm": "9"
+  },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
     "@chakra-ui/styled-system": "^2.9.2",
