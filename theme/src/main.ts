@@ -1,9 +1,10 @@
-import { type StyleFunctionProps, extendBaseTheme } from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
+import { alertTheme } from './components/alerts'
 import { buttonTheme } from './components/button'
 import { headingTheme } from './components/headings'
 import { linkTheme } from './components/link'
 
+import { type StyleFunctionProps, extendBaseTheme } from '@chakra-ui/react'
 import * as colors from './foundations/colors'
 import semanticColors from './style-guide/computedSemanticColors'
 
@@ -27,6 +28,7 @@ export const components = {
   Button: buttonTheme,
   Heading: headingTheme,
   Link: linkTheme,
+  Alert: alertTheme,
 } as const
 
 export const theme = extendBaseTheme({

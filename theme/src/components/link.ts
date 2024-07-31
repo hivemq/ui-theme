@@ -18,7 +18,7 @@ export const linkTheme = defineStyleConfig({
     _hover: {
       cursor: 'pointer !important',
     },
-    color: 'blue.500',
+    color: 'text.text-accent-strong.light',
   },
   variants,
 })

@@ -11,7 +11,7 @@ export function Buttons() {
           return (
             <Box key={variant}>
               <Heading variant="h2" mb={2}>
-                {variant}{' '}
+                {variant}
               </Heading>
               {sizes.map((size) => {
                 return (
