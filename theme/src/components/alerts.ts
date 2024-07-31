@@ -1,12 +1,15 @@
-import {defineStyle, defineStyleConfig} from '@chakra-ui/react'
+import {alertAnatomy} from '@chakra-ui/anatomy'
+import {createMultiStyleConfigHelpers} from "@chakra-ui/react";
 
-const success = defineStyle({
+const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(
+  alertAnatomy.keys,
+)
+
+const success = definePartsStyle({
   container: {
-    _light: {
-      background: 'background.bg-success.light',
-      borderColor: 'border.border-success-strong.light',
-      color: 'text.text-success.light',
-    },
+    background: 'background.bg-success.light',
+    borderColor: 'border.border-success-strong.light',
+    color: 'text.text-success.light',
     _dark: {
       background: 'background.bg-success.dark',
       borderColor: 'border.border-success-strong.dark',
@@ -14,9 +17,7 @@ const success = defineStyle({
     },
   },
   icon: {
-    _light: {
-      color: 'icon.icon-success.light',
-    },
+    color: 'icon.icon-success.light',
     _dark: {
       color: 'icon.icon-success.dark',
     },
@@ -25,22 +26,18 @@ const success = defineStyle({
     fontWeight: 'bold',
   },
   description: {
-    _light: {
-      color: 'text.text-success.light',
-    },
+    color: 'text.text-success.light',
     _dark: {
       color: 'text.text-success.dark',
     },
   },
 })
 
-const error = defineStyle({
+const error = definePartsStyle({
   container: {
-    _light: {
-      background: 'background.bg-error.light',
-      borderColor: 'border.border-error-strong.light',
-      color: 'text.text-error.light',
-    },
+    background: 'background.bg-error.light',
+    borderColor: 'border.border-error-strong.light',
+    color: 'text.text-error.light',
     _dark: {
       background: 'background.bg-error.dark',
       borderColor: 'border.border-error-strong.dark',
@@ -48,9 +45,7 @@ const error = defineStyle({
     },
   },
   icon: {
-    _light: {
-      color: 'icon.icon-error.light',
-    },
+    color: 'icon.icon-error.light',
     _dark: {
       color: 'icon.icon-error.dark',
     },
@@ -59,22 +54,18 @@ const error = defineStyle({
     fontWeight: 'bold',
   },
   description: {
-    _light: {
-      color: 'text.text-error.light',
-    },
+    color: 'text.text-error.light',
     _dark: {
       color: 'text.text-error.dark',
     },
   },
 })
 
-const warning = defineStyle({
+const warning = definePartsStyle({
   container: {
-    _light: {
-      background: 'background.bg-warning.light',
-      borderColor: 'border.border-warning-strong.light',
-      color: 'text.text-warning.light',
-    },
+    background: 'background.bg-warning.light',
+    borderColor: 'border.border-warning-strong.light',
+    color: 'text.text-warning.light',
     _dark: {
       background: 'background.bg-warning.dark',
       borderColor: 'border.border-warning-strong.dark',
@@ -82,9 +73,7 @@ const warning = defineStyle({
     },
   },
   icon: {
-    _light: {
-      color: 'icon.icon-warning.light',
-    },
+    color: 'icon.icon-warning.light',
     _dark: {
       color: 'icon.icon-warning.dark',
     },
@@ -93,22 +82,18 @@ const warning = defineStyle({
     fontWeight: 'bold',
   },
   description: {
-    _light: {
-      color: 'text.text-warning.light',
-    },
+    color: 'text.text-warning.light',
     _dark: {
       color: 'text.text-warning.dark',
     },
   },
 })
 
-const info = defineStyle({
+const info = definePartsStyle({
   container: {
-    _light: {
-      background: 'background.bg-info.light',
-      borderColor: 'border.border-info-strong.light',
-      color: 'text.text-info.light',
-    },
+    background: 'background.bg-info.light',
+    borderColor: 'border.border-info-strong.light',
+    color: 'text.text-info.light',
     _dark: {
       background: 'background.bg-info.dark',
       borderColor: 'border.border-info-strong.dark',
@@ -116,9 +101,7 @@ const info = defineStyle({
     },
   },
   icon: {
-    _light: {
-      color: 'icon.icon-info.light',
-    },
+    color: 'icon.icon-info.light',
     _dark: {
       color: 'icon.icon-info.dark',
     },
@@ -127,9 +110,7 @@ const info = defineStyle({
     fontWeight: 'bold',
   },
   description: {
-    _light: {
-      color: 'text.text-info.light',
-    },
+    color: 'text.text-info.light',
     _dark: {
       color: 'text.text-info.dark',
     },
@@ -143,7 +124,7 @@ const variants = {
   info,
 }
 
-const baseStyle = defineStyle({
+const baseStyle = definePartsStyle({
   container: {
     borderRadius: 'md',
     borderWidth: '1px',
@@ -165,7 +146,7 @@ const baseStyle = defineStyle({
   },
 })
 
-export const alertTheme = defineStyleConfig({
+export const alertTheme = defineMultiStyleConfig({
   baseStyle,
   variants,
   defaultProps: {
