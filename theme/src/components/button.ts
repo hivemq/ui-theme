@@ -7,13 +7,13 @@ const primary = defineStyle({
     color: 'text.text-on-brand.light',
     _hover: {
       background: 'background.bg-brand-hover.light',
-      borderColor: 'background.bg-brand-hover.light'
+      borderColor: 'background.bg-brand-hover.light',
     },
     _disabled: {
       background: 'background.bg-inactive.light',
       borderColor: 'border.border-inactive.light',
       color: 'text.text-inactive.light',
-    }
+    },
   },
   _dark: {
     background: 'background.bg-brand.dark',
@@ -21,14 +21,14 @@ const primary = defineStyle({
     color: 'text.text-on-brand.dark',
     _hover: {
       background: 'background.bg-brand-hover.dark',
-      borderColor: 'background.bg-brand-hover.dark'
+      borderColor: 'background.bg-brand-hover.dark',
     },
     _disabled: {
       background: 'background.bg-inactive.dark',
       borderColor: 'border.border-inactive.dark',
       color: 'text.text-inactive.dark',
     },
-  }
+  },
 })
 
 const secondary = defineStyle({
@@ -43,7 +43,7 @@ const secondary = defineStyle({
     background: 'neutrals.100',
     borderColor: 'neutrals.100',
     color: 'neutrals.700',
-  }
+  },
 })
 
 const dangerous = defineStyle({
@@ -58,7 +58,7 @@ const dangerous = defineStyle({
     background: 'neutrals.100',
     borderColor: 'neutrals.100',
     color: 'neutrals.700',
-  }
+  },
 })
 
 const outline = defineStyle({
@@ -71,8 +71,8 @@ const outline = defineStyle({
     background: 'transparent',
     borderColor: 'neutrals.100',
     color: 'neutrals.200',
-    _hover: null
-  }
+    _hover: null,
+  },
 })
 
 const ghost = defineStyle({
@@ -80,13 +80,13 @@ const ghost = defineStyle({
   borderColor: 'transparent',
   _hover: {
     background: 'neutrals.300',
-    borderColor: 'neutrals.300'
+    borderColor: 'neutrals.300',
   },
   _disabled: {
     background: 'transparent',
     borderColor: 'transparent',
     color: 'neutrals.300',
-  }
+  },
 })
 
 const variants = {
@@ -98,26 +98,26 @@ const variants = {
 }
 
 const xs = defineStyle({
-  height: '0.5rem'
+  height: '0.5rem',
 })
 
 const sm = defineStyle({
-  height: '1rem'
+  height: '1rem',
 })
 
 const md = defineStyle({
-  height: '1.5rem'
+  height: '1.5rem',
 })
 
 const lg = defineStyle({
-  height: '2rem'
+  height: '2rem',
 })
 
 const sizes = {
   xs,
   sm,
   md,
-  lg
+  lg,
 }
 
 export const buttonTheme = defineStyleConfig({
@@ -138,22 +138,22 @@ export const buttonTheme = defineStyleConfig({
     _focusVisible: {
       outline: '2px solid',
       outlineColor: 'blue.500',
-      outlineOffset: 1
+      outlineOffset: 1,
     },
     // TODO: define active interaction state - Till then it will be scale
     _active: {
       transition: 'none',
-      transform: 'scale(0.9)'
+      transform: 'scale(0.9)',
     },
     _disabled: {
       _active: {
-        transform: 'none'
-      }
-    }
+        transform: 'none',
+      },
+    },
   },
   variants,
   sizes,
   defaultProps: {
-    variant: "secondary"
-  }
+    variant: 'secondary',
+  },
 })

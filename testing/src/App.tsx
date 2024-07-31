@@ -8,6 +8,7 @@ import {SemanticColors} from '@/views/SemanticColors'
 import {Links} from '@/views/Links.tsx'
 import {Alerts} from '@/views/Alerts.tsx'
 
+
 function App() {
   return (
     <ChakraBaseProvider theme={theme}>

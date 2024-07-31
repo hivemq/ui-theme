@@ -4,6 +4,7 @@ import {headingTheme} from './components/headings'
 import {linkTheme} from './components/link'
 import {alertTheme} from './components/alerts'
 
+
 import * as colors from './foundations/colors'
 import semanticColors from './style-guide/computedSemanticColors'
 import {extendBaseTheme, StyleFunctionProps} from '@chakra-ui/react'
@@ -28,7 +29,6 @@ export const components = {
   Button: buttonTheme,
   Heading: headingTheme,
   Link: linkTheme,
-  Alert: alertTheme,
 } as const
 
 export const theme = extendBaseTheme({

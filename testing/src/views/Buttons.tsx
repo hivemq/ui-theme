@@ -1,4 +1,4 @@
-import {Box, Button, Heading, HStack} from '@chakra-ui/react'
+import { Box, Button, HStack, Heading } from '@chakra-ui/react'
 
 export function Buttons() {
   const variants = ['primary', 'secondary', 'outline', 'ghost', 'dangerous']

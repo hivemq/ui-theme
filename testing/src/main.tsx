@@ -1,9 +1,10 @@
+import App from '@/App'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from '@/App'
-import { bootstrap } from 'safetest/react';
+import { bootstrap } from 'safetest/react'
 
-const root = ReactDOM.createRoot(document.getElementById('root')!);
+// biome-ignore lint/style/noNonNullAssertion: <explanation>
+const root = ReactDOM.createRoot(document.getElementById('root')!)
 
 bootstrap({
   element: (
@@ -13,4 +14,4 @@ bootstrap({
   ),
   importGlob: import.meta.glob('./**/*.safetest.{j,t}s{,x}'),
   render: (element) => root.render(element),
-});
+})
