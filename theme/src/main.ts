@@ -1,12 +1,12 @@
-import {mode} from '@chakra-ui/theme-tools'
-import {buttonTheme} from './components/button'
-import {headingTheme} from './components/headings'
-import {linkTheme} from './components/link'
-import {alertTheme} from './components/alerts'
+import { mode } from '@chakra-ui/theme-tools'
+import { alertTheme } from './components/alerts'
+import { buttonTheme } from './components/button'
+import { headingTheme } from './components/headings'
+import { linkTheme } from './components/link'
 
+import { type StyleFunctionProps, extendBaseTheme } from '@chakra-ui/react'
 import * as colors from './foundations/colors'
 import semanticColors from './style-guide/computedSemanticColors'
-import {extendBaseTheme, StyleFunctionProps} from '@chakra-ui/react'
 
 export const fonts = {
   heading: "'Raleway', 'Roboto', 'Segoe UI', 'sans-serif'",

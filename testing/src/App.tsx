@@ -1,13 +1,12 @@
-import {theme} from '../../theme/src/main'
-import {Box, ChakraBaseProvider, Heading} from '@chakra-ui/react'
+import { Box, ChakraBaseProvider, Heading } from '@chakra-ui/react'
+import { theme } from '../../theme/src/main'
 
-import {Buttons} from '@/views/Buttons'
-import {Headings} from '@/views/Headings'
-import {Colors} from '@/views/Colors'
-import {SemanticColors} from '@/views/SemanticColors'
-import {Links} from '@/views/Links.tsx'
-import {Alerts} from '@/views/Alerts.tsx'
-
+import { Alerts } from '@/views/Alerts.tsx'
+import { Buttons } from '@/views/Buttons'
+import { Colors } from '@/views/Colors'
+import { Headings } from '@/views/Headings'
+import { Links } from '@/views/Links.tsx'
+import { SemanticColors } from '@/views/SemanticColors'
 
 function App() {
   return (

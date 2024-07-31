@@ -1,4 +1,12 @@
-import {Alert, AlertDescription, AlertIcon, AlertTitle, Box, Heading, HStack,} from '@chakra-ui/react'
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
+  Box,
+  HStack,
+  Heading,
+} from '@chakra-ui/react'
 
 export function Alerts() {
   const variants: Array<'success' | 'error' | 'warning' | 'info'> = [

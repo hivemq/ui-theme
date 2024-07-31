@@ -1,5 +1,5 @@
-import {alertAnatomy} from '@chakra-ui/anatomy'
-import {createMultiStyleConfigHelpers} from "@chakra-ui/react";
+import { alertAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(
   alertAnatomy.keys,
