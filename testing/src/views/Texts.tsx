@@ -1,0 +1,89 @@
+import { Box, Flex, Heading, HStack, Text, VStack } from '@chakra-ui/react'
+import { neutrals } from '@/../../theme/src/foundations/colors'
+
+const sampleText = 'The Force will be with you, always.'
+
+const columnStyle = {
+  border: `1px solid ${neutrals['300']}`,
+  borderRadius: 12,
+  padding: 20,
+}
+
+type DisplayTextOptions = {
+  fontSize?: boolean
+  variant?: boolean
+}
+
+function displayText(title: string, sizes: readonly string[], options: DisplayTextOptions = { fontSize: false, variant: true }) {
+  return (
+    <>
+    <VStack alignItems="start" style={columnStyle}>
+      <Heading as='h2'>
+        {title}
+        {(options.fontSize && <Text as="span" color="red"> (Don't)</Text>)}
+        {(options.variant && <Text as="span" color="green"> (Do)</Text>)}
+      </Heading>
+      {sizes.map(size => (
+        <Box key={`box-${size}`}>
+          <Heading as='h3'>{size}</Heading>
+          {options.fontSize && (
+            <Box>
+              <Heading as='h4'>{`<Text fontSize='${size}'>`}</Heading>
+              <Text fontSize={size} key={`text_${size}`} marginBottom="4" color="red">
+                {sampleText}
+              </Text>
+            </Box>
+          )}
+          {options.variant && (
+            <Box>
+              <Heading as='h4'>{`<Text variant='${size}'>`}</Heading>
+              <Text variant={size} key={`text3_${size}`} mt="1" mb="4" color="green">
+                {sampleText}
+              </Text>
+            </Box>
+          )}
+        </Box>
+      ))}
+    </VStack>
+    </>
+  )
+}
+
+export function Texts() {
+  const chakraSizes = ['xs', 'sm', 'md', 'lg','xl'] as const 
+  const paragraphs = ['P1', 'P2', 'P3', 'P4', 'P5'] as const
+  const labels = ['L1', 'L2'] as const
+  const buttons = ['B1', 'B2'] as const
+  const metrics = ['M1', 'M2'] as const
+
+  return (
+    <>
+    <HStack alignItems="start" gap={8}>
+      {displayText('Chakra Sizes', chakraSizes, { fontSize: true })}
+      {displayText('Paragraphs', paragraphs)}
+      {displayText('Labels', labels)}
+      {displayText('Buttons', buttons)}
+      {displayText('Metrics', metrics)}
+    </HStack>
+
+    <Heading as='h2'>
+      Examples
+    </Heading>
+
+    <Flex flexDirection="column" gap={1}>
+      <Heading as='h3'>This is an H3 heading</Heading>
+      <Text variant='P1'>This P1 paragraph goes well with an H3 heading.</Text>
+    </Flex>
+
+    <Flex flexDirection="column" gap={1}>
+      <Heading as='h4'>This is an H4 heading</Heading>
+      <Text variant='P2'>This P2 paragraph goes well with an H4 heading.</Text>
+    </Flex>
+
+    <Flex flexDirection="column" gap={1}>
+      <Heading as='h5'>This is an H5 heading</Heading>
+      <Text variant='P3'>This P3 paragraph goes well with an H5 heading.</Text>
+    </Flex>
+    </>
+  )
+}

@@ -7,6 +7,8 @@ const external = defineStyle({})
 const variants = {
   base,
   external,
+  base,
+  external,
 }
 
 export const linkTheme = defineStyleConfig({

@@ -1,56 +1,51 @@
-import { Box, ChakraBaseProvider, Heading } from '@chakra-ui/react'
 import { theme } from '../../theme/src/main'
+import { Box, ChakraBaseProvider, Heading, Text } from '@chakra-ui/react'
 
 import { Alerts } from '@/views/Alerts.tsx'
 import { Buttons } from '@/views/Buttons'
 import { Colors } from '@/views/Colors'
 import { Headings } from '@/views/Headings'
-import { Links } from '@/views/Links.tsx'
+import { Texts } from '@/views/Texts'
+import { Colors } from '@/views/Colors'
 import { SemanticColors } from '@/views/SemanticColors'
 
 function App() {
+  const style = {
+    padding: '2rem',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '2rem',
+  }
   return (
     <ChakraBaseProvider theme={theme}>
-      <Box pl={6} pt={6}>
+      <Box style={style}>
         <Heading variant="h1">Colors</Heading>
-        <Box p={8}>
-          <Colors withText />
-        </Box>
+        <Colors withText />
+
         <hr />
-        <Heading variant="h1" pt={4}>
-          Semantic Colors
-        </Heading>
-        <Box p={8}>
-          <SemanticColors withText />
-        </Box>
+
+        <Heading variant="h1">Semantic Colors</Heading>
+        <SemanticColors withText />
+        
         <hr />
-        <Heading variant="h1" pt={4}>
-          Headings
-        </Heading>
-        <Box p={8}>
-          <Headings />
-        </Box>
+
+        <Heading variant="h1">Headings</Heading>
+        <Headings />
+        
         <hr />
-        <Heading variant="h1" pt={4}>
-          Buttons
-        </Heading>
-        <Box p={8}>
-          <Buttons />
-        </Box>
+
+        <Heading variant="h1">Texts</Heading>
+        <Texts />
+        
         <hr />
-        <Heading variant="h1" pt={4}>
-          Links
-        </Heading>
-        <Box p={8}>
-          <Links />
-        </Box>
+
+        <Heading variant="h1">Buttons</Heading>
+        <Buttons />
+        
         <hr />
-        <Heading variant="h1" pt={4}>
-          Alerts
-        </Heading>
-        <Box p={8}>
-          <Alerts />
-        </Box>
+
+        <Heading variant="h1"> Links</Heading>
+        <Links />
       </Box>
     </ChakraBaseProvider>
   )
