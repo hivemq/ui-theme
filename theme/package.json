@@ -1,6 +1,6 @@
 {
   "name": "@hivemq/ui-theme",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "type": "module",
   "main": "./dist/index.es.js",
   "module": "./dist/index.es.js",
@@ -18,6 +18,10 @@
     "build:lib": "vite build",
     "build:types": "tsc --emitDeclarationOnly",
     "publish:dry": "pnpm publish --no-git-checks --dry-run"
+  },
+  "engines": {
+    "node": "20",
+    "pnpm": "9"
   },
   "peerDependencies": {
     "@chakra-ui/anatomy": "^2.2.2",

@@ -2,6 +2,16 @@ on:
   workflow_call:
 
 jobs:
+  build:
+    name: 👷 Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ./.github/actions/setup
+
+      - run: pnpm build
+
   visual_tests:
     name: 🎨 Visual Tests
     runs-on: ubuntu-latest
@@ -16,14 +26,16 @@ jobs:
       - name: 🧪 start server and run tests
         run: |
           pnpm dev &
-          sleep 40
+          sleep 30
 
           echo "Server started"
-          sleep 5
+          sleep 1
 
-          echo "Install Browser"
-          pnpx playwright install
-          sleep 10
+          echo "Install Chromium Browser"
+          pnpx playwright@1.42.1 install chromium
+
+          echo "Oli told me sleep 😴"
+          sleep 1
 
           echo "Run tests"
           pnpm test:ci
@@ -33,6 +45,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: visual-test-screenshots
-          path: artifacts/image_diffs
+          path: ./testing/artifacts/image_diffs
           if-no-files-found: ignore
           retention-days: 2

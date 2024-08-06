@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+import { resolve } from 'node:path'
 
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
@@ -8,7 +8,7 @@ import { peerDependencies } from './package.json'
 export default defineConfig({
   plugins: [
     dts({
-      rollupTypes: true
+      rollupTypes: true,
     }),
   ],
   build: {
@@ -20,7 +20,7 @@ export default defineConfig({
     },
     rollupOptions: {
       // make sure to externalize peer dependencies that shouldn't be bundled
-      external: Object.keys(peerDependencies)
-    }
+      external: Object.keys(peerDependencies),
+    },
   },
 })
