@@ -111,7 +111,7 @@ const md = defineStyle({
 
 const lg = defineStyle({
   height: '2rem',
-  paddingBottom: '.375rem'
+  paddingBottom: '.375rem',
 })
 
 const sizes = {

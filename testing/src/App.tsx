@@ -1,13 +1,13 @@
-import { theme } from '../../theme/src/main'
 import { Box, ChakraBaseProvider, Heading, Text } from '@chakra-ui/react'
+import { theme } from '../../theme/src/main'
 
 import { Alerts } from '@/views/Alerts.tsx'
 import { Buttons } from '@/views/Buttons'
 import { Colors } from '@/views/Colors'
 import { Headings } from '@/views/Headings'
-import { Texts } from '@/views/Texts'
-import { Colors } from '@/views/Colors'
+import { Links } from '@/views/Links.tsx'
 import { SemanticColors } from '@/views/SemanticColors'
+import { Texts } from '@/views/Texts'
 
 function App() {
   const style = {
@@ -26,26 +26,31 @@ function App() {
 
         <Heading variant="h1">Semantic Colors</Heading>
         <SemanticColors withText />
-        
+
         <hr />
 
         <Heading variant="h1">Headings</Heading>
         <Headings />
-        
+
         <hr />
 
         <Heading variant="h1">Texts</Heading>
         <Texts />
-        
+
         <hr />
 
         <Heading variant="h1">Buttons</Heading>
         <Buttons />
-        
+
         <hr />
 
         <Heading variant="h1"> Links</Heading>
         <Links />
+
+        <hr />
+
+        <Heading variant="h1"> Links</Heading>
+        <Alerts />
       </Box>
     </ChakraBaseProvider>
   )

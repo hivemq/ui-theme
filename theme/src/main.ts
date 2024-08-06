@@ -5,9 +5,9 @@ import { headingTheme } from './components/headings'
 import { linkTheme } from './components/link'
 
 import { type StyleFunctionProps, extendBaseTheme } from '@chakra-ui/react'
+import { fontSizes, textTheme } from './components/text'
 import * as colors from './foundations/colors'
 import semanticColors from './style-guide/computedSemanticColors'
-import { fontSizes, textTheme } from './components/text'
 
 export const fonts = {
   heading: "'Raleway', 'Roboto', 'Segoe UI', 'sans-serif'",

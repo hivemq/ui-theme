@@ -3,14 +3,14 @@ import { theme } from '@hivemq/ui-theme'
 import { render } from 'safetest/react'
 import { describe, expect, it } from 'safetest/vitest'
 
-import { SemanticColors } from '@/views/SemanticColors'
+import { Alerts } from '@/views/Alerts'
 
 // Whole App testing
-describe('SemanticColors', () => {
-  it('Visual test all semantic color variants', async () => {
+describe('Alerts', () => {
+  it('Visual test all alert variants', async () => {
     const { page } = await render(() => (
       <ChakraBaseProvider theme={theme}>
-        <SemanticColors />
+        <Alerts />
       </ChakraBaseProvider>
     ))
 

@@ -1,4 +1,4 @@
-import { defineStyleConfig } from "@chakra-ui/react";
+import { defineStyleConfig } from '@chakra-ui/react'
 
 type TypographySettings = {
   fontSizeRem: number
@@ -9,40 +9,52 @@ type TypographySettings = {
 const l1Settings: TypographySettings = {
   fontSizeRem: 0.875,
   lineHeightMultiplier: 1,
-  letterSpacingPercentage: 6.5
+  letterSpacingPercentage: 6.5,
 }
 const l2Settings: TypographySettings = {
   fontSizeRem: 0.75,
   lineHeightMultiplier: 1,
-  letterSpacingPercentage: 5
+  letterSpacingPercentage: 5,
 }
 const b1Settings: TypographySettings = {
   fontSizeRem: 1,
   lineHeightMultiplier: 1.5,
-  letterSpacingPercentage: 6.5
+  letterSpacingPercentage: 6.5,
 }
 const b2Settings: TypographySettings = {
   fontSizeRem: 0.875,
   lineHeightMultiplier: 1,
-  letterSpacingPercentage: 5
+  letterSpacingPercentage: 5,
 }
 const m1Settings: TypographySettings = {
   fontSizeRem: 1,
   lineHeightMultiplier: 1.5,
-  letterSpacingPercentage: 5
+  letterSpacingPercentage: 5,
 }
 const m2Settings: TypographySettings = {
   fontSizeRem: 0.875,
   lineHeightMultiplier: 1,
-  letterSpacingPercentage: 5
+  letterSpacingPercentage: 5,
 }
 const metricsFont = 'Roboto Mono'
 
-function defineTypographyStyle(name: string, settings: TypographySettings, otherParameters?: any) {
+type TypographyProps = {
+  fontFamily?: string
+  fontSize?: string
+  lineHeight?: string
+  letterSpacing?: string
+  textTransform?: string
+}
+
+function defineTypographyStyle(
+  name: string,
+  settings: TypographySettings,
+  otherParameters?: TypographyProps,
+) {
   return {
     fontSize: name,
     lineHeight: `${settings.lineHeightMultiplier * settings.fontSizeRem}`,
-    letterSpacing: `${settings.letterSpacingPercentage/100*settings.fontSizeRem}rem`, // L1 size * 6.5%
+    letterSpacing: `${(settings.letterSpacingPercentage / 100) * settings.fontSizeRem}rem`,
     ...(otherParameters || {}),
   }
 }
@@ -68,8 +80,8 @@ const variants = {
     fontSize: 'P5',
     lineHeight: '1rem',
   },
-  L1: defineTypographyStyle('L1', l1Settings, { textTransform: 'uppercase'}),
-  L2: defineTypographyStyle('L2', l2Settings, { textTransform: 'uppercase'}),
+  L1: defineTypographyStyle('L1', l1Settings, { textTransform: 'uppercase' }),
+  L2: defineTypographyStyle('L2', l2Settings, { textTransform: 'uppercase' }),
   B1: defineTypographyStyle('B1', b1Settings),
   B2: defineTypographyStyle('B2', b2Settings),
   M1: defineTypographyStyle('M1', m1Settings, { fontFamily: metricsFont }),
