@@ -1,7 +1,7 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.7.0/schema.json",
   "files": {
-    "ignore": ["**/__generated__/*"]
+    "ignore": ["**/__generated__/*", "theme/dist/**"]
   },
   "linter": {
     "enabled": true,
