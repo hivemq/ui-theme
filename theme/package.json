@@ -10,9 +10,7 @@
     "module": "./dist/index.es.js",
     "types": "./dist/index.es.d.ts"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "pnpm build:types && pnpm build:lib",
     "build:lib": "vite build",
@@ -34,7 +32,7 @@
     "@chakra-ui/theme-tools": "^2.1.2",
     "@types/node": "^20.11.26",
     "typescript": "^5.2.2",
-    "vite": "^5.1.4",
+    "vite": "^5.3.5",
     "vite-plugin-dts": "^3.7.3"
   }
 }

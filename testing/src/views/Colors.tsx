@@ -1,5 +1,6 @@
 import * as colors from '@/../../theme/src/foundations/colors'
 import { HStack, Heading, Text, VStack } from '@chakra-ui/react'
+import copy from 'copy-to-clipboard'
 
 const BORDER_WIDTH_IN_PIXEL = 2
 
@@ -23,7 +24,16 @@ export function Colors({ withText = false }: { withText?: boolean }) {
                   }
 
                   return (
-                    <VStack alignItems="start" gap={1} key={_key + weight}>
+                    <VStack
+                      alignItems="start"
+                      gap={1}
+                      key={_key + weight}
+                      onClick={() =>
+                        copy(colorValue, {
+                          message: `Color ${colorValue} copied.`,
+                        })
+                      }
+                    >
                       <div style={styles} />
                       {withText && (
                         <div>
