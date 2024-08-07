@@ -6,6 +6,9 @@
 @import '../node_modules/@fontsource/roboto/700.css';
 @import '../node_modules/@fontsource/roboto/900.css';
 
+/* Install Roboto Mono for metrics text */
+@import '../node_modules/@fontsource/roboto-mono/400.css';
+
 /* Install Raleway for heading text */
 @import '../node_modules/@fontsource/raleway/100.css';
 @import '../node_modules/@fontsource/raleway/200.css';

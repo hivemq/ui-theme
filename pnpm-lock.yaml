@@ -37,11 +37,14 @@ importers:
         specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.4(@types/react@18.2.64)(react@18.2.0))(@types/react@18.2.64)(react@18.2.0)
       '@fontsource/raleway':
-        specifier: ^5.0.17
-        version: 5.0.17
+        specifier: ^5.0.19
+        version: 5.0.19
       '@fontsource/roboto':
-        specifier: ^5.0.12
-        version: 5.0.12
+        specifier: ^5.0.14
+        version: 5.0.14
+      '@fontsource/roboto-mono':
+        specifier: ^5.0.18
+        version: 5.0.18
       '@hivemq/ui-theme':
         specifier: workspace:^
         version: link:../theme
@@ -1353,11 +1356,14 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@fontsource/raleway@5.0.17':
-    resolution: {integrity: sha512-JQ86C+y7jSnaxKaqhYX5i6suc7IgUvAkVnP+Z7iWvtrZRl94nXzUU89E84eMq6tCOmbBin/uvtAGfgdJGskT1A==}
+  '@fontsource/raleway@5.0.19':
+    resolution: {integrity: sha512-S4fAg/Kmvkw5g6Z2eoxGijeYcopsfQIla+iXbOYZsIUaFHcS49l/qBNO3MWZ8iJ+PCFulz9juv2OjPPvMW43oA==}
 
-  '@fontsource/roboto@5.0.12':
-    resolution: {integrity: sha512-x0o17jvgoSSbS9OZnUX2+xJmVRvVCfeaYJjkS7w62iN7CuJWtMf5vJj8LqgC7ibqIkitOHVW+XssRjgrcHn62g==}
+  '@fontsource/roboto-mono@5.0.18':
+    resolution: {integrity: sha512-hKuwk/cy3i6fWPzazT5xjgWq4YNqZWDHVbJh2Wwj3KYvWGi2v3ToBw/4LKQ+ggEkPLcIG6VU8GpCT3Xtf+mbbA==}
+
+  '@fontsource/roboto@5.0.14':
+    resolution: {integrity: sha512-zHAxlTTm9RuRn9/StwclFJChf3z9+fBrOxC3fw71htjHP1BgXNISwRjdJtAKAmMe5S2BzgpnjkQR93P9EZYI/Q==}
 
   '@jest/expect-utils@29.7.0':
     resolution: {integrity: sha512-GlsNBWiFQFCVi9QVSx7f5AgMeLxe9YCCs5PuP2O2LdjDAA8Jh9eX7lA1Jq/xdXw3Wb3hyvlFNfZIfcRetSzYcA==}
@@ -4101,9 +4107,11 @@ snapshots:
   '@esbuild/win32-x64@0.21.5':
     optional: true
 
-  '@fontsource/raleway@5.0.17': {}
+  '@fontsource/raleway@5.0.19': {}
 
-  '@fontsource/roboto@5.0.12': {}
+  '@fontsource/roboto-mono@5.0.18': {}
+
+  '@fontsource/roboto@5.0.14': {}
 
   '@jest/expect-utils@29.7.0':
     dependencies:
