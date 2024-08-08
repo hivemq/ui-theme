@@ -2,6 +2,13 @@
 
 This package contains the theme for all HiveMQ ChakraUI Projects.
 
+Resources:
+* Web Site: [hivemq-website](http://www.hivemq.com)
+* Community Forum: [hivemq-community-forum](https://community.hivemq.com/)
+* Contribution Guidelines: [CONTRIBUTING.md](CONTRIBUTING.md)
+* License: The source files in this repository are made available under the [Apache License Version 2.0](LICENSE).
+
+
 ## Importing this library
 
 ### Setup .npmrc
@@ -127,3 +134,12 @@ npm login --scope=@hivemq --auth-type=legacy --registry=https://npm.pkg.github.c
 #### If the problem still persists
 
 Check that your user has permissions to access https://github.com/hivemq. You might need to contact an admin to help you out.
+
+## Contributing
+
+If you want to contribute to the HiveMQ Extension SDK, see the [contribution guidelines](CONTRIBUTING.md).
+
+## License
+
+The HiveMQ UI Theme is licensed under the `APACHE LICENSE, VERSION 2.0`.
+A copy of the license can be found [here](LICENSE).
