@@ -61,11 +61,12 @@ jobs:
               run: pnpm install
 
             - run: pnpm run build
+            - run: pnpm run build:testing
 
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v1
               with:
-                  path: './testing/'
+                  path: './testing/dist/'
 
             - name: Deploy to GitHub Pages
               id: deployment
