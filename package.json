@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "pnpm run --recursive --if-present --filter './theme' build",
+    "build:testing": "pnpm run --recursive --if-present --filter './testing' build",
     "generate": "pnpm run --recursive --if-present generate",
     "predev": "pnpm build && pnpm generate",
     "dev": "pnpm predev && pnpm run --recursive --if-present --filter './testing' dev",

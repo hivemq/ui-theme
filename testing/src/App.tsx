@@ -1,4 +1,4 @@
-import { Box, ChakraBaseProvider, Heading, Text } from '@chakra-ui/react'
+import { Box, ChakraBaseProvider, Heading } from '@chakra-ui/react'
 import { theme } from '../../theme/src/main'
 
 import { Alerts } from '@/views/Alerts.tsx'
@@ -10,7 +10,7 @@ import { SemanticColors } from '@/views/SemanticColors'
 import { Texts } from '@/views/Texts'
 
 function App() {
-  const style = {
+  const style: React.CSSProperties = {
     padding: '2rem',
     display: 'flex',
     flexDirection: 'column',
