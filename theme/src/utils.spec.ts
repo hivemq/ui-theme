@@ -1,5 +1,5 @@
-import { describe, expect, test } from "vitest"
-import { chakraTokenToCssVar, percentageToHex, themedColors } from "./utils"
+import { describe, expect, test } from 'vitest'
+import { chakraTokenToCssVar, percentageToHex, themedColors } from './utils'
 
 describe('utils', () => {
   test('percentageToHex', () => {
@@ -29,7 +29,9 @@ describe('utils', () => {
   test('chakraTokenToCssVar', () => {
     expect(chakraTokenToCssVar('potato', '123')).toEqual('var(--chakra-colors-potato-123)')
     expect(chakraTokenToCssVar('potato.123')).toEqual('var(--chakra-colors-potato-123)')
-    expect(chakraTokenToCssVar('backgrounds', 'bg.potato', 900)).toEqual('var(--chakra-colors-backgrounds-bg-potato-900)')
+    expect(chakraTokenToCssVar('backgrounds', 'bg.potato', 900)).toEqual(
+      'var(--chakra-colors-backgrounds-bg-potato-900)',
+    )
   })
 
   test('themedColors', () => {

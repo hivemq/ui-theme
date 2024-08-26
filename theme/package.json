@@ -10,9 +10,7 @@
     "module": "./dist/index.es.js",
     "types": "./dist/index.es.d.ts"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "pnpm build:types && pnpm build:lib",
     "build:lib": "vite build",

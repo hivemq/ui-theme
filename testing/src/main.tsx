@@ -1,8 +1,8 @@
 import App from '@/App'
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { bootstrap } from 'safetest/react'
-import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import { theme } from '../../theme/src/main'
 
 // biome-ignore lint/style/noNonNullAssertion: <explanation>
@@ -14,7 +14,7 @@ bootstrap({
       <ChakraProvider theme={theme}>
         {/* ColorModeScript ensures that the initial color mode matches the preference */}
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-          <App />
+        <App />
       </ChakraProvider>
     </React.StrictMode>
   ),

@@ -3,7 +3,7 @@ import { buttonTheme } from './components/button'
 import { headingTheme } from './components/headings'
 import { linkTheme } from './components/link'
 
-import { extendBaseTheme, type StyleFunctionProps } from '@chakra-ui/react'
+import { type StyleFunctionProps, extendBaseTheme } from '@chakra-ui/react'
 import { fontSizes, textTheme } from './components/text'
 import * as colors from './foundations/colors'
 import * as semanticColors from './style-guide/semanticColors'
@@ -52,7 +52,7 @@ export const theme = extendBaseTheme({
     ...colors,
   },
   semanticTokens: {
-    colors: semanticColors
+    colors: semanticColors,
   },
   components,
 })

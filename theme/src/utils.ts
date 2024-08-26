@@ -10,8 +10,8 @@ export function percentageToHex(percentage: number) {
  * @example chakraTokenToCssVar('neutrals.900') -> 'var(--chakra-colors-neutrals-900)'
  * @example chakraTokenToCssVar('backgrounds', 'bg.potato', 900)) -> 'var(--chakra-colors-backgrounds-bg-potato-900)'
  */
-export function chakraTokenToCssVar(...args: Array<string|number>) {
-  return `var(--chakra-colors-${args.flatMap(el => `${el}`.split('.')).join('-')})`
+export function chakraTokenToCssVar(...args: Array<string | number>) {
+  return `var(--chakra-colors-${args.flatMap((el) => `${el}`.split('.')).join('-')})`
 }
 
 /**

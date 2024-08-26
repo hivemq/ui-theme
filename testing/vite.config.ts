@@ -21,13 +21,13 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external: [
-        ...Object.keys(packageConfig.devDependencies),
-      ],
+      external: [...Object.keys(packageConfig.devDependencies)],
       output: {
         // Ensuring all node_modules are bundled into one vendor chunk. No need for fonts and ui-theme to be bundled though
         manualChunks: {
-          vendor: Object.keys(packageConfig.dependencies).filter(dep => dep !== '@hivemq/ui-theme' && !dep.startsWith('@fontsource')),
+          vendor: Object.keys(packageConfig.dependencies).filter(
+            (dep) => dep !== '@hivemq/ui-theme' && !dep.startsWith('@fontsource'),
+          ),
         },
       },
     },

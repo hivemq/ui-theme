@@ -1,6 +1,6 @@
 import * as colors from '@/../../theme/src/foundations/colors'
-import { HStack, Heading, Text, VStack } from '@chakra-ui/react'
 import { chakraTokenToCssVar } from '@/../../theme/src/utils'
+import { HStack, Heading, Text, VStack } from '@chakra-ui/react'
 import copy from 'copy-to-clipboard'
 
 const BORDER_WIDTH_IN_PIXEL = 2
