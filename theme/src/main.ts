@@ -1,31 +1,38 @@
-import { mode } from '@chakra-ui/theme-tools'
 import { alertTheme } from './components/alerts'
 import { buttonTheme } from './components/button'
 import { headingTheme } from './components/headings'
 import { linkTheme } from './components/link'
 
-import { type StyleFunctionProps, extendBaseTheme } from '@chakra-ui/react'
+import { extendBaseTheme, type StyleFunctionProps } from '@chakra-ui/react'
 import { fontSizes, textTheme } from './components/text'
 import * as colors from './foundations/colors'
-import semanticColors from './style-guide/computedSemanticColors'
+import * as semanticColors from './style-guide/semanticColors'
 
-export const fonts = {
+const fonts = {
   heading: "'Raleway', 'Roboto', 'Segoe UI', 'sans-serif'",
   body: "'Roboto', 'Segoe UI', 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', 'Arial', 'sans-serif', 'system-ui', '-apple-system'",
   monospace:
     "'Roboto Mono', 'IntelOne Mono', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'",
 }
 
-export const styles = {
-  global: (props: StyleFunctionProps) => ({
+const styles = {
+  global: (_props: StyleFunctionProps) => ({
+    // override the default values with our semantic tokens
     body: {
-      bg: mode('neutrals.50', 'neutrals.900')(props),
+      borderColor: 'border.border-base',
+      color: 'text.text-base',
+      bg: 'background.bg-page-body',
+    },
+    '*, *::before, &::after': {
+      borderColor: 'border.border-base',
+    },
+    Button: {
+      color: 'text.text-base',
     },
   }),
 } as const
 
-// TODO: Define colors that match out theme @oli / @eric
-export const components = {
+const components = {
   Alert: alertTheme,
   Button: buttonTheme,
   Heading: headingTheme,
@@ -34,12 +41,18 @@ export const components = {
 } as const
 
 export const theme = extendBaseTheme({
+  config: {
+    initialColorMode: 'light',
+    useSystemColorMode: false,
+  },
+  styles,
   fonts,
   fontSizes,
   colors: {
     ...colors,
-    ...semanticColors,
   },
-  styles,
+  semanticTokens: {
+    colors: semanticColors
+  },
   components,
 })

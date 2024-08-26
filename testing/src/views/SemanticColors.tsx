@@ -1,18 +1,17 @@
-import { neutrals } from '@/../../theme/src/foundations/colors'
-import computedSemanticColors from '@/../../theme/src/style-guide/computedSemanticColors'
 import * as semanticColors from '@/../../theme/src/style-guide/semanticColors'
 import type { ColorCategory, ColorsInCategories } from '@/../../theme/src/style-guide/types'
 import { HStack, Heading, Text, VStack } from '@chakra-ui/react'
+import { chakraTokenToCssVar } from '@hivemq/ui-theme/src/utils'
 
 const BORDER_WIDTH_IN_PIXEL = 1
-const BORDER_COLOR_LIGHT = neutrals['900']
-const BORDER_COLOR_DARK = neutrals.WHITE
+const BORDER_COLOR_LIGHT = chakraTokenToCssVar('neutrals', 900)
+const BORDER_COLOR_DARK = chakraTokenToCssVar('neutrals', 'WHITE')
 
 export function SemanticColors({ withText = false }: { withText?: boolean }) {
   const SIZE = 40
 
   const columnStyle = {
-    border: `1px solid ${neutrals['300']}`,
+    border: `1px solid ${chakraTokenToCssVar('neutrals', 300)}`,
     borderRadius: 12,
     padding: 20,
   }
@@ -29,7 +28,7 @@ export function SemanticColors({ withText = false }: { withText?: boolean }) {
 
               <VStack alignItems="start">
                 {Object.entries(value).map(([colorName, colorValue]) => {
-                  const mappedColor = computedSemanticColors[category as ColorCategory][colorName]
+                  const mappedColor = semanticColors[category as ColorCategory][colorName]
 
                   // style for all types of semantic colors: text + a circle for light + a circle for dark with their values
                   // the background of the circle is usually for the assigned color, and the border varies depending on whether it's light or dark theme
@@ -41,41 +40,41 @@ export function SemanticColors({ withText = false }: { withText?: boolean }) {
                   }
                   const lightCircle = {
                     ...styles,
-                    backgroundColor: mappedColor.light,
+                    backgroundColor: chakraTokenToCssVar(mappedColor.default),
                     border: `${BORDER_WIDTH_IN_PIXEL}px solid ${BORDER_COLOR_LIGHT}`,
                   }
                   const darkCircle = {
                     ...styles,
-                    backgroundColor: mappedColor.dark,
+                    backgroundColor: chakraTokenToCssVar(mappedColor._dark),
                     border: `${BORDER_WIDTH_IN_PIXEL}px solid ${BORDER_COLOR_DARK}`,
                   }
 
                   const pillStyle = {
                     display: 'flex',
                     backgroundColor: 'red', // white be overridden
-                    border: `${BORDER_WIDTH_IN_PIXEL}px solid ${neutrals['200']}`,
+                    border: `${BORDER_WIDTH_IN_PIXEL}px solid ${chakraTokenToCssVar('neutrals', 200)}`,
                     padding: 4,
                     gap: 12,
                     paddingRight: withText ? 16 : 4,
                     borderRadius: 999,
                     alignItems: 'center',
-                    width: 160,
+                    width: 164,
                   }
                   const lightPill = {
                     ...pillStyle,
-                    backgroundColor: neutrals.WHITE,
+                    backgroundColor: chakraTokenToCssVar('neutrals', 'WHITE'),
                   }
                   const darkPill = {
                     ...pillStyle,
-                    backgroundColor: neutrals['900'],
+                    backgroundColor: chakraTokenToCssVar('neutrals', 900),
                     border: 'none',
                   }
 
                   if (category === 'border') {
-                    lightCircle.backgroundColor = neutrals.WHITE
-                    lightCircle.border = `${BORDER_WIDTH_IN_PIXEL}px solid ${mappedColor.light}`
-                    darkCircle.backgroundColor = neutrals['900']
-                    darkCircle.border = `${BORDER_WIDTH_IN_PIXEL}px solid ${mappedColor.dark}`
+                    lightCircle.backgroundColor = chakraTokenToCssVar('neutrals', 'WHITE')
+                    lightCircle.border = `${BORDER_WIDTH_IN_PIXEL}px solid ${chakraTokenToCssVar(mappedColor.default)}`
+                    darkCircle.backgroundColor = chakraTokenToCssVar('neutrals', 900)
+                    darkCircle.border = `${BORDER_WIDTH_IN_PIXEL}px solid ${chakraTokenToCssVar(mappedColor._dark)}`
                   }
 
                   return (
@@ -89,8 +88,8 @@ export function SemanticColors({ withText = false }: { withText?: boolean }) {
                         <div style={lightPill}>
                           <div style={lightCircle} />
                           {withText && (
-                            <Text color={neutrals['800']} fontSize="small">
-                              {colorValue.light}
+                            <Text color={chakraTokenToCssVar('neutrals', 800)} fontSize="small">
+                              {colorValue.default}
                             </Text>
                           )}
                         </div>
@@ -99,8 +98,8 @@ export function SemanticColors({ withText = false }: { withText?: boolean }) {
                         <div style={darkPill}>
                           <div style={darkCircle} />
                           {withText && (
-                            <Text color={neutrals.WHITE} fontSize="small">
-                              {colorValue.dark}
+                            <Text color={chakraTokenToCssVar('neutrals', 'WHITE')} fontSize="small">
+                              {colorValue._dark}
                             </Text>
                           )}
                         </div>

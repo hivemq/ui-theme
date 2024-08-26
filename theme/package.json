@@ -17,7 +17,8 @@
     "build": "pnpm build:types && pnpm build:lib",
     "build:lib": "vite build",
     "build:types": "tsc --emitDeclarationOnly",
-    "publish:dry": "pnpm publish --no-git-checks --dry-run"
+    "publish:dry": "pnpm publish --no-git-checks --dry-run",
+    "test:unit": "vitest"
   },
   "engines": {
     "node": "20",
@@ -34,7 +35,8 @@
     "@chakra-ui/theme-tools": "^2.1.2",
     "@types/node": "^20.11.26",
     "typescript": "^5.2.2",
-    "vite": "^5.3.5",
-    "vite-plugin-dts": "^3.7.3"
+    "vite": "^5.4.2",
+    "vite-plugin-dts": "^3.7.3",
+    "vitest": "^2.0.5"
   }
 }

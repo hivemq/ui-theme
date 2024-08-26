@@ -1,5 +1,4 @@
-const percentageToHex = (percentage: number) =>
-  `0${Math.floor((percentage * 255) / 100).toString(16)}`.slice(-2).toUpperCase()
+import { percentageToHex } from '../utils'
 
 export const amber = {
   700: '#3B2C00',

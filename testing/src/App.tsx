@@ -8,6 +8,7 @@ import { Headings } from '@/views/Headings'
 import { Links } from '@/views/Links.tsx'
 import { SemanticColors } from '@/views/SemanticColors'
 import { Texts } from '@/views/Texts'
+import { ModePlayground } from './components/ModePlayground'
 
 function App() {
   const style: React.CSSProperties = {
@@ -16,8 +17,25 @@ function App() {
     flexDirection: 'column',
     gap: '2rem',
   }
+  const floatingBoxStyle: React.CSSProperties = {
+    position: 'fixed',
+    top: 20,
+    right: 20,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+    padding: '1rem 1.5rem',
+    borderWidth: 1,
+    borderRadius: 8,
+    width: 250,
+  }
+
   return (
     <ChakraBaseProvider theme={theme}>
+      <Box style={floatingBoxStyle} backgroundColor="background.bg-main-container">
+        <ModePlayground />
+      </Box>
+
       <Box style={style}>
         <Heading variant="h1">Colors</Heading>
         <Colors withText />
@@ -49,7 +67,7 @@ function App() {
 
         <hr />
 
-        <Heading variant="h1"> Links</Heading>
+        <Heading variant="h1"> Alerts</Heading>
         <Alerts />
       </Box>
     </ChakraBaseProvider>
