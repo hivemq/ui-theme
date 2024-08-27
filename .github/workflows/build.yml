@@ -21,7 +21,23 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  run_linter:
+    name: 🧪 Lint files
+    if: ${{ !github.event.pull_request.draft }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: 👓 Checkout repository
+        uses: actions/checkout@v3
+
+      - name: ⚙️ Setup node environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+
+      - name: 📝 Execute linter
+        run: pnpm lint:check:all
+
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
