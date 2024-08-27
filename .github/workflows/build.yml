@@ -23,17 +23,12 @@ on:
 jobs:
   run_linter:
     name: 🧪 Lint files
-    if: ${{ !github.event.pull_request.draft }}
     runs-on: ubuntu-latest
     steps:
       - name: 👓 Checkout repository
         uses: actions/checkout@v3
 
-      - name: ⚙️ Setup node environment
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          registry-url: https://registry.npmjs.org/
+      - uses: ./.github/actions/setup
 
       - name: 📝 Execute linter
         run: pnpm lint:check:all
