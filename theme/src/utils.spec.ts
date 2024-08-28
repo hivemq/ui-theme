@@ -39,7 +39,7 @@ describe('utils', () => {
     [85, 'D8'],
     [90, 'E5'],
     [95, 'F2'],
-    [100, 'FF']
+    [100, 'FF'],
   ])('transform percentage (%i) into -> hex value (%i)', (value, expected) => {
     expect(percentageToHex(value)).toEqual(expected)
   })
