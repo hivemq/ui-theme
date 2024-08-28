@@ -10,15 +10,13 @@
     "module": "./dist/index.es.js",
     "types": "./dist/index.es.d.ts"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "pnpm build:types && pnpm build:lib",
     "build:lib": "vite build",
     "build:types": "tsc --emitDeclarationOnly",
     "publish:dry": "pnpm publish --no-git-checks --dry-run",
-    "test:unit": "vitest"
+    "test:unit": "vitest run --outputFile.junit=./test-results/junit.xml"
   },
   "engines": {
     "node": "20",

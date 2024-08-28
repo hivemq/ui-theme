@@ -14,9 +14,11 @@
     "test:unit": "pnpm run --recursive --if-present test:unit",
     "lint:check": "biome check ./",
     "lint:check:write": "biome check --write --unsafe ./",
+    "lint:headers": "node check-headers.js",
+    "lint:check:all": "pnpm run lint:check && pnpm run lint:headers",
     "lint:format": "biome format ./",
     "lint:format:write": "biome format --write ./",
-    "lint:all": "pnpm run lint:check && pnpm run lint:format"
+    "lint:all": "pnpm run lint:check && pnpm run lint:headers && pnpm run lint:format"
   },
   "engines": {
     "node": "20",
