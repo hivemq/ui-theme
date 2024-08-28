@@ -1,4 +1,5 @@
 import * as colors from '@/../../theme/src/foundations/colors'
+import { chakraTokenToCssVar } from '@/../../theme/src/utils'
 import { HStack, Heading, Text, VStack } from '@chakra-ui/react'
 import copy from 'copy-to-clipboard'
 
@@ -18,7 +19,7 @@ export function Colors({ withText = false }: { withText?: boolean }) {
               <HStack>
                 {Object.entries(value).map(([weight, colorValue]) => {
                   const styles = {
-                    backgroundColor: colorValue,
+                    backgroundColor: chakraTokenToCssVar(_key, weight),
                     width: ELEMENT_WIDTH,
                     height: ELEMENT_WIDTH,
                   }

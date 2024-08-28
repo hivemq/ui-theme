@@ -1,8 +1,8 @@
 export type ColorCategory = 'background' | 'border' | 'icon' | 'text'
 
 export type ThemedColors = {
-  light: string
-  dark: string
+  default: string
+  _dark: string
 }
 
 export type ColorInCategory = Record<string, ThemedColors>

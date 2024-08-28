@@ -7,113 +7,69 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 
 const success = definePartsStyle({
   container: {
-    background: 'background.bg-success.light',
-    borderColor: 'border.border-success-strong.light',
-    color: 'text.text-success.light',
-    _dark: {
-      background: 'background.bg-success.dark',
-      borderColor: 'border.border-success-strong.dark',
-      color: 'text.text-success.dark',
-    },
+    background: 'background.bg-success',
+    borderColor: 'border.border-success-strong',
+    color: 'text.text-success',
   },
   icon: {
-    color: 'icon.icon-success.light',
-    _dark: {
-      color: 'icon.icon-success.dark',
-    },
+    color: 'icon.icon-success',
   },
   title: {
     fontWeight: 'bold',
   },
   description: {
-    color: 'text.text-success.light',
-    _dark: {
-      color: 'text.text-success.dark',
-    },
+    color: 'text.text-success',
   },
 })
 
 const error = definePartsStyle({
   container: {
-    background: 'background.bg-error.light',
-    borderColor: 'border.border-error-strong.light',
-    color: 'text.text-error.light',
-    _dark: {
-      background: 'background.bg-error.dark',
-      borderColor: 'border.border-error-strong.dark',
-      color: 'text.text-error.dark',
-    },
+    background: 'background.bg-error',
+    borderColor: 'border.border-error-strong',
+    color: 'text.text-error',
   },
   icon: {
-    color: 'icon.icon-error.light',
-    _dark: {
-      color: 'icon.icon-error.dark',
-    },
+    color: 'icon.icon-error',
   },
   title: {
     fontWeight: 'bold',
   },
   description: {
-    color: 'text.text-error.light',
-    _dark: {
-      color: 'text.text-error.dark',
-    },
+    color: 'text.text-error',
   },
 })
 
 const warning = definePartsStyle({
   container: {
-    background: 'background.bg-warning.light',
-    borderColor: 'border.border-warning-strong.light',
-    color: 'text.text-warning.light',
-    _dark: {
-      background: 'background.bg-warning.dark',
-      borderColor: 'border.border-warning-strong.dark',
-      color: 'text.text-warning.dark',
-    },
+    background: 'background.bg-warning',
+    borderColor: 'border.border-warning-strong',
+    color: 'text.text-warning',
   },
   icon: {
-    color: 'icon.icon-warning.light',
-    _dark: {
-      color: 'icon.icon-warning.dark',
-    },
+    color: 'icon.icon-warning',
   },
   title: {
     fontWeight: 'bold',
   },
   description: {
-    color: 'text.text-warning.light',
-    _dark: {
-      color: 'text.text-warning.dark',
-    },
+    color: 'text.text-warning',
   },
 })
 
 const info = definePartsStyle({
   container: {
-    background: 'background.bg-info.light',
-    borderColor: 'border.border-info-strong.light',
-    color: 'text.text-info.light',
-    _dark: {
-      background: 'background.bg-info.dark',
-      borderColor: 'border.border-info-strong.dark',
-      color: 'text.text-info.dark',
-    },
+    background: 'background.bg-info',
+    borderColor: 'border.border-info-strong',
+    color: 'text.text-info',
   },
   icon: {
-    color: 'icon.icon-info.light',
-    _dark: {
-      color: 'icon.icon-info.dark',
-    },
+    color: 'icon.icon-info',
   },
   title: {
     fontWeight: 'bold',
   },
   description: {
-    color: 'text.text-info.light',
-    _dark: {
-      color: 'text.text-info.dark',
-    },
+    color: 'text.text-info',
   },
 })
 

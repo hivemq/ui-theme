@@ -1,76 +1,59 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
 const primary = defineStyle({
-  _light: {
-    background: 'background.bg-brand.light',
-    borderColor: 'background.bg-brand.light',
-    color: 'text.text-on-brand.light',
-    _hover: {
-      background: 'background.bg-brand-hover.light',
-      borderColor: 'background.bg-brand-hover.light',
-    },
-    _disabled: {
-      background: 'background.bg-inactive.light',
-      borderColor: 'border.border-inactive.light',
-      color: 'text.text-inactive.light',
-    },
+  background: 'background.bg-brand',
+  borderColor: 'background.bg-brand',
+  color: 'text.text-on-brand',
+  _hover: {
+    background: 'background.bg-brand-hover',
+    borderColor: 'background.bg-brand-hover',
   },
-  _dark: {
-    background: 'background.bg-brand.dark',
-    borderColor: 'background.bg-brand.dark',
-    color: 'text.text-on-brand.dark',
-    _hover: {
-      background: 'background.bg-brand-hover.dark',
-      borderColor: 'background.bg-brand-hover.dark',
-    },
-    _disabled: {
-      background: 'background.bg-inactive.dark',
-      borderColor: 'border.border-inactive.dark',
-      color: 'text.text-inactive.dark',
-    },
+  _disabled: {
+    background: 'background.bg-inactive',
+    borderColor: 'border.border-inactive',
+    color: 'text.text-inactive',
   },
 })
 
 const secondary = defineStyle({
-  background: 'neutrals.200',
-  borderColor: 'neutrals.200',
-  color: 'neutrals.800',
+  background: 'background.bg-secondary',
+  borderColor: 'transparent',
   _hover: {
-    background: 'neutrals.300',
-    borderColor: 'neutrals.300',
+    borderColor: 'border.border-strong',
   },
   _disabled: {
-    background: 'neutrals.100',
-    borderColor: 'neutrals.100',
-    color: 'neutrals.700',
+    background: 'background.bg-inactive',
+    borderColor: 'border.border-inactive',
+    color: 'text.text-inactive',
   },
 })
 
 const dangerous = defineStyle({
-  background: 'background.bg-error.light',
-  borderColor: 'border.border-error.light',
-  color: 'text.text-error.light',
+  background: 'background.bg-error',
+  borderColor: 'border.border-error',
+  color: 'text.text-error',
   _hover: {
-    background: 'destructive.500',
-    borderColor: 'destructive.500',
+    background: 'background.bg-error-subtle',
+    borderColor: 'border.border-error-strong',
   },
   _disabled: {
-    background: 'neutrals.100',
-    borderColor: 'neutrals.100',
-    color: 'neutrals.700',
+    background: 'background.bg-inactive',
+    borderColor: 'border.border-inactive',
+    color: 'text.text-inactive',
   },
 })
 
 const outline = defineStyle({
   background: 'transparent',
-  borderColor: 'neutrals.300',
+  borderColor: 'border.border-base',
   _hover: {
-    background: 'neutrals.200',
+    background: 'background.bg-active-hover',
+    borderColor: 'border.border-strong',
   },
   _disabled: {
     background: 'transparent',
-    borderColor: 'neutrals.100',
-    color: 'neutrals.200',
+    borderColor: 'border.border-inactive',
+    color: 'text.text-inactive',
     _hover: null,
   },
 })
@@ -79,13 +62,13 @@ const ghost = defineStyle({
   background: 'transparent',
   borderColor: 'transparent',
   _hover: {
-    background: 'neutrals.300',
-    borderColor: 'neutrals.300',
+    background: 'background.bg-secondary',
+    borderColor: 'background.bg-secondary',
   },
   _disabled: {
     background: 'transparent',
     borderColor: 'transparent',
-    color: 'neutrals.300',
+    color: 'text.text-inactive',
   },
 })
 
