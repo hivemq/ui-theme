@@ -13,6 +13,8 @@ export default defineConfig({
   server: {
     port: env === 'test' ? 3001 : 3000,
   },
+  // Set the base if we are in a build environment to ensure the right path for the chunks
+  base: process.env.NODE_ENV === 'development' ? undefined : '/ui-theme/',
   //alias
   resolve: {
     alias: {
