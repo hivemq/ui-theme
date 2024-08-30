@@ -26,6 +26,7 @@ jobs:
 
 
   build_playground:
+    needs: build
     name: 🛝 Build Playground
     runs-on: ubuntu-latest
     steps:
@@ -34,6 +35,11 @@ jobs:
       - uses: ./.github/actions/setup
 
       - run: pnpm build:testing
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: './testing/dist/'
 
   unit_tests:
     name: 🧪 Unit Tests
