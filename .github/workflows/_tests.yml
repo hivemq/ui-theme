@@ -49,11 +49,14 @@ jobs:
 
       - run: pnpm build:testing
 
-      - name: Upload artifact
+      - name: 🔺 Upload playground artifacts
         if: github.ref == 'refs/heads/main'
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
+          name: build_distribution_testing
           path: testing/dist
+          if-no-files-found: error
+          retention-days: 1
 
   unit_tests:
     name: 🧪 Unit Tests
