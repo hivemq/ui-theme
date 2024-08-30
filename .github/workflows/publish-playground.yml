@@ -31,18 +31,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: 🔻 Download playground artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: build_distribution_testing
-          path: testing/dist
-
-      - name: Upload Page artifact
-        if: github.ref == 'refs/heads/main'
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: testing/dist
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

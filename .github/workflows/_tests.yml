@@ -25,7 +25,7 @@ jobs:
       - run: pnpm build
 
       - name: 🔺 Upload frontend distribution artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build_distribution
           path: theme/dist
@@ -40,7 +40,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: 🔻 Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build_distribution
           path: theme/dist
@@ -49,14 +49,11 @@ jobs:
 
       - run: pnpm build:testing
 
-      - name: 🔺 Upload playground artifacts
+      - name: 🔺 Upload Page artifact
         if: github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: build_distribution_testing
           path: testing/dist
-          if-no-files-found: error
-          retention-days: 1
 
   unit_tests:
     name: 🧪 Unit Tests
@@ -102,7 +99,7 @@ jobs:
 
       - name: ⬆️ Upload Difference Images
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: visual-test-screenshots
           path: ./testing/artifacts/image_diffs
