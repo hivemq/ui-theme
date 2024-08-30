@@ -24,6 +24,16 @@ jobs:
 
       - run: pnpm build
 
+
+  build_playground:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ./.github/actions/setup
+
+      - run: pnpm build:testing
+
   unit_tests:
     name: 🧪 Unit Tests
     runs-on: ubuntu-latest
