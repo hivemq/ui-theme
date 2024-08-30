@@ -24,6 +24,37 @@ jobs:
 
       - run: pnpm build
 
+      - name: 🔺 Upload frontend distribution artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build_distribution
+          path: theme/dist
+          if-no-files-found: error
+          retention-days: 1
+
+  build_playground:
+    needs: build
+    name: 🛝 Build Playground
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: 🔻 Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build_distribution
+          path: theme/dist
+
+      - uses: ./.github/actions/setup
+
+      - run: pnpm build:testing
+
+      - name: Upload artifact
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: testing/dist
+
   unit_tests:
     name: 🧪 Unit Tests
     runs-on: ubuntu-latest
