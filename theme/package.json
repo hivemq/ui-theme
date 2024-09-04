@@ -31,10 +31,10 @@
     "@chakra-ui/anatomy": "^2.2.2",
     "@chakra-ui/react": "^2.8.2",
     "@chakra-ui/theme-tools": "^2.1.2",
-    "@types/node": "^20.11.26",
-    "typescript": "^5.2.2",
-    "vite": "^5.4.2",
-    "vite-plugin-dts": "^3.7.3",
+    "@types/node": "^20.16.4",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.3",
+    "vite-plugin-dts": "^3.9.1",
     "vitest": "^2.0.5"
   }
 }
