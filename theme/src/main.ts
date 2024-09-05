@@ -24,14 +24,14 @@ import { fontSizes, textTheme } from './components/text'
 import * as colors from './foundations/colors'
 import * as semanticColors from './style-guide/semanticColors'
 
-const fonts = {
+export const fonts = {
   heading: "'Raleway', 'Roboto', 'Segoe UI', 'sans-serif'",
   body: "'Roboto', 'Segoe UI', 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', 'Arial', 'sans-serif', 'system-ui', '-apple-system'",
   monospace:
     "'Roboto Mono', 'IntelOne Mono', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'",
 }
 
-const styles = {
+export const styles = {
   global: (_props: StyleFunctionProps) => ({
     // override the default values with our semantic tokens
     body: {
@@ -48,7 +48,7 @@ const styles = {
   }),
 } as const
 
-const components = {
+export const components = {
   Alert: alertTheme,
   Button: buttonTheme,
   Heading: headingTheme,
@@ -56,7 +56,12 @@ const components = {
   Text: textTheme,
 } as const
 
-export const theme = extendBaseTheme({
+export { colors }
+export const semanticTokens = {
+  colors: semanticColors,
+}
+
+const theme = extendBaseTheme({
   config: {
     initialColorMode: 'light',
     useSystemColorMode: false,
@@ -67,8 +72,8 @@ export const theme = extendBaseTheme({
   colors: {
     ...colors,
   },
-  semanticTokens: {
-    colors: semanticColors,
-  },
+  semanticTokens,
   components,
 })
+
+export default theme

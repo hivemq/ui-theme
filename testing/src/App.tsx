@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 import { Box, ChakraBaseProvider, Heading } from '@chakra-ui/react'
-import { theme } from '../../theme/src/main'
+import theme from '../../theme/src/main'
 
 import { Alerts } from '@/views/Alerts.tsx'
 import { Buttons } from '@/views/Buttons'
