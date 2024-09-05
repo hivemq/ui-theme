@@ -5,15 +5,12 @@
 
 name: ✍️ Release Drafter
 
-permissions:
-  contents: write
-
 on:
   push:
     branches:
       - main
     paths:
-      - '.github/workflows/release-drafter.yml'
+      - '.github/workflows/draft-release.yml'
       - 'testing/**'
       - 'theme/**'
   workflow_dispatch: {}
@@ -26,16 +23,12 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: ./.github/actions/setup
-
       - uses: release-drafter/release-drafter@65c5fb495d1e69aa8c08a3317bc44ff8aabe9772
         id: releaseDrafter
         with:
           config-name: configs/draft-release.yml
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_RELEASE_DRAFTER_TOKEN }}
 
       # Run version bumping on the theme package
       - run: pnpm version ${{ steps.releaseDrafter.outputs.resolved_version }} --git-tag-version=false --allow-same-version

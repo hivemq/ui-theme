@@ -1,5 +1,5 @@
 # Action to label pull requests based on the pre commit config that can be found here:
-# 🪛 https://github.com/hivemq-cloud/hivemq-cloud/blob/develop/.pre-commit-config.yaml
+# 🪛 https://github.com/hivemq/ui-theme/blob/main/.pre-commit-config.yaml
 # ---
 # This action is a prerequisite to allow us to use release-drafter
 # https://github.com/release-drafter/release-drafter
