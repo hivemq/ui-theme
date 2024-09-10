@@ -8,8 +8,10 @@
   "publishConfig": {
     "main": "./dist/index.es.js",
     "module": "./dist/index.es.js",
-    "types": "./dist/index.es.d.ts"
+    "types": "./dist/index.es.d.ts",
+    "access": "public"
   },
+  "license": "Apache-2.0",
   "files": ["dist"],
   "scripts": {
     "build": "pnpm build:types && pnpm build:lib",
