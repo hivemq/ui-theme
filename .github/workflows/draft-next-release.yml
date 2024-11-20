@@ -19,7 +19,7 @@ jobs:
   draft_release:
     name: 'Draft Theme release'
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
