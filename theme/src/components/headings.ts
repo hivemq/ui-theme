@@ -20,7 +20,7 @@ function headingStyle(fontSizeRem: number, lineHeightRem: number) {
   return defineStyle({
     fontFamily: 'Raleway',
     fontStyle: 'normal',
-    fontWeight: '800',
+    fontWeight: '700',
     fontSize: `${fontSizeRem}rem`,
     lineHeight: `${lineHeightRem}rem`,
     letterSpacing: `-${0.02 * fontSizeRem}rem`, // -2%
