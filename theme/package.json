@@ -1,6 +1,6 @@
 {
   "name": "@hivemq/ui-theme",
-  "version": "0.4.5",
+  "version": "0.5.0",
   "type": "module",
   "main": "./dist/index.es.js",
   "module": "./dist/index.es.js",
@@ -12,7 +12,9 @@
     "access": "public"
   },
   "license": "Apache-2.0",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "pnpm build:types && pnpm build:lib",
     "build:lib": "vite build",
