@@ -10,7 +10,7 @@ on:
     branches:
       - main
     paths:
-      - '.github/workflows/draft-release.yml'
+      - '.github/workflows/draft-next-release.yml'
       - 'testing/**'
       - 'theme/**'
   workflow_dispatch: {}
