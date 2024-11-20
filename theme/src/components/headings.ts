@@ -31,7 +31,7 @@ const h1 = headingStyle(2.25, 2.75)
 
 const h2 = headingStyle(1.875, 2.25)
 
-const h3 = headingStyle(1.125, 1.5)
+const h3 = headingStyle(1.5, 2)
 
 const h4 = headingStyle(1, 1.25)
 
