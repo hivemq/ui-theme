@@ -32,7 +32,7 @@ jobs:
 
       # Run version bumping on the theme package
       - run: pnpm version ${{ steps.releaseDrafter.outputs.resolved_version }} --git-tag-version=false --allow-same-version
-        working-directory: theme
+        working-directory: ./theme
         env:
           GITHUB_TOKEN: ${{ secrets.GH_RELEASE_DRAFTER_TOKEN }}
 
