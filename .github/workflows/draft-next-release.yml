@@ -25,15 +25,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
         with:
-          node-version: 20.11.1
-          registry-url: https://npm.pkg.github.com
-          scope: '@hivemq'
-
-      - name: 📣 Enable Corepack
-        run: corepack enable
-        shell: bash
+          version: 9.6.0+sha512.38dc6fba8dba35b39340b9700112c2fe1e12f10b17134715a4aa98ccf7bb035e76fd981cf0bb384dfa98f8d6af5481c2bef2f4266a24bfa20c34eb7147ce0b5e
+          run_install: false
 
       - uses: release-drafter/release-drafter@65c5fb495d1e69aa8c08a3317bc44ff8aabe9772
         id: releaseDrafter
