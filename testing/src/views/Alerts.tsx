@@ -14,23 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-  Box,
-  HStack,
-  Heading,
-} from '@chakra-ui/react'
+import { Box, Alert as ChakraAlert, HStack, Heading } from '@chakra-ui/react'
 
 export function Alerts() {
-  const variants: Array<'success' | 'error' | 'warning' | 'info'> = [
-    'success',
-    'error',
-    'warning',
-    'info',
-  ]
+  const variants = ['subtle', 'surface', 'outline', 'solid'] as const
 
   return (
     <>
@@ -38,18 +25,27 @@ export function Alerts() {
         {variants.map((variant) => {
           return (
             <Box key={variant} p={2}>
-              <Heading variant="h2" mb={2}>
+              <Heading as="h2" mb={2}>
                 {variant.charAt(0).toUpperCase() + variant.slice(1)}
               </Heading>
-              <Alert variant={variant} status={variant}>
-                <AlertIcon />
-                <Box flex="1">
-                  <AlertTitle>
+              <ChakraAlert.Root
+                status="error"
+                // flexDirection="column"
+                // alignItems="center"
+                // justifyContent="center"
+                // textAlign="center"
+                variant={variant}
+              >
+                <ChakraAlert.Indicator />
+                <ChakraAlert.Content>
+                  <ChakraAlert.Title mt={4} mb={1} mx={0} fontSize="lg">
                     {variant.charAt(0).toUpperCase() + variant.slice(1)} Alert
-                  </AlertTitle>
-                  <AlertDescription>This is a {variant} alert.</AlertDescription>
-                </Box>
-              </Alert>
+                  </ChakraAlert.Title>
+                  <ChakraAlert.Description maxWidth="sm">
+                    This is a {variant} alert.
+                  </ChakraAlert.Description>
+                </ChakraAlert.Content>
+              </ChakraAlert.Root>
             </Box>
           )
         })}

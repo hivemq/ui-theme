@@ -23,8 +23,8 @@
     "typeRoots": ["./node_modules/@types", "./src/@types"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "~/*": ["./src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "index.ts"]
 }

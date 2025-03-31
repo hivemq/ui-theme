@@ -1,12 +1,10 @@
 {
   "name": "@hivemq/ui-theme",
-  "version": "0.5.0",
+  "version": "1.0.0-rc.2",
   "type": "module",
-  "main": "./dist/index.es.js",
   "module": "./dist/index.es.js",
   "types": "./dist/index.es.d.ts",
   "publishConfig": {
-    "main": "./dist/index.es.js",
     "module": "./dist/index.es.js",
     "types": "./dist/index.es.d.ts",
     "access": "public"
@@ -27,18 +25,17 @@
     "pnpm": "9"
   },
   "peerDependencies": {
-    "@chakra-ui/anatomy": "^2.2.2",
-    "@chakra-ui/react": "^2.8.2",
-    "@chakra-ui/theme-tools": "^2.1.2"
+    "@chakra-ui/react": "^3.14.2"
   },
   "devDependencies": {
-    "@chakra-ui/anatomy": "^2.2.2",
-    "@chakra-ui/react": "^2.8.2",
-    "@chakra-ui/theme-tools": "^2.1.2",
+    "@chakra-ui/cli": "^3.14.2",
+    "@chakra-ui/react": "^3.14.2",
     "@types/node": "^20.16.4",
-    "typescript": "^5.5.4",
-    "vite": "^5.4.3",
-    "vite-plugin-dts": "^3.9.1",
-    "vitest": "^2.0.5"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.2",
+    "vite-plugin-dts": "^4.5.3",
+    "vitest": "^3.0.9"
   }
 }

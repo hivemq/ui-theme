@@ -13,8 +13,8 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/main.ts'),
-      formats: ['es', 'umd'],
+      entry: resolve(__dirname, 'index.ts'),
+      formats: ['es'],
       name: '@hivemq/ui-theme',
       fileName: (format) => `index.${format}.js`,
     },

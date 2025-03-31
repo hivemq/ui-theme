@@ -14,10 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import * as colors from '@/../../theme/src/foundations/colors'
-import { chakraTokenToCssVar } from '@/../../theme/src/utils'
 import { HStack, Heading, Text, VStack } from '@chakra-ui/react'
+import { config } from '@hivemq/ui-theme'
 import copy from 'copy-to-clipboard'
+import { system } from '../theme'
+
+const colors = config.theme?.tokens?.colors || {}
 
 const BORDER_WIDTH_IN_PIXEL = 2
 
@@ -36,12 +38,12 @@ export function Colors({ withText = false }: { withText?: boolean }) {
           .map(([_key, value]) => {
             return (
               <VStack alignItems="start" key={_key + value}>
-                {withText && <Heading variant="h2">{_key}</Heading>}
+                {withText && <Heading as="h2">{_key}</Heading>}
 
                 <HStack>
                   {Object.entries(value).map(([weight, colorValue]) => {
                     const styles = {
-                      backgroundColor: chakraTokenToCssVar(_key, weight),
+                      backgroundColor: system.token(_key, weight),
                       width: ELEMENT_WIDTH,
                       height: ELEMENT_WIDTH,
                     }
@@ -63,11 +65,7 @@ export function Colors({ withText = false }: { withText?: boolean }) {
                             <Text fontFamily="monospace" fontSize="xs">
                               {_key}.{weight}
                             </Text>
-                            <Text
-                              fontFamily="monospace"
-                              fontSize="xs"
-                              color={colors.neutrals['500']}
-                            >
+                            <Text fontFamily="monospace" fontSize="xs" color="surface.500">
                               {colorValue}
                             </Text>
                           </div>

@@ -14,17 +14,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Box, ChakraBaseProvider, Heading } from '@chakra-ui/react'
-import theme from '../../theme/src/main'
-
-import { Alerts } from '@/views/Alerts.tsx'
-import { Buttons } from '@/views/Buttons'
-import { Colors } from '@/views/Colors'
-import { Headings } from '@/views/Headings'
-import { Links } from '@/views/Links.tsx'
-import { SemanticColors } from '@/views/SemanticColors'
-import { Texts } from '@/views/Texts'
+import { Box, ChakraProvider, Heading } from '@chakra-ui/react'
+import { Alerts } from '~/views/Alerts.tsx'
+import { Buttons } from '~/views/Buttons'
+import { Colors } from '~/views/Colors'
+import { Headings } from '~/views/Headings'
+import { Links } from '~/views/Links.tsx'
+import { SemanticColors } from '~/views/SemanticColors'
+import { Texts } from '~/views/Texts'
 import { ModePlayground } from './components/ModePlayground'
+import { system as theme } from './theme'
 
 function App() {
   const style: React.CSSProperties = {
@@ -47,46 +46,46 @@ function App() {
   }
 
   return (
-    <ChakraBaseProvider theme={theme}>
+    <ChakraProvider value={theme}>
       <Box style={floatingBoxStyle} backgroundColor="background.bg-main-container">
         <ModePlayground />
       </Box>
 
       <Box style={style}>
-        <Heading variant="h1">Colors</Heading>
+        <Heading as="h1">Colors</Heading>
         <Colors withText />
 
         <hr />
 
-        <Heading variant="h1">Semantic Colors</Heading>
+        <Heading as="h1">Semantic Colors</Heading>
         <SemanticColors withText />
 
         <hr />
 
-        <Heading variant="h1">Headings</Heading>
+        <Heading as="h1">Headings</Heading>
         <Headings />
 
         <hr />
 
-        <Heading variant="h1">Texts</Heading>
+        <Heading as="h1">Texts</Heading>
         <Texts />
 
         <hr />
 
-        <Heading variant="h1">Buttons</Heading>
+        <Heading as="h1">Buttons</Heading>
         <Buttons />
 
         <hr />
 
-        <Heading variant="h1"> Links</Heading>
+        <Heading as="h1"> Links</Heading>
         <Links />
 
         <hr />
 
-        <Heading variant="h1"> Alerts</Heading>
+        <Heading as="h1"> Alerts</Heading>
         <Alerts />
       </Box>
-    </ChakraBaseProvider>
+    </ChakraProvider>
   )
 }
 

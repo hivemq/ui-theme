@@ -14,20 +14,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { ChakraBaseProvider } from '@chakra-ui/react'
-import theme from '@hivemq/ui-theme'
+import { ChakraProvider } from '@chakra-ui/react'
 import { render } from 'safetest/react'
 import { describe, expect, it } from 'safetest/vitest'
+import { system as theme } from '../theme'
 
-import { Buttons } from '@/views/Buttons'
+import { Buttons } from '~/views/Buttons'
 
 // Whole App testing
 describe('Buttons', () => {
   it('Visual test all button variants', async () => {
     const { page } = await render(() => (
-      <ChakraBaseProvider theme={theme}>
+      <ChakraProvider value={theme}>
         <Buttons />
-      </ChakraBaseProvider>
+      </ChakraProvider>
     ))
 
     expect(await page.screenshot()).toMatchImageSnapshot()
