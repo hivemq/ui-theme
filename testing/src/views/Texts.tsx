@@ -32,7 +32,7 @@ function displayText(
     <>
       <VStack
         alignItems="start"
-        border="1px solid {colors.surface.300}"
+        border="1px solid {colors.secondary.300}"
         borderRadius={12}
         padding={20}
       >

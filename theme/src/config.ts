@@ -18,7 +18,7 @@ export const config = mergeConfigs(defaultBaseConfig, {
     },
     tokens: {
       colors: {
-        brand: {
+        primary: {
           50: { value: '#FFF2CC' },
           100: { value: '#FFF2CC' },
           200: { value: '#FFF2CC' },
@@ -30,7 +30,7 @@ export const config = mergeConfigs(defaultBaseConfig, {
           800: { value: '#D6C389' },
           900: { value: '#000000' },
         },
-        surface: {
+        secondary: {
           0: { value: '#FFFFFF' },
           50: { value: '#F6F4F1' },
           100: { value: '#F5F2EF' },
@@ -89,31 +89,33 @@ export const config = mergeConfigs(defaultBaseConfig, {
     semanticTokens: {
       colors: {
         brand: {
-          solid: { value: '{colors.brand.400}' },
-          contrast: { value: '{colors.brand.900}' },
-          fg: { value: '{colors.brand.900}' },
-          muted: { value: '{colors.brand.100}' },
-          subtle: { value: '{colors.brand.200}' },
-          emphasized: { value: '{colors.brand.300}' },
-          focusRing: { value: '{colors.brand.500}' },
+          solid: { value: '{colors.primary.400}' },
+          contrast: { value: '{colors.primary.900}' },
+          fg: { value: '{colors.primary.900}' },
+          muted: { value: '{colors.primary.100}' },
+          subtle: { value: '{colors.primary.200}' },
+          emphasized: { value: '{colors.primary.300}' },
+          focusRing: { value: '{colors.primary.500}' },
         },
         default: {
-          solid: { value: { base: '{colors.surface.200}', _dark: '{colors.surface.800}' } },
-          contrast: { value: { base: '{colors.surface.900}', _dark: '{colors.surface.50}' } },
-          fg: { value: { base: '{colors.surface.900}', _dark: '{colors.surface.50}' } },
-          muted: { value: { base: '{colors.surface.100}', _dark: '{colors.surface.700}' } },
-          subtle: { value: { base: '{colors.surface.200}', _dark: '{colors.surface.800}' } },
-          emphasized: { value: { base: '{colors.surface.300}', _dark: '{colors.surface.700}' } },
-          focusRing: { value: '{colors.surface.500}' },
+          solid: { value: { base: '{colors.secondary.200}', _dark: '{colors.secondary.800}' } },
+          contrast: { value: { base: '{colors.secondary.900}', _dark: '{colors.secondary.50}' } },
+          fg: { value: { base: '{colors.secondary.900}', _dark: '{colors.secondary.50}' } },
+          muted: { value: { base: '{colors.secondary.100}', _dark: '{colors.secondary.700}' } },
+          subtle: { value: { base: '{colors.secondary.200}', _dark: '{colors.secondary.800}' } },
+          emphasized: {
+            value: { base: '{colors.secondary.300}', _dark: '{colors.secondary.700}' },
+          },
+          focusRing: { value: '{colors.secondary.500}' },
         },
         shell: {
-          bg: { value: { base: '{colors.surface.50}', _dark: '{colors.surface.900}' } },
-          muted: { value: { base: '{colors.surface.100}', _dark: '{colors.surface.800}' } },
-          subtile: { value: { base: '{colors.surface.200}', _dark: '{colors.surface.700}' } },
+          bg: { value: { base: '{colors.secondary.50}', _dark: '{colors.secondary.900}' } },
+          muted: { value: { base: '{colors.secondary.100}', _dark: '{colors.secondary.800}' } },
+          subtile: { value: { base: '{colors.secondary.200}', _dark: '{colors.secondary.700}' } },
           contrastBg: { value: { base: 'white', _dark: 'black' } },
-          border: { value: { base: '{colors.surface.300}', _dark: '{colors.surface.700}' } },
-          group: { value: { base: '{colors.surface.500}', _dark: '{colors.surface.500}' } },
-          item: { value: { base: '{colors.surface.900}', _dark: '{colors.surface.50}' } },
+          border: { value: { base: '{colors.secondary.300}', _dark: '{colors.secondary.700}' } },
+          group: { value: { base: '{colors.secondary.500}', _dark: '{colors.secondary.500}' } },
+          item: { value: { base: '{colors.secondary.900}', _dark: '{colors.secondary.50}' } },
         },
       },
     },

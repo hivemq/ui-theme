@@ -65,7 +65,7 @@ export function Colors({ withText = false }: { withText?: boolean }) {
                             <Text fontFamily="monospace" fontSize="xs">
                               {_key}.{weight}
                             </Text>
-                            <Text fontFamily="monospace" fontSize="xs" color="surface.500">
+                            <Text fontFamily="monospace" fontSize="xs" color="secondary.500">
                               {colorValue}
                             </Text>
                           </div>
