@@ -14,16 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { neutrals } from '@/../../theme/src/foundations/colors'
 import { Box, Flex, HStack, Heading, Text, VStack } from '@chakra-ui/react'
 
 const sampleText = 'The Force will be with you, always.'
-
-const columnStyle = {
-  border: `1px solid ${neutrals['300']}`,
-  borderRadius: 12,
-  padding: 20,
-}
 
 type DisplayTextOptions = {
   fontSize?: boolean
@@ -37,7 +30,12 @@ function displayText(
 ) {
   return (
     <>
-      <VStack alignItems="start" style={columnStyle}>
+      <VStack
+        alignItems="start"
+        border="1px solid {colors.surface.300}"
+        borderRadius={12}
+        padding={20}
+      >
         <Heading as="h2">
           {title}
           {options.fontSize && (
@@ -67,7 +65,7 @@ function displayText(
             {options.variant && (
               <Box>
                 <Heading as="h4">{`<Text variant='${size}'>`}</Heading>
-                <Text variant={size} key={`text3_${size}`} mt="1" mb="4" color="green">
+                <Text fontSize={size} key={`text3_${size}`} mt="1" mb="4" color="green">
                   {sampleText}
                 </Text>
               </Box>
@@ -100,17 +98,17 @@ export function Texts() {
 
       <Flex flexDirection="column" gap={1}>
         <Heading as="h3">This is an H3 heading</Heading>
-        <Text variant="P1">This P1 paragraph goes well with an H3 heading.</Text>
+        <Text fontSize="lg">This P1 paragraph goes well with an H3 heading.</Text>
       </Flex>
 
       <Flex flexDirection="column" gap={1}>
         <Heading as="h4">This is an H4 heading</Heading>
-        <Text variant="P2">This P2 paragraph goes well with an H4 heading.</Text>
+        <Text fontSize="2xl">This P2 paragraph goes well with an H4 heading.</Text>
       </Flex>
 
       <Flex flexDirection="column" gap={1}>
         <Heading as="h5">This is an H5 heading</Heading>
-        <Text variant="P3">This P3 paragraph goes well with an H5 heading.</Text>
+        <Text fontSize="3xl">This P3 paragraph goes well with an H5 heading.</Text>
       </Flex>
     </>
   )

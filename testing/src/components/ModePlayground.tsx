@@ -14,75 +14,62 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Box,
-  Button,
-  ColorModeProvider,
-  DarkMode,
-  LightMode,
-  Text,
-  useColorMode,
-} from '@chakra-ui/react'
+import { Accordion, Box, Button, Text } from '@chakra-ui/react'
+import { ColorModeButton, ColorModeProvider, useColorMode } from '~/ui/color-mode'
 
 export function ModePlayground() {
-  const { colorMode, toggleColorMode } = useColorMode()
+  const { colorMode } = useColorMode()
   return (
     <>
-      <Accordion allowToggle>
-        <AccordionItem>
+      <Accordion.Root>
+        <Accordion.Item value="a">
           <h2>
-            <AccordionButton>
+            <Accordion.ItemTrigger>
               <Box as="span" flex="1" textAlign="left">
                 Mode playground
               </Box>
-              <AccordionIcon />
-            </AccordionButton>
+              <Accordion.ItemIndicator />
+            </Accordion.ItemTrigger>
           </h2>
-          <AccordionPanel pb={4}>
-            <Box display="flex" flexDirection="column" gap="2" py="4">
-              color mode: {colorMode}
-              <LightMode>
-                <Button size="sm">Light Mode Always</Button>
-              </LightMode>
-              <DarkMode>
-                <Button size="sm">Dark Mode Always</Button>
-              </DarkMode>
-              <Button size="sm" onClick={toggleColorMode}>
-                Toggle Mode
-              </Button>
-            </Box>
+          <Accordion.ItemContent pb={4}>
+            <Accordion.ItemBody>
+              <Box display="flex" flexDirection="column" gap="2" py="4">
+                color mode: {colorMode}
+                <ColorModeProvider forcedTheme="light">
+                  <Button size="sm">Light Mode Always</Button>
+                </ColorModeProvider>
+                <ColorModeProvider forcedTheme="dark">
+                  <Button size="sm">Dark Mode Always</Button>
+                </ColorModeProvider>
+                <ColorModeButton>Toggle Mode</ColorModeButton>
+              </Box>
 
-            <Box
-              p="4"
-              bg="background.bg-subtle"
-              borderRadius="md"
-              right="5"
-              gap="4"
-              borderWidth="1px"
-              display="flex"
-              flexDirection="column"
-            >
-              <LightMode>
-                <Text color="text.text-base">
-                  This text uses the default light mode text color.
-                </Text>
-              </LightMode>
-              <ColorModeProvider
-                value="dark"
-                options={{ useSystemColorMode: false, initialColorMode: 'dark' }}
+              <Box
+                p="4"
+                bg="background.bg-subtle"
+                borderRadius="md"
+                right="5"
+                gap="4"
+                borderWidth="1px"
+                display="flex"
+                flexDirection="column"
               >
-                <Text color="text.text-base">This text uses the default dark mode text color.</Text>
-              </ColorModeProvider>
-              <Text>This text uses the normal text color depending on the current mode.</Text>
-            </Box>
-          </AccordionPanel>
-        </AccordionItem>
-      </Accordion>
+                <ColorModeProvider forcedTheme="light">
+                  <Text color="text.text-base">
+                    This text uses the default light mode text color.
+                  </Text>
+                </ColorModeProvider>
+                <ColorModeProvider forcedTheme="dark">
+                  <Text color="text.text-base">
+                    This text uses the default dark mode text color.
+                  </Text>
+                </ColorModeProvider>
+                <Text>This text uses the normal text color depending on the current mode.</Text>
+              </Box>
+            </Accordion.ItemBody>
+          </Accordion.ItemContent>
+        </Accordion.Item>
+      </Accordion.Root>
     </>
   )
 }

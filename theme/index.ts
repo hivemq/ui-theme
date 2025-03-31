@@ -14,13 +14,5 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-export type ColorCategory = 'background' | 'border' | 'icon' | 'text'
-
-export type ThemedColors = {
-  default: string
-  _dark: string
-}
-
-export type ColorInCategory = Record<string, ThemedColors>
-
-export type ColorsInCategories = Record<ColorCategory, ColorInCategory>
+export * from './src/config'
+export * from './src/utils'

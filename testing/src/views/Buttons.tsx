@@ -17,8 +17,8 @@ limitations under the License.
 import { Box, Button, HStack, Heading } from '@chakra-ui/react'
 
 export function Buttons() {
-  const variants = ['primary', 'secondary', 'outline', 'ghost', 'dangerous']
-  const sizes = ['xs', 'sm', 'md', 'lg']
+  const variants = ['solid', 'subtle', 'surface', 'outline', 'ghost', 'plain'] as const
+  const sizes = ['xs', 'sm', 'md', 'lg'] as const
 
   return (
     <>
@@ -26,18 +26,18 @@ export function Buttons() {
         {variants.map((variant) => {
           return (
             <Box key={variant}>
-              <Heading variant="h2" mb={2}>
+              <Heading as="h2" mb={2}>
                 {variant}
               </Heading>
               {sizes.map((size) => {
                 return (
                   <Box key={size} p={2}>
-                    <Heading variant="h3">{size}</Heading>
+                    <Heading as="h3">{size}</Heading>
                     <HStack alignItems="start" mt={2}>
                       <Button variant={variant} size={size}>
                         Button
                       </Button>
-                      <Button variant={variant} size={size} isDisabled>
+                      <Button variant={variant} size={size} disabled>
                         Button
                       </Button>
                     </HStack>
