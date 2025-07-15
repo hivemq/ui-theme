@@ -43,9 +43,9 @@ export function SemanticButtons() {
               </Table.Header>
               <Table.Body>
                 {buttonVariants.map((variant) => (
-                  <Table.Row key={variant}>
+                  <Table.Row key={variant.toString()}>
                     <Table.Cell>
-                      <Text fontWeight="bold">{variant}</Text>
+                      <Text fontWeight="bold">{variant.toString()}</Text>
                     </Table.Cell>
                     {/* Default State */}
                     <Table.Cell>
