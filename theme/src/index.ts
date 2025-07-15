@@ -14,5 +14,5 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-export * from './src/config'
-export * from './src/utils'
+export * from './config.ts'
+export * from './utils.ts'

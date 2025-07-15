@@ -14,16 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Box, ChakraProvider, Heading } from '@chakra-ui/react'
-import { Alerts } from '~/views/Alerts.tsx'
-import { Buttons } from '~/views/Buttons'
-import { Colors } from '~/views/Colors'
-import { Headings } from '~/views/Headings'
-import { Links } from '~/views/Links.tsx'
-import { SemanticColors } from '~/views/SemanticColors'
-import { Texts } from '~/views/Texts'
-import { ModePlayground } from './components/ModePlayground'
-import { system as theme } from './theme'
+import {Box, ChakraProvider, Heading} from '@chakra-ui/react'
+import {system as theme} from './theme'
+import {Colors} from "./views/Colors.tsx";
+import {SemanticTokens} from "~/views/SemanticColors.tsx";
+import {SemanticButtons} from "~/views/SemanticButtons.tsx";
 
 function App() {
   const style: React.CSSProperties = {
@@ -32,58 +27,18 @@ function App() {
     flexDirection: 'column',
     gap: '2rem',
   }
-  const floatingBoxStyle: React.CSSProperties = {
-    position: 'fixed',
-    top: 20,
-    right: 20,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-    padding: '1rem 1.5rem',
-    borderWidth: 1,
-    borderRadius: 8,
-    width: 250,
-  }
 
   return (
     <ChakraProvider value={theme}>
-      <Box style={floatingBoxStyle} backgroundColor="background.bg-main-container">
-        <ModePlayground />
-      </Box>
-
       <Box style={style}>
-        <Heading as="h1">Colors</Heading>
-        <Colors withText />
-
-        <hr />
-
-        <Heading as="h1">Semantic Colors</Heading>
-        <SemanticColors withText />
-
-        <hr />
-
-        <Heading as="h1">Headings</Heading>
-        <Headings />
-
-        <hr />
-
-        <Heading as="h1">Texts</Heading>
-        <Texts />
-
-        <hr />
-
-        <Heading as="h1">Buttons</Heading>
-        <Buttons />
-
-        <hr />
-
-        <Heading as="h1"> Links</Heading>
-        <Links />
-
-        <hr />
-
-        <Heading as="h1"> Alerts</Heading>
-        <Alerts />
+        <Heading as="h1" fontSize={36}>Color Tokens</Heading>
+        <Colors/>
+        <hr/>
+        <Heading as="h1" fontSize={36}>Semantic Token</Heading>
+        <SemanticTokens/>
+        <hr/>
+        <Heading as="h1" fontSize={36}>Buttons</Heading>
+        <SemanticButtons/>
       </Box>
     </ChakraProvider>
   )

@@ -18,6 +18,37 @@ export const config = mergeConfigs(defaultBaseConfig, {
     },
     tokens: {
       colors: {
+        /**
+         * Black and white shades
+         */
+        white: {
+          DEFAULT: { value: 'rgba(255, 255, 255, 1)' },
+          '50': { value: 'rgba(255, 255, 255, 0.04)' },
+          '100': { value: 'rgba(255, 255, 255, 0.06)' },
+          '200': { value: 'rgba(255, 255, 255, 0.08)' },
+          '300': { value: 'rgba(255, 255, 255, 0.16)' },
+          '400': { value: 'rgba(255, 255, 255, 0.24)' },
+          '500': { value: 'rgba(255, 255, 255, 0.36)' },
+          '600': { value: 'rgba(255, 255, 255, 0.48)' },
+          '700': { value: 'rgba(255, 255, 255, 0.64)' },
+          '800': { value: 'rgba(255, 255, 255, 0.80)' },
+          '900': { value: 'rgba(255, 255, 255, 0.92)' },
+          '950': { value: 'rgba(255, 255, 255, 0.95)' },
+        },
+        black: {
+          DEFAULT: { value: 'rgba(1, 1, 1, 1)' },
+          '50': { value: 'rgba(1, 1, 1, 0.04)' },
+          '100': { value: 'rgba(1, 1, 1, 0.06)' },
+          '200': { value: 'rgba(1, 1, 1, 0.08)' },
+          '300': { value: 'rgba(1, 1, 1, 0.16)' },
+          '400': { value: 'rgba(1, 1, 1, 0.24)' },
+          '500': { value: 'rgba(1, 1, 1, 0.36)' },
+          '600': { value: 'rgba(1, 1, 1, 0.48)' },
+          '700': { value: 'rgba(1, 1, 1, 0.64)' },
+          '800': { value: 'rgba(1, 1, 1, 0.80)' },
+          '900': { value: 'rgba(1, 1, 1, 0.92)' },
+          '950': { value: 'rgba(1, 1, 1, 0.96)' },
+        },
         gray: {
           50: { value: '#F9FAFB' },
           100: { value: '#F3F4F6' },
@@ -148,9 +179,6 @@ export const config = mergeConfigs(defaultBaseConfig, {
           900: { value: '#7C2D12' },
           950: { value: '#431407' },
         },
-        /**
-         * 12-Color spectrum that should be used for categorical data e.g. graphs and charts.
-         */
         categorical: {
           1: { value: '#23B5A5' },
           2: { value: '#3D4EB6' },
@@ -184,38 +212,147 @@ export const config = mergeConfigs(defaultBaseConfig, {
       colors: {
         primary: {
           bg: { value: { base: '{colors.yellow.400}', _dark: '{colors.yellow.400}' } },
+          bg_hover: { value: { base: '{colors.yellow.500}', _dark: '{colors.yellow.500}' } },
           border: { value: { base: '{colors.yellow.500}', _dark: '{colors.yellow.500}' } },
-          fg: { value: { base: '{colors.primary.900}', _dark: '{colors.primary.900}' } },
+          fg: { value: { base: '{colors.black}', _dark: '{colors.black}' } },
         },
         secondary: {
           bg: { value: { base: '{colors.blue.500}', _dark: '{colors.blue.400}' } },
+          bg_hover: { value: { base: '{colors.blue.600}', _dark: '{colors.blue.500}' } },
           border: { value: { base: '{colors.blue.600}', _dark: '{colors.blue.500}' } },
           fg: { value: { base: 'white', _dark: '{colors.blue.950}' } },
         },
         success: {
           bg: { value: { base: '{colors.green.500}', _dark: '{colors.green.400}' } },
+          bg_hover: { value: { base: '{colors.green.600}', _dark: '{colors.green.500}' } },
           border: { value: { base: '{colors.green.600}', _dark: '{colors.green.500}' } },
           fg: { value: { base: 'white', _dark: '{colors.green.950}' } },
         },
         info: {
           bg: { value: { base: '{colors.cyan.500}', _dark: '{colors.cyan.400}' } },
+          bg_hover: { value: { base: '{colors.cyan.600}', _dark: '{colors.cyan.500}' } },
           border: { value: { base: '{colors.cyan.600}', _dark: '{colors.cyan.500}' } },
           fg: { value: { base: 'white', _dark: '{colors.cyan.950}' } },
         },
         warning: {
           bg: { value: { base: '{colors.orange.500}', _dark: '{colors.orange.400}' } },
+          bg_hover: { value: { base: '{colors.orange.600}', _dark: '{colors.orange.500}' } },
           border: { value: { base: '{colors.orange.600}', _dark: '{colors.orange.500}' } },
           fg: { value: { base: 'white', _dark: '{colors.orange.950}' } },
         },
         error: {
           bg: { value: { base: '{colors.red.500}', _dark: '{colors.red.400}' } },
+          bg_hover: { value: { base: '{colors.red.600}', _dark: '{colors.red.500}' } },
           border: { value: { base: '{colors.red.600}', _dark: '{colors.red.500}' } },
           fg: { value: { base: 'white', _dark: '{colors.red.950}' } },
         },
         highlight: {
           bg: { value: { base: '{colors.purple.500}', _dark: '{colors.purple.400}' } },
+          bg_hover: { value: { base: '{colors.purple.600}', _dark: '{colors.purple.500}' } },
           border: { value: { base: '{colors.purple.600}', _dark: '{colors.purple.500}' } },
           fg: { value: { base: 'white', _dark: '{colors.purple.950}' } },
+        },
+      },
+    },
+    recipes: {
+      button: {
+        base: {
+          borderWidth: '2px',
+          transition: 'all 0.2s ease-in-out',
+          _active: {
+            transform: 'scale(0.98)',
+          },
+          _disabled: {
+            bg: 'gray.200',
+            borderColor: 'gray.200',
+            color: 'gray.500',
+            opacity: 0.7,
+            cursor: 'not-allowed',
+            _hover: {
+              bg: 'gray.200',
+            },
+          },
+        },
+        variants: {
+          color: {
+            primary: {
+              '--button-fg': 'colors.primary.fg',
+              '--button-bg': 'colors.primary.bg',
+              '--button-border': 'colors.primary.border',
+              '--button-hover-bg': 'colors.primary.bg_hover',
+            },
+            secondary: {
+              '--button-fg': 'colors.secondary.fg',
+              '--button-bg': 'colors.secondary.bg',
+              '--button-border': 'colors.secondary.border',
+              '--button-hover-bg': 'colors.secondary.bg_hover',
+            },
+            success: {
+              '--button-fg': 'colors.success.fg',
+              '--button-bg': 'colors.success.bg',
+              '--button-border': 'colors.success.border',
+              '--button-hover-bg': 'colors.success.bg_hover',
+            },
+            info: {
+              '--button-fg': 'colors.info.fg',
+              '--button-bg': 'colors.info.bg',
+              '--button-border': 'colors.info.border',
+              '--button-hover-bg': 'colors.info.bg_hover',
+            },
+            warning: {
+              '--button-fg': 'colors.warning.fg',
+              '--button-bg': 'colors.warning.bg',
+              '--button-border': 'colors.warning.border',
+              '--button-hover-bg': 'colors.warning.bg_hover',
+            },
+            error: {
+              '--button-fg': 'colors.error.fg',
+              '--button-bg': 'colors.error.bg',
+              '--button-border': 'colors.error.border',
+              '--button-hover-bg': 'colors.error.bg_hover',
+            },
+            highlight: {
+              '--button-fg': 'colors.highlight.fg',
+              '--button-bg': 'colors.highlight.bg',
+              '--button-border': 'colors.highlight.border',
+              '--button-hover-bg': 'colors.highlight.bg_hover',
+            },
+          },
+          variant: {
+            solid: {
+              bg: 'var(--button-bg)',
+              color: 'var(--button-fg)',
+              borderColor: 'var(--button-border)',
+              _hover: {
+                bg: 'var(--button-hover-bg)',
+              },
+            },
+            outline: {
+              bg: 'transparent',
+              borderColor: 'var(--button-bg)',
+              color: 'var(--button-bg)',
+              _hover: {
+                bg: 'var(--button-bg)',
+                color: 'var(--button-fg)',
+              },
+            },
+            ghost: {
+              bg: 'transparent',
+              color: 'var(--button-bg)',
+              _hover: {
+                bg: 'var(--button-bg)',
+                color: 'var(--button-fg)',
+              },
+            },
+            link: {
+              bg: 'transparent',
+              color: 'var(--button-bg)',
+              borderColor: 'transparent',
+              _hover: {
+                textDecoration: 'underline',
+              },
+            },
+          },
         },
       },
     },
