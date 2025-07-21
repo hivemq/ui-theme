@@ -14,11 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {Box, ChakraProvider, Heading} from '@chakra-ui/react'
+import {Box, ChakraProvider, Tabs, useTabs} from '@chakra-ui/react'
 import {system as theme} from './theme'
 import {Colors} from "./views/Colors.tsx";
 import {SemanticTokens} from "~/views/SemanticColors.tsx";
-import {SemanticButtons} from "~/views/SemanticButtons.tsx";
+import {ButtonVariations} from "~/views/ButtonVariations.tsx";
 
 function App() {
   const style: React.CSSProperties = {
@@ -28,18 +28,37 @@ function App() {
     gap: '2rem',
   }
 
+  const tabs = useTabs({
+    defaultValue: "color-tokens",
+  })
+
   return (
     <ChakraProvider value={theme}>
       <Box style={style}>
-        <Heading as="h1" fontSize={36}>Color Tokens</Heading>
-        <Colors/>
-        <hr/>
-        <Heading as="h1" fontSize={36}>Semantic Token</Heading>
-        <SemanticTokens/>
-        <hr/>
-        <Heading as="h1" fontSize={36}>Buttons</Heading>
-        <SemanticButtons/>
+        <Tabs.RootProvider size={'lg'} variant={'enclosed'} value={tabs}>
+          <Tabs.List>
+            <Tabs.Trigger value={'color-tokens'}>
+              Color Tokens
+            </Tabs.Trigger>
+            <Tabs.Trigger value={'semantic-tokens'}>
+              Semantic Tokens
+            </Tabs.Trigger>
+            <Tabs.Trigger value={'buttons'}>
+              Buttons
+            </Tabs.Trigger>
+          </Tabs.List>
+          <Tabs.Content value={'color-tokens'}>
+            <Colors/>
+          </Tabs.Content>
+          <Tabs.Content value={'semantic-tokens'}>
+            <SemanticTokens/>
+          </Tabs.Content>
+          <Tabs.Content value={'buttons'}>
+            <ButtonVariations/>
+          </Tabs.Content>
+        </Tabs.RootProvider>
       </Box>
+
     </ChakraProvider>
   )
 }

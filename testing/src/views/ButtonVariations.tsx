@@ -23,7 +23,7 @@ const buttonVariants: ConditionalValue<"outline" | "solid" | "ghost" | "subtle" 
 /**
  * A component that renders a matrix of button styles for each semantic color.
  */
-export function SemanticButtons() {
+export function ButtonVariations() {
   return (
     <Box>
       {semanticTokenGroups.map((colorName) => (

@@ -15,61 +15,70 @@ limitations under the License.
 */
 
 import {config} from '@hivemq/ui-theme'
-import {Box, Heading, HStack, SimpleGrid, Text, VStack} from '@chakra-ui/react'
+import {Box, Flex, Heading, Text, VStack} from '@chakra-ui/react'
 
+// Get the semantic token color definitions from the theme configuration.
 const semanticTokens = config.theme?.semanticTokens?.colors || {}
+const semanticTokenGroups = Object.keys(semanticTokens)
 
 /**
- * A component that dynamically renders all semantic color tokens from the theme.
+ * A component that renders color swatches for each semantic color palette.
  */
 export function SemanticTokens() {
   return (
-    <Box p={{base: 4, md: 8}}>
-      {Object.entries(semanticTokens).map(([groupName, tokens]) => (
-        <Box key={groupName} as="section" mb={10}>
-          <Heading as="h2" size="lg" mb={4} textTransform="capitalize" borderBottomWidth="2px" pb={2}>
-            {groupName}
-          </Heading>
-          <SimpleGrid columns={{base: 1, md: 2, lg: 3}} gap={6}>
-            {Object.entries(tokens).map(([tokenName, tokenValue]) => {
-              const lightValue = tokenValue.value?.base || tokenValue.value
-              const darkValue = tokenValue.value?._dark || lightValue
+    <Box>
+      {semanticTokenGroups.map((colorName) => {
+        const colorTokens = semanticTokens[colorName]
 
-              return (
-                <Box key={tokenName} p={4} borderRadius="lg" borderWidth="1px" bg="chakra-body-bg" boxShadow="md">
-                  <Text fontWeight="bold" mb={3} textAlign="center">
-                    {tokenName}
-                  </Text>
-                  <HStack gap={4} align="stretch">
-                    {/* Light Mode Swatch */}
-                    <VStack flex="1" p={3} bg="white" borderRadius="md" borderWidth="1px" borderColor="gray.200">
-                      <Text fontSize="sm" fontWeight="medium" alignSelf="start">
-                        Light
+        // Ensure the token group is an object before trying to get its keys.
+        if (typeof colorTokens !== 'object' || colorTokens === null) {
+          return null
+        }
+
+        const tokenSuffixes = Object.keys(colorTokens)
+
+        return (
+          <Box key={colorName} as="section" mb={12}>
+            <Heading as="h2" size="xl" mb={6} textTransform="capitalize">
+              {colorName}
+            </Heading>
+            <Flex wrap="wrap" gap={6}>
+              {tokenSuffixes.map((tokenSuffix) => {
+                const fullTokenName = `${colorName}.${tokenSuffix}`
+                // @ts-ignore
+                //TODO Adapt this to light mode / dark mode
+                const tokenValue = colorTokens[tokenSuffix].value.base
+
+                let displayValue = tokenValue;
+                if (typeof displayValue === 'string' && displayValue.startsWith('{') && displayValue.endsWith('}')) {
+                  displayValue = displayValue.slice(1, -1);
+                }
+
+                return (
+                  <VStack key={fullTokenName} gap={1} align="flex-start">
+                    <Box
+                      w="120px"
+                      h="80px"
+                      bg={fullTokenName}
+                      borderRadius="md"
+                      borderWidth="1px"
+                      borderColor="blackAlpha.200" // A subtle border to see light/white colors
+                    />
+                    <Box>
+                      <Text fontSize="sm" fontWeight="medium">
+                        {fullTokenName}
                       </Text>
-                      <Box w="full" h="50px" bg={lightValue} borderRadius="md"/>
-                      <Text fontFamily="monospace" fontSize="xs" color="gray.600" pt={1}
-                            title={lightValue}>
-                        {lightValue}
+                      <Text fontSize="xs" color="fg.muted">
+                        {displayValue}
                       </Text>
-                    </VStack>
-                    {/* Dark Mode Swatch */}
-                    <VStack flex="1" p={3} bg="gray.800" borderRadius="md" borderWidth="1px" borderColor="gray.700">
-                      <Text fontSize="sm" fontWeight="medium" color="white" alignSelf="start">
-                        Dark
-                      </Text>
-                      <Box w="full" h="50px" bg={darkValue} borderRadius="md"/>
-                      <Text fontFamily="monospace" fontSize="xs" color="gray.400" pt={1}
-                            title={darkValue}>
-                        {darkValue}
-                      </Text>
-                    </VStack>
-                  </HStack>
-                </Box>
-              )
-            })}
-          </SimpleGrid>
-        </Box>
-      ))}
+                    </Box>
+                  </VStack>
+                )
+              })}
+            </Flex>
+          </Box>
+        )
+      })}
     </Box>
   )
 }
