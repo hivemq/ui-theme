@@ -229,10 +229,11 @@ export const config = mergeConfigs(defaultBaseConfig, {
           fg: { value: { base: 'white', _dark: '{colors.green.950}' } },
         },
         info: {
-          bg: { value: { base: '{colors.cyan.500}', _dark: '{colors.cyan.400}' } },
-          bg_hover: { value: { base: '{colors.cyan.600}', _dark: '{colors.cyan.500}' } },
-          border: { value: { base: '{colors.cyan.600}', _dark: '{colors.cyan.500}' } },
-          fg: { value: { base: 'white', _dark: '{colors.cyan.950}' } },
+          fg: { value: { base: '{colors.blue.600}', _dark: '{colors.blue.400}' } },
+          bg: { value: { base: '{colors.blue.200}', _dark: '{colors.blue.950}' } },
+          bg_hover: { value: { base: '{colors.blue.300}', _dark: '{colors.blue.800}' } },
+          text: { value: { base: '{colors.blue.600}', _dark: '{colors.blue.300}' } },
+          border: { value: { base: '{colors.blue.300}', _dark: '{colors.blue.400}' } },
         },
         warning: {
           bg: { value: { base: '{colors.orange.500}', _dark: '{colors.orange.400}' } },
@@ -262,15 +263,10 @@ export const config = mergeConfigs(defaultBaseConfig, {
           _active: {
             transform: 'scale(0.98)',
           },
+          // General disabled styles - apply opacity and cursor, but not color
           _disabled: {
-            bg: 'gray.200',
-            borderColor: 'gray.200',
-            color: 'gray.500',
-            opacity: 0.7,
+            opacity: 0.6,
             cursor: 'not-allowed',
-            _hover: {
-              bg: 'gray.200',
-            },
           },
         },
         variants: {
@@ -325,6 +321,17 @@ export const config = mergeConfigs(defaultBaseConfig, {
               borderColor: 'var(--button-border)',
               _hover: {
                 bg: 'var(--button-hover-bg)',
+                _disabled: {
+                  bg: 'var(--button-bg)',
+                },
+              },
+              _disabled: {
+                bg: 'var(--button-bg)',
+                borderColor: 'var(--button-border)',
+              },
+              _loading: {
+                bg: 'var(--button-bg)',
+                borderColor: 'var(--button-border)',
               },
             },
             outline: {
@@ -334,14 +341,39 @@ export const config = mergeConfigs(defaultBaseConfig, {
               _hover: {
                 bg: 'var(--button-bg)',
                 color: 'var(--button-fg)',
+                _disabled: {
+                  bg: 'transparent',
+                },
+              },
+              _disabled: {
+                borderColor: 'var(--button-bg)',
+                color: 'var(--button-bg)',
+                bg: 'transparent',
+              },
+              _loading: {
+                borderColor: 'var(--button-bg)',
+                color: 'var(--button-bg)',
               },
             },
             ghost: {
               bg: 'transparent',
+              borderColor: 'transparent',
               color: 'var(--button-bg)',
               _hover: {
                 bg: 'var(--button-bg)',
                 color: 'var(--button-fg)',
+                _disabled: {
+                  bg: 'transparent',
+                },
+              },
+              _disabled: {
+                color: 'var(--button-bg)',
+                bg: 'transparent',
+                borderColor: 'transparent',
+              },
+              _loading: {
+                color: 'var(--button-bg)',
+                borderColor: 'transparent',
               },
             },
             link: {
