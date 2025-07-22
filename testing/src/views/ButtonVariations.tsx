@@ -17,7 +17,12 @@ limitations under the License.
 import { Box, Button, type ConditionalValue, Heading, Table, Text } from '@chakra-ui/react'
 import { config } from '@hivemq/ui-theme'
 
-const semanticTokenGroups = Object.keys(config.theme?.semanticTokens?.colors || {})
+const globalTokenGroups = ['bg', 'fg', 'text', 'border', 'focusRing']
+
+const semanticTokenGroups = Object.keys(config.theme?.semanticTokens?.colors || {}).filter(
+  (key) => !globalTokenGroups.includes(key),
+)
+
 const buttonVariants: ConditionalValue<
   'outline' | 'solid' | 'ghost' | 'subtle' | 'surface' | 'plain'
 >[] = ['solid', 'outline', 'ghost']

@@ -28,8 +28,6 @@ bootstrap({
   element: (
     <React.StrictMode>
       <ChakraProvider value={theme}>
-        {/* ColorModeScript ensures that the initial color mode matches the preference */}
-        {/* <ColorModeScript initialColorMode={theme.config.initialColorMode} /> */}
         <App/>
       </ChakraProvider>
     </React.StrictMode>
