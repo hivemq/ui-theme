@@ -1,5 +1,6 @@
 import { defaultBaseConfig, mergeConfigs } from '@chakra-ui/react'
 import { colors } from '~/colors/primitive-colors.ts'
+import { semanticTokens } from '~/colors/semantic-tokens.ts'
 import { buttonRecipe } from '~/recipes/buttons.ts'
 
 export const config = mergeConfigs(defaultBaseConfig, {
@@ -38,7 +39,7 @@ export const config = mergeConfigs(defaultBaseConfig, {
       colors: semanticTokens,
     },
     recipes: {
-      buttonRecipe,
+      button: buttonRecipe,
     },
   },
 })

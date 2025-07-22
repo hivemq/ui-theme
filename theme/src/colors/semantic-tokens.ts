@@ -1,4 +1,4 @@
-const semanticTokens = {
+export const semanticTokens = {
   /**
    * MAIN HiveMQ related semantic Tokens
    */

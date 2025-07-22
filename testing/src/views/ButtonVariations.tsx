@@ -14,11 +14,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {config} from '@hivemq/ui-theme'
-import {Box, Button, ConditionalValue, Heading, Table, Text} from '@chakra-ui/react'
+import { Box, Button, type ConditionalValue, Heading, Table, Text } from '@chakra-ui/react'
+import { config } from '@hivemq/ui-theme'
 
 const semanticTokenGroups = Object.keys(config.theme?.semanticTokens?.colors || {})
-const buttonVariants: ConditionalValue<"outline" | "solid" | "ghost" | "subtle" | "surface" | "plain">[] = ['solid', 'outline', 'ghost']
+const buttonVariants: ConditionalValue<
+  'outline' | 'solid' | 'ghost' | 'subtle' | 'surface' | 'plain'
+>[] = ['solid', 'outline', 'ghost']
 
 /**
  * A component that renders a matrix of button styles for each semantic color.
