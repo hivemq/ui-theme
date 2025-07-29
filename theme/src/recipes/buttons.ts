@@ -12,7 +12,7 @@ export const buttonRecipe = {
     },
   },
   variants: {
-    color: {
+    colorPalette: {
       primary: {
         '--button-fg': 'colors.primary.fg',
         '--button-bg': 'colors.primary.bg',

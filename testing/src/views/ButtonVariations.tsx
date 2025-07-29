@@ -33,7 +33,7 @@ const buttonVariants: ConditionalValue<
 export function ButtonVariations() {
   return (
     <Box>
-      {semanticTokenGroups.map((colorName) => (
+      {semanticTokenGroups.map((colorName: any) => (
         <Box key={colorName} as="section" mb={16}>
           <Heading as="h2" size="xl" mb={6} textTransform="capitalize">
             {colorName}
@@ -56,19 +56,19 @@ export function ButtonVariations() {
                     </Table.Cell>
                     {/* Default State */}
                     <Table.Cell>
-                      <Button color={colorName} variant={variant}>
+                      <Button colorPalette={colorName} variant={variant}>
                         Button
                       </Button>
                     </Table.Cell>
                     {/* Loading State */}
                     <Table.Cell>
-                      <Button color={colorName} variant={variant} loading>
+                      <Button colorPalette={colorName} variant={variant} loading>
                         Button
                       </Button>
                     </Table.Cell>
                     {/* Disabled State */}
                     <Table.Cell>
-                      <Button color={colorName} variant={variant} disabled>
+                      <Button colorPalette={colorName} variant={variant} disabled>
                         Button
                       </Button>
                     </Table.Cell>
