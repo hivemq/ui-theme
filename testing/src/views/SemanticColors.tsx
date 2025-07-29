@@ -61,7 +61,8 @@ export function SemanticTokens({isDarkMode}: ChildProps) {
               mb={6}
               textTransform="capitalize"
               borderBottomWidth="2px"
-              borderColor="border.default"
+              borderColor="border"
+              color="text"
               pb={2}
             >
               {colorName}
@@ -91,13 +92,14 @@ export function SemanticTokens({isDarkMode}: ChildProps) {
                       bg={finalColorValue}
                       borderRadius="md"
                       borderWidth="1px"
-                      borderColor="border.default"
+                      borderColor="border"
+                      color="text"
                     />
                     <Box>
-                      <Text fontSize="sm" fontWeight="medium">
+                      <Text fontSize="sm" fontWeight="medium" color={'text'}>
                         {fullTokenName}
                       </Text>
-                      <Text fontSize="xs" color="fg.muted">
+                      <Text fontSize="xs" color="text">
                         {displayValue}
                       </Text>
                     </Box>

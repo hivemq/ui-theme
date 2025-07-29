@@ -3,13 +3,20 @@ import { colors } from '~/colors/primitive-colors.ts'
 import { semanticTokens } from '~/colors/semantic-tokens.ts'
 import { buttonRecipe } from '~/recipes/buttons.ts'
 
-export const config = mergeConfigs(defaultBaseConfig, {
-  globalCss: {
-    html: {
-      colorPalette: 'default',
-      bg: '{colors.shell.bg}',
-    },
+export const globalCss = {
+  ':root': {
+    colorScheme: 'light',
   },
+  "[data-theme='dark']": {
+    colorScheme: 'dark',
+  },
+}
+
+export const config = mergeConfigs(defaultBaseConfig, {
+  conditions: {
+    dark: "[data-theme='dark'] &",
+  },
+  globalCss: globalCss,
   theme: {
     breakpoints: {
       sm: '20rem',
@@ -35,11 +42,22 @@ export const config = mergeConfigs(defaultBaseConfig, {
         },
       },
     },
+
     semanticTokens: {
       colors: semanticTokens,
     },
     recipes: {
       button: buttonRecipe,
+      Text: {
+        base: {
+          color: 'text.DEFAULT',
+        },
+      },
+      Heading: {
+        base: {
+          color: 'text.DEFAULT',
+        },
+      },
     },
   },
 })

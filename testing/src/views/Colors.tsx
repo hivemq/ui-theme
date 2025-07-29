@@ -30,7 +30,7 @@ const checkerboardBgPosition = '0 0, 0 10px, 10px -10px, -10px 0px'
  */
 export function Colors() {
   return (
-    <Box p={{ base: 4, md: 8 }}>
+    <Box>
       {Object.entries(colors).map(([paletteName, shades]) => (
         <Box key={paletteName} as="section" mb={10}>
           <Heading
@@ -40,6 +40,7 @@ export function Colors() {
             textTransform="capitalize"
             borderBottomWidth="2px"
             pb={2}
+            color="text"
           >
             {paletteName}
           </Heading>
