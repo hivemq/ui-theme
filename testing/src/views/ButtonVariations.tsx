@@ -15,13 +15,19 @@ limitations under the License.
 */
 
 import { Box, Button, type ConditionalValue, Heading, Table, Text } from '@chakra-ui/react'
-import { config } from '@hivemq/ui-theme'
 
-const globalTokenGroups = ['bg', 'fg', 'text', 'border', 'focusRing']
+// Only include color groups that have corresponding button color palettes
+const buttonColorGroups = [
+  'primary',
+  'secondary',
+  'success',
+  'error',
+  'warning',
+  'info',
+  'highlight',
+]
 
-const semanticTokenGroups = Object.keys(config.theme?.semanticTokens?.colors || {}).filter(
-  (key) => !globalTokenGroups.includes(key),
-)
+const semanticTokenGroups = buttonColorGroups
 
 const buttonVariants: ConditionalValue<
   'outline' | 'solid' | 'ghost' | 'subtle' | 'surface' | 'plain'

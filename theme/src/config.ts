@@ -6,15 +6,32 @@ import { buttonRecipe } from '~/recipes/buttons.ts'
 export const globalCss = {
   ':root': {
     colorScheme: 'light',
+    '--chakra-transition-duration': '200ms',
+    '--chakra-transition-easing': 'ease-in-out',
   },
   "[data-theme='dark']": {
     colorScheme: 'dark',
+  },
+  // Add smooth transitions for color mode changes
+  '*': {
+    transition:
+      'background-color var(--chakra-transition-duration) var(--chakra-transition-easing), color var(--chakra-transition-duration) var(--chakra-transition-easing), border-color var(--chakra-transition-duration) var(--chakra-transition-easing)',
+  },
+  // Respect user's reduced motion preferences
+  '@media (prefers-reduced-motion: reduce)': {
+    '*': {
+      transition: 'none !important',
+    },
   },
 }
 
 export const config = mergeConfigs(defaultBaseConfig, {
   conditions: {
     dark: "[data-theme='dark'] &",
+    light: "[data-theme='light'] &",
+    // Add system preference support
+    _osDark: '@media (prefers-color-scheme: dark)',
+    _osLight: '@media (prefers-color-scheme: light)',
   },
   globalCss: globalCss,
   theme: {
@@ -50,12 +67,34 @@ export const config = mergeConfigs(defaultBaseConfig, {
       button: buttonRecipe,
       Text: {
         base: {
-          color: 'text.DEFAULT',
+          color: 'content.primary',
+        },
+        variants: {
+          variant: {
+            muted: { color: 'content.secondary' },
+            subtle: { color: 'content.tertiary' },
+            error: { color: 'content.error' },
+            warning: { color: 'content.warning' },
+            success: { color: 'content.success' },
+            info: { color: 'content.info' },
+          },
         },
       },
       Heading: {
         base: {
-          color: 'text.DEFAULT',
+          color: 'content.primary',
+          fontFamily: 'heading',
+        },
+        variants: {
+          variant: {
+            muted: { color: 'content.secondary' },
+            subtle: { color: 'content.tertiary' },
+            error: { color: 'content.error' },
+            warning: { color: 'content.warning' },
+            success: { color: 'content.success' },
+            info: { color: 'content.info' },
+            brand: { color: 'content.brand' },
+          },
         },
       },
     },
