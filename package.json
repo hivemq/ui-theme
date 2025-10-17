@@ -20,12 +20,12 @@
     "lint:all": "pnpm run lint:check && pnpm run lint:headers && pnpm run lint:format"
   },
   "engines": {
-    "node": "20",
-    "pnpm": "9"
+    "node": "22",
+    "pnpm": "10"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.8.3",
-    "typescript": "^5.5.4"
+    "@biomejs/biome": "^2.2.6",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "copy-to-clipboard": "^3.3.3"
@@ -35,6 +35,5 @@
       "braces": "3.0.3",
       "micromatch": "4.0.8"
     }
-  },
-  "packageManager": "pnpm@9.6.0+sha512.38dc6fba8dba35b39340b9700112c2fe1e12f10b17134715a4aa98ccf7bb035e76fd981cf0bb384dfa98f8d6af5481c2bef2f4266a24bfa20c34eb7147ce0b5e"
+  }
 }

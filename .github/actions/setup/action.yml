@@ -19,11 +19,6 @@ runs:
       run: corepack enable
       shell: bash
 
-    - name: Store pnpm cache path
-      shell: bash
-      run: |
-        echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
     - uses: actions/cache/restore@v4
       name: Setup pnpm cache
       with:
@@ -32,11 +27,19 @@ runs:
         restore-keys: |
           ${{ runner.os }}-pnpm-store
 
-    - uses: actions/setup-node@v3
+    - uses: pnpm/action-setup@v4
+      name: Install pnpm
+      id: pnpm-install
       with:
-        node-version: 20.11.1
+        version: 10
+        run_install: ${{ inputs.run_install }}
+
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 22
         registry-url: https://npm.pkg.github.com
         scope: '@hivemq'
+        cache: 'pnpm'
 
     - name: Install dependencies
       shell: bash
