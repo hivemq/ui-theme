@@ -17,9 +17,8 @@ limitations under the License.
 import { ChakraProvider } from '@chakra-ui/react'
 import { render } from 'safetest/react'
 import { describe, expect, it } from 'safetest/vitest'
-import { system as theme } from '../theme'
-
 import { Links } from '~/views/Links'
+import { system as theme } from '../theme'
 
 // Whole App testing
 describe('Links', () => {

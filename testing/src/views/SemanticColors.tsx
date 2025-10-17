@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { HStack, Heading, Text, VStack } from '@chakra-ui/react'
+import { Heading, HStack, Text, VStack } from '@chakra-ui/react'
 import { config } from '@hivemq/ui-theme'
 
 export type ColorCategory = 'background' | 'border' | 'icon' | 'text'
@@ -65,44 +65,42 @@ export function SemanticColors({ withText = false }: { withText?: boolean }) {
   }
 
   return (
-    <>
-      <HStack alignItems="start" gap={withText ? 8 : 2}>
-        {Object.entries(semanticColors).map(([category, value]) => {
-          return (
-            <VStack alignItems="start" style={columnStyle} key={category + value}>
-              <Heading as="h2" marginBottom="4">
-                {category}
-              </Heading>
+    <HStack alignItems="start" gap={withText ? 8 : 2}>
+      {Object.entries(semanticColors).map(([category, value]) => {
+        return (
+          <VStack alignItems="start" style={columnStyle} key={category + value}>
+            <Heading as="h2" marginBottom="4">
+              {category}
+            </Heading>
 
-              <VStack alignItems="start">
-                {Object.entries(value).map(([colorName, colorValue]) => {
-                  return (
-                    <HStack alignItems="center" gap={2} key={category + colorName}>
-                      {withText && (
-                        <Text fontFamily="monospace" minWidth="150" fontSize="small">
-                          {colorName}
-                        </Text>
-                      )}
-                      <HStack>
-                        <div>
-                          <div />
-                          {withText && <Text fontSize="small">{colorValue}</Text>}
-                        </div>
-                      </HStack>
-                      <HStack>
-                        <div>
-                          <div />
-                          {withText && <Text fontSize="small">{colorValue._dark}</Text>}
-                        </div>
-                      </HStack>
+            <VStack alignItems="start">
+              {Object.entries(value).map(([colorName, colorValue]) => {
+                return (
+                  <HStack alignItems="center" gap={2} key={category + colorName}>
+                    {withText && (
+                      <Text fontFamily="monospace" minWidth="150" fontSize="small">
+                        {colorName}
+                      </Text>
+                    )}
+                    <HStack>
+                      <div>
+                        <div />
+                        {withText && <Text fontSize="small">{colorValue}</Text>}
+                      </div>
                     </HStack>
-                  )
-                })}
-              </VStack>
+                    <HStack>
+                      <div>
+                        <div />
+                        {withText && <Text fontSize="small">{colorValue._dark}</Text>}
+                      </div>
+                    </HStack>
+                  </HStack>
+                )
+              })}
             </VStack>
-          )
-        })}
-      </HStack>
-    </>
+          </VStack>
+        )
+      })}
+    </HStack>
   )
 }

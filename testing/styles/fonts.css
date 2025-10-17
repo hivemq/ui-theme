@@ -1,21 +1,21 @@
 /* Install Roboto for general body text */
-@import '../node_modules/@fontsource/roboto/100.css';
-@import '../node_modules/@fontsource/roboto/300.css';
-@import '../node_modules/@fontsource/roboto/400.css';
-@import '../node_modules/@fontsource/roboto/500.css';
-@import '../node_modules/@fontsource/roboto/700.css';
-@import '../node_modules/@fontsource/roboto/900.css';
+@import "../node_modules/@fontsource/roboto/100.css";
+@import "../node_modules/@fontsource/roboto/300.css";
+@import "../node_modules/@fontsource/roboto/400.css";
+@import "../node_modules/@fontsource/roboto/500.css";
+@import "../node_modules/@fontsource/roboto/700.css";
+@import "../node_modules/@fontsource/roboto/900.css";
 
 /* Install Roboto Mono for metrics text */
-@import '../node_modules/@fontsource/roboto-mono/400.css';
+@import "../node_modules/@fontsource/roboto-mono/400.css";
 
 /* Install Raleway for heading text */
-@import '../node_modules/@fontsource/raleway/100.css';
-@import '../node_modules/@fontsource/raleway/200.css';
-@import '../node_modules/@fontsource/raleway/300.css';
-@import '../node_modules/@fontsource/raleway/400.css';
-@import '../node_modules/@fontsource/raleway/500.css';
-@import '../node_modules/@fontsource/raleway/600.css';
-@import '../node_modules/@fontsource/raleway/700.css';
-@import '../node_modules/@fontsource/raleway/800.css';
-@import '../node_modules/@fontsource/raleway/900.css';
+@import "../node_modules/@fontsource/raleway/100.css";
+@import "../node_modules/@fontsource/raleway/200.css";
+@import "../node_modules/@fontsource/raleway/300.css";
+@import "../node_modules/@fontsource/raleway/400.css";
+@import "../node_modules/@fontsource/raleway/500.css";
+@import "../node_modules/@fontsource/raleway/600.css";
+@import "../node_modules/@fontsource/raleway/700.css";
+@import "../node_modules/@fontsource/raleway/800.css";
+@import "../node_modules/@fontsource/raleway/900.css";

@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
 const env = process.env.NODE_ENV || 'development'
+
 import { fileURLToPath } from 'node:url'
 import packageConfig from './package.json'
 

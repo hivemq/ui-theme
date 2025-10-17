@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Box, Flex, HStack, Heading, Text, VStack } from '@chakra-ui/react'
+import { Box, Flex, Heading, HStack, Text, VStack } from '@chakra-ui/react'
 
 const sampleText = 'The Force will be with you, always.'
 
@@ -29,51 +29,49 @@ function displayText(
   options: DisplayTextOptions = { fontSize: false, variant: true },
 ) {
   return (
-    <>
-      <VStack
-        alignItems="start"
-        border="1px solid {colors.secondary.300}"
-        borderRadius={12}
-        padding={20}
-      >
-        <Heading as="h2">
-          {title}
+    <VStack
+      alignItems="start"
+      border="1px solid {colors.secondary.300}"
+      borderRadius={12}
+      padding={20}
+    >
+      <Heading as="h2">
+        {title}
+        {options.fontSize && (
+          <Text as="span" color="red">
+            {' '}
+            (Don't)
+          </Text>
+        )}
+        {options.variant && (
+          <Text as="span" color="green">
+            {' '}
+            (Do)
+          </Text>
+        )}
+      </Heading>
+      {sizes.map((size) => (
+        <Box key={`box-${size}`}>
+          <Heading as="h3">{size}</Heading>
           {options.fontSize && (
-            <Text as="span" color="red">
-              {' '}
-              (Don't)
-            </Text>
+            <Box>
+              <Heading as="h4">{`<Text fontSize='${size}'>`}</Heading>
+              <Text fontSize={size} key={`text_${size}`} marginBottom="4" color="red">
+                {sampleText}
+              </Text>
+            </Box>
           )}
           {options.variant && (
-            <Text as="span" color="green">
-              {' '}
-              (Do)
-            </Text>
+            <Box>
+              <Heading as="h4">{`<Text variant='${size}'>`}</Heading>
+              <Text fontSize={size} key={`text3_${size}`} mt="1" mb="4" color="green">
+                {sampleText}
+              </Text>
+            </Box>
           )}
-        </Heading>
-        {sizes.map((size) => (
-          <Box key={`box-${size}`}>
-            <Heading as="h3">{size}</Heading>
-            {options.fontSize && (
-              <Box>
-                <Heading as="h4">{`<Text fontSize='${size}'>`}</Heading>
-                <Text fontSize={size} key={`text_${size}`} marginBottom="4" color="red">
-                  {sampleText}
-                </Text>
-              </Box>
-            )}
-            {options.variant && (
-              <Box>
-                <Heading as="h4">{`<Text variant='${size}'>`}</Heading>
-                <Text fontSize={size} key={`text3_${size}`} mt="1" mb="4" color="green">
-                  {sampleText}
-                </Text>
-              </Box>
-            )}
-          </Box>
-        ))}
-      </VStack>
-    </>
+        </Box>
+      ))}
+    </VStack>
   )
 }
 

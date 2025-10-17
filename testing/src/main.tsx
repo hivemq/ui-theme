@@ -21,7 +21,7 @@ import { bootstrap } from 'safetest/react'
 import App from '~/App'
 import { system as theme } from './theme'
 
-// biome-ignore lint/style/noNonNullAssertion: <explanation>
+// biome-ignore lint/style/noNonNullAssertion: it is fine here
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 
 bootstrap({
