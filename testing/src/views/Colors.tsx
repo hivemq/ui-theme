@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { HStack, Heading, Text, VStack } from '@chakra-ui/react'
+import { Heading, HStack, Text, VStack } from '@chakra-ui/react'
 import { config } from '@hivemq/ui-theme'
 import copy from 'copy-to-clipboard'
 import { system } from '../theme'
@@ -31,54 +31,52 @@ export function Colors({ withText = false }: { withText?: boolean }) {
   const deprecatedColors = ['amber', 'neutrals']
 
   return (
-    <>
-      <VStack alignItems="start" gap={withText ? 8 : 2}>
-        {Object.entries(colors)
-          .filter(([key, _value]) => !deprecatedColors.includes(key))
-          .map(([_key, value]) => {
-            return (
-              <VStack alignItems="start" key={_key + value}>
-                {withText && <Heading as="h2">{_key}</Heading>}
+    <VStack alignItems="start" gap={withText ? 8 : 2}>
+      {Object.entries(colors)
+        .filter(([key, _value]) => !deprecatedColors.includes(key))
+        .map(([_key, value]) => {
+          return (
+            <VStack alignItems="start" key={_key + value}>
+              {withText && <Heading as="h2">{_key}</Heading>}
 
-                <HStack>
-                  {Object.entries(value).map(([weight, colorValue]) => {
-                    const styles = {
-                      backgroundColor: system.token(_key, weight),
-                      width: ELEMENT_WIDTH,
-                      height: ELEMENT_WIDTH,
-                    }
+              <HStack>
+                {Object.entries(value).map(([weight, colorValue]) => {
+                  const styles = {
+                    backgroundColor: system.token(_key, weight),
+                    width: ELEMENT_WIDTH,
+                    height: ELEMENT_WIDTH,
+                  }
 
-                    return (
-                      <VStack
-                        alignItems="start"
-                        gap={1}
-                        key={_key + weight}
-                        onClick={() =>
-                          copy(colorValue, {
-                            message: `Color ${colorValue} copied.`,
-                          })
-                        }
-                      >
-                        <div style={styles} />
-                        {withText && (
-                          <div>
-                            <Text fontFamily="monospace" fontSize="xs">
-                              {_key}.{weight}
-                            </Text>
-                            <Text fontFamily="monospace" fontSize="xs" color="secondary.500">
-                              {colorValue}
-                            </Text>
-                          </div>
-                        )}
-                      </VStack>
-                    )
-                  })}
-                  <br />
-                </HStack>
-              </VStack>
-            )
-          })}
-      </VStack>
-    </>
+                  return (
+                    <VStack
+                      alignItems="start"
+                      gap={1}
+                      key={_key + weight}
+                      onClick={() =>
+                        copy(colorValue, {
+                          message: `Color ${colorValue} copied.`,
+                        })
+                      }
+                    >
+                      <div style={styles} />
+                      {withText && (
+                        <div>
+                          <Text fontFamily="monospace" fontSize="xs">
+                            {_key}.{weight}
+                          </Text>
+                          <Text fontFamily="monospace" fontSize="xs" color="secondary.500">
+                            {colorValue}
+                          </Text>
+                        </div>
+                      )}
+                    </VStack>
+                  )
+                })}
+                <br />
+              </HStack>
+            </VStack>
+          )
+        })}
+    </VStack>
   )
 }

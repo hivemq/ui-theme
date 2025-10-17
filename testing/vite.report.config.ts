@@ -1,5 +1,5 @@
 import react from '@vitejs/plugin-react'
-import { type PluginOption, defineConfig } from 'vite'
+import { defineConfig, type PluginOption } from 'vite'
 import { viteSingleFile } from 'vite-plugin-singlefile'
 
 const env = process.env.NODE_ENV || 'development'

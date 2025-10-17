@@ -20,56 +20,52 @@ import { ColorModeButton, ColorModeProvider, useColorMode } from '~/ui/color-mod
 export function ModePlayground() {
   const { colorMode } = useColorMode()
   return (
-    <>
-      <Accordion.Root>
-        <Accordion.Item value="a">
-          <h2>
-            <Accordion.ItemTrigger>
-              <Box as="span" flex="1" textAlign="left">
-                Mode playground
-              </Box>
-              <Accordion.ItemIndicator />
-            </Accordion.ItemTrigger>
-          </h2>
-          <Accordion.ItemContent pb={4}>
-            <Accordion.ItemBody>
-              <Box display="flex" flexDirection="column" gap="2" py="4">
-                color mode: {colorMode}
-                <ColorModeProvider forcedTheme="light">
-                  <Button size="sm">Light Mode Always</Button>
-                </ColorModeProvider>
-                <ColorModeProvider forcedTheme="dark">
-                  <Button size="sm">Dark Mode Always</Button>
-                </ColorModeProvider>
-                <ColorModeButton>Toggle Mode</ColorModeButton>
-              </Box>
+    <Accordion.Root>
+      <Accordion.Item value="a">
+        <h2>
+          <Accordion.ItemTrigger>
+            <Box as="span" flex="1" textAlign="left">
+              Mode playground
+            </Box>
+            <Accordion.ItemIndicator />
+          </Accordion.ItemTrigger>
+        </h2>
+        <Accordion.ItemContent pb={4}>
+          <Accordion.ItemBody>
+            <Box display="flex" flexDirection="column" gap="2" py="4">
+              color mode: {colorMode}
+              <ColorModeProvider forcedTheme="light">
+                <Button size="sm">Light Mode Always</Button>
+              </ColorModeProvider>
+              <ColorModeProvider forcedTheme="dark">
+                <Button size="sm">Dark Mode Always</Button>
+              </ColorModeProvider>
+              <ColorModeButton>Toggle Mode</ColorModeButton>
+            </Box>
 
-              <Box
-                p="4"
-                bg="background.bg-subtle"
-                borderRadius="md"
-                right="5"
-                gap="4"
-                borderWidth="1px"
-                display="flex"
-                flexDirection="column"
-              >
-                <ColorModeProvider forcedTheme="light">
-                  <Text color="text.text-base">
-                    This text uses the default light mode text color.
-                  </Text>
-                </ColorModeProvider>
-                <ColorModeProvider forcedTheme="dark">
-                  <Text color="text.text-base">
-                    This text uses the default dark mode text color.
-                  </Text>
-                </ColorModeProvider>
-                <Text>This text uses the normal text color depending on the current mode.</Text>
-              </Box>
-            </Accordion.ItemBody>
-          </Accordion.ItemContent>
-        </Accordion.Item>
-      </Accordion.Root>
-    </>
+            <Box
+              p="4"
+              bg="background.bg-subtle"
+              borderRadius="md"
+              right="5"
+              gap="4"
+              borderWidth="1px"
+              display="flex"
+              flexDirection="column"
+            >
+              <ColorModeProvider forcedTheme="light">
+                <Text color="text.text-base">
+                  This text uses the default light mode text color.
+                </Text>
+              </ColorModeProvider>
+              <ColorModeProvider forcedTheme="dark">
+                <Text color="text.text-base">This text uses the default dark mode text color.</Text>
+              </ColorModeProvider>
+              <Text>This text uses the normal text color depending on the current mode.</Text>
+            </Box>
+          </Accordion.ItemBody>
+        </Accordion.ItemContent>
+      </Accordion.Item>
+    </Accordion.Root>
   )
 }
