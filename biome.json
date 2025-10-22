@@ -1,10 +1,13 @@
 {
   "$schema": "node_modules/@biomejs/biome/configuration_schema.json",
   "files": {
-    "includes": ["**", "!**/__generated__/**/*", "!**/theme/dist"]
+    "includes": [
+      "**",
+      "!**/__generated__/**/*",
+      "!**/theme/dist"
+    ]
   },
   "linter": {
-    "enabled": true,
     "rules": {
       "style": {
         "useBlockStatements": "error",
@@ -19,7 +22,6 @@
     }
   },
   "formatter": {
-    "indentWidth": 2,
     "indentStyle": "space",
     "lineWidth": 100
   },
