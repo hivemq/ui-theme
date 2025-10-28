@@ -267,4 +267,4 @@ export const buttonRecipe = {
     variant: 'solid' as const,
     colorPalette: 'primary' as const,
   },
-};
+}

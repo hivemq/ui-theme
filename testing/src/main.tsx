@@ -14,12 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {ChakraProvider} from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {bootstrap} from 'safetest/react'
-import {system as theme} from './theme'
-import App from "./App.tsx";
+import { bootstrap } from 'safetest/react'
+import App from './App.tsx'
+import { system as theme } from './theme'
 
 // biome-ignore lint/style/noNonNullAssertion: it is fine here
 const root = ReactDOM.createRoot(document.getElementById('root')!)
@@ -28,7 +28,7 @@ bootstrap({
   element: (
     <React.StrictMode>
       <ChakraProvider value={theme}>
-        <App/>
+        <App />
       </ChakraProvider>
     </React.StrictMode>
   ),

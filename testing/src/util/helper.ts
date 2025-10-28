@@ -4,7 +4,9 @@
  * @returns 'black' or 'white'.
  */
 export const getContrastColor = (hexColor: string) => {
-  if (!hexColor.startsWith('#')) return 'black' // Default for invalid format
+  if (!hexColor.startsWith('#')) {
+    return 'black' // Default for invalid format
+  }
   const r = parseInt(hexColor.slice(1, 3), 16)
   const g = parseInt(hexColor.slice(3, 5), 16)
   const b = parseInt(hexColor.slice(5, 7), 16)
@@ -18,10 +20,15 @@ export const getContrastColor = (hexColor: string) => {
  * @param backgroundHex - The solid background hex color (e.g., '#000000').
  * @returns 'black' or 'white'.
  */
-export const getAlphaContrastColor = (rgbaString: string, backgroundHex: string): 'black' | 'white' => {
+export const getAlphaContrastColor = (
+  rgbaString: string,
+  backgroundHex: string,
+): 'black' | 'white' => {
   // 1. Parse the RGBA string to get the color and alpha values.
   const rgbaMatch = rgbaString.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/)
-  if (!rgbaMatch) return 'black' // Default on parse error
+  if (!rgbaMatch) {
+    return 'black' // Default on parse error
+  }
 
   const rOverlay = parseInt(rgbaMatch[1], 10)
   const gOverlay = parseInt(rgbaMatch[2], 10)
@@ -29,7 +36,9 @@ export const getAlphaContrastColor = (rgbaString: string, backgroundHex: string)
   const alpha = rgbaMatch[4] !== undefined ? parseFloat(rgbaMatch[4]) : 1
 
   // 2. Parse the background HEX string.
-  if (!backgroundHex.startsWith('#')) return 'black'
+  if (!backgroundHex.startsWith('#')) {
+    return 'black'
+  }
   const rBg = parseInt(backgroundHex.slice(1, 3), 16)
   const gBg = parseInt(backgroundHex.slice(3, 5), 16)
   const bBg = parseInt(backgroundHex.slice(5, 7), 16)

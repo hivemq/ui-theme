@@ -14,18 +14,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {Box, Tabs, useTabs} from '@chakra-ui/react';
-import {Colors} from './views/Colors.tsx';
-import {SemanticTokens} from '~/views/SemanticColors.tsx';
-import {ButtonVariations} from '~/views/ButtonVariations.tsx';
-import {useState} from 'react';
+import { Box, Tabs, useTabs } from '@chakra-ui/react'
+import { useState } from 'react'
+import { ButtonVariations } from '~/views/ButtonVariations.tsx'
+import { SemanticTokens } from '~/views/SemanticColors.tsx'
+import { Colors } from './views/Colors.tsx'
 
 export type ChildProps = {
-  isDarkMode: boolean;
-};
+  isDarkMode: boolean
+}
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false)
 
   const style: React.CSSProperties = {
     padding: '2rem',
@@ -34,11 +34,11 @@ function App() {
     gap: '2rem',
     transition: 'background-color 0.2s ease-in-out',
     minHeight: '100vh',
-  };
+  }
 
   const contentTabs = useTabs({
     defaultValue: 'color-tokens',
-  });
+  })
 
   return (
     <Box data-theme={isDarkMode ? 'dark' : 'light'} style={style} bg="bg">
@@ -51,15 +51,18 @@ function App() {
         py={4}
       >
         <Tabs.Root
-
           size={'lg'}
           variant={'enclosed'}
           value={isDarkMode ? 'dark' : 'light'}
           onValueChange={(details) => setIsDarkMode(details.value === 'dark')}
         >
           <Tabs.List>
-            <Tabs.Trigger color={'text'} value={'light'}>Light Mode</Tabs.Trigger>
-            <Tabs.Trigger color={'text'} value={'dark'}>Dark Mode</Tabs.Trigger>
+            <Tabs.Trigger color={'text'} value={'light'}>
+              Light Mode
+            </Tabs.Trigger>
+            <Tabs.Trigger color={'text'} value={'dark'}>
+              Dark Mode
+            </Tabs.Trigger>
           </Tabs.List>
         </Tabs.Root>
       </Box>
@@ -72,17 +75,17 @@ function App() {
           <Tabs.Trigger value={'buttons'}>Buttons</Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content value={'color-tokens'}>
-          <Colors/>
+          <Colors />
         </Tabs.Content>
         <Tabs.Content value={'semantic-tokens'}>
-          <SemanticTokens isDarkMode={isDarkMode}/>
+          <SemanticTokens isDarkMode={isDarkMode} />
         </Tabs.Content>
         <Tabs.Content value={'buttons'}>
-          <ButtonVariations/>
+          <ButtonVariations />
         </Tabs.Content>
       </Tabs.RootProvider>
     </Box>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -14,12 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {config} from '@hivemq/ui-theme';
-import {Box, Flex, Heading, Text, VStack} from '@chakra-ui/react';
-import {ChildProps} from '~/App.tsx';
+import { Box, Flex, Heading, Text, VStack } from '@chakra-ui/react'
+import { config } from '@hivemq/ui-theme'
+import type { ChildProps } from '~/App.tsx'
 
-const semanticTokens = config.theme?.semanticTokens?.colors || {};
-const semanticTokenGroups = Object.keys(semanticTokens);
+const semanticTokens = config.theme?.semanticTokens?.colors || {}
+const semanticTokenGroups = Object.keys(semanticTokens)
 
 /**
  * A helper function to resolve theme token references (e.g., '{colors.gray.50}')
@@ -27,31 +27,33 @@ const semanticTokenGroups = Object.keys(semanticTokens);
  */
 const resolveTokenValue = (tokenRef: string | undefined): string => {
   if (!tokenRef || !tokenRef.startsWith('{') || !tokenRef.endsWith('}')) {
-    return tokenRef || '';
+    return tokenRef || ''
   }
-  const path = tokenRef.slice(1, -1).split('.'); // e.g., ['colors', 'gray', '50']
-  let current: any = config.theme?.tokens;
+  const path = tokenRef.slice(1, -1).split('.') // e.g., ['colors', 'gray', '50']
+  let current: any = config.theme?.tokens
   for (const key of path) {
-    if (current === undefined) return tokenRef;
-    current = current[key];
+    if (current === undefined) {
+      return tokenRef
+    }
+    current = current[key]
   }
-  return current?.value || tokenRef;
-};
+  return current?.value || tokenRef
+}
 
 /**
  * A component that renders color swatches for each semantic color palette.
  */
-export function SemanticTokens({isDarkMode}: ChildProps) {
+export function SemanticTokens({ isDarkMode }: ChildProps) {
   return (
     <Box>
       {semanticTokenGroups.map((colorName) => {
-        const colorTokens = semanticTokens[colorName];
+        const colorTokens = semanticTokens[colorName]
 
         if (typeof colorTokens !== 'object' || colorTokens === null) {
-          return null;
+          return null
         }
 
-        const tokenSuffixes = Object.keys(colorTokens);
+        const tokenSuffixes = Object.keys(colorTokens)
 
         return (
           <Box key={colorName} as="section" mb={12}>
@@ -69,19 +71,27 @@ export function SemanticTokens({isDarkMode}: ChildProps) {
             </Heading>
             <Flex wrap="wrap" gap={6}>
               {tokenSuffixes.map((tokenSuffix) => {
-                const fullTokenName = `${colorName}.${tokenSuffix}`;
+                const fullTokenName = `${colorName}.${tokenSuffix}`
 
-                // @ts-ignore
-                const tokenDefinition = colorTokens[tokenSuffix]?.value;
-                if (!tokenDefinition) return null;
+                // @ts-expect-error
+                const tokenDefinition = colorTokens[tokenSuffix]?.value
+                if (!tokenDefinition) {
+                  return null
+                }
 
-                const tokenRef = isDarkMode ? tokenDefinition._dark || tokenDefinition.base : tokenDefinition.base;
+                const tokenRef = isDarkMode
+                  ? tokenDefinition._dark || tokenDefinition.base
+                  : tokenDefinition.base
 
-                const finalColorValue = resolveTokenValue(tokenRef);
+                const finalColorValue = resolveTokenValue(tokenRef)
 
-                let displayValue = tokenRef;
-                if (typeof displayValue === 'string' && displayValue.startsWith('{') && displayValue.endsWith('}')) {
-                  displayValue = displayValue.slice(1, -1);
+                let displayValue = tokenRef
+                if (
+                  typeof displayValue === 'string' &&
+                  displayValue.startsWith('{') &&
+                  displayValue.endsWith('}')
+                ) {
+                  displayValue = displayValue.slice(1, -1)
                 }
 
                 return (
@@ -104,12 +114,12 @@ export function SemanticTokens({isDarkMode}: ChildProps) {
                       </Text>
                     </Box>
                   </VStack>
-                );
+                )
               })}
             </Flex>
           </Box>
-        );
+        )
       })}
     </Box>
-  );
+  )
 }
