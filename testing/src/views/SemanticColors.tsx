@@ -14,93 +14,112 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Heading, HStack, Text, VStack } from '@chakra-ui/react'
+import { Box, Flex, Heading, Text, VStack } from '@chakra-ui/react'
 import { config } from '@hivemq/ui-theme'
+import type { ChildProps } from '~/App.tsx'
 
-export type ColorCategory = 'background' | 'border' | 'icon' | 'text'
+const semanticTokens = config.theme?.semanticTokens?.colors || {}
+const semanticTokenGroups = Object.keys(semanticTokens)
 
-export type ThemedColors = {
-  default: string
-  _dark: string
+/**
+ * A helper function to resolve theme token references (e.g., '{colors.gray.50}')
+ * to their actual color value from the theme config.
+ */
+const resolveTokenValue = (tokenRef: string | undefined): string => {
+  if (!tokenRef || !tokenRef.startsWith('{') || !tokenRef.endsWith('}')) {
+    return tokenRef || ''
+  }
+  const path = tokenRef.slice(1, -1).split('.') // e.g., ['colors', 'gray', '50']
+  let current: any = config.theme?.tokens
+  for (const key of path) {
+    if (current === undefined) {
+      return tokenRef
+    }
+    current = current[key]
+  }
+  return current?.value || tokenRef
 }
 
-export type ColorInCategory = Record<string, ThemedColors>
-
-export type ColorsInCategories = Record<ColorCategory, ColorInCategory>
-
-// Note: Chakra UI's system.token API can be used to access token values and CSS variables,
-
-/*
-import { defaultSystem as system } from "@chakra-ui/react";
-
-// raw token
-system.token("colors.red.200");
-// => "#EE0F0F"
-
-// css variable
-system.token.var("colors.red.200");
-// => "var(--chakra-colors-red-200)"
-
-// semantic token
-system.token("colors.danger");
-// => "var(--chakra-colors-danger)"
-
-system.token.var("colors.danger");
-// => "var(--chakra-colors-danger)"
-
-system.tokens.getVar("colors.red.200");
-
-system.tokens.expandReferenceInValue("3px solid {colors.red.200}");
-// => "3px solid var(--chakra-colors-red-200)"
-*/
-
-// https://www.chakra-ui.com/docs/theming/semantic-tokens
-const semanticColors = config.theme?.semanticTokens?.colors || {}
-
-export function SemanticColors({ withText = false }: { withText?: boolean }) {
-  const columnStyle = {
-    border: '1px solid gray',
-    borderRadius: 12,
-    padding: 20,
-  }
-
+/**
+ * A component that renders color swatches for each semantic color palette.
+ */
+export function SemanticTokens({ isDarkMode }: ChildProps) {
   return (
-    <HStack alignItems="start" gap={withText ? 8 : 2}>
-      {Object.entries(semanticColors).map(([category, value]) => {
-        return (
-          <VStack alignItems="start" style={columnStyle} key={category + value}>
-            <Heading as="h2" marginBottom="4">
-              {category}
-            </Heading>
+    <Box>
+      {semanticTokenGroups.map((colorName) => {
+        const colorTokens = semanticTokens[colorName]
 
-            <VStack alignItems="start">
-              {Object.entries(value).map(([colorName, colorValue]) => {
+        if (typeof colorTokens !== 'object' || colorTokens === null) {
+          return null
+        }
+
+        const tokenSuffixes = Object.keys(colorTokens)
+
+        return (
+          <Box key={colorName} as="section" mb={12}>
+            <Heading
+              as="h2"
+              size="xl"
+              mb={6}
+              textTransform="capitalize"
+              borderBottomWidth="2px"
+              borderColor="border"
+              color="text"
+              pb={2}
+            >
+              {colorName}
+            </Heading>
+            <Flex wrap="wrap" gap={6}>
+              {tokenSuffixes.map((tokenSuffix) => {
+                const fullTokenName = `${colorName}.${tokenSuffix}`
+
+                // @ts-expect-error
+                const tokenDefinition = colorTokens[tokenSuffix]?.value
+                if (!tokenDefinition) {
+                  return null
+                }
+
+                const tokenRef = isDarkMode
+                  ? tokenDefinition._dark || tokenDefinition.base
+                  : tokenDefinition.base
+
+                const finalColorValue = resolveTokenValue(tokenRef)
+
+                let displayValue = tokenRef
+                if (
+                  typeof displayValue === 'string' &&
+                  displayValue.startsWith('{') &&
+                  displayValue.endsWith('}')
+                ) {
+                  displayValue = displayValue.slice(1, -1)
+                }
+
                 return (
-                  <HStack alignItems="center" gap={2} key={category + colorName}>
-                    {withText && (
-                      <Text fontFamily="monospace" minWidth="150" fontSize="small">
-                        {colorName}
+                  <VStack key={fullTokenName} gap={1} align="flex-start">
+                    <Box
+                      w="120px"
+                      h="80px"
+                      bg={finalColorValue}
+                      borderRadius="md"
+                      borderWidth="1px"
+                      borderColor="border"
+                      color="text"
+                    />
+                    <Box>
+                      <Text fontSize="sm" fontWeight="medium" color={'text'}>
+                        {fullTokenName}
                       </Text>
-                    )}
-                    <HStack>
-                      <div>
-                        <div />
-                        {withText && <Text fontSize="small">{colorValue}</Text>}
-                      </div>
-                    </HStack>
-                    <HStack>
-                      <div>
-                        <div />
-                        {withText && <Text fontSize="small">{colorValue._dark}</Text>}
-                      </div>
-                    </HStack>
-                  </HStack>
+                      <Text fontSize="xs" color="text">
+                        {displayValue}
+                      </Text>
+                    </Box>
+                  </VStack>
                 )
               })}
-            </VStack>
-          </VStack>
+            </Flex>
+          </Box>
         )
       })}
-    </HStack>
+    </Box>
   )
 }
