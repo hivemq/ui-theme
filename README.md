@@ -92,7 +92,7 @@ Then you can import these fonts ether in your `main.ts` file or `global.css` fil
 `package.json`
 
 ```bash
-    "@hivemq/ui-theme": "link:../ui-theme/theme/src",
+    "@hivemq/ui-theme": "link:../ui-theme/theme",
 ```
 
 ## Troubleshooting
