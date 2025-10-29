@@ -61,7 +61,18 @@ export const config = mergeConfigs(defaultBaseConfig, {
     },
 
     semanticTokens: {
-      colors: semanticTokens,
+      colors: {
+        shell: {
+          bg: { value: { base: '{colors.gray.50}', _dark: '{colors.gray.900}' } },
+          muted: { value: { base: '{colors.gray.100}', _dark: '{colors.gray.800}' } },
+          subtile: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.700}' } },
+          contrastBg: { value: { base: 'white', _dark: 'black' } },
+          border: { value: { base: '{colors.gray.300}', _dark: '{colors.gray.700}' } },
+          group: { value: { base: '{colors.gray.500}', _dark: '{colors.gray.500}' } },
+          item: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.50}' } },
+        },
+        ...semanticTokens,
+      },
     },
     recipes: {
       button: buttonRecipe,
@@ -71,7 +82,7 @@ export const config = mergeConfigs(defaultBaseConfig, {
         },
         variants: {
           variant: {
-            muted: { color: 'content.secondary' },
+            muted: { color: 'content.gray' },
             subtle: { color: 'content.tertiary' },
             error: { color: 'content.error' },
             warning: { color: 'content.warning' },
@@ -87,7 +98,7 @@ export const config = mergeConfigs(defaultBaseConfig, {
         },
         variants: {
           variant: {
-            muted: { color: 'content.secondary' },
+            muted: { color: 'content.gray' },
             subtle: { color: 'content.tertiary' },
             error: { color: 'content.error' },
             warning: { color: 'content.warning' },
