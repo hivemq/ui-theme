@@ -25,7 +25,7 @@ const buttonColorGroups = [
   'warning',
   'info',
   'highlight',
-]
+] as const
 
 const semanticTokenGroups = buttonColorGroups
 
@@ -39,7 +39,7 @@ const buttonVariants: ConditionalValue<
 export function ButtonVariations() {
   return (
     <Box>
-      {semanticTokenGroups.map((colorName: any) => (
+      {semanticTokenGroups.map((colorName: string) => (
         <Box key={colorName} as="section" mb={16}>
           <Heading as="h2" size="xl" mb={6} textTransform="capitalize">
             {colorName}

@@ -87,6 +87,14 @@ Then you can import these fonts ether in your `main.ts` file or `global.css` fil
 @import '../node_modules/@fontsource/raleway/900.css';
 ```
 
+## Dev
+
+`package.json`
+
+```bash
+    "@hivemq/ui-theme": "link:../ui-theme/theme/src",
+```
+
 ## Troubleshooting
 
 ### Unauthorized error
