@@ -3,7 +3,7 @@
   "version": "1.0.0-rc.5",
   "type": "module",
   "module": "./dist/index.es.js",
-  "types": "./dist/index.es.d.ts",
+  "types": "./dist/index.d.ts",
   "publishConfig": {
     "types": "./dist/index.d.ts",
     "module": "./dist/index.es.js"

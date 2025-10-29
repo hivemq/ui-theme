@@ -16,18 +16,31 @@ limitations under the License.
 
 import { Box, Button, type ConditionalValue, Heading, Table, Text } from '@chakra-ui/react'
 
-// Only include color groups that have corresponding button color palettes
+// Custom semantic color palettes mapped to action tokens
 const buttonColorGroups = [
-  'primary',
+  'gray',
+  'red',
+  'orange', 
+  'yellow',
+  'green',
+  'teal',
+  'blue',
+  'cyan',
+  'purple',
+  'pink',
+] as const
+
+// Add custom semantic palettes that map to our action tokens
+const semanticTokenGroups = [
+  ...buttonColorGroups,
   'secondary',
   'success',
   'error',
   'warning',
   'info',
   'highlight',
+  'brand',
 ] as const
-
-const semanticTokenGroups = buttonColorGroups
 
 const buttonVariants: ConditionalValue<
   'outline' | 'solid' | 'ghost' | 'subtle' | 'surface' | 'plain'
@@ -39,7 +52,7 @@ const buttonVariants: ConditionalValue<
 export function ButtonVariations() {
   return (
     <Box>
-      {semanticTokenGroups.map((colorName: string) => (
+      {semanticTokenGroups.map((colorName) => (
         <Box key={colorName} as="section" mb={16}>
           <Heading as="h2" size="xl" mb={6} textTransform="capitalize">
             {colorName}

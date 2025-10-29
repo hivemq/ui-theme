@@ -15,10 +15,8 @@ limitations under the License.
 */
 
 import { Box, Heading, HStack, SimpleGrid, Text, VStack } from '@chakra-ui/react'
-import { config } from '@hivemq/ui-theme'
 import { getAlphaContrastColor, getContrastColor } from '~/util/helper.ts'
-
-const colors = config.theme?.tokens?.colors || {}
+import { colors as primitiveColors } from '../../../theme/src/colors/primitive-colors'
 
 const checkerboardBg =
   'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)'
@@ -31,7 +29,7 @@ const checkerboardBgPosition = '0 0, 0 10px, 10px -10px, -10px 0px'
 export function Colors() {
   return (
     <Box>
-      {Object.entries(colors).map(([paletteName, shades]) => (
+      {Object.entries(primitiveColors).map(([paletteName, shades]) => (
         <Box key={paletteName} as="section" mb={10}>
           <Heading
             as="h2"
@@ -46,7 +44,7 @@ export function Colors() {
           </Heading>
           <SimpleGrid columns={{ base: 4, sm: 5, md: 6, lg: 7, xl: 8 }} gap={4}>
             {Object.entries(shades).map(([shadeKey, colorObj]) => {
-              const colorValue = colorObj.value
+              const colorValue = (colorObj as any)?.value
 
               if (paletteName.includes('white') || paletteName.includes('black')) {
                 const solidBgHex = paletteName === 'white' ? '#1F2937' : '#FFFFFF'

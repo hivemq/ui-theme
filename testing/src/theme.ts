@@ -1,4 +1,3 @@
-import { createSystem, defaultConfig } from '@chakra-ui/react'
-import { config } from '@hivemq/ui-theme'
+import {context as system} from '@hivemq/ui-theme'
 
-export const system = createSystem(defaultConfig, config)
+export {system}

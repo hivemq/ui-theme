@@ -14,11 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Box, Tabs, useTabs } from '@chakra-ui/react'
-import { useState } from 'react'
-import { ButtonVariations } from '~/views/ButtonVariations.tsx'
-import { SemanticTokens } from '~/views/SemanticColors.tsx'
-import { Colors } from './views/Colors.tsx'
+import {Box, Tabs, useTabs} from '@chakra-ui/react'
+import {useState, useEffect} from 'react'
+import {ButtonVariations} from '~/views/ButtonVariations.tsx'
+import {SemanticTokens} from '~/views/SemanticColors.tsx'
+import {Colors} from './views/Colors.tsx'
 
 export type ChildProps = {
   isDarkMode: boolean
@@ -26,6 +26,11 @@ export type ChildProps = {
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false)
+
+  // Apply theme to document root for global CSS to work
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light')
+  }, [isDarkMode])
 
   const style: React.CSSProperties = {
     padding: '2rem',
@@ -41,20 +46,20 @@ function App() {
   })
 
   return (
-    <Box data-theme={isDarkMode ? 'dark' : 'light'} style={style} bg="bg">
+    <Box style={style} bg="bg.DEFAULT">
       {/* Theme switcher tabs */}
       <Box
         position="sticky"
         top="0"
         zIndex={999} // Use a theme value for z-index
-        bg="bg"
+        bg="bg.DEFAULT"
         py={4}
       >
         <Tabs.Root
           size={'lg'}
           variant={'enclosed'}
           value={isDarkMode ? 'dark' : 'light'}
-          onValueChange={(details) => setIsDarkMode(details.value === 'dark')}
+          onValueChange={(e) => setIsDarkMode(e.value === 'dark')}
         >
           <Tabs.List>
             <Tabs.Trigger color={'text'} value={'light'}>
@@ -75,13 +80,13 @@ function App() {
           <Tabs.Trigger value={'buttons'}>Buttons</Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content value={'color-tokens'}>
-          <Colors />
+          <Colors/>
         </Tabs.Content>
         <Tabs.Content value={'semantic-tokens'}>
-          <SemanticTokens isDarkMode={isDarkMode} />
+          <SemanticTokens isDarkMode={isDarkMode}/>
         </Tabs.Content>
         <Tabs.Content value={'buttons'}>
-          <ButtonVariations />
+          <ButtonVariations/>
         </Tabs.Content>
       </Tabs.RootProvider>
     </Box>

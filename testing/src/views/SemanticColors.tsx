@@ -15,29 +15,85 @@ limitations under the License.
 */
 
 import { Box, Flex, Heading, Text, VStack } from '@chakra-ui/react'
-import { config } from '@hivemq/ui-theme'
+import { semanticTokens } from '../../../theme/src/colors/semantic-tokens'
+import { colors as primitiveColors } from '../../../theme/src/colors/primitive-colors'
 import type { ChildProps } from '~/App.tsx'
-
-const semanticTokens = config.theme?.semanticTokens?.colors || {}
 const semanticTokenGroups = Object.keys(semanticTokens)
 
 /**
  * A helper function to resolve theme token references (e.g., '{colors.gray.50}')
- * to their actual color value from the theme config.
+ * to their actual color value from the primitive colors.
  */
-const resolveTokenValue = (tokenRef: string | undefined): string => {
+const resolveTokenValue = (tokenRef: string | undefined, depth = 0): string => {
+  // Prevent infinite recursion
+  if (depth > 5) {
+    return '#cccccc'
+  }
+  
   if (!tokenRef || !tokenRef.startsWith('{') || !tokenRef.endsWith('}')) {
-    return tokenRef || ''
+    // Handle direct color values
+    if (tokenRef === 'white') return '#ffffff'
+    if (tokenRef === 'black') return '#000000'
+    if (tokenRef && tokenRef.startsWith('#')) return tokenRef
+    if (tokenRef && tokenRef.startsWith('rgba')) return tokenRef
+    return tokenRef || '#000000'
   }
-  const path = tokenRef.slice(1, -1).split('.') // e.g., ['colors', 'gray', '50']
-  let current: any = config.theme?.tokens
-  for (const key of path) {
-    if (current === undefined) {
-      return tokenRef
+  
+  // Extract the token path from the reference
+  const tokenPath = tokenRef.slice(1, -1) // Remove the { and }
+  
+  // For token references, try to resolve from the primitive tokens first
+  if (tokenPath.startsWith('colors.')) {
+    const colorPath = tokenPath.replace('colors.', '')
+    
+    // Check if it's a semantic token reference
+    if (colorPath.includes('.')) {
+      const pathParts = colorPath.split('.')
+      
+      // Try primitive colors first
+      let current: any = primitiveColors
+      for (const part of pathParts) {
+        if (current && typeof current === 'object') {
+          current = current[part]
+        } else {
+          current = null
+          break
+        }
+      }
+      
+      // If found in primitive colors, return it
+      if (current && typeof current === 'object' && 'value' in current) {
+        return current.value
+      }
+      
+      // If not found in primitive colors, try semantic tokens
+      current = semanticTokens as any
+      for (const part of pathParts) {
+        if (current && typeof current === 'object') {
+          current = current[part]
+        } else {
+          current = null
+          break
+        }
+      }
+      
+      // If found in semantic tokens, recursively resolve
+      if (current && typeof current === 'object' && 'value' in current) {
+        const semanticValue = current.value
+        if (typeof semanticValue === 'object') {
+          // Get the base value (we'll handle dark mode later if needed)
+          const baseValue = semanticValue.base || semanticValue._light
+          if (baseValue) {
+            return resolveTokenValue(baseValue, depth + 1)
+          }
+        }
+        return resolveTokenValue(semanticValue, depth + 1)
+      }
     }
-    current = current[key]
   }
-  return current?.value || tokenRef
+  
+  // If we can't resolve it, return a fallback color
+  return '#cccccc'
 }
 
 /**
@@ -47,7 +103,7 @@ export function SemanticTokens({ isDarkMode }: ChildProps) {
   return (
     <Box>
       {semanticTokenGroups.map((colorName) => {
-        const colorTokens = semanticTokens[colorName]
+        const colorTokens = (semanticTokens as any)[colorName]
 
         if (typeof colorTokens !== 'object' || colorTokens === null) {
           return null
@@ -73,17 +129,29 @@ export function SemanticTokens({ isDarkMode }: ChildProps) {
               {tokenSuffixes.map((tokenSuffix) => {
                 const fullTokenName = `${colorName}.${tokenSuffix}`
 
-                // @ts-expect-error
-                const tokenDefinition = colorTokens[tokenSuffix]?.value
-                if (!tokenDefinition) {
-                  return null
+                const tokenObj = (colorTokens as any)[tokenSuffix]
+                
+                if (!tokenObj) {
+                  return null // Skip missing tokens silently
                 }
+                
+                if (!tokenObj.value) {
+                  return null // Skip tokens without value property
+                }
+                
+                const tokenDefinition = tokenObj.value
 
                 const tokenRef = isDarkMode
                   ? tokenDefinition._dark || tokenDefinition.base
                   : tokenDefinition.base
 
+                // Try to resolve the token reference to an actual color value
                 const finalColorValue = resolveTokenValue(tokenRef)
+                
+                // Skip tokens that couldn't be resolved to a valid color
+                if (!finalColorValue) {
+                  return null
+                }
 
                 let displayValue = tokenRef
                 if (

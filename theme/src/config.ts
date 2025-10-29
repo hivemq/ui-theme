@@ -1,7 +1,6 @@
-import { defaultBaseConfig, mergeConfigs } from '@chakra-ui/react'
-import { colors } from '~/colors/primitive-colors.ts'
-import { semanticTokens } from '~/colors/semantic-tokens.ts'
-import { buttonRecipe } from '~/recipes/buttons.ts'
+import {createSystem, defaultConfig} from '@chakra-ui/react'
+import {colors} from './colors/primitive-colors.js'
+import {semanticTokens} from './colors/semantic-tokens.js'
 
 export const globalCss = {
   ':root': {
@@ -11,6 +10,10 @@ export const globalCss = {
   },
   "[data-theme='dark']": {
     colorScheme: 'dark',
+  },
+  'html, body': {
+    backgroundColor: '{colors.bg.DEFAULT}',
+    color: '{colors.text.DEFAULT}',
   },
   // Add smooth transitions for color mode changes
   '*': {
@@ -25,10 +28,10 @@ export const globalCss = {
   },
 }
 
-export const config = mergeConfigs(defaultBaseConfig, {
+export const system = createSystem(defaultConfig, {
   conditions: {
-    dark: "[data-theme='dark'] &",
-    light: "[data-theme='light'] &",
+    _dark: "[data-theme='dark'] &",
+    _light: "[data-theme='light'] &",
     // Add system preference support
     _osDark: '@media (prefers-color-scheme: dark)',
     _osLight: '@media (prefers-color-scheme: light)',
@@ -62,32 +65,22 @@ export const config = mergeConfigs(defaultBaseConfig, {
 
     semanticTokens: {
       colors: {
-        shell: {
-          bg: { value: { base: '{colors.gray.50}', _dark: '{colors.gray.900}' } },
-          muted: { value: { base: '{colors.gray.100}', _dark: '{colors.gray.800}' } },
-          subtile: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.700}' } },
-          contrastBg: { value: { base: 'white', _dark: 'black' } },
-          border: { value: { base: '{colors.gray.300}', _dark: '{colors.gray.700}' } },
-          group: { value: { base: '{colors.gray.500}', _dark: '{colors.gray.500}' } },
-          item: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.50}' } },
-        },
         ...semanticTokens,
       },
     },
     recipes: {
-      button: buttonRecipe,
       Text: {
         base: {
           color: 'content.primary',
         },
         variants: {
           variant: {
-            muted: { color: 'content.gray' },
-            subtle: { color: 'content.tertiary' },
-            error: { color: 'content.error' },
-            warning: { color: 'content.warning' },
-            success: { color: 'content.success' },
-            info: { color: 'content.info' },
+            muted: {color: 'content.secondary'},
+            subtle: {color: 'content.tertiary'},
+            error: {color: 'content.error'},
+            warning: {color: 'content.warning'},
+            success: {color: 'content.success'},
+            info: {color: 'content.info'},
           },
         },
       },
@@ -98,16 +91,18 @@ export const config = mergeConfigs(defaultBaseConfig, {
         },
         variants: {
           variant: {
-            muted: { color: 'content.gray' },
-            subtle: { color: 'content.tertiary' },
-            error: { color: 'content.error' },
-            warning: { color: 'content.warning' },
-            success: { color: 'content.success' },
-            info: { color: 'content.info' },
-            brand: { color: 'content.brand' },
+            muted: {color: 'content.secondary'},
+            subtle: {color: 'content.tertiary'},
+            error: {color: 'content.error'},
+            warning: {color: 'content.warning'},
+            success: {color: 'content.success'},
+            info: {color: 'content.info'},
+            brand: {color: 'content.brand'},
           },
         },
       },
     },
   },
 })
+
+export const context = system
