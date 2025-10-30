@@ -37,7 +37,7 @@ export const semanticTokens = {
     secondary: {value: {base: '{colors.gray.700}', _dark: '{colors.gray.300}'}},
     tertiary: {value: {base: '{colors.gray.500}', _dark: '{colors.gray.500}'}},
     disabled: {value: {base: '{colors.gray.400}', _dark: '{colors.gray.600}'}},
-    inverted: {value: {base: '{colors.gray.50}', _dark: '{colors.black}'}},
+    inverted: {value: {base: '{colors.gray.50}', _dark: '{colors.black.DEFAULT}'}},
     error: {value: {base: '{colors.red.600}', _dark: '{colors.red.400}'}},
     warning: {value: {base: '{colors.orange.600}', _dark: '{colors.orange.400}'}},
     success: {value: {base: '{colors.green.600}', _dark: '{colors.green.400}'}},
@@ -76,7 +76,7 @@ export const semanticTokens = {
     focusRing: {value: {base: '{colors.gray.400}', _dark: '{colors.gray.400}'}},
   },
   red: {
-    contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+    contrast: {value: {base: '{colors.white.DEFAULT}', _dark: '{colors.white.DEFAULT}'}},
     fg: {value: {base: '{colors.content.error}', _dark: '{colors.content.error}'}},
     subtle: {value: {base: '{colors.surface.error}', _dark: '{colors.surface.error}'}},
     muted: {value: {base: '{colors.red.200}', _dark: '{colors.red.800}'}},
@@ -85,7 +85,7 @@ export const semanticTokens = {
     focusRing: {value: {base: '{colors.red.400}', _dark: '{colors.red.400}'}},
   },
   pink: {
-    contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+    contrast: {value: {base: '{colors.white.DEFAULT}', _dark: '{colors.white.DEFAULT}'}},
     fg: {value: {base: '{colors.pink.700}', _dark: '{colors.pink.300}'}},
     subtle: {value: {base: '{colors.pink.100}', _dark: '{colors.pink.900}'}},
     muted: {value: {base: '{colors.pink.200}', _dark: '{colors.pink.800}'}},
@@ -94,7 +94,7 @@ export const semanticTokens = {
     focusRing: {value: {base: '{colors.pink.400}', _dark: '{colors.pink.400}'}},
   },
   purple: {
-    contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+    contrast: {value: {base: '{colors.white.DEFAULT}', _dark: '{colors.white.DEFAULT}'}},
     fg: {value: {base: '{colors.purple.700}', _dark: '{colors.purple.300}'}},
     subtle: {value: {base: '{colors.purple.100}', _dark: '{colors.purple.900}'}},
     muted: {value: {base: '{colors.purple.200}', _dark: '{colors.purple.800}'}},
@@ -103,7 +103,7 @@ export const semanticTokens = {
     focusRing: {value: {base: '{colors.purple.400}', _dark: '{colors.purple.400}'}},
   },
   cyan: {
-    contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+    contrast: {value: {base: '{colors.white.DEFAULT}', _dark: '{colors.white.DEFAULT}'}},
     fg: {value: {base: '{colors.cyan.700}', _dark: '{colors.cyan.300}'}},
     subtle: {value: {base: '{colors.cyan.100}', _dark: '{colors.cyan.900}'}},
     muted: {value: {base: '{colors.cyan.200}', _dark: '{colors.cyan.800}'}},
@@ -112,7 +112,7 @@ export const semanticTokens = {
     focusRing: {value: {base: '{colors.cyan.400}', _dark: '{colors.cyan.400}'}},
   },
   blue: {
-    contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+    contrast: {value: {base: '{colors.white.DEFAULT}', _dark: '{colors.white.DEFAULT}'}},
     fg: {value: {base: '{colors.content.info}', _dark: '{colors.content.info}'}},
     subtle: {value: {base: '{colors.surface.info}', _dark: '{colors.surface.info}'}},
     muted: {value: {base: '{colors.blue.200}', _dark: '{colors.blue.800}'}},
@@ -121,7 +121,7 @@ export const semanticTokens = {
     focusRing: {value: {base: '{colors.blue.400}', _dark: '{colors.blue.400}'}},
   },
   teal: {
-    contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+    contrast: {value: {base: '{colors.white.DEFAULT}', _dark: '{colors.white.DEFAULT}'}},
     fg: {value: {base: '{colors.teal.700}', _dark: '{colors.teal.300}'}},
     subtle: {value: {base: '{colors.teal.100}', _dark: '{colors.teal.900}'}},
     muted: {value: {base: '{colors.teal.200}', _dark: '{colors.teal.800}'}},
@@ -130,7 +130,7 @@ export const semanticTokens = {
     focusRing: {value: {base: '{colors.teal.400}', _dark: '{colors.teal.400}'}},
   },
   green: {
-    contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+    contrast: {value: {base: '{colors.white.DEFAULT}', _dark: '{colors.white.DEFAULT}'}},
     fg: {value: {base: '{colors.content.success}', _dark: '{colors.content.success}'}},
     subtle: {value: {base: '{colors.surface.success}', _dark: '{colors.surface.success}'}},
     muted: {value: {base: '{colors.green.200}', _dark: '{colors.green.800}'}},
@@ -139,7 +139,7 @@ export const semanticTokens = {
     focusRing: {value: {base: '{colors.green.400}', _dark: '{colors.green.400}'}},
   },
   yellow: {
-    contrast: {value: {base: '{colors.black}', _dark: '{colors.black}'}},
+    contrast: {value: {base: '{colors.black.DEFAULT}', _dark: '{colors.black.DEFAULT}'}},
     fg: {value: {base: '{colors.content.brand}', _dark: '{colors.content.brand}'}},
     subtle: {value: {base: '{colors.surface.brand}', _dark: '{colors.surface.brand}'}},
     muted: {value: {base: '{colors.yellow.200}', _dark: '{colors.yellow.800}'}},
@@ -148,7 +148,7 @@ export const semanticTokens = {
     focusRing: {value: {base: '{colors.yellow.400}', _dark: '{colors.yellow.400}'}},
   },
   orange: {
-    contrast: {value: {base: '{colors.black}', _dark: '{colors.black}'}},
+    contrast: {value: {base: '{colors.black.DEFAULT}', _dark: '{colors.black.DEFAULT}'}},
     fg: {value: {base: '{colors.content.warning}', _dark: '{colors.content.warning}'}},
     subtle: {value: {base: '{colors.surface.warning}', _dark: '{colors.surface.warning}'}},
     muted: {value: {base: '{colors.orange.200}', _dark: '{colors.orange.800}'}},
@@ -161,7 +161,7 @@ export const semanticTokens = {
    * Custom semantic color palettes that map to action tokens
    */
   brand: {
-    contrast: {value: {base: '{colors.black}', _dark: '{colors.black}'}},
+    contrast: {value: {base: '{colors.black.DEFAULT}', _dark: '{colors.black.DEFAULT}'}},
     fg: {value: {base: '{colors.yellow.600}', _dark: '{colors.yellow.300}'}},
     subtle: {value: {base: '{colors.surface.brand}', _dark: '{colors.surface.brand}'}},
     muted: {value: {base: '{colors.yellow.200}', _dark: '{colors.yellow.800}'}},
@@ -170,8 +170,8 @@ export const semanticTokens = {
     focusRing: {value: {base: '{colors.yellow.400}', _dark: '{colors.yellow.400}'}},
   },
   secondary: {
-    contrast: {value: {base: '{colors.black}', _dark: '{colors.white}'}},
-    fg: {value: {base: '{colors.black}', _dark: '{colors.gray.400}'}},
+    contrast: {value: {base: '{colors.black.DEFAULT}', _dark: '{colors.white.DEFAULT}'}},
+    fg: {value: {base: '{colors.black.DEFAULT}', _dark: '{colors.gray.400}'}},
     subtle: {value: {base: '{colors.gray.100}', _dark: '{colors.gray.900}'}},
     muted: {value: {base: '{colors.gray.200}', _dark: '{colors.gray.800}'}},
     emphasized: {value: {base: '{colors.gray.300}', _dark: '{colors.gray.700}'}},
@@ -179,7 +179,7 @@ export const semanticTokens = {
     focusRing: {value: {base: '{colors.gray.400}', _dark: '{colors.gray.400}'}},
   },
   success: {
-    contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+    contrast: {value: {base: '{colors.white.DEFAULT}', _dark: '{colors.white.DEFAULT}'}},
     fg: {value: {base: '{colors.green.600}', _dark: '{colors.green.400}'}},
     subtle: {value: {base: '{colors.surface.success}', _dark: '{colors.surface.success}'}},
     muted: {value: {base: '{colors.green.200}', _dark: '{colors.green.800}'}},
@@ -188,7 +188,7 @@ export const semanticTokens = {
     focusRing: {value: {base: '{colors.green.400}', _dark: '{colors.green.400}'}},
   },
   error: {
-    contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+    contrast: {value: {base: '{colors.white.DEFAULT}', _dark: '{colors.white.DEFAULT}'}},
     fg: {value: {base: '{colors.red.600}', _dark: '{colors.red.400}'}},
     subtle: {value: {base: '{colors.surface.error}', _dark: '{colors.surface.error}'}},
     muted: {value: {base: '{colors.red.200}', _dark: '{colors.red.800}'}},
@@ -197,7 +197,7 @@ export const semanticTokens = {
     focusRing: {value: {base: '{colors.red.400}', _dark: '{colors.red.400}'}},
   },
   warning: {
-    contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+    contrast: {value: {base: '{colors.white.DEFAULT}', _dark: '{colors.white.DEFAULT}'}},
     fg: {value: {base: '{colors.orange.600}', _dark: '{colors.orange.400}'}},
     subtle: {value: {base: '{colors.surface.warning}', _dark: '{colors.surface.warning}'}},
     muted: {value: {base: '{colors.orange.200}', _dark: '{colors.orange.800}'}},
@@ -206,7 +206,7 @@ export const semanticTokens = {
     focusRing: {value: {base: '{colors.orange.400}', _dark: '{colors.orange.400}'}},
   },
   info: {
-    contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+    contrast: {value: {base: '{colors.white.DEFAULT}', _dark: '{colors.white.DEFAULT}'}},
     fg: {value: {base: '{colors.blue.600}', _dark: '{colors.blue.400}'}},
     subtle: {value: {base: '{colors.surface.info}', _dark: '{colors.surface.info}'}},
     muted: {value: {base: '{colors.blue.200}', _dark: '{colors.blue.800}'}},
@@ -215,7 +215,7 @@ export const semanticTokens = {
     focusRing: {value: {base: '{colors.blue.400}', _dark: '{colors.blue.400}'}},
   },
   highlight: {
-    contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+    contrast: {value: {base: '{colors.white.DEFAULT}', _dark: '{colors.white.DEFAULT}'}},
     fg: {value: {base: '{colors.purple.600}', _dark: '{colors.purple.400}'}},
     subtle: {value: {base: '{colors.purple.100}', _dark: '{colors.purple.900}'}},
     muted: {value: {base: '{colors.purple.200}', _dark: '{colors.purple.800}'}},
