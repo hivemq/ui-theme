@@ -1,4 +1,4 @@
-import {createSystem, defaultConfig} from '@chakra-ui/react'
+import {createSystem, defaultConfig, defineConfig} from '@chakra-ui/react'
 import {colors} from './colors/primitive-colors.js'
 import {semanticTokens} from './colors/semantic-tokens.js'
 
@@ -28,7 +28,7 @@ export const globalCss = {
   },
 }
 
-export const system = createSystem(defaultConfig, {
+const config = defineConfig({
   conditions: {
     _dark: "[data-theme='dark'] &",
     _light: "[data-theme='light'] &",
@@ -62,10 +62,73 @@ export const system = createSystem(defaultConfig, {
         },
       },
     },
-
     semanticTokens: {
       colors: {
         ...semanticTokens,
+        // For some reason the foreground color doesn't switch based on context properly if we put this inside the file declaring the semantic tokens
+        secondary: {
+          contrast: {value: {base: '{colors.black}', _dark: '{colors.white}'}},
+          fg: {value: {base: '{colors.gray.600}', _dark: '{colors.gray.400}'}},
+          subtle: {value: {base: '{colors.gray.100}', _dark: '{colors.gray.900}'}},
+          muted: {value: {base: '{colors.gray.200}', _dark: '{colors.gray.800}'}},
+          emphasized: {value: {base: '{colors.gray.300}', _dark: '{colors.gray.700}'}},
+          solid: {value: {base: '{colors.gray.300}', _dark: '{colors.gray.500}'}},
+          focusRing: {value: {base: '{colors.gray.400}', _dark: '{colors.gray.400}'}},
+        },
+        brand: {
+          contrast: {value: {base: '{colors.black}', _dark: '{colors.black}'}},
+          fg: {value: {base: '{colors.yellow.600}', _dark: '{colors.yellow.300}'}},
+          subtle: {value: {base: '{colors.yellow.50}', _dark: '{colors.yellow.950}'}},
+          muted: {value: {base: '{colors.yellow.200}', _dark: '{colors.yellow.800}'}},
+          emphasized: {value: {base: '{colors.yellow.300}', _dark: '{colors.yellow.700}'}},
+          solid: {value: {base: '{colors.yellow.400}', _dark: '{colors.yellow.400}'}},
+          focusRing: {value: {base: '{colors.yellow.400}', _dark: '{colors.yellow.400}'}},
+        },
+        success: {
+          contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+          fg: {value: {base: '{colors.green.600}', _dark: '{colors.green.400}'}},
+          subtle: {value: {base: '{colors.green.50}', _dark: '{colors.green.950}'}},
+          muted: {value: {base: '{colors.green.200}', _dark: '{colors.green.800}'}},
+          emphasized: {value: {base: '{colors.green.300}', _dark: '{colors.green.700}'}},
+          solid: {value: {base: '{colors.green.500}', _dark: '{colors.green.500}'}},
+          focusRing: {value: {base: '{colors.green.400}', _dark: '{colors.green.400}'}},
+        },
+        error: {
+          contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+          fg: {value: {base: '{colors.red.600}', _dark: '{colors.red.400}'}},
+          subtle: {value: {base: '{colors.red.50}', _dark: '{colors.red.950}'}},
+          muted: {value: {base: '{colors.red.200}', _dark: '{colors.red.800}'}},
+          emphasized: {value: {base: '{colors.red.300}', _dark: '{colors.red.700}'}},
+          solid: {value: {base: '{colors.red.500}', _dark: '{colors.red.500}'}},
+          focusRing: {value: {base: '{colors.red.400}', _dark: '{colors.red.400}'}},
+        },
+        warning: {
+          contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+          fg: {value: {base: '{colors.orange.600}', _dark: '{colors.orange.400}'}},
+          subtle: {value: {base: '{colors.orange.50}', _dark: '{colors.orange.950}'}},
+          muted: {value: {base: '{colors.orange.200}', _dark: '{colors.orange.800}'}},
+          emphasized: {value: {base: '{colors.orange.300}', _dark: '{colors.orange.700}'}},
+          solid: {value: {base: '{colors.orange.500}', _dark: '{colors.orange.500}'}},
+          focusRing: {value: {base: '{colors.orange.400}', _dark: '{colors.orange.400}'}},
+        },
+        info: {
+          contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+          fg: {value: {base: '{colors.blue.600}', _dark: '{colors.blue.400}'}},
+          subtle: {value: {base: '{colors.blue.50}', _dark: '{colors.blue.950}'}},
+          muted: {value: {base: '{colors.blue.200}', _dark: '{colors.blue.800}'}},
+          emphasized: {value: {base: '{colors.blue.300}', _dark: '{colors.blue.700}'}},
+          solid: {value: {base: '{colors.blue.500}', _dark: '{colors.blue.500}'}},
+          focusRing: {value: {base: '{colors.blue.400}', _dark: '{colors.blue.400}'}},
+        },
+        highlight: {
+          contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+          fg: {value: {base: '{colors.purple.600}', _dark: '{colors.purple.400}'}},
+          subtle: {value: {base: '{colors.purple.50}', _dark: '{colors.purple.950}'}},
+          muted: {value: {base: '{colors.purple.200}', _dark: '{colors.purple.800}'}},
+          emphasized: {value: {base: '{colors.purple.300}', _dark: '{colors.purple.700}'}},
+          solid: {value: {base: '{colors.purple.500}', _dark: '{colors.purple.500}'}},
+          focusRing: {value: {base: '{colors.purple.400}', _dark: '{colors.purple.400}'}},
+        },
       },
     },
     recipes: {
@@ -104,5 +167,7 @@ export const system = createSystem(defaultConfig, {
     },
   },
 })
+
+export const system = createSystem(defaultConfig, config)
 
 export const context = system

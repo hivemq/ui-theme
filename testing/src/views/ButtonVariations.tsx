@@ -14,13 +14,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Box, Button, type ConditionalValue, Heading, Table, Text } from '@chakra-ui/react'
+import {Box, Button, type ConditionalValue, Heading, Table, Text} from '@chakra-ui/react'
 
 // Custom semantic color palettes mapped to action tokens
 const buttonColorGroups = [
   'gray',
   'red',
-  'orange', 
+  'orange',
   'yellow',
   'green',
   'teal',
