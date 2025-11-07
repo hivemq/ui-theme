@@ -14,15 +14,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, createSystem } from '@chakra-ui/react'
+import { config } from '@hivemq/ui-theme'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { bootstrap } from 'safetest/react'
 import App from './App.tsx'
-import { system as theme } from './theme'
 
 // biome-ignore lint/style/noNonNullAssertion: it is fine here
 const root = ReactDOM.createRoot(document.getElementById('root')!)
+
+const theme = createSystem(config)
 
 bootstrap({
   element: (

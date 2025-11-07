@@ -29,7 +29,7 @@ export const globalCss = {
   },
 }
 
-const config = defineConfig({
+export const config = defineConfig({
   conditions: {
     _dark: "[data-theme='dark'] &",
     _light: "[data-theme='light'] &",
@@ -105,7 +105,3 @@ const config = defineConfig({
     },
   },
 })
-
-export const system = createSystem(defaultConfig, config)
-
-export const context = system
