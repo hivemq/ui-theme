@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 import {Box, Tabs, useTabs} from '@chakra-ui/react'
-import {useState, useEffect} from 'react'
+import {useEffect, useState} from 'react'
 import {ButtonVariations} from '~/views/ButtonVariations.tsx'
 import {SemanticTokens} from '~/views/SemanticColors.tsx'
 import {Colors} from './views/Colors.tsx'
@@ -46,13 +46,13 @@ function App() {
   })
 
   return (
-    <Box style={style} bg="bg.DEFAULT">
+    <Box style={style} bg="bg">
       {/* Theme switcher tabs */}
       <Box
         position="sticky"
         top="0"
         zIndex={999} // Use a theme value for z-index
-        bg="bg.DEFAULT"
+        bg="bg"
         py={4}
       >
         <Tabs.Root

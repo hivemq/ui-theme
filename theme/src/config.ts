@@ -12,8 +12,8 @@ export const globalCss = {
     colorScheme: 'dark',
   },
   'html, body': {
-    backgroundColor: 'var(--chakra-colors-gray-50)',
-    color: 'var(--chakra-colors-gray-900)',
+    backgroundColor: 'var(--chakra-colors-bg-default)',
+    color: 'var(--chakra-colors-text-default)',
   },
   html: {
     colorPalette: 'secondary',

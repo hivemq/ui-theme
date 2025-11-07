@@ -14,13 +14,36 @@ export const semanticTokens = {
   },
 
   /**
+   * Border tokens
+   */
+  border: {
+    DEFAULT: {value: {base: '{colors.gray.900}', _dark: '{colors.gray.50}'}},
+  },
+
+  /**
+   * Tier 2: Content tokens (text and foreground elements)
+   */
+  content: {
+    primary: {value: {base: '{colors.gray.900}', _dark: '{colors.gray.50}'}},
+    secondary: {value: {base: '{colors.gray.700}', _dark: '{colors.gray.300}'}},
+    tertiary: {value: {base: '{colors.gray.500}', _dark: '{colors.gray.500}'}},
+    disabled: {value: {base: '{colors.gray.400}', _dark: '{colors.gray.600}'}},
+    inverted: {value: {base: '{colors.gray.50}', _dark: '{colors.black}'}},
+    error: {value: {base: '{colors.red.600}', _dark: '{colors.red.400}'}},
+    warning: {value: {base: '{colors.orange.600}', _dark: '{colors.orange.400}'}},
+    success: {value: {base: '{colors.green.600}', _dark: '{colors.green.400}'}},
+    info: {value: {base: '{colors.blue.600}', _dark: '{colors.blue.400}'}},
+    brand: {value: {base: '{colors.yellow.600}', _dark: '{colors.yellow.300}'}},
+  },
+
+  /**
    * Shell tokens (UI shell and layout components)
    */
   shell: {
     bg: {value: {base: '{colors.gray.50}', _dark: '{colors.gray.900}'}},
     muted: {value: {base: '{colors.gray.100}', _dark: '{colors.gray.800}'}},
     subtle: {value: {base: '{colors.gray.200}', _dark: '{colors.gray.700}'}},
-    contrastBg: {value: {base: '{colors.white.DEFAULT}', _dark: '{colors.black.DEFAULT}'}},
+    contrastBg: {value: {base: '{colors.white}', _dark: '{colors.black}'}},
     border: {value: {base: '{colors.gray.300}', _dark: '{colors.gray.700}'}},
     group: {value: {base: '{colors.gray.500}', _dark: '{colors.gray.500}'}},
     item: {value: {base: '{colors.gray.900}', _dark: '{colors.gray.50}'}},
@@ -55,7 +78,7 @@ export const semanticTokens = {
   },
   danger: {
     contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
-    fg: {value: {base: '{colors.red.700}', _dark: '{colors.red.400}'}},
+    fg: {value: {base: '{colors.red.600}', _dark: '{colors.red.400}'}},
     subtle: {value: {base: '{colors.red.50}', _dark: '{colors.red.950}'}},
     muted: {value: {base: '{colors.red.300}', _dark: '{colors.red.800}'}},
     emphasized: {value: {base: '{colors.red.400}', _dark: '{colors.red.700}'}},

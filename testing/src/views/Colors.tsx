@@ -14,9 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Box, Heading, HStack, SimpleGrid, Text, VStack } from '@chakra-ui/react'
-import { getAlphaContrastColor, getContrastColor } from '~/util/helper.ts'
-import { colors as primitiveColors } from '../../../theme/src/colors/primitive-colors'
+import {Box, Heading, HStack, SimpleGrid, Text, VStack} from '@chakra-ui/react'
+import {getAlphaContrastColor, getContrastColor} from '~/util/helper.ts'
+import {colors as primitiveColors} from '../../../theme/src/colors/primitive-colors'
 
 const checkerboardBg =
   'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)'
@@ -42,7 +42,7 @@ export function Colors() {
           >
             {paletteName}
           </Heading>
-          <SimpleGrid columns={{ base: 4, sm: 5, md: 6, lg: 7, xl: 8 }} gap={4}>
+          <SimpleGrid columns={{base: 4, sm: 5, md: 6, lg: 7, xl: 8}} gap={4}>
             {Object.entries(shades).map(([shadeKey, colorObj]) => {
               const colorValue = (colorObj as any)?.value
 
@@ -60,7 +60,7 @@ export function Colors() {
                     height="120px"
                   >
                     <HStack w="100%" h="100%" gap={0}>
-                      <Box bg={solidBgHex} w="50%" h="100%" />
+                      <Box bg={solidBgHex} w="50%" h="100%"/>
                       <Box
                         bg={checkerboardBg}
                         bgSize={checkerboardBgSize}
@@ -70,7 +70,7 @@ export function Colors() {
                       />
                     </HStack>
 
-                    <Box position="absolute" top={0} left={0} w="100%" h="100%" bg={colorValue} />
+                    <Box position="absolute" top={0} left={0} w="100%" h="100%" bg={colorValue}/>
 
                     <VStack
                       position="absolute"
