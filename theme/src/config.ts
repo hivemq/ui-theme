@@ -12,15 +12,13 @@ export const globalCss = {
     colorScheme: 'dark',
   },
   'html, body': {
-    backgroundColor: '{colors.bg.DEFAULT}',
-    color: '{colors.text.DEFAULT}',
+    backgroundColor: 'var(--chakra-colors-gray-50)',
+    color: 'var(--chakra-colors-gray-900)',
   },
-  // Add smooth transitions for color mode changes
   '*': {
     transition:
       'background-color var(--chakra-transition-duration) var(--chakra-transition-easing), color var(--chakra-transition-duration) var(--chakra-transition-easing), border-color var(--chakra-transition-duration) var(--chakra-transition-easing)',
   },
-  // Respect user's reduced motion preferences
   '@media (prefers-reduced-motion: reduce)': {
     '*': {
       transition: 'none !important',
@@ -32,7 +30,6 @@ const config = defineConfig({
   conditions: {
     _dark: "[data-theme='dark'] &",
     _light: "[data-theme='light'] &",
-    // Add system preference support
     _osDark: '@media (prefers-color-scheme: dark)',
     _osLight: '@media (prefers-color-scheme: light)',
   },
