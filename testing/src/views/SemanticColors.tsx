@@ -14,10 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {Box, Flex, Heading, Text, VStack} from '@chakra-ui/react'
-import {semanticTokens} from '../../../theme/src/colors/semantic-tokens'
-import {colors as primitiveColors} from '../../../theme/src/colors/primitive-colors'
-import type {ChildProps} from '~/App.tsx'
+import { Box, Flex, Heading, Text, VStack } from '@chakra-ui/react'
+import type { ChildProps } from '~/App.tsx'
+import { colors as primitiveColors } from '../../../theme/src/colors/primitive-colors'
+import { semanticTokens } from '../../../theme/src/colors/semantic-tokens'
 
 const semanticTokenGroups = Object.keys(semanticTokens)
 
@@ -33,10 +33,18 @@ const resolveTokenValue = (tokenRef: string | undefined, depth = 0): string => {
 
   if (!tokenRef || !tokenRef.startsWith('{') || !tokenRef.endsWith('}')) {
     // Handle direct color values
-    if (tokenRef === 'white') return '#ffffff'
-    if (tokenRef === 'black') return '#000000'
-    if (tokenRef && tokenRef.startsWith('#')) return tokenRef
-    if (tokenRef && tokenRef.startsWith('rgba')) return tokenRef
+    if (tokenRef === 'white') {
+      return '#ffffff'
+    }
+    if (tokenRef === 'black') {
+      return '#000000'
+    }
+    if (tokenRef?.startsWith('#')) {
+      return tokenRef
+    }
+    if (tokenRef?.startsWith('rgba')) {
+      return tokenRef
+    }
     return tokenRef || '#000000'
   }
 
@@ -100,7 +108,7 @@ const resolveTokenValue = (tokenRef: string | undefined, depth = 0): string => {
 /**
  * A component that renders color swatches for each semantic color palette.
  */
-export function SemanticTokens({isDarkMode}: ChildProps) {
+export function SemanticTokens({ isDarkMode }: ChildProps) {
   return (
     <Box>
       {semanticTokenGroups.map((colorName) => {

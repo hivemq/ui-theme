@@ -1,6 +1,6 @@
-import {createSystem, defaultConfig, defineConfig} from '@chakra-ui/react'
-import {colors} from './colors/primitive-colors.js'
-import {semanticTokens} from './colors/semantic-tokens.js'
+import { defineConfig } from '@chakra-ui/react'
+import { colors } from './colors/primitive-colors.js'
+import { semanticTokens } from './colors/semantic-tokens.js'
 
 export const globalCss = {
   ':root': {
@@ -66,7 +66,6 @@ export const config = defineConfig({
       colors: {
         ...semanticTokens,
         // For some reason the foreground color doesn't switch based on context properly if we put this inside the file declaring the semantic tokens
-
       },
     },
     recipes: {
@@ -76,12 +75,12 @@ export const config = defineConfig({
         },
         variants: {
           variant: {
-            muted: {color: 'content.secondary'},
-            subtle: {color: 'content.tertiary'},
-            error: {color: 'content.error'},
-            warning: {color: 'content.warning'},
-            success: {color: 'content.success'},
-            info: {color: 'content.info'},
+            muted: { color: 'content.secondary' },
+            subtle: { color: 'content.tertiary' },
+            error: { color: 'content.error' },
+            warning: { color: 'content.warning' },
+            success: { color: 'content.success' },
+            info: { color: 'content.info' },
           },
         },
       },
@@ -92,13 +91,13 @@ export const config = defineConfig({
         },
         variants: {
           variant: {
-            muted: {color: 'content.secondary'},
-            subtle: {color: 'content.tertiary'},
-            error: {color: 'content.error'},
-            warning: {color: 'content.warning'},
-            success: {color: 'content.success'},
-            info: {color: 'content.info'},
-            brand: {color: 'content.brand'},
+            muted: { color: 'content.secondary' },
+            subtle: { color: 'content.tertiary' },
+            error: { color: 'content.error' },
+            warning: { color: 'content.warning' },
+            success: { color: 'content.success' },
+            info: { color: 'content.info' },
+            brand: { color: 'content.brand' },
           },
         },
       },

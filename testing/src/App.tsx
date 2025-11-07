@@ -14,11 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {Box, Tabs, useTabs} from '@chakra-ui/react'
-import {useEffect, useState} from 'react'
-import {ButtonVariations} from '~/views/ButtonVariations.tsx'
-import {SemanticTokens} from '~/views/SemanticColors.tsx'
-import {Colors} from './views/Colors.tsx'
+import { Box, Tabs, useTabs } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
+import { ButtonVariations } from '~/views/ButtonVariations.tsx'
+import { SemanticTokens } from '~/views/SemanticColors.tsx'
+import { Colors } from './views/Colors.tsx'
 
 export type ChildProps = {
   isDarkMode: boolean
@@ -80,13 +80,13 @@ function App() {
           <Tabs.Trigger value={'buttons'}>Buttons</Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content value={'color-tokens'}>
-          <Colors/>
+          <Colors />
         </Tabs.Content>
         <Tabs.Content value={'semantic-tokens'}>
-          <SemanticTokens isDarkMode={isDarkMode}/>
+          <SemanticTokens isDarkMode={isDarkMode} />
         </Tabs.Content>
         <Tabs.Content value={'buttons'}>
-          <ButtonVariations/>
+          <ButtonVariations />
         </Tabs.Content>
       </Tabs.RootProvider>
     </Box>
