@@ -5,7 +5,7 @@ export const semanticTokens = {
   bg: {
     DEFAULT: {value: {base: '{colors.gray.50}', _dark: '{colors.gray.950}'}},
   },
-  
+
   /**
    * Text tokens
    */
@@ -24,5 +24,69 @@ export const semanticTokens = {
     border: {value: {base: '{colors.gray.300}', _dark: '{colors.gray.700}'}},
     group: {value: {base: '{colors.gray.500}', _dark: '{colors.gray.500}'}},
     item: {value: {base: '{colors.gray.900}', _dark: '{colors.gray.50}'}},
+  },
+
+  secondary: {
+    contrast: {value: {base: '{colors.black}', _dark: '{colors.white}'}},
+    fg: {value: {base: '{colors.gray.600}', _dark: '{colors.gray.400}'}},
+    subtle: {value: {base: '{colors.gray.100}', _dark: '{colors.gray.900}'}},
+    muted: {value: {base: '{colors.gray.200}', _dark: '{colors.gray.800}'}},
+    emphasized: {value: {base: '{colors.gray.300}', _dark: '{colors.gray.700}'}},
+    solid: {value: {base: '{colors.gray.300}', _dark: '{colors.gray.500}'}},
+    focusRing: {value: {base: '{colors.gray.400}', _dark: '{colors.gray.400}'}},
+  },
+  brand: {
+    contrast: {value: {base: '{colors.black}', _dark: '{colors.black}'}},
+    fg: {value: {base: '{colors.yellow.600}', _dark: '{colors.yellow.300}'}},
+    subtle: {value: {base: '{colors.yellow.50}', _dark: '{colors.yellow.950}'}},
+    muted: {value: {base: '{colors.yellow.200}', _dark: '{colors.yellow.800}'}},
+    emphasized: {value: {base: '{colors.yellow.300}', _dark: '{colors.yellow.700}'}},
+    solid: {value: {base: '{colors.yellow.400}', _dark: '{colors.yellow.400}'}},
+    focusRing: {value: {base: '{colors.yellow.400}', _dark: '{colors.yellow.400}'}},
+  },
+  success: {
+    contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+    fg: {value: {base: '{colors.green.600}', _dark: '{colors.green.400}'}},
+    subtle: {value: {base: '{colors.green.50}', _dark: '{colors.green.950}'}},
+    muted: {value: {base: '{colors.green.200}', _dark: '{colors.green.800}'}},
+    emphasized: {value: {base: '{colors.green.300}', _dark: '{colors.green.700}'}},
+    solid: {value: {base: '{colors.green.500}', _dark: '{colors.green.500}'}},
+    focusRing: {value: {base: '{colors.green.400}', _dark: '{colors.green.400}'}},
+  },
+  danger: {
+    contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+    fg: {value: {base: '{colors.red.700}', _dark: '{colors.red.400}'}},
+    subtle: {value: {base: '{colors.red.50}', _dark: '{colors.red.950}'}},
+    muted: {value: {base: '{colors.red.300}', _dark: '{colors.red.800}'}},
+    emphasized: {value: {base: '{colors.red.400}', _dark: '{colors.red.700}'}},
+    solid: {value: {base: '{colors.red.600}', _dark: '{colors.red.500}'}},
+    focusRing: {value: {base: '{colors.red.500}', _dark: '{colors.red.400}'}},
+  },
+  warning: {
+    contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+    fg: {value: {base: '{colors.orange.600}', _dark: '{colors.orange.400}'}},
+    subtle: {value: {base: '{colors.orange.50}', _dark: '{colors.orange.950}'}},
+    muted: {value: {base: '{colors.orange.200}', _dark: '{colors.orange.800}'}},
+    emphasized: {value: {base: '{colors.orange.300}', _dark: '{colors.orange.700}'}},
+    solid: {value: {base: '{colors.orange.500}', _dark: '{colors.orange.500}'}},
+    focusRing: {value: {base: '{colors.orange.400}', _dark: '{colors.orange.400}'}},
+  },
+  info: {
+    contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+    fg: {value: {base: '{colors.blue.600}', _dark: '{colors.blue.400}'}},
+    subtle: {value: {base: '{colors.blue.50}', _dark: '{colors.blue.950}'}},
+    muted: {value: {base: '{colors.blue.200}', _dark: '{colors.blue.800}'}},
+    emphasized: {value: {base: '{colors.blue.300}', _dark: '{colors.blue.700}'}},
+    solid: {value: {base: '{colors.blue.500}', _dark: '{colors.blue.500}'}},
+    focusRing: {value: {base: '{colors.blue.400}', _dark: '{colors.blue.400}'}},
+  },
+  highlight: {
+    contrast: {value: {base: '{colors.white}', _dark: '{colors.white}'}},
+    fg: {value: {base: '{colors.purple.600}', _dark: '{colors.purple.400}'}},
+    subtle: {value: {base: '{colors.purple.50}', _dark: '{colors.purple.950}'}},
+    muted: {value: {base: '{colors.purple.200}', _dark: '{colors.purple.800}'}},
+    emphasized: {value: {base: '{colors.purple.300}', _dark: '{colors.purple.700}'}},
+    solid: {value: {base: '{colors.purple.500}', _dark: '{colors.purple.500}'}},
+    focusRing: {value: {base: '{colors.purple.400}', _dark: '{colors.purple.400}'}},
   },
 }
