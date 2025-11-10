@@ -30,13 +30,13 @@ export const globalCss = {
 }
 
 export const config = defineConfig({
-  conditions: {
-    _dark: "[data-theme='dark'] &",
-    _light: "[data-theme='light'] &",
-    _osDark: '@media (prefers-color-scheme: dark)',
-    _osLight: '@media (prefers-color-scheme: light)',
-  },
-  globalCss: globalCss,
+  // conditions: {
+  //   _dark: "[data-theme='dark'] &",
+  //   _light: "[data-theme='light'] &",
+  //   _osDark: '@media (prefers-color-scheme: dark)',
+  //   _osLight: '@media (prefers-color-scheme: light)',
+  // },
+  // globalCss: globalCss,
   theme: {
     breakpoints: {
       sm: '20rem',

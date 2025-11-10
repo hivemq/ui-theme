@@ -42,7 +42,7 @@ function App() {
   })
 
   return (
-    <Box style={style} bg="bg">
+    <Box style={style} bg="shell.bg">
       {/* Theme switcher tabs */}
       <Box
         position="sticky"
