@@ -15,22 +15,18 @@ limitations under the License.
 */
 
 import { Box, Tabs, useTabs } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useTheme } from 'next-themes'
 import { ButtonVariations } from '~/views/ButtonVariations.tsx'
+import { Colors } from '~/views/Colors.tsx'
 import { SemanticTokens } from '~/views/SemanticColors.tsx'
-import { Colors } from './views/Colors.tsx'
 
 export type ChildProps = {
   isDarkMode: boolean
 }
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false)
-
-  // Apply theme to document root for global CSS to work
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light')
-  }, [isDarkMode])
+  const { resolvedTheme, setTheme, forcedTheme } = useTheme()
+  const colorMode = forcedTheme || resolvedTheme
 
   const style: React.CSSProperties = {
     padding: '2rem',
@@ -58,8 +54,12 @@ function App() {
         <Tabs.Root
           size={'lg'}
           variant={'enclosed'}
-          value={isDarkMode ? 'dark' : 'light'}
-          onValueChange={(e) => setIsDarkMode(e.value === 'dark')}
+          value={colorMode === 'dark' ? 'dark' : 'light'}
+          onValueChange={(e) => {
+            console.log(e.value)
+
+            setTheme(e.value === 'dark' ? 'dark' : 'light')
+          }}
         >
           <Tabs.List>
             <Tabs.Trigger color={'text'} value={'light'}>
@@ -83,7 +83,7 @@ function App() {
           <Colors />
         </Tabs.Content>
         <Tabs.Content value={'semantic-tokens'}>
-          <SemanticTokens isDarkMode={isDarkMode} />
+          <SemanticTokens isDarkMode={colorMode === 'dark'} />
         </Tabs.Content>
         <Tabs.Content value={'buttons'}>
           <ButtonVariations />

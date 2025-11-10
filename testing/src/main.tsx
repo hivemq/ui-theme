@@ -19,6 +19,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { bootstrap } from 'safetest/react'
 import App from './App.tsx'
+import { ColorModeProvider } from './components/ui/color-mode.tsx'
 import theme from './theme.ts'
 
 // biome-ignore lint/style/noNonNullAssertion: it is fine here
@@ -28,7 +29,9 @@ bootstrap({
   element: (
     <React.StrictMode>
       <ChakraProvider value={theme}>
-        <App />
+        <ColorModeProvider>
+          <App />
+        </ColorModeProvider>
       </ChakraProvider>
     </React.StrictMode>
   ),
