@@ -1,4 +1,4 @@
-import { defineConfig } from '@chakra-ui/react'
+import { defaultBaseConfig, mergeConfigs } from '@chakra-ui/react'
 import { colors } from './colors/primitive-colors.js'
 import { semanticTokens } from './colors/semantic-tokens.js'
 
@@ -29,7 +29,7 @@ export const globalCss = {
   },
 }
 
-export const config = defineConfig({
+export const config = mergeConfigs(defaultBaseConfig, {
   // conditions: {
   //   _dark: "[data-theme='dark'] &",
   //   _light: "[data-theme='light'] &",
