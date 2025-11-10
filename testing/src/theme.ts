@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { createSystem } from '@chakra-ui/react'
+import { createSystem, defaultConfig } from '@chakra-ui/react'
 import { config } from '@hivemq/ui-theme'
 
-export default createSystem(config)
+export default createSystem(defaultConfig, config)
