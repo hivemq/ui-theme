@@ -1,12 +1,42 @@
 import { defaultBaseConfig, mergeConfigs } from '@chakra-ui/react'
+import { colors } from './colors/primitive-colors.js'
+import { semanticTokens } from './colors/semantic-tokens.js'
 
-export const config = mergeConfigs(defaultBaseConfig, {
-  globalCss: {
-    html: {
-      colorPalette: 'default',
-      bg: '{colors.shell.bg}',
+export const globalCss = {
+  ':root': {
+    colorScheme: 'light',
+    '--chakra-transition-duration': '200ms',
+    '--chakra-transition-easing': 'ease-in-out',
+  },
+  "[data-theme='dark']": {
+    colorScheme: 'dark',
+  },
+  'html, body': {
+    backgroundColor: 'var(--chakra-colors-bg-default)',
+    color: 'var(--chakra-colors-text-default)',
+  },
+  html: {
+    colorPalette: 'secondary',
+  },
+  '*': {
+    transition:
+      'background-color var(--chakra-transition-duration) var(--chakra-transition-easing), color var(--chakra-transition-duration) var(--chakra-transition-easing), border-color var(--chakra-transition-duration) var(--chakra-transition-easing)',
+  },
+  '@media (prefers-reduced-motion: reduce)': {
+    '*': {
+      transition: 'none !important',
     },
   },
+}
+
+export const config = mergeConfigs(defaultBaseConfig, {
+  // conditions: {
+  //   _dark: "[data-theme='dark'] &",
+  //   _light: "[data-theme='light'] &",
+  //   _osDark: '@media (prefers-color-scheme: dark)',
+  //   _osLight: '@media (prefers-color-scheme: light)',
+  // },
+  // globalCss: globalCss,
   theme: {
     breakpoints: {
       sm: '20rem',
@@ -17,54 +47,7 @@ export const config = mergeConfigs(defaultBaseConfig, {
       '3xl': '120rem',
     },
     tokens: {
-      colors: {
-        primary: {
-          50: { value: '#FFF2CC' },
-          100: { value: '#FFF2CC' },
-          200: { value: '#FFF2CC' },
-          300: { value: '#FFF2CC' },
-          400: { value: '#FFC000' },
-          500: { value: '#EBB100' },
-          600: { value: '#D6C389' },
-          700: { value: '#D6C389' },
-          800: { value: '#D6C389' },
-          900: { value: '#000000' },
-        },
-        secondary: {
-          0: { value: '#FFFFFF' },
-          50: { value: '#F6F4F1' },
-          100: { value: '#F5F2EF' },
-          200: { value: '#E7E5E4' },
-          300: { value: '#d6d3d1' },
-          400: { value: '#a8a29e' },
-          500: { value: '#78716c' },
-          600: { value: '#57534e' },
-          700: { value: '#44403c' },
-          800: { value: '#292524' },
-          900: { value: '#1c1917' },
-          950: { value: '#0c0a09' },
-        },
-        success: {
-          100: { value: '#EDF2E9' },
-          200: { value: '#D3DEC9' },
-          300: { value: '#A6BE93' },
-          400: { value: '#7A9D5C' },
-          500: { value: '#4D7C26' },
-          600: { value: '#3A5D1D' },
-          700: { value: '#273E13' },
-          800: { value: '#131F0A' },
-        },
-        danger: {
-          100: { value: '#F9EBE9' },
-          200: { value: '#F1CDC8' },
-          300: { value: '#E39B92' },
-          400: { value: '#DC2626' },
-          500: { value: '#B91C1C' },
-          600: { value: '#95291B' },
-          700: { value: '#641B12' },
-          800: { value: '#320E09' },
-        },
-      },
+      colors,
       fonts: {
         heading: {
           value: "'Raleway', 'Roboto', 'Segoe UI', 'sans-serif'",
@@ -79,63 +62,43 @@ export const config = mergeConfigs(defaultBaseConfig, {
         },
       },
     },
-    // recipes: {
-    //   card: defineRecipe({
-    //     defaultVariants: {
-    //       variant: 'elevated',
-    //     },
-    //   }),
-    // },
     semanticTokens: {
       colors: {
-        brand: {
-          solid: { value: '{colors.primary.400}' },
-          contrast: { value: '{colors.primary.900}' },
-          fg: { value: '{colors.primary.900}' },
-          muted: { value: '{colors.primary.100}' },
-          subtle: { value: '{colors.primary.200}' },
-          emphasized: { value: '{colors.primary.300}' },
-          focusRing: { value: '{colors.primary.500}' },
+        ...semanticTokens,
+        // For some reason the foreground color doesn't switch based on context properly if we put this inside the file declaring the semantic tokens
+      },
+    },
+    recipes: {
+      Text: {
+        base: {
+          color: 'content.primary',
         },
-        default: {
-          solid: { value: { base: '{colors.secondary.200}', _dark: '{colors.secondary.800}' } },
-          contrast: { value: { base: '{colors.secondary.900}', _dark: '{colors.secondary.50}' } },
-          fg: { value: { base: '{colors.secondary.900}', _dark: '{colors.secondary.50}' } },
-          muted: { value: { base: '{colors.secondary.100}', _dark: '{colors.secondary.700}' } },
-          subtle: { value: { base: '{colors.secondary.200}', _dark: '{colors.secondary.800}' } },
-          emphasized: {
-            value: { base: '{colors.secondary.300}', _dark: '{colors.secondary.700}' },
+        variants: {
+          variant: {
+            muted: { color: 'content.secondary' },
+            subtle: { color: 'content.tertiary' },
+            error: { color: 'content.error' },
+            warning: { color: 'content.warning' },
+            success: { color: 'content.success' },
+            info: { color: 'content.info' },
           },
-          focusRing: { value: '{colors.secondary.500}' },
         },
-        shell: {
-          bg: { value: { base: '{colors.secondary.50}', _dark: '{colors.secondary.900}' } },
-          muted: { value: { base: '{colors.secondary.100}', _dark: '{colors.secondary.800}' } },
-          subtile: { value: { base: '{colors.secondary.200}', _dark: '{colors.secondary.700}' } },
-          contrastBg: { value: { base: 'white', _dark: 'black' } },
-          border: { value: { base: '{colors.secondary.300}', _dark: '{colors.secondary.700}' } },
-          group: { value: { base: '{colors.secondary.500}', _dark: '{colors.secondary.500}' } },
-          item: { value: { base: '{colors.secondary.900}', _dark: '{colors.secondary.50}' } },
+      },
+      Heading: {
+        base: {
+          color: 'content.primary',
+          fontFamily: 'heading',
         },
-        danger: {
-          bg: { value: '{colors.red.50}' },
-          solid: { value: '{colors.red.400}' },
-          contrast: { value: '{colors.red.900}' },
-          fg: { value: { base: '{colors.red.900}', _dark: '{colors.red.200}' } },
-          muted: { value: { base: '{colors.red.100}', _dark: '{colors.red.700}' } },
-          subtle: { value: '{colors.red.200}' },
-          emphasized: { value: '{colors.red.300}' },
-          focusRing: { value: '{colors.red.500}' },
-        },
-        success: {
-          bg: { value: '{colors.green.50}' },
-          solid: { value: '{colors.green.400}' },
-          contrast: { value: '{colors.green.900}' },
-          fg: { value: '{colors.green.900}' },
-          muted: { value: '{colors.green.100}' },
-          subtle: { value: '{colors.green.200}' },
-          emphasized: { value: '{colors.green.300}' },
-          focusRing: { value: '{colors.green.500}' },
+        variants: {
+          variant: {
+            muted: { color: 'content.secondary' },
+            subtle: { color: 'content.tertiary' },
+            error: { color: 'content.error' },
+            warning: { color: 'content.warning' },
+            success: { color: 'content.success' },
+            info: { color: 'content.info' },
+            brand: { color: 'content.brand' },
+          },
         },
       },
     },

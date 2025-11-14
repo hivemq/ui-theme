@@ -14,69 +14,105 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Heading, HStack, Text, VStack } from '@chakra-ui/react'
-import { config } from '@hivemq/ui-theme'
-import copy from 'copy-to-clipboard'
-import { system } from '../theme'
+import { Box, Heading, HStack, SimpleGrid, Text, VStack } from '@chakra-ui/react'
+import { getAlphaContrastColor, getContrastColor } from '~/util/helper.ts'
+import { colors as primitiveColors } from '../../../theme/src/colors/primitive-colors'
 
-const colors = config.theme?.tokens?.colors || {}
+const checkerboardBg =
+  'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)'
+const checkerboardBgSize = '20px 20px'
+const checkerboardBgPosition = '0 0, 0 10px, 10px -10px, -10px 0px'
 
-const BORDER_WIDTH_IN_PIXEL = 2
-
-export function Colors({ withText = false }: { withText?: boolean }) {
-  const ELEMENT_WIDTH = (withText ? 100 : 50) - BORDER_WIDTH_IN_PIXEL
-
-  // the following colors are deprecated, but still available for now.
-  // Let's not show them on this test page
-  const deprecatedColors = ['amber', 'neutrals']
-
+/**
+ * A component that dynamically renders all color palettes and their shades from the theme.
+ */
+export function Colors() {
   return (
-    <VStack alignItems="start" gap={withText ? 8 : 2}>
-      {Object.entries(colors)
-        .filter(([key, _value]) => !deprecatedColors.includes(key))
-        .map(([_key, value]) => {
-          return (
-            <VStack alignItems="start" key={_key + value}>
-              {withText && <Heading as="h2">{_key}</Heading>}
+    <Box>
+      {Object.entries(primitiveColors).map(([paletteName, shades]) => (
+        <Box key={paletteName} as="section" mb={10}>
+          <Heading
+            as="h2"
+            fontSize={24}
+            mb={4}
+            textTransform="capitalize"
+            borderBottomWidth="2px"
+            pb={2}
+            color="text"
+          >
+            {paletteName}
+          </Heading>
+          <SimpleGrid columns={{ base: 4, sm: 5, md: 6, lg: 7, xl: 8 }} gap={4}>
+            {Object.entries(shades).map(([shadeKey, colorObj]) => {
+              const colorValue = (colorObj as any)?.value
 
-              <HStack>
-                {Object.entries(value).map(([weight, colorValue]) => {
-                  const styles = {
-                    backgroundColor: system.token(_key, weight),
-                    width: ELEMENT_WIDTH,
-                    height: ELEMENT_WIDTH,
-                  }
+              if (paletteName.includes('white') || paletteName.includes('black')) {
+                const solidBgHex = paletteName === 'white' ? '#1F2937' : '#FFFFFF'
+                const textColor = getAlphaContrastColor(colorValue, solidBgHex)
 
-                  return (
+                return (
+                  <Box
+                    key={`${paletteName}-${shadeKey}`}
+                    borderRadius="md"
+                    borderWidth={'1px'}
+                    overflow="hidden"
+                    position="relative"
+                    height="120px"
+                  >
+                    <HStack w="100%" h="100%" gap={0}>
+                      <Box bg={solidBgHex} w="50%" h="100%" />
+                      <Box
+                        bg={checkerboardBg}
+                        bgSize={checkerboardBgSize}
+                        backgroundPosition={checkerboardBgPosition}
+                        w="50%"
+                        h="100%"
+                      />
+                    </HStack>
+
+                    <Box position="absolute" top={0} left={0} w="100%" h="100%" bg={colorValue} />
+
                     <VStack
-                      alignItems="start"
-                      gap={1}
-                      key={_key + weight}
-                      onClick={() =>
-                        copy(colorValue, {
-                          message: `Color ${colorValue} copied.`,
-                        })
-                      }
+                      position="absolute"
+                      top={0}
+                      left={0}
+                      w="100%"
+                      h="100%"
+                      p={4}
+                      align="start"
+                      justify="space-between"
                     >
-                      <div style={styles} />
-                      {withText && (
-                        <div>
-                          <Text fontFamily="monospace" fontSize="xs">
-                            {_key}.{weight}
-                          </Text>
-                          <Text fontFamily="monospace" fontSize="xs" color="secondary.500">
-                            {colorValue}
-                          </Text>
-                        </div>
-                      )}
+                      <Text fontWeight="bold" color={textColor}>
+                        {shadeKey}
+                      </Text>
                     </VStack>
-                  )
-                })}
-                <br />
-              </HStack>
-            </VStack>
-          )
-        })}
-    </VStack>
+                  </Box>
+                )
+              }
+
+              return (
+                <Box
+                  key={`${paletteName}-${shadeKey}`}
+                  borderRadius="md"
+                  borderWidth={'1px'}
+                  bg={colorValue}
+                  p={4}
+                  height="120px"
+                >
+                  <VStack h="100%" align="start" justify="space-between">
+                    <Text fontWeight="bold" color={getContrastColor(colorValue)}>
+                      {shadeKey}
+                    </Text>
+                    <Text fontFamily="monospace" fontSize="sm" color={getContrastColor(colorValue)}>
+                      {colorValue}
+                    </Text>
+                  </VStack>
+                </Box>
+              )
+            })}
+          </SimpleGrid>
+        </Box>
+      ))}
+    </Box>
   )
 }

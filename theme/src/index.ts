@@ -14,21 +14,5 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { ChakraProvider } from '@chakra-ui/react'
-import { render } from 'safetest/react'
-import { describe, expect, it } from 'safetest/vitest'
-import { Colors } from '~/views/Colors.tsx'
-import { system as theme } from '../theme'
-
-// Whole App testing
-describe('Colors', () => {
-  it('Visual test all color variants', async () => {
-    const { page } = await render(() => (
-      <ChakraProvider value={theme}>
-        <Colors />
-      </ChakraProvider>
-    ))
-
-    expect(await page.screenshot()).toMatchImageSnapshot()
-  })
-})
+export * from './config.ts'
+export * from './utils.ts'
