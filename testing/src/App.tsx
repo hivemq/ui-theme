@@ -14,18 +14,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Box, Tabs, useTabs } from '@chakra-ui/react'
-import { useTheme } from 'next-themes'
-import { ButtonVariations } from '~/views/ButtonVariations.tsx'
-import { Colors } from '~/views/Colors.tsx'
-import { SemanticTokens } from '~/views/SemanticColors.tsx'
+import {Box, Tabs, useTabs} from '@chakra-ui/react'
+import {useTheme} from 'next-themes'
+import {ButtonVariations} from '~/views/ButtonVariations.tsx'
+import {Colors} from '~/views/Colors.tsx'
+import {SemanticTokens} from '~/views/SemanticColors.tsx'
 
 export type ChildProps = {
   isDarkMode: boolean
 }
 
 function App() {
-  const { resolvedTheme, setTheme, forcedTheme } = useTheme()
+  const {resolvedTheme, setTheme, forcedTheme} = useTheme()
   const colorMode = forcedTheme || resolvedTheme
 
   const style: React.CSSProperties = {
@@ -48,7 +48,7 @@ function App() {
         position="sticky"
         top="0"
         zIndex={999} // Use a theme value for z-index
-        bg="bg"
+        bg="shell.bg"
         py={4}
       >
         <Tabs.Root
@@ -61,7 +61,7 @@ function App() {
             setTheme(e.value === 'dark' ? 'dark' : 'light')
           }}
         >
-          <Tabs.List>
+          <Tabs.List bg="shell.muted" borderRadius="md" p={1}>
             <Tabs.Trigger color={'text'} value={'light'}>
               Light Mode
             </Tabs.Trigger>
@@ -80,13 +80,13 @@ function App() {
           <Tabs.Trigger value={'buttons'}>Buttons</Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content value={'color-tokens'}>
-          <Colors />
+          <Colors/>
         </Tabs.Content>
         <Tabs.Content value={'semantic-tokens'}>
-          <SemanticTokens isDarkMode={colorMode === 'dark'} />
+          <SemanticTokens isDarkMode={colorMode === 'dark'}/>
         </Tabs.Content>
         <Tabs.Content value={'buttons'}>
-          <ButtonVariations />
+          <ButtonVariations/>
         </Tabs.Content>
       </Tabs.RootProvider>
     </Box>
