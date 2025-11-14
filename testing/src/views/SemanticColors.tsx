@@ -14,10 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Box, Flex, Heading, Text, VStack } from '@chakra-ui/react'
-import type { ChildProps } from '~/App.tsx'
-import { colors as primitiveColors } from '../../../theme/src/colors/primitive-colors'
-import { semanticTokens } from '../../../theme/src/colors/semantic-tokens'
+import {Box, Flex, Heading, Text, VStack} from '@chakra-ui/react'
+import type {ChildProps} from '~/App.tsx'
+import {colors as primitiveColors} from '../../../theme/src/colors/primitive-colors'
+import {semanticTokens} from '../../../theme/src/colors/semantic-tokens'
 
 const semanticTokenGroups = Object.keys(semanticTokens)
 
@@ -112,7 +112,7 @@ const resolveTokenValue = (tokenRef: string | undefined, depth = 0): string => {
 /**
  * A component that renders color swatches for each semantic color palette.
  */
-export function SemanticTokens({ isDarkMode }: ChildProps) {
+export function SemanticTokens({isDarkMode}: ChildProps) {
   return (
     <Box>
       {semanticTokenGroups.map((colorName) => {
@@ -179,17 +179,16 @@ export function SemanticTokens({ isDarkMode }: ChildProps) {
                 }
 
                 // Check if there's a corresponding contrast token
-                const contrastTokenName = `${colorName}.contrast`
                 const hasContrastToken = (semanticTokens as any)[colorName]?.contrast
 
                 // Resolve contrast color if it exists
                 const contrastColorValue = hasContrastToken
                   ? resolveTokenValue(
-                      isDarkMode
-                        ? (semanticTokens as any)[colorName].contrast.value._dark ||
-                            (semanticTokens as any)[colorName].contrast.value.base
-                        : (semanticTokens as any)[colorName].contrast.value.base,
-                    )
+                    isDarkMode
+                      ? (semanticTokens as any)[colorName].contrast.value._dark ||
+                      (semanticTokens as any)[colorName].contrast.value.base
+                      : (semanticTokens as any)[colorName].contrast.value.base,
+                  )
                   : null
 
                 return (
