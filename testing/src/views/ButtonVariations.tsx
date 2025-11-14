@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {Box, Button, type ConditionalValue, Heading, Table, Text} from '@chakra-ui/react'
+import { Box, Button, type ConditionalValue, Heading, Table, Text } from '@chakra-ui/react'
 
 // Only semantic color palettes - no primitive colors
 const semanticColorPalettes = [

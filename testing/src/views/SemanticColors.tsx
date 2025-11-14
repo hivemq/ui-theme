@@ -187,8 +187,8 @@ export function SemanticTokens({ isDarkMode }: ChildProps) {
                   ? resolveTokenValue(
                       isDarkMode
                         ? (semanticTokens as any)[colorName].contrast.value._dark ||
-                          (semanticTokens as any)[colorName].contrast.value.base
-                        : (semanticTokens as any)[colorName].contrast.value.base
+                            (semanticTokens as any)[colorName].contrast.value.base
+                        : (semanticTokens as any)[colorName].contrast.value.base,
                     )
                   : null
 
