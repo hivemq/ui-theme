@@ -9,7 +9,6 @@
     "preview": "vite preview",
     "generate": "pnpm generate:theme",
     "generate:theme": "chakra typegen ./src/theme.ts",
-    "postinstall": "pnpm generate",
     "test": "pnpm safetest",
     "test:ci": "pnpm safetest:ci",
     "safetest": "cross-env OPT_URL=${OPT_URL:-http://localhost:3000/} vitest --config vite.safetest.config",
