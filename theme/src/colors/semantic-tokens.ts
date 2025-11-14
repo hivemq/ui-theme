@@ -34,6 +34,7 @@ export const semanticTokens = {
     success: { value: { base: '{colors.green.600}', _dark: '{colors.green.400}' } },
     info: { value: { base: '{colors.blue.600}', _dark: '{colors.blue.400}' } },
     brand: { value: { base: '{colors.yellow.600}', _dark: '{colors.yellow.300}' } },
+    solid: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.800}' } },
   },
 
   /**
