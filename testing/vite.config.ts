@@ -1,12 +1,11 @@
 /// <reference types="vitest" />
 
+import { fileURLToPath } from 'node:url'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
+import packageConfig from './package.json'
 
 const env = process.env.NODE_ENV || 'development'
-
-import { fileURLToPath } from 'node:url'
-import packageConfig from './package.json'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,7 +18,7 @@ export default defineConfig({
   //alias
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '~': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
   build: {
