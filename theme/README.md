@@ -49,7 +49,7 @@ pnpm add @hivemq/ui-theme
 
 Fonts are not being installed by the theme itself, so you have to install them per project.
 For that you can use the following command to install the fonts you want to use in your project.
-For example, [Roboto](https://www.npmjs.com/package/@fontsource/roboto) and [Raleway](https://www.npmjs.com/package/@fontsource/raleway) as these are also the default fonts used in the theme.
+For example, [Roboto](https://www.npmjs.com/package/@fontsource/roboto) and [Raleway](https://www.npmjs.com/package/@fontsource/raleway) as these are also the default fonts used in the theme. 
 
 ```bash
 pnpm add @fontsource/roboto @fontsource/raleway
