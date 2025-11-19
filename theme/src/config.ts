@@ -1,42 +1,8 @@
-import { defaultBaseConfig, mergeConfigs } from '@chakra-ui/react'
-import { colors } from './colors/primitive-colors.js'
-import { semanticTokens } from './colors/semantic-tokens.js'
-
-export const globalCss = {
-  ':root': {
-    colorScheme: 'light',
-    '--chakra-transition-duration': '200ms',
-    '--chakra-transition-easing': 'ease-in-out',
-  },
-  "[data-theme='dark']": {
-    colorScheme: 'dark',
-  },
-  'html, body': {
-    backgroundColor: 'var(--chakra-colors-bg-default)',
-    color: 'var(--chakra-colors-text-default)',
-  },
-  html: {
-    colorPalette: 'secondary',
-  },
-  '*': {
-    transition:
-      'background-color var(--chakra-transition-duration) var(--chakra-transition-easing), color var(--chakra-transition-duration) var(--chakra-transition-easing), border-color var(--chakra-transition-duration) var(--chakra-transition-easing)',
-  },
-  '@media (prefers-reduced-motion: reduce)': {
-    '*': {
-      transition: 'none !important',
-    },
-  },
-}
+import {defaultBaseConfig, mergeConfigs} from '@chakra-ui/react'
+import {colors} from './colors/primitive-colors.js'
+import {semanticTokens} from './colors/semantic-tokens.js'
 
 export const config = mergeConfigs(defaultBaseConfig, {
-  // conditions: {
-  //   _dark: "[data-theme='dark'] &",
-  //   _light: "[data-theme='light'] &",
-  //   _osDark: '@media (prefers-color-scheme: dark)',
-  //   _osLight: '@media (prefers-color-scheme: light)',
-  // },
-  // globalCss: globalCss,
   theme: {
     breakpoints: {
       sm: '20rem',
@@ -65,7 +31,6 @@ export const config = mergeConfigs(defaultBaseConfig, {
     semanticTokens: {
       colors: {
         ...semanticTokens,
-        // For some reason the foreground color doesn't switch based on context properly if we put this inside the file declaring the semantic tokens
       },
     },
     recipes: {
