@@ -17,7 +17,8 @@
     "build:lib": "vite build",
     "build:types": "tsc --emitDeclarationOnly",
     "publish:dry": "pnpm publish --no-git-checks --dry-run",
-    "test:unit": "vitest run --outputFile.junit=./test-results/junit.xml"
+    "test:unit": "vitest run --outputFile.junit=./test-results/junit.xml",
+    "lint:format:write": "biome format --write ./src"
   },
   "engines": {
     "node": "22",
