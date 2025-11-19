@@ -62,7 +62,7 @@ export const semanticTokens = {
   brand: {
     contrast: { value: { base: '{colors.black}', _dark: '{colors.black}' } },
     fg: { value: { base: '{colors.yellow.300}', _dark: '{colors.yellow.500}' } },
-    subtle: { value: { base: '{colors.yellow.50}', _dark: '{colors.yellow.950}' } },
+    subtle: { value: { base: '{colors.yellow.100}', _dark: '{colors.yellow.900}' } },
     muted: { value: { base: '{colors.yellow.200}', _dark: '{colors.yellow.800}' } },
     emphasized: { value: { base: '{colors.yellow.200}', _dark: '{colors.yellow.700}' } },
     solid: { value: { base: '{colors.yellow.300}', _dark: '{colors.yellow.500}' } },
