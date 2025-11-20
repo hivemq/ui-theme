@@ -9,11 +9,12 @@ export default defineConfig({
   test: {
     globals: true,
     testTimeout: 30000,
-    reporters: ['basic', 'json'],
+    reporters: ['default', 'json'],
     outputFile: 'results.json',
     setupFiles: ['setup-safetest.js'],
     include: ['**/*.safetest.?(c|m)[jt]s?(x)'],
     threads: !!process.env.CI,
     inspect: !process.env.CI,
+    passWithNoTests: true,
   },
 })

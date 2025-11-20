@@ -14,10 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {Box, Flex, Heading, Text, VStack} from '@chakra-ui/react'
-import type {ChildProps} from '~/App.tsx'
-import {colors as primitiveColors} from '../../../theme/src/colors/primitive-colors'
-import {semanticTokens} from '../../../theme/src/colors/semantic-tokens'
+import { Box, Flex, Heading, Text, VStack } from '@chakra-ui/react'
+import type { ChildProps } from '~/App.tsx'
+import { colors as primitiveColors } from '../../../theme/src/colors/primitive-colors'
+import { semanticTokens } from '../../../theme/src/colors/semantic-tokens'
 
 const semanticTokenGroups = Object.keys(semanticTokens)
 
@@ -59,10 +59,10 @@ const resolveTokenValue = (tokenRef: string | undefined, depth = 0): string => {
     const pathParts = colorPath.split('.')
 
     // Try primitive colors first
-    let current: any = primitiveColors
+    let current: unknown = primitiveColors
     for (const part of pathParts) {
       if (current && typeof current === 'object') {
-        current = current[part]
+        current = (current as Record<string, unknown>)[part]
       } else {
         current = null
         break
@@ -71,20 +71,26 @@ const resolveTokenValue = (tokenRef: string | undefined, depth = 0): string => {
 
     // If we found a color group object with DEFAULT, use that
     if (current && typeof current === 'object') {
-      if ('value' in current) {
+      if ('value' in current && typeof current.value === 'string') {
         // Direct value found (e.g., gray.50)
         return current.value
-      } else if ('DEFAULT' in current && current.DEFAULT && 'value' in current.DEFAULT) {
+      } else if (
+        'DEFAULT' in current &&
+        current.DEFAULT &&
+        typeof current.DEFAULT === 'object' &&
+        'value' in current.DEFAULT &&
+        typeof current.DEFAULT.value === 'string'
+      ) {
         // Color group with DEFAULT (e.g., black.DEFAULT, white.DEFAULT)
         return current.DEFAULT.value
       }
     }
 
     // If not found in primitive colors, try semantic tokens
-    current = semanticTokens as any
+    current = semanticTokens as unknown
     for (const part of pathParts) {
       if (current && typeof current === 'object') {
-        current = current[part]
+        current = (current as Record<string, unknown>)[part]
       } else {
         current = null
         break
@@ -94,14 +100,18 @@ const resolveTokenValue = (tokenRef: string | undefined, depth = 0): string => {
     // If found in semantic tokens, recursively resolve
     if (current && typeof current === 'object' && 'value' in current) {
       const semanticValue = current.value
-      if (typeof semanticValue === 'object') {
+      if (semanticValue && typeof semanticValue === 'object') {
         // Get the base value (we'll handle dark mode later if needed)
-        const baseValue = semanticValue.base || semanticValue._light
-        if (baseValue) {
+        const baseValue =
+          (semanticValue as Record<string, unknown>).base ||
+          (semanticValue as Record<string, unknown>)._light
+        if (baseValue && typeof baseValue === 'string') {
           return resolveTokenValue(baseValue, depth + 1)
         }
       }
-      return resolveTokenValue(semanticValue, depth + 1)
+      if (typeof semanticValue === 'string') {
+        return resolveTokenValue(semanticValue, depth + 1)
+      }
     }
   }
 
@@ -112,11 +122,11 @@ const resolveTokenValue = (tokenRef: string | undefined, depth = 0): string => {
 /**
  * A component that renders color swatches for each semantic color palette.
  */
-export function SemanticTokens({isDarkMode}: ChildProps) {
+export function SemanticTokens({ isDarkMode }: ChildProps) {
   return (
     <Box>
       {semanticTokenGroups.map((colorName) => {
-        const colorTokens = (semanticTokens as any)[colorName]
+        const colorTokens = (semanticTokens as Record<string, unknown>)[colorName]
 
         if (typeof colorTokens !== 'object' || colorTokens === null) {
           return null
@@ -142,21 +152,25 @@ export function SemanticTokens({isDarkMode}: ChildProps) {
               {tokenSuffixes.map((tokenSuffix) => {
                 const fullTokenName = `${colorName}.${tokenSuffix}`
 
-                const tokenObj = (colorTokens as any)[tokenSuffix]
+                const tokenObj = (colorTokens as Record<string, unknown>)[tokenSuffix] as
+                  | Record<string, unknown>
+                  | undefined
 
                 if (!tokenObj) {
                   return null // Skip missing tokens silently
                 }
 
-                if (!tokenObj.value) {
+                if (!('value' in tokenObj) || !tokenObj.value) {
                   return null // Skip tokens without value property
                 }
 
-                const tokenDefinition = tokenObj.value
+                const tokenDefinition = tokenObj.value as Record<string, unknown>
 
                 // Get values for both modes to display
-                const baseTokenRef = tokenDefinition.base
-                const darkTokenRef = tokenDefinition._dark || tokenDefinition.base
+                const baseTokenRef = tokenDefinition.base as string | undefined
+                const darkTokenRef =
+                  (tokenDefinition._dark as string | undefined) ||
+                  (tokenDefinition.base as string | undefined)
 
                 // Use the appropriate token based on current mode
                 const currentTokenRef = isDarkMode ? darkTokenRef : baseTokenRef
@@ -178,18 +192,39 @@ export function SemanticTokens({isDarkMode}: ChildProps) {
                   displayValue = displayValue.slice(1, -1)
                 }
 
-                // Check if there's a corresponding contrast token
-                const hasContrastToken = (semanticTokens as any)[colorName]?.contrast
-
                 // Resolve contrast color if it exists
-                const contrastColorValue = hasContrastToken
-                  ? resolveTokenValue(
-                    isDarkMode
-                      ? (semanticTokens as any)[colorName].contrast.value._dark ||
-                      (semanticTokens as any)[colorName].contrast.value.base
-                      : (semanticTokens as any)[colorName].contrast.value.base,
-                  )
-                  : null
+                let contrastColorValue: string | null = null
+                const colorToken = (semanticTokens as Record<string, unknown>)[colorName]
+
+                if (colorToken && typeof colorToken === 'object' && 'contrast' in colorToken) {
+                  const contrastToken = (colorToken as Record<string, unknown>).contrast
+
+                  if (
+                    contrastToken &&
+                    typeof contrastToken === 'object' &&
+                    'value' in contrastToken
+                  ) {
+                    const contrastValue = (contrastToken as Record<string, unknown>).value
+
+                    if (contrastValue && typeof contrastValue === 'object') {
+                      const contrastValueObj = contrastValue as Record<string, unknown>
+                      const contrastRef = isDarkMode
+                        ? (typeof contrastValueObj._dark === 'string'
+                            ? contrastValueObj._dark
+                            : undefined) ||
+                          (typeof contrastValueObj.base === 'string'
+                            ? contrastValueObj.base
+                            : undefined)
+                        : typeof contrastValueObj.base === 'string'
+                          ? contrastValueObj.base
+                          : undefined
+
+                      if (contrastRef) {
+                        contrastColorValue = resolveTokenValue(contrastRef)
+                      }
+                    }
+                  }
+                }
 
                 return (
                   <VStack key={fullTokenName} gap={1} align="flex-start">
@@ -205,7 +240,7 @@ export function SemanticTokens({isDarkMode}: ChildProps) {
                       justifyContent="center"
                       position="relative"
                     >
-                      {hasContrastToken && contrastColorValue && (
+                      {contrastColorValue && (
                         <Text
                           fontSize="xs"
                           fontWeight="bold"

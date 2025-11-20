@@ -12,7 +12,7 @@ jobs:
       - uses: ./.github/actions/setup
 
       - name: 📝 Execute linter
-        run: pnpm lint:check:all
+        run: pnpm lint:all
 
   build:
     name: 👷 Build
@@ -56,11 +56,18 @@ jobs:
           path: testing/dist
 
   unit_tests:
+    needs: build
     name: 🧪 Unit Tests
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: 🔻 Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build_distribution
+          path: theme/dist
 
       - uses: ./.github/actions/setup
         with:
@@ -70,11 +77,18 @@ jobs:
         run: pnpm test:unit
 
   visual_tests:
+    needs: build
     name: 🎨 Visual Tests
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: 🔻 Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build_distribution
+          path: theme/dist
 
       - uses: ./.github/actions/setup
         with:
@@ -94,8 +108,8 @@ jobs:
           echo "Oli told me sleep 😴"
           sleep 1
 
-          echo "Run tests"
-          pnpm test:ci
+          echo "Run visual tests"
+          pnpm --filter './testing' safetest:ci
 
       - name: ⬆️ Upload Difference Images
         if: failure()
