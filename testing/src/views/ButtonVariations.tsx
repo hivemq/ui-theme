@@ -18,6 +18,7 @@ import { Box, Button, type ConditionalValue, Heading, Table, Text } from '@chakr
 
 // Only semantic color palettes - no primitive colors
 const semanticColorPalettes = [
+  'default',
   'brand',
   'secondary',
   'success',
@@ -28,8 +29,8 @@ const semanticColorPalettes = [
 ] as const
 
 const buttonVariants: ConditionalValue<
-  'outline' | 'solid' | 'ghost' | 'subtle' | 'surface' | 'plain'
->[] = ['solid', 'outline', 'ghost']
+  'default' | 'outline' | 'solid' | 'ghost' | 'subtle' | 'surface' | 'plain'
+>[] = ['default', 'solid', 'outline', 'ghost', 'subtle', 'surface', 'plain']
 
 /**
  * A component that renders a matrix of button styles for each semantic color.

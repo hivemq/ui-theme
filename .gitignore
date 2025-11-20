@@ -23,5 +23,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.history
 
 testing/__image_snapshots__/__diff_output__/*
