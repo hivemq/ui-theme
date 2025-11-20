@@ -209,8 +209,15 @@ export function SemanticTokens({ isDarkMode }: ChildProps) {
                     if (contrastValue && typeof contrastValue === 'object') {
                       const contrastValueObj = contrastValue as Record<string, unknown>
                       const contrastRef = isDarkMode
-                        ? (contrastValueObj._dark as string) || (contrastValueObj.base as string)
-                        : (contrastValueObj.base as string)
+                        ? (typeof contrastValueObj._dark === 'string'
+                            ? contrastValueObj._dark
+                            : undefined) ||
+                          (typeof contrastValueObj.base === 'string'
+                            ? contrastValueObj.base
+                            : undefined)
+                        : typeof contrastValueObj.base === 'string'
+                          ? contrastValueObj.base
+                          : undefined
 
                       if (contrastRef) {
                         contrastColorValue = resolveTokenValue(contrastRef)

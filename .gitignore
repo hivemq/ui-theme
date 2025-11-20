@@ -29,3 +29,6 @@ testing/__image_snapshots__/__diff_output__/*
 
 # test coverage
 coverage/
+
+# test results
+results.json

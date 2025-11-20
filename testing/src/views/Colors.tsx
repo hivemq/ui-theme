@@ -23,6 +23,9 @@ const checkerboardBg =
 const checkerboardBgSize = '20px 20px'
 const checkerboardBgPosition = '0 0, 0 10px, 10px -10px, -10px 0px'
 
+// Fallback color for missing or invalid color values (neutral gray)
+const DEFAULT_FALLBACK_COLOR = '#808080'
+
 /**
  * A component that dynamically renders all color palettes and their shades from the theme.
  */
@@ -45,7 +48,8 @@ export function Colors() {
           <SimpleGrid columns={{ base: 4, sm: 5, md: 6, lg: 7, xl: 8 }} gap={4}>
             {Object.entries(shades).map(([shadeKey, colorObj]) => {
               const colorValue =
-                (colorObj as Record<string, unknown> & { value?: string })?.value || '#000000'
+                (colorObj as Record<string, unknown> & { value?: string })?.value ||
+                DEFAULT_FALLBACK_COLOR
 
               if (paletteName.includes('white') || paletteName.includes('black')) {
                 const solidBgHex = paletteName === 'white' ? '#1F2937' : '#FFFFFF'
