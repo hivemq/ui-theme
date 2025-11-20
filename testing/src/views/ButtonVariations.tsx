@@ -29,8 +29,8 @@ const semanticColorPalettes = [
 ] as const
 
 const buttonVariants: ConditionalValue<
-  'default' | 'outline' | 'solid' | 'ghost' | 'subtle' | 'surface' | 'plain'
->[] = ['default', 'solid', 'outline', 'ghost', 'subtle', 'surface', 'plain']
+  'outline' | 'solid' | 'ghost' | 'subtle' | 'surface' | 'plain'
+>[] = ['solid', 'outline', 'ghost', 'subtle', 'surface', 'plain']
 
 /**
  * A component that renders a matrix of button styles for each semantic color.
