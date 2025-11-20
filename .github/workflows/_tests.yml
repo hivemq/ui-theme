@@ -12,7 +12,7 @@ jobs:
       - uses: ./.github/actions/setup
 
       - name: 📝 Execute linter
-        run: pnpm lint:check:all
+        run: pnpm lint:all
 
   build:
     name: 👷 Build

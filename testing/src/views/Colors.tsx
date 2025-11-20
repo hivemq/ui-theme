@@ -44,7 +44,8 @@ export function Colors() {
           </Heading>
           <SimpleGrid columns={{ base: 4, sm: 5, md: 6, lg: 7, xl: 8 }} gap={4}>
             {Object.entries(shades).map(([shadeKey, colorObj]) => {
-              const colorValue = (colorObj as any)?.value
+              const colorValue =
+                (colorObj as Record<string, unknown> & { value?: string })?.value || '#000000'
 
               if (paletteName.includes('white') || paletteName.includes('black')) {
                 const solidBgHex = paletteName === 'white' ? '#1F2937' : '#FFFFFF'
