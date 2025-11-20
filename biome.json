@@ -7,6 +7,8 @@
       "!**/theme/dist",
       "!**/dist",
       "!**/build",
+      "!**/coverage",
+      "!**/.history",
       "!**/*.min.js",
       "!**/*.min.css",
       "!**/*.bundle.js",

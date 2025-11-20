@@ -55,6 +55,7 @@ export const semanticTokens = {
 
   /**
    * Shell tokens (UI shell and layout components)
+   * @deprecated Shell tokens shouldn't exist in the new theming system. Guidance will be added later on what to use instead.
    */
   shell: {
     bg: { value: { base: '{colors.gray.50}', _dark: '{colors.gray.900}' } },

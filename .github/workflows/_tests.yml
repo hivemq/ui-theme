@@ -94,8 +94,8 @@ jobs:
           echo "Oli told me sleep 😴"
           sleep 1
 
-          echo "Run tests"
-          pnpm test:ci
+          echo "Run visual tests"
+          pnpm safetest:ci
 
       - name: ⬆️ Upload Difference Images
         if: failure()
