@@ -49,6 +49,35 @@ export const config = mergeConfigs(defaultBaseConfig, {
         ...semanticTokens,
       },
     },
+    slotRecipes: {
+      Toast: {
+        slots: ['root', 'title', 'description', 'indicator', 'actionTrigger', 'closeTrigger'],
+        base: {
+          root: {
+            '&[data-type=warning]': {
+              bg: 'warning.solid',
+              color: 'warning.contrast',
+              borderColor: 'warning.emphasized',
+            },
+            '&[data-type=success]': {
+              bg: 'success.solid',
+              color: 'success.contrast',
+              borderColor: 'success.emphasized',
+            },
+            '&[data-type=error]': {
+              bg: 'danger.solid',
+              color: 'danger.contrast',
+              borderColor: 'danger.emphasized',
+            },
+            '&[data-type=info]': {
+              bg: 'info.solid',
+              color: 'info.contrast',
+              borderColor: 'info.emphasized',
+            },
+          },
+        },
+      },
+    },
     recipes: {
       Text: {
         base: {

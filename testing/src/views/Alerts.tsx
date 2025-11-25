@@ -14,40 +14,73 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Box, Alert as ChakraAlert, Heading, HStack } from '@chakra-ui/react'
+import { Alert, Box, Heading, Table, Text } from '@chakra-ui/react'
+
+const alertStatuses = ['info', 'warning', 'success', 'error'] as const
+
+const alertVariants = ['subtle', 'surface', 'outline', 'solid'] as const
 
 export function Alerts() {
-  const variants = ['subtle', 'surface', 'outline', 'solid'] as const
-
   return (
-    <HStack width="100%" gap={8} alignItems="start">
-      {variants.map((variant) => {
-        return (
-          <Box key={variant} p={2}>
-            <Heading as="h2" mb={2}>
-              {variant.charAt(0).toUpperCase() + variant.slice(1)}
-            </Heading>
-            <ChakraAlert.Root
-              status="error"
-              // flexDirection="column"
-              // alignItems="center"
-              // justifyContent="center"
-              // textAlign="center"
-              variant={variant}
-            >
-              <ChakraAlert.Indicator />
-              <ChakraAlert.Content>
-                <ChakraAlert.Title mt={4} mb={1} mx={0} fontSize="lg">
-                  {variant.charAt(0).toUpperCase() + variant.slice(1)} Alert
-                </ChakraAlert.Title>
-                <ChakraAlert.Description maxWidth="sm">
-                  This is a {variant} alert.
-                </ChakraAlert.Description>
-              </ChakraAlert.Content>
-            </ChakraAlert.Root>
+    <Box>
+      {alertStatuses.map((colorPalette) => (
+        <Box key={colorPalette} as="section" mb={16}>
+          <Heading as="h2" size="xl" mb={6} textTransform="capitalize">
+            {colorPalette}
+          </Heading>
+          <Box borderWidth="1px" borderRadius="lg" overflowX="auto">
+            <Table.Root>
+              <Table.Header>
+                <Table.Row>
+                  <Table.ColumnHeader>Variant</Table.ColumnHeader>
+                  <Table.ColumnHeader>Small</Table.ColumnHeader>
+                  <Table.ColumnHeader>Medium</Table.ColumnHeader>
+                  <Table.ColumnHeader>Large</Table.ColumnHeader>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body>
+                {alertVariants.map((variant) => (
+                  <Table.Row key={variant}>
+                    <Table.Cell>
+                      <Text fontWeight="bold">{variant}</Text>
+                    </Table.Cell>
+                    {/* Small Size */}
+                    <Table.Cell>
+                      <Alert.Root colorPalette={colorPalette} variant={variant} size="sm">
+                        <Alert.Indicator />
+                        <Alert.Content>
+                          <Alert.Title>Alert Title</Alert.Title>
+                          <Alert.Description>This is a {colorPalette} alert.</Alert.Description>
+                        </Alert.Content>
+                      </Alert.Root>
+                    </Table.Cell>
+                    {/* Medium Size */}
+                    <Table.Cell>
+                      <Alert.Root colorPalette={colorPalette} variant={variant} size="md">
+                        <Alert.Indicator />
+                        <Alert.Content>
+                          <Alert.Title>Alert Title</Alert.Title>
+                          <Alert.Description>This is a {colorPalette} alert.</Alert.Description>
+                        </Alert.Content>
+                      </Alert.Root>
+                    </Table.Cell>
+                    {/* Large Size */}
+                    <Table.Cell>
+                      <Alert.Root colorPalette={colorPalette} variant={variant} size="lg">
+                        <Alert.Indicator />
+                        <Alert.Content>
+                          <Alert.Title>Alert Title</Alert.Title>
+                          <Alert.Description>This is a {colorPalette} alert.</Alert.Description>
+                        </Alert.Content>
+                      </Alert.Root>
+                    </Table.Cell>
+                  </Table.Row>
+                ))}
+              </Table.Body>
+            </Table.Root>
           </Box>
-        )
-      })}
-    </HStack>
+        </Box>
+      ))}
+    </Box>
   )
 }

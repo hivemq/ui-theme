@@ -16,6 +16,7 @@ limitations under the License.
 
 import { Box, Tabs, useTabs } from '@chakra-ui/react'
 import { useTheme } from 'next-themes'
+import { Alerts } from '~/views/Alerts.tsx'
 import { ButtonVariations } from '~/views/ButtonVariations.tsx'
 import { Colors } from '~/views/Colors.tsx'
 import { SemanticTokens } from '~/views/SemanticColors.tsx'
@@ -56,8 +57,6 @@ function App() {
           variant={'enclosed'}
           value={colorMode === 'dark' ? 'dark' : 'light'}
           onValueChange={(e) => {
-            console.log(e.value)
-
             setTheme(e.value === 'dark' ? 'dark' : 'light')
           }}
         >
@@ -78,6 +77,7 @@ function App() {
           <Tabs.Trigger value={'color-tokens'}>Color Tokens</Tabs.Trigger>
           <Tabs.Trigger value={'semantic-tokens'}>Semantic Tokens</Tabs.Trigger>
           <Tabs.Trigger value={'buttons'}>Buttons</Tabs.Trigger>
+          <Tabs.Trigger value={'alerts'}>Alerts</Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content value={'color-tokens'}>
           <Colors />
@@ -87,6 +87,9 @@ function App() {
         </Tabs.Content>
         <Tabs.Content value={'buttons'}>
           <ButtonVariations />
+        </Tabs.Content>
+        <Tabs.Content value={'alerts'}>
+          <Alerts />
         </Tabs.Content>
       </Tabs.RootProvider>
     </Box>
