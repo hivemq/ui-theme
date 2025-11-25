@@ -14,18 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {Alert, Box, Heading, Table, Text} from '@chakra-ui/react' // Alert status types
+import { Alert, Box, Heading, Table, Text } from '@chakra-ui/react'
 
-// Alert status types
 const alertStatuses = ['info', 'warning', 'success', 'error'] as const
 
-// Alert variants
 const alertVariants = ['subtle', 'surface', 'outline', 'solid'] as const
 
-// Alert sizes
-/**
- * A component that renders a matrix of alert styles for each status type.
- */
 export function Alerts() {
   return (
     <Box>

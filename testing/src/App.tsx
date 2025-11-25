@@ -14,12 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {Box, Tabs, useTabs} from '@chakra-ui/react'
-import {useTheme} from 'next-themes'
-import {Alerts} from '~/views/Alerts.tsx'
-import {ButtonVariations} from '~/views/ButtonVariations.tsx'
-import {Colors} from '~/views/Colors.tsx'
-import {SemanticTokens} from '~/views/SemanticColors.tsx'
+import { Box, Tabs, useTabs } from '@chakra-ui/react'
+import { useTheme } from 'next-themes'
+import { Alerts } from '~/views/Alerts.tsx'
+import { ButtonVariations } from '~/views/ButtonVariations.tsx'
+import { Colors } from '~/views/Colors.tsx'
+import { SemanticTokens } from '~/views/SemanticColors.tsx'
 
 export type ChildProps = {
   isDarkMode: boolean
