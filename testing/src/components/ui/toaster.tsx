@@ -16,60 +16,68 @@ limitations under the License.
 
 'use client'
 
-import { Toaster as ChakraToaster, Portal, Spinner, Stack, Toast, createToaster } from '@chakra-ui/react'
+import {
+  Toaster as ChakraToaster,
+  createToaster,
+  Portal,
+  Spinner,
+  Stack,
+  Toast,
+} from '@chakra-ui/react'
 
 export const toaster = createToaster({
-	placement: 'bottom-start',
-	pauseOnPageIdle: true,
+  placement: 'bottom-start',
+  pauseOnPageIdle: true,
 })
 
 // Map toast types to semantic color palettes
 const getColorPalette = (type?: string) => {
-	switch (type) {
-		case 'success':
-			return 'success'
-		case 'error':
-			return 'danger'
-		case 'warning':
-			return 'warning'
-		case 'info':
-			return 'info'
-		default:
-			return 'brand'
-	}
+  switch (type) {
+    case 'success':
+      return 'success'
+    case 'error':
+      return 'danger'
+    case 'warning':
+      return 'warning'
+    case 'info':
+      return 'info'
+    default:
+      return 'brand'
+  }
 }
 
 export const Toaster = () => {
-	return (
-		<Portal>
-			<ChakraToaster toaster={toaster}>
-				{(toast) => {
-					const colorPalette = getColorPalette(toast.type)
-					return (
-						<Toast.Root
-							type={toast.type}
-							bg={`${colorPalette}.solid`}
-							color={`${colorPalette}.contrast`}
-							borderColor={`${colorPalette}.emphasized`}
-							borderWidth="1px"
-							borderRadius="md"
-							padding="4"
-							minWidth="xs"
-							maxWidth="md"
-							boxShadow="lg"
-						>
-							{toast.type === 'loading' && <Spinner size="sm" color="blue.solid" />}
-							{toast.type !== 'loading' && <Toast.Indicator />}
-							<Stack gap="1" flex="1" maxWidth="100%">
-								{toast.title && <Toast.Title>{toast.title}</Toast.Title>}
-								{toast.description && <Toast.Description>{toast.description}</Toast.Description>}
-							</Stack>
-							{toast.action && <Toast.ActionTrigger>{toast.action.label}</Toast.ActionTrigger>}
-							{toast.meta?.closable && <Toast.CloseTrigger />}
-						</Toast.Root>
-					)
-				}}
-			</ChakraToaster>
-		</Portal>
-	)
+  return (
+    <Portal>
+      <ChakraToaster toaster={toaster}>
+        {(toast) => {
+          const colorPalette = getColorPalette(toast.type)
+          return (
+            <Toast.Root
+              // @ts-expect-error due to type config in theme this is a bit fried
+              type={toast.type}
+              bg={`${colorPalette}.solid`}
+              color={`${colorPalette}.contrast`}
+              borderColor={`${colorPalette}.emphasized`}
+              borderWidth="1px"
+              borderRadius="md"
+              padding="4"
+              minWidth="xs"
+              maxWidth="md"
+              boxShadow="lg"
+            >
+              {toast.type === 'loading' && <Spinner size="sm" color="blue.solid" />}
+              {toast.type !== 'loading' && <Toast.Indicator />}
+              <Stack gap="1" flex="1" maxWidth="100%">
+                {toast.title && <Toast.Title>{toast.title}</Toast.Title>}
+                {toast.description && <Toast.Description>{toast.description}</Toast.Description>}
+              </Stack>
+              {toast.action && <Toast.ActionTrigger>{toast.action.label}</Toast.ActionTrigger>}
+              {toast.meta?.closable && <Toast.CloseTrigger />}
+            </Toast.Root>
+          )
+        }}
+      </ChakraToaster>
+    </Portal>
+  )
 }
