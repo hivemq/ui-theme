@@ -16,10 +16,13 @@ limitations under the License.
 
 import { Box, Tabs, useTabs } from '@chakra-ui/react'
 import { useTheme } from 'next-themes'
+import { Toaster } from '~/components/ui/toaster'
 import { Alerts } from '~/views/Alerts.tsx'
 import { ButtonVariations } from '~/views/ButtonVariations.tsx'
 import { Colors } from '~/views/Colors.tsx'
 import { SemanticTokens } from '~/views/SemanticColors.tsx'
+import { Toasts } from '~/views/Toasts.tsx'
+import { Typography } from '~/views/Typography.tsx'
 
 export type ChildProps = {
   isDarkMode: boolean
@@ -72,12 +75,14 @@ function App() {
       </Box>
 
       {/* Content tabs */}
-      <Tabs.RootProvider size={'lg'} value={contentTabs}>
+      <Tabs.RootProvider size={'lg'} value={contentTabs} lazyMount={true}>
         <Tabs.List>
           <Tabs.Trigger value={'color-tokens'}>Color Tokens</Tabs.Trigger>
           <Tabs.Trigger value={'semantic-tokens'}>Semantic Tokens</Tabs.Trigger>
+          <Tabs.Trigger value={'typography'}>Typography</Tabs.Trigger>
           <Tabs.Trigger value={'buttons'}>Buttons</Tabs.Trigger>
           <Tabs.Trigger value={'alerts'}>Alerts</Tabs.Trigger>
+          <Tabs.Trigger value={'toasts'}>Toasts</Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content value={'color-tokens'}>
           <Colors />
@@ -85,13 +90,20 @@ function App() {
         <Tabs.Content value={'semantic-tokens'}>
           <SemanticTokens isDarkMode={colorMode === 'dark'} />
         </Tabs.Content>
+        <Tabs.Content value={'typography'}>
+          <Typography />
+        </Tabs.Content>
         <Tabs.Content value={'buttons'}>
           <ButtonVariations />
         </Tabs.Content>
         <Tabs.Content value={'alerts'}>
           <Alerts />
         </Tabs.Content>
+        <Tabs.Content value={'toasts'}>
+          <Toasts />
+        </Tabs.Content>
       </Tabs.RootProvider>
+      <Toaster />
     </Box>
   )
 }

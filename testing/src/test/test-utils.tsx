@@ -16,6 +16,7 @@ limitations under the License.
 
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
 import { type RenderOptions, render as rtlRender } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import type { ReactElement, ReactNode } from 'react'
 
 interface WrapperProps {
@@ -27,8 +28,11 @@ function Wrapper({ children }: WrapperProps) {
 }
 
 function render(ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) {
-  return rtlRender(ui, { wrapper: Wrapper, ...options })
+  return {
+    user: userEvent.setup(),
+    ...rtlRender(ui, { wrapper: Wrapper, ...options }),
+  }
 }
 
 export * from '@testing-library/react'
-export { render }
+export { render, userEvent }
