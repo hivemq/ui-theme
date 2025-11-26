@@ -75,7 +75,7 @@ function App() {
       </Box>
 
       {/* Content tabs */}
-      <Tabs.RootProvider size={'lg'} value={contentTabs}>
+      <Tabs.RootProvider size={'lg'} value={contentTabs} lazyMount={true}>
         <Tabs.List>
           <Tabs.Trigger value={'color-tokens'}>Color Tokens</Tabs.Trigger>
           <Tabs.Trigger value={'semantic-tokens'}>Semantic Tokens</Tabs.Trigger>
