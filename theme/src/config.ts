@@ -87,7 +87,7 @@ export const config = mergeConfigs(defaultBaseConfig, {
           variant: {
             muted: { color: 'content.secondary' },
             subtle: { color: 'content.tertiary' },
-            error: { color: 'content.error' },
+            danger: { color: 'content.danger' },
             warning: { color: 'content.warning' },
             success: { color: 'content.success' },
             info: { color: 'content.info' },
@@ -103,7 +103,7 @@ export const config = mergeConfigs(defaultBaseConfig, {
           variant: {
             muted: { color: 'content.secondary' },
             subtle: { color: 'content.tertiary' },
-            error: { color: 'content.error' },
+            danger: { color: 'content.danger' },
             warning: { color: 'content.warning' },
             success: { color: 'content.success' },
             info: { color: 'content.info' },
