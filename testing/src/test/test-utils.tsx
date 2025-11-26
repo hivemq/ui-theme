@@ -20,18 +20,18 @@ import userEvent from '@testing-library/user-event'
 import type { ReactElement, ReactNode } from 'react'
 
 interface WrapperProps {
-	children: ReactNode
+  children: ReactNode
 }
 
 function Wrapper({ children }: WrapperProps) {
-	return <ChakraProvider value={defaultSystem}>{children}</ChakraProvider>
+  return <ChakraProvider value={defaultSystem}>{children}</ChakraProvider>
 }
 
 function render(ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) {
-	return {
-		user: userEvent.setup(),
-		...rtlRender(ui, { wrapper: Wrapper, ...options }),
-	}
+  return {
+    user: userEvent.setup(),
+    ...rtlRender(ui, { wrapper: Wrapper, ...options }),
+  }
 }
 
 export * from '@testing-library/react'
