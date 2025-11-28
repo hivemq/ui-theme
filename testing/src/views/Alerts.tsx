@@ -16,7 +16,7 @@ limitations under the License.
 
 import { Alert, Box, Heading, Table, Text } from '@chakra-ui/react'
 
-const alertStatuses = ['info', 'warning', 'success', 'error'] as const
+const alertStatuses = ['info', 'warning', 'success', 'danger'] as const
 
 const alertVariants = ['subtle', 'surface', 'outline', 'solid'] as const
 

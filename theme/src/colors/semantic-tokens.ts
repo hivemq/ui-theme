@@ -105,10 +105,10 @@ export const semanticTokens = {
   },
   warning: {
     contrast: { value: { base: '{colors.white}', _dark: '{colors.white}' } },
-    fg: { value: { base: '{colors.orange.600}', _dark: '{colors.orange.400}' } },
+    fg: { value: { base: '{colors.orange.700}', _dark: '{colors.orange.400}' } },
     subtle: { value: { base: '{colors.orange.100}', _dark: '{colors.orange.900}' } },
-    muted: { value: { base: '{colors.orange.200}', _dark: '{colors.orange.800}' } },
-    emphasized: { value: { base: '{colors.orange.300}', _dark: '{colors.orange.700}' } },
+    muted: { value: { base: '{colors.orange.300}', _dark: '{colors.orange.800}' } },
+    emphasized: { value: { base: '{colors.orange.400}', _dark: '{colors.orange.700}' } },
     solid: { value: { base: '{colors.orange.400}', _dark: '{colors.orange.500}' } },
     focusRing: { value: { base: '{colors.orange.400}', _dark: '{colors.orange.400}' } },
   },

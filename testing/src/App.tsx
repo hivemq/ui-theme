@@ -20,6 +20,7 @@ import { Toaster } from '~/components/ui/toaster'
 import { Alerts } from '~/views/Alerts.tsx'
 import { ButtonVariations } from '~/views/ButtonVariations.tsx'
 import { Colors } from '~/views/Colors.tsx'
+import { Inputs } from '~/views/Inputs.tsx'
 import { SemanticTokens } from '~/views/SemanticColors.tsx'
 import { Toasts } from '~/views/Toasts.tsx'
 import { Typography } from '~/views/Typography.tsx'
@@ -81,6 +82,7 @@ function App() {
           <Tabs.Trigger value={'semantic-tokens'}>Semantic Tokens</Tabs.Trigger>
           <Tabs.Trigger value={'typography'}>Typography</Tabs.Trigger>
           <Tabs.Trigger value={'buttons'}>Buttons</Tabs.Trigger>
+          <Tabs.Trigger value={'inputs'}>Inputs</Tabs.Trigger>
           <Tabs.Trigger value={'alerts'}>Alerts</Tabs.Trigger>
           <Tabs.Trigger value={'toasts'}>Toasts</Tabs.Trigger>
         </Tabs.List>
@@ -95,6 +97,9 @@ function App() {
         </Tabs.Content>
         <Tabs.Content value={'buttons'}>
           <ButtonVariations />
+        </Tabs.Content>
+        <Tabs.Content value={'inputs'}>
+          <Inputs />
         </Tabs.Content>
         <Tabs.Content value={'alerts'}>
           <Alerts />
