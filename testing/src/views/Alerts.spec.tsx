@@ -19,7 +19,7 @@ import { render, screen } from '~/test/test-utils'
 import { Alerts } from './Alerts'
 
 describe('Alerts', () => {
-  const alertStatuses = ['info', 'warning', 'success', 'error'] as const
+  const alertStatuses = ['info', 'warning', 'success', 'danger'] as const
   const alertVariants = ['subtle', 'surface', 'outline', 'solid'] as const
   const alertSizes = ['sm', 'md', 'lg'] as const
 
