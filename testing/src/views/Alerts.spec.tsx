@@ -42,7 +42,7 @@ describe('Alerts', () => {
     it('should render the correct number of sections', () => {
       render(<Alerts />)
 
-      // Should render 4 status sections (info, warning, success, error)
+      // Should render 4 status sections (info, warning, success, danger)
       const headings = screen.getAllByRole('heading', { level: 2 })
       expect(headings.length).toBe(alertStatuses.length)
     })
@@ -245,7 +245,7 @@ describe('Alerts', () => {
       headings.forEach((heading) => {
         const text = heading.textContent?.toLowerCase() || ''
         // Should be semantic status names
-        expect(['info', 'warning', 'success', 'error']).toContain(text)
+        expect(['info', 'warning', 'success', 'danger']).toContain(text)
       })
     })
   })
