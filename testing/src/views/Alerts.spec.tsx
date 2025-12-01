@@ -228,7 +228,7 @@ describe('Alerts', () => {
     it('should render all semantic alert statuses', () => {
       render(<Alerts />)
 
-      const expectedStatuses = ['info', 'warning', 'success', 'error']
+      const expectedStatuses = ['info', 'warning', 'success', 'danger']
 
       expectedStatuses.forEach((status) => {
         expect(screen.getByRole('heading', { name: new RegExp(status, 'i') })).toBeInTheDocument()
