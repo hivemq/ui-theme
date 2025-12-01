@@ -19,7 +19,7 @@ import { render, screen } from '~/test/test-utils'
 import { Alerts } from './Alerts'
 
 describe('Alerts', () => {
-  const alertStatuses = ['info', 'warning', 'success', 'error'] as const
+  const alertStatuses = ['info', 'warning', 'success', 'danger'] as const
   const alertVariants = ['subtle', 'surface', 'outline', 'solid'] as const
   const alertSizes = ['sm', 'md', 'lg'] as const
 
@@ -42,7 +42,7 @@ describe('Alerts', () => {
     it('should render the correct number of sections', () => {
       render(<Alerts />)
 
-      // Should render 4 status sections (info, warning, success, error)
+      // Should render 4 status sections (info, warning, success, danger)
       const headings = screen.getAllByRole('heading', { level: 2 })
       expect(headings.length).toBe(alertStatuses.length)
     })
@@ -228,7 +228,7 @@ describe('Alerts', () => {
     it('should render all semantic alert statuses', () => {
       render(<Alerts />)
 
-      const expectedStatuses = ['info', 'warning', 'success', 'error']
+      const expectedStatuses = ['info', 'warning', 'success', 'danger']
 
       expectedStatuses.forEach((status) => {
         expect(screen.getByRole('heading', { name: new RegExp(status, 'i') })).toBeInTheDocument()
@@ -245,7 +245,7 @@ describe('Alerts', () => {
       headings.forEach((heading) => {
         const text = heading.textContent?.toLowerCase() || ''
         // Should be semantic status names
-        expect(['info', 'warning', 'success', 'error']).toContain(text)
+        expect(['info', 'warning', 'success', 'danger']).toContain(text)
       })
     })
   })
