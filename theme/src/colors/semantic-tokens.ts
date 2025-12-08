@@ -69,7 +69,7 @@ export const semanticTokens = {
 
   secondary: {
     contrast: { value: { base: '{colors.black}', _dark: '{colors.white}' } },
-    fg: { value: { base: '{colors.gray.700}', _dark: '{colors.gray.500}' } },
+    fg: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.500}' } },
     subtle: { value: { base: '{colors.gray.100}', _dark: '{colors.gray.900}' } },
     muted: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.800}' } },
     emphasized: { value: { base: '{colors.gray.300}', _dark: '{colors.gray.700}' } },
