@@ -22,7 +22,8 @@
     "lint:format:write": "biome format --write ./src"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=20",
+    "pnpm": ">=9"
   },
   "peerDependencies": {
     "@chakra-ui/react": "^3.29.0"
