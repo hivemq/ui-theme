@@ -16,13 +16,13 @@
     "build": "pnpm build:types && pnpm build:lib",
     "build:lib": "vite build",
     "build:types": "tsc --emitDeclarationOnly",
+    "build:watch": "vite build --watch",
     "publish:dry": "pnpm publish --no-git-checks --dry-run",
     "test:unit": "vitest run --outputFile.junit=./test-results/junit.xml",
     "lint:format:write": "biome format --write ./src"
   },
   "engines": {
-    "node": "22",
-    "pnpm": "10"
+    "node": ">=20"
   },
   "peerDependencies": {
     "@chakra-ui/react": "^3.29.0"
