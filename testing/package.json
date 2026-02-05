@@ -19,8 +19,8 @@
     "safetest:regenerate-screenshots": "pnpm safetest --run --update"
   },
   "engines": {
-    "node": "22",
-    "pnpm": "10"
+    "node": ">=20",
+    "pnpm": ">=9"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.29.0",
