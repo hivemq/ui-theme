@@ -1,6 +1,6 @@
 {
   "name": "@hivemq/ui-theme",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "type": "module",
   "module": "./src/index.ts",
   "types": "./dist/index.d.ts",
