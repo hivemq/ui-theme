@@ -2,7 +2,7 @@
   "name": "@hivemq/ui-theme",
   "version": "1.4.0",
   "type": "module",
-  "module": "./dist/index.es.js",
+  "module": "./src/index.ts",
   "types": "./dist/index.d.ts",
   "publishConfig": {
     "types": "./dist/index.d.ts",
