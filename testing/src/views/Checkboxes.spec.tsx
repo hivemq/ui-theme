@@ -20,6 +20,16 @@ import { Checkboxes } from './Checkboxes'
 
 const checkboxVariants = ['solid', 'outline', 'subtle'] as const
 const checkboxSizes = ['xs', 'sm', 'md', 'lg'] as const
+const colorPalettes = [
+  'default',
+  'brand',
+  'secondary',
+  'success',
+  'info',
+  'danger',
+  'warning',
+  'highlight',
+] as const
 
 describe('Checkboxes', () => {
   describe('Rendering', () => {
@@ -28,10 +38,10 @@ describe('Checkboxes', () => {
       expect(container).toBeInTheDocument()
     })
 
-    it('should render two tables (variants and sizes)', () => {
+    it('should render three tables (variants, color palettes, and sizes)', () => {
       const { container } = render(<Checkboxes />)
       const tables = container.querySelectorAll('table')
-      expect(tables.length).toBe(2)
+      expect(tables.length).toBe(3)
     })
   })
 
@@ -45,8 +55,8 @@ describe('Checkboxes', () => {
       render(<Checkboxes />)
       expect(screen.getAllByText('Unchecked').length).toBeGreaterThan(0)
       expect(screen.getAllByText('Checked').length).toBeGreaterThan(0)
-      expect(screen.getByText('Indeterminate')).toBeInTheDocument()
-      expect(screen.getByText('Disabled')).toBeInTheDocument()
+      expect(screen.getAllByText('Indeterminate').length).toBeGreaterThan(0)
+      expect(screen.getAllByText('Disabled').length).toBeGreaterThan(0)
     })
 
     it('should render all variant names', () => {
@@ -62,6 +72,28 @@ describe('Checkboxes', () => {
       const firstTable = container.querySelectorAll('table')[0]
       const rows = firstTable?.querySelectorAll('tbody tr')
       expect(rows?.length).toBe(checkboxVariants.length)
+    })
+  })
+
+  describe('Color Palettes Section', () => {
+    it('should render section heading', () => {
+      render(<Checkboxes />)
+      expect(screen.getByText('Color Palettes')).toBeInTheDocument()
+    })
+
+    it('should render all palette names', () => {
+      render(<Checkboxes />)
+      for (const palette of colorPalettes) {
+        const labels = screen.getAllByText(palette)
+        expect(labels.length).toBeGreaterThan(0)
+      }
+    })
+
+    it('should render correct number of palette rows', () => {
+      const { container } = render(<Checkboxes />)
+      const secondTable = container.querySelectorAll('table')[1]
+      const rows = secondTable?.querySelectorAll('tbody tr')
+      expect(rows?.length).toBe(colorPalettes.length)
     })
   })
 
@@ -81,8 +113,8 @@ describe('Checkboxes', () => {
 
     it('should render correct number of size rows', () => {
       const { container } = render(<Checkboxes />)
-      const secondTable = container.querySelectorAll('table')[1]
-      const rows = secondTable?.querySelectorAll('tbody tr')
+      const thirdTable = container.querySelectorAll('table')[2]
+      const rows = thirdTable?.querySelectorAll('tbody tr')
       expect(rows?.length).toBe(checkboxSizes.length)
     })
   })
@@ -91,16 +123,17 @@ describe('Checkboxes', () => {
     it('should render checkbox inputs', () => {
       const { container } = render(<Checkboxes />)
       const inputs = container.querySelectorAll('input[type="checkbox"]')
-      // variants: 3 variants × 4 states = 12
-      // sizes: 4 sizes × 2 states = 8
-      expect(inputs.length).toBe(20)
+      // variants: 3 × 4 = 12
+      // palettes: 8 × 4 = 32
+      // sizes: 4 × 2 = 8
+      expect(inputs.length).toBe(52)
     })
 
     it('should render disabled checkboxes', () => {
       const { container } = render(<Checkboxes />)
       const disabledInputs = container.querySelectorAll('input[disabled]')
-      // 1 disabled per variant = 3
-      expect(disabledInputs.length).toBe(checkboxVariants.length)
+      // 1 disabled per variant (3) + 1 disabled per palette (8) = 11
+      expect(disabledInputs.length).toBe(checkboxVariants.length + colorPalettes.length)
     })
   })
 
@@ -108,8 +141,8 @@ describe('Checkboxes', () => {
     it('should render labels for all checkboxes', () => {
       render(<Checkboxes />)
       const labels = screen.getAllByText('Label')
-      // variants: 3 × 4 = 12, sizes: 4 × 2 = 8 → total 20
-      expect(labels.length).toBe(20)
+      // variants: 3 × 4 = 12, palettes: 8 × 4 = 32, sizes: 4 × 2 = 8 → total 52
+      expect(labels.length).toBe(52)
     })
   })
 })

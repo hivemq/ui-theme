@@ -18,6 +18,16 @@ import { Box, Checkbox, Heading, Table, Text } from '@chakra-ui/react'
 
 const checkboxVariants = ['solid', 'outline', 'subtle'] as const
 const checkboxSizes = ['xs', 'sm', 'md', 'lg'] as const
+const colorPalettes = [
+  'default',
+  'brand',
+  'secondary',
+  'success',
+  'info',
+  'danger',
+  'warning',
+  'highlight',
+] as const
 
 /**
  * A component that renders a matrix of checkbox variants and sizes.
@@ -71,6 +81,73 @@ export function Checkboxes() {
                   </Table.Cell>
                   <Table.Cell>
                     <Checkbox.Root variant={variant} disabled defaultChecked>
+                      <Checkbox.HiddenInput />
+                      <Checkbox.Control />
+                      <Checkbox.Label>Label</Checkbox.Label>
+                    </Checkbox.Root>
+                  </Table.Cell>
+                </Table.Row>
+              ))}
+            </Table.Body>
+          </Table.Root>
+        </Box>
+      </Box>
+
+      {/* Color Palettes */}
+      <Box as="section" mb={16}>
+        <Heading as="h2" size="xl" mb={6}>
+          Color Palettes
+        </Heading>
+        <Box borderWidth="1px" borderRadius="lg" overflowX="auto">
+          <Table.Root>
+            <Table.Header>
+              <Table.Row>
+                <Table.ColumnHeader>Palette</Table.ColumnHeader>
+                <Table.ColumnHeader>Unchecked</Table.ColumnHeader>
+                <Table.ColumnHeader>Checked</Table.ColumnHeader>
+                <Table.ColumnHeader>Indeterminate</Table.ColumnHeader>
+                <Table.ColumnHeader>Disabled</Table.ColumnHeader>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {colorPalettes.map((palette) => (
+                <Table.Row key={palette}>
+                  <Table.Cell>
+                    <Text fontWeight="bold">{palette}</Text>
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Checkbox.Root colorPalette={palette === 'default' ? undefined : palette}>
+                      <Checkbox.HiddenInput />
+                      <Checkbox.Control />
+                      <Checkbox.Label>Label</Checkbox.Label>
+                    </Checkbox.Root>
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Checkbox.Root
+                      colorPalette={palette === 'default' ? undefined : palette}
+                      defaultChecked
+                    >
+                      <Checkbox.HiddenInput />
+                      <Checkbox.Control />
+                      <Checkbox.Label>Label</Checkbox.Label>
+                    </Checkbox.Root>
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Checkbox.Root
+                      colorPalette={palette === 'default' ? undefined : palette}
+                      checked="indeterminate"
+                    >
+                      <Checkbox.HiddenInput />
+                      <Checkbox.Control />
+                      <Checkbox.Label>Label</Checkbox.Label>
+                    </Checkbox.Root>
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Checkbox.Root
+                      colorPalette={palette === 'default' ? undefined : palette}
+                      disabled
+                      defaultChecked
+                    >
                       <Checkbox.HiddenInput />
                       <Checkbox.Control />
                       <Checkbox.Label>Label</Checkbox.Label>
