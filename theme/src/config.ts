@@ -77,8 +77,24 @@ export const config = mergeConfigs(defaultBaseConfig, {
           },
         },
       },
+      checkbox: {
+        slots: ['root', 'label', 'control', 'indicator', 'group'],
+        base: {
+          root: {
+            colorPalette: 'blue',
+          },
+        },
+      },
     },
     recipes: {
+      checkmark: {
+        base: {
+          bg: 'white',
+          _dark: {
+            bg: 'gray.800',
+          },
+        },
+      },
       Text: {
         base: {
           color: 'content.primary',
