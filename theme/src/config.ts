@@ -83,18 +83,16 @@ export const config = mergeConfigs(defaultBaseConfig, {
           root: {
             colorPalette: 'blue',
           },
+          control: {
+            bg: 'white',
+            _dark: {
+              bg: 'gray.800',
+            },
+          },
         },
       },
     },
     recipes: {
-      checkmark: {
-        base: {
-          bg: 'white',
-          _dark: {
-            bg: 'gray.800',
-          },
-        },
-      },
       Text: {
         base: {
           color: 'content.primary',
