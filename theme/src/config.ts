@@ -81,9 +81,13 @@ export const config = mergeConfigs(defaultBaseConfig, {
         slots: ['root', 'label', 'control', 'indicator', 'group'],
         base: {
           root: {
+            // Uses the primitive 'blue' palette intentionally for backwards compatibility — 'info' resolves to
+            // blue.500 while the design spec requires blue.600 (colorPalette.solid).
             colorPalette: 'blue',
           },
           control: {
+            // No semantic token maps to white/gray.800 yet. Candidate for a
+            // bg.surface token if the base surface colors are revised.
             bg: 'white',
             _dark: {
               bg: 'gray.800',

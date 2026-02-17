@@ -110,51 +110,44 @@ export function Checkboxes() {
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {colorPalettes.map((palette) => (
-                <Table.Row key={palette}>
-                  <Table.Cell>
-                    <Text fontWeight="bold">{palette}</Text>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Checkbox.Root colorPalette={palette === 'default' ? undefined : palette}>
-                      <Checkbox.HiddenInput />
-                      <Checkbox.Control />
-                      <Checkbox.Label>Label</Checkbox.Label>
-                    </Checkbox.Root>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Checkbox.Root
-                      colorPalette={palette === 'default' ? undefined : palette}
-                      defaultChecked
-                    >
-                      <Checkbox.HiddenInput />
-                      <Checkbox.Control />
-                      <Checkbox.Label>Label</Checkbox.Label>
-                    </Checkbox.Root>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Checkbox.Root
-                      colorPalette={palette === 'default' ? undefined : palette}
-                      checked="indeterminate"
-                    >
-                      <Checkbox.HiddenInput />
-                      <Checkbox.Control />
-                      <Checkbox.Label>Label</Checkbox.Label>
-                    </Checkbox.Root>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Checkbox.Root
-                      colorPalette={palette === 'default' ? undefined : palette}
-                      disabled
-                      defaultChecked
-                    >
-                      <Checkbox.HiddenInput />
-                      <Checkbox.Control />
-                      <Checkbox.Label>Label</Checkbox.Label>
-                    </Checkbox.Root>
-                  </Table.Cell>
-                </Table.Row>
-              ))}
+              {colorPalettes.map((palette) => {
+                const paletteValue = palette === 'default' ? undefined : palette
+                return (
+                  <Table.Row key={palette}>
+                    <Table.Cell>
+                      <Text fontWeight="bold">{palette}</Text>
+                    </Table.Cell>
+                    <Table.Cell>
+                      <Checkbox.Root colorPalette={paletteValue}>
+                        <Checkbox.HiddenInput />
+                        <Checkbox.Control />
+                        <Checkbox.Label>Label</Checkbox.Label>
+                      </Checkbox.Root>
+                    </Table.Cell>
+                    <Table.Cell>
+                      <Checkbox.Root colorPalette={paletteValue} defaultChecked>
+                        <Checkbox.HiddenInput />
+                        <Checkbox.Control />
+                        <Checkbox.Label>Label</Checkbox.Label>
+                      </Checkbox.Root>
+                    </Table.Cell>
+                    <Table.Cell>
+                      <Checkbox.Root colorPalette={paletteValue} checked="indeterminate">
+                        <Checkbox.HiddenInput />
+                        <Checkbox.Control />
+                        <Checkbox.Label>Label</Checkbox.Label>
+                      </Checkbox.Root>
+                    </Table.Cell>
+                    <Table.Cell>
+                      <Checkbox.Root colorPalette={paletteValue} disabled defaultChecked>
+                        <Checkbox.HiddenInput />
+                        <Checkbox.Control />
+                        <Checkbox.Label>Label</Checkbox.Label>
+                      </Checkbox.Root>
+                    </Table.Cell>
+                  </Table.Row>
+                )
+              })}
             </Table.Body>
           </Table.Root>
         </Box>

@@ -123,10 +123,9 @@ describe('Checkboxes', () => {
     it('should render checkbox inputs', () => {
       const { container } = render(<Checkboxes />)
       const inputs = container.querySelectorAll('input[type="checkbox"]')
-      // variants: 3 × 4 = 12
-      // palettes: 8 × 4 = 32
-      // sizes: 4 × 2 = 8
-      expect(inputs.length).toBe(52)
+      const expectedCount =
+        checkboxVariants.length * 4 + colorPalettes.length * 4 + checkboxSizes.length * 2
+      expect(inputs.length).toBe(expectedCount)
     })
 
     it('should render disabled checkboxes', () => {
@@ -141,8 +140,9 @@ describe('Checkboxes', () => {
     it('should render labels for all checkboxes', () => {
       render(<Checkboxes />)
       const labels = screen.getAllByText('Label')
-      // variants: 3 × 4 = 12, palettes: 8 × 4 = 32, sizes: 4 × 2 = 8 → total 52
-      expect(labels.length).toBe(52)
+      const expectedCount =
+        checkboxVariants.length * 4 + colorPalettes.length * 4 + checkboxSizes.length * 2
+      expect(labels.length).toBe(expectedCount)
     })
   })
 })
