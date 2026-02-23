@@ -18,6 +18,7 @@ import { Box, Tabs, useTabs } from '@chakra-ui/react'
 import { useTheme } from 'next-themes'
 import { Toaster } from '~/components/ui/toaster'
 import { Alerts } from '~/views/Alerts.tsx'
+import { Badges } from '~/views/Badges.tsx'
 import { ButtonVariations } from '~/views/ButtonVariations.tsx'
 import { Checkboxes } from '~/views/Checkboxes.tsx'
 import { Colors } from '~/views/Colors.tsx'
@@ -85,6 +86,7 @@ function App() {
           <Tabs.Trigger value={'buttons'}>Buttons</Tabs.Trigger>
           <Tabs.Trigger value={'inputs'}>Inputs</Tabs.Trigger>
           <Tabs.Trigger value={'checkboxes'}>Checkboxes</Tabs.Trigger>
+          <Tabs.Trigger value={'badges'}>Badges</Tabs.Trigger>
           <Tabs.Trigger value={'alerts'}>Alerts</Tabs.Trigger>
           <Tabs.Trigger value={'toasts'}>Toasts</Tabs.Trigger>
         </Tabs.List>
@@ -105,6 +107,9 @@ function App() {
         </Tabs.Content>
         <Tabs.Content value={'checkboxes'}>
           <Checkboxes />
+        </Tabs.Content>
+        <Tabs.Content value={'badges'}>
+          <Badges />
         </Tabs.Content>
         <Tabs.Content value={'alerts'}>
           <Alerts />
