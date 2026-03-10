@@ -19,7 +19,10 @@ export const semanticTokens = {
    * Background tokens
    */
   bg: {
-    DEFAULT: { value: { base: '{colors.gray.50}', _dark: '{colors.gray.950}' } },
+    DEFAULT: { value: { base: '{colors.white}', _dark: '{colors.black}' } },
+    subtle: { value: { base: '{colors.gray.50}', _dark: '{colors.gray.950}' } },
+    muted: { value: { base: '{colors.gray.100}', _dark: '{colors.gray.900}' } },
+    emphasized: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.800}' } },
   },
 
   /**
@@ -27,13 +30,18 @@ export const semanticTokens = {
    */
   text: {
     DEFAULT: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.50}' } },
+    secondary: { value: { base: '{colors.gray.700}', _dark: '{colors.gray.300}' } },
+    tertiary: { value: { base: '{colors.gray.600}', _dark: '{colors.gray.400}' } },
+    disabled: { value: { base: '{colors.gray.400}', _dark: '{colors.gray.600}' } },
   },
 
   /**
    * Border tokens
    */
   border: {
-    DEFAULT: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.50}' } },
+    DEFAULT: { value: { base: '{colors.gray.300}', _dark: '{colors.gray.700}' } },
+    muted: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.800}' } },
+    emphasized: { value: { base: '{colors.gray.400}', _dark: '{colors.gray.600}' } },
   },
 
   /**
@@ -46,10 +54,10 @@ export const semanticTokens = {
     disabled: { value: { base: '{colors.gray.400}', _dark: '{colors.gray.600}' } },
     inverted: { value: { base: '{colors.gray.50}', _dark: '{colors.black}' } },
     danger: { value: { base: '{colors.red.600}', _dark: '{colors.red.400}' } },
-    warning: { value: { base: '{colors.orange.600}', _dark: '{colors.orange.400}' } },
-    success: { value: { base: '{colors.green.600}', _dark: '{colors.green.400}' } },
-    info: { value: { base: '{colors.blue.600}', _dark: '{colors.blue.400}' } },
-    brand: { value: { base: '{colors.yellow.600}', _dark: '{colors.yellow.300}' } },
+    warning: { value: { base: '{colors.orange.700}', _dark: '{colors.orange.400}' } },
+    success: { value: { base: '{colors.green.700}', _dark: '{colors.green.400}' } },
+    info: { value: { base: '{colors.blue.700}', _dark: '{colors.blue.300}' } },
+    brand: { value: { base: '{colors.yellow.800}', _dark: '{colors.yellow.300}' } },
     solid: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.800}' } },
   },
 
@@ -78,16 +86,16 @@ export const semanticTokens = {
   },
   brand: {
     contrast: { value: { base: '{colors.black}', _dark: '{colors.black}' } },
-    fg: { value: { base: '{colors.yellow.700}', _dark: '{colors.yellow.500}' } },
-    subtle: { value: { base: '{colors.yellow.100}', _dark: '{colors.yellow.800}' } },
-    muted: { value: { base: '{colors.yellow.200}', _dark: '{colors.yellow.7 00}' } },
+    fg: { value: { base: '{colors.yellow.800}', _dark: '{colors.yellow.300}' } },
+    subtle: { value: { base: '{colors.yellow.100}', _dark: '{colors.yellow.900}' } },
+    muted: { value: { base: '{colors.yellow.200}', _dark: '{colors.yellow.800}' } },
     emphasized: { value: { base: '{colors.yellow.200}', _dark: '{colors.yellow.700}' } },
-    solid: { value: { base: '{colors.yellow.300}', _dark: '{colors.yellow.500}' } },
+    solid: { value: { base: '{colors.yellow.500}', _dark: '{colors.yellow.500}' } },
     focusRing: { value: { base: '{colors.yellow.600}', _dark: '{colors.yellow.500}' } },
   },
   success: {
     contrast: { value: { base: '{colors.white}', _dark: '{colors.white}' } },
-    fg: { value: { base: '{colors.green.600}', _dark: '{colors.green.400}' } },
+    fg: { value: { base: '{colors.green.700}', _dark: '{colors.green.400}' } },
     subtle: { value: { base: '{colors.green.100}', _dark: '{colors.green.900}' } },
     muted: { value: { base: '{colors.green.200}', _dark: '{colors.green.800}' } },
     emphasized: { value: { base: '{colors.green.300}', _dark: '{colors.green.700}' } },
@@ -109,12 +117,12 @@ export const semanticTokens = {
     subtle: { value: { base: '{colors.orange.100}', _dark: '{colors.orange.900}' } },
     muted: { value: { base: '{colors.orange.300}', _dark: '{colors.orange.800}' } },
     emphasized: { value: { base: '{colors.orange.400}', _dark: '{colors.orange.700}' } },
-    solid: { value: { base: '{colors.orange.400}', _dark: '{colors.orange.500}' } },
+    solid: { value: { base: '{colors.orange.500}', _dark: '{colors.orange.500}' } },
     focusRing: { value: { base: '{colors.orange.400}', _dark: '{colors.orange.400}' } },
   },
   info: {
     contrast: { value: { base: '{colors.white}', _dark: '{colors.white}' } },
-    fg: { value: { base: '{colors.blue.600}', _dark: '{colors.blue.400}' } },
+    fg: { value: { base: '{colors.blue.700}', _dark: '{colors.blue.300}' } },
     subtle: { value: { base: '{colors.blue.100}', _dark: '{colors.blue.900}' } },
     muted: { value: { base: '{colors.blue.200}', _dark: '{colors.blue.800}' } },
     emphasized: { value: { base: '{colors.blue.300}', _dark: '{colors.blue.700}' } },
@@ -123,7 +131,7 @@ export const semanticTokens = {
   },
   highlight: {
     contrast: { value: { base: '{colors.white}', _dark: '{colors.white}' } },
-    fg: { value: { base: '{colors.purple.600}', _dark: '{colors.purple.400}' } },
+    fg: { value: { base: '{colors.purple.700}', _dark: '{colors.purple.400}' } },
     subtle: { value: { base: '{colors.purple.100}', _dark: '{colors.purple.900}' } },
     muted: { value: { base: '{colors.purple.200}', _dark: '{colors.purple.800}' } },
     emphasized: { value: { base: '{colors.purple.300}', _dark: '{colors.purple.700}' } },
