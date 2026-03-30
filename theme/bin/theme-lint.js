@@ -75,8 +75,41 @@ function findTsxFiles(dir) {
   return files.sort()
 }
 
-function checkFile(_filePath) {
-  return []
+const IGNORE_COMMENT = 'hivemq-theme-lint-ignore'
+
+const RULES = [
+  {
+    id: 'hardcoded-hex',
+    pattern: /#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{4}|[0-9a-fA-F]{3})\b/,
+    message: (match) => `Found "${match}", use a semantic token instead`,
+  },
+]
+
+function checkFile(filePath) {
+  const content = fs.readFileSync(filePath, 'utf8')
+  const lines = content.split('\n')
+  const violations = []
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+
+    if (line.includes(IGNORE_COMMENT)) {
+      continue
+    }
+
+    for (const rule of RULES) {
+      const match = line.match(rule.pattern)
+      if (match) {
+        violations.push({
+          line: i + 1,
+          rule: rule.id,
+          message: rule.message(match[0]),
+        })
+      }
+    }
+  }
+
+  return violations
 }
 
 function formatGrouped(violationsByFile, baseDir) {
