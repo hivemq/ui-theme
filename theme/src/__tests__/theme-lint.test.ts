@@ -14,12 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { describe, it, expect } from 'vitest'
 import { execFileSync } from 'node:child_process'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 import fs from 'node:fs'
 import os from 'node:os'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { describe, expect, it } from 'vitest'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const CLI_PATH = path.resolve(__dirname, '../../bin/theme-lint.js')
@@ -31,8 +31,9 @@ function runCli(args: string[] = []): { stdout: string; exitCode: number } {
       cwd: __dirname,
     })
     return { stdout, exitCode: 0 }
-  } catch (e: any) {
-    return { stdout: e.stdout ?? '', exitCode: e.status ?? 1 }
+  } catch (e: unknown) {
+    const err = e as { stdout?: string; status?: number }
+    return { stdout: err.stdout ?? '', exitCode: err.status ?? 1 }
   }
 }
 
@@ -152,5 +153,42 @@ describe('deprecated-shell rule', () => {
     const { stdout, exitCode } = runCli([dir])
     expect(exitCode).toBe(0)
     expect(stdout).toContain('No theme violations found')
+  })
+})
+
+describe('output formats', () => {
+  it('uses grouped format by default', () => {
+    const dir = createTempTsx('<Box color="#DE2C32">text</Box>')
+    const { stdout } = runCli([dir])
+    expect(stdout).toContain('theme-lint: ')
+    expect(stdout).toContain('  line 1:')
+    expect(stdout).toMatch(/1 violation.* found in 1 file/)
+  })
+
+  it('uses simple format with --simple flag', () => {
+    const dir = createTempTsx('<Box color="#DE2C32">text</Box>')
+    const { stdout } = runCli([dir, '--simple'])
+    expect(stdout).toMatch(/test\.tsx:1: hardcoded-hex/)
+    expect(stdout).not.toContain('theme-lint: ')
+  })
+})
+
+describe('exit behavior', () => {
+  it('exits 1 when violations found without --warn', () => {
+    const dir = createTempTsx('<Box color="#DE2C32">text</Box>')
+    const { exitCode } = runCli([dir])
+    expect(exitCode).toBe(1)
+  })
+
+  it('exits 0 when violations found with --warn', () => {
+    const dir = createTempTsx('<Box color="#DE2C32">text</Box>')
+    const { exitCode } = runCli([dir, '--warn'])
+    expect(exitCode).toBe(0)
+  })
+
+  it('exits 0 when no violations found', () => {
+    const dir = createTempTsx('<Box bg="bg">text</Box>')
+    const { exitCode } = runCli([dir])
+    expect(exitCode).toBe(0)
   })
 })
