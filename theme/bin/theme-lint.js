@@ -93,6 +93,11 @@ const RULES = [
     pattern: /fontFamily[:=]\s*["'].*?(?:Arial|Helvetica|Roboto|Raleway|Segoe UI|IntelOne|Noto Sans|Liberation|Courier|Consolas|Monaco|Menlo|sans-serif|serif|monospace)/i,
     message: () => 'Found hardcoded font-family, use fontFamily="heading|body|monospace" token instead',
   },
+  {
+    id: 'deprecated-shell',
+    pattern: /shell\.\w+/,
+    message: (match) => `Found "${match}", shell tokens are deprecated`,
+  },
 ]
 
 function checkFile(filePath) {

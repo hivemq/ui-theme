@@ -130,3 +130,27 @@ describe('hardcoded-font rule', () => {
     expect(stdout).toContain('No theme violations found')
   })
 })
+
+describe('deprecated-shell rule', () => {
+  it('flags shell.bg token', () => {
+    const dir = createTempTsx('<Box bg="shell.bg">text</Box>')
+    const { stdout, exitCode } = runCli([dir])
+    expect(exitCode).toBe(1)
+    expect(stdout).toContain('deprecated-shell')
+    expect(stdout).toContain('shell.bg')
+  })
+
+  it('flags shell.muted token', () => {
+    const dir = createTempTsx("const bg = 'shell.muted'")
+    const { stdout, exitCode } = runCli([dir])
+    expect(exitCode).toBe(1)
+    expect(stdout).toContain('deprecated-shell')
+  })
+
+  it('does not flag non-shell tokens', () => {
+    const dir = createTempTsx('<Box bg="bg">text</Box>')
+    const { stdout, exitCode } = runCli([dir])
+    expect(exitCode).toBe(0)
+    expect(stdout).toContain('No theme violations found')
+  })
+})
