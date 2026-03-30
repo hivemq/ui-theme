@@ -88,6 +88,11 @@ const RULES = [
     pattern: /rgba?\s*\(/,
     message: (match) => `Found "${match}", use a semantic token instead`,
   },
+  {
+    id: 'hardcoded-font',
+    pattern: /fontFamily[:=]\s*["'].*?(?:Arial|Helvetica|Roboto|Raleway|Segoe UI|IntelOne|Noto Sans|Liberation|Courier|Consolas|Monaco|Menlo|sans-serif|serif|monospace)/i,
+    message: () => 'Found hardcoded font-family, use fontFamily="heading|body|monospace" token instead',
+  },
 ]
 
 function checkFile(filePath) {

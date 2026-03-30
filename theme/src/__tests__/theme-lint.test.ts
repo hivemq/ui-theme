@@ -107,3 +107,26 @@ describe('hardcoded-rgb rule', () => {
     expect(stdout).toContain('rgba(')
   })
 })
+
+describe('hardcoded-font rule', () => {
+  it('flags fontFamily with raw font names', () => {
+    const dir = createTempTsx(`<Box fontFamily="'Roboto', sans-serif">text</Box>`)
+    const { stdout, exitCode } = runCli([dir])
+    expect(exitCode).toBe(1)
+    expect(stdout).toContain('hardcoded-font')
+  })
+
+  it('flags font-family in style objects', () => {
+    const dir = createTempTsx(`const style = { fontFamily: "'Arial', sans-serif" }`)
+    const { stdout, exitCode } = runCli([dir])
+    expect(exitCode).toBe(1)
+    expect(stdout).toContain('hardcoded-font')
+  })
+
+  it('does not flag fontFamily with token values', () => {
+    const dir = createTempTsx('<Heading fontFamily="heading">Title</Heading>')
+    const { stdout, exitCode } = runCli([dir])
+    expect(exitCode).toBe(0)
+    expect(stdout).toContain('No theme violations found')
+  })
+})
