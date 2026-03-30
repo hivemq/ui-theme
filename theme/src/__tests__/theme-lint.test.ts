@@ -19,7 +19,7 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it } from 'vitest'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const CLI_PATH = path.resolve(__dirname, '../../bin/theme-lint.js')
@@ -37,16 +37,29 @@ function runCli(args: string[] = []): { stdout: string; exitCode: number } {
   }
 }
 
+const tempDirs: string[] = []
+
 function createTempTsx(content: string): string {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'theme-lint-'))
+  tempDirs.push(dir)
   const file = path.join(dir, 'test.tsx')
   fs.writeFileSync(file, content)
   return dir
 }
 
+afterEach(() => {
+  for (const dir of tempDirs) {
+    fs.rmSync(dir, { recursive: true, force: true })
+  }
+  tempDirs.length = 0
+})
+
 describe('theme-lint CLI', () => {
   it('exits 0 and prints success when scanning a directory with no tsx files', () => {
-    const { stdout, exitCode } = runCli([path.resolve(__dirname, '../../dist')])
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'theme-lint-empty-'))
+    tempDirs.push(dir)
+    fs.writeFileSync(path.join(dir, 'readme.txt'), 'not a tsx file')
+    const { stdout, exitCode } = runCli([dir])
     expect(exitCode).toBe(0)
     expect(stdout).toContain('No theme violations found')
   })
@@ -119,6 +132,13 @@ describe('hardcoded-font rule', () => {
 
   it('flags font-family in style objects', () => {
     const dir = createTempTsx(`const style = { fontFamily: "'Arial', sans-serif" }`)
+    const { stdout, exitCode } = runCli([dir])
+    expect(exitCode).toBe(1)
+    expect(stdout).toContain('hardcoded-font')
+  })
+
+  it('flags font-family CSS property', () => {
+    const dir = createTempTsx(`const style = { 'font-family': "'Helvetica', sans-serif" }`)
     const { stdout, exitCode } = runCli([dir])
     expect(exitCode).toBe(1)
     expect(stdout).toContain('hardcoded-font')
