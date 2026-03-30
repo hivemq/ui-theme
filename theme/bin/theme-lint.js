@@ -19,13 +19,7 @@ limitations under the License.
 import fs from 'node:fs'
 import path from 'node:path'
 
-const SKIP_DIRS = new Set([
-  'node_modules',
-  'dist',
-  'build',
-  'coverage',
-  '__image_snapshots__',
-])
+const SKIP_DIRS = new Set(['node_modules', 'dist', 'build', 'coverage', '__image_snapshots__'])
 
 function parseArgs(argv) {
   const args = argv.slice(2)
@@ -90,8 +84,10 @@ const RULES = [
   },
   {
     id: 'hardcoded-font',
-    pattern: /fontFamily[:=]\s*["'].*?(?:Arial|Helvetica|Roboto|Raleway|Segoe UI|IntelOne|Noto Sans|Liberation|Courier|Consolas|Monaco|Menlo|sans-serif|serif|monospace)/i,
-    message: () => 'Found hardcoded font-family, use fontFamily="heading|body|monospace" token instead',
+    pattern:
+      /fontFamily[:=]\s*["'].*?(?:Arial|Helvetica|Roboto|Raleway|Segoe UI|IntelOne|Noto Sans|Liberation|Courier|Consolas|Monaco|Menlo|sans-serif|serif|monospace)/i,
+    message: () =>
+      'Found hardcoded font-family, use fontFamily="heading|body|monospace" token instead',
   },
   {
     id: 'deprecated-shell',
@@ -142,7 +138,9 @@ function formatGrouped(violationsByFile, baseDir) {
   }
 
   const fileCount = violationsByFile.size
-  lines.push(`${total} violation${total !== 1 ? 's' : ''} found in ${fileCount} file${fileCount !== 1 ? 's' : ''}`)
+  lines.push(
+    `${total} violation${total !== 1 ? 's' : ''} found in ${fileCount} file${fileCount !== 1 ? 's' : ''}`,
+  )
   return lines.join('\n')
 }
 
