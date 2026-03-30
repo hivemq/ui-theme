@@ -77,3 +77,49 @@ Then you can import these fonts ether in your `main.ts` file or `global.css` fil
 @import '../node_modules/@fontsource/raleway/800.css';
 @import '../node_modules/@fontsource/raleway/900.css';
 ```
+
+## Theme Linter
+
+The package ships with `hivemq-theme-lint`, a CLI tool that scans `.tsx` files for theme violations. It detects:
+
+- Hardcoded hex colors (`#DE2C32`, `#fff`)
+- Hardcoded `rgb()`/`rgba()` values
+- Hardcoded font-family strings instead of font tokens
+- Usage of deprecated `shell.*` tokens
+
+### Usage
+
+```bash
+# Scan the current directory
+npx hivemq-theme-lint
+
+# Scan a specific directory
+npx hivemq-theme-lint src
+```
+
+### Flags
+
+| Flag | Description |
+|------|-------------|
+| `--warn` | Exit 0 even when violations are found (advisory mode) |
+| `--simple` | One-line-per-violation output for CI parsers |
+
+### CI Integration
+
+Add to your `package.json` scripts to enforce theme compliance in CI:
+
+```json
+{
+  "scripts": {
+    "lint:theme": "hivemq-theme-lint src"
+  }
+}
+```
+
+### Suppressing False Positives
+
+Add `// hivemq-theme-lint-ignore` to any line to suppress violations on that line:
+
+```tsx
+<Box color="#DE2C32">text</Box> // hivemq-theme-lint-ignore
+```
