@@ -23,7 +23,7 @@ const SKIP_DIRS = new Set(['node_modules', 'dist', 'build', 'coverage', '__image
 
 function parseArgs(argv) {
   const args = argv.slice(2)
-  const flags = { warn: false, simple: false }
+  const flags = { warn: false, simple: false, strict: false }
   let directory = '.'
 
   for (const arg of args) {
@@ -31,6 +31,8 @@ function parseArgs(argv) {
       flags.warn = true
     } else if (arg === '--simple') {
       flags.simple = true
+    } else if (arg === '--strict') {
+      flags.strict = true
     } else if (!arg.startsWith('--')) {
       directory = arg
     }
@@ -96,10 +98,20 @@ const RULES = [
   },
 ]
 
-function checkFile(filePath) {
+const STRICT_RULES = [
+  {
+    id: 'primitive-token',
+    pattern:
+      /(?:gray|red|pink|purple|cyan|blue|teal|green|yellow|orange|white|black)\.(?:50|100|200|300|400|500|600|700|800|900|950)\b/,
+    message: (match) => `Found "${match}", use a semantic token instead`,
+  },
+]
+
+function checkFile(filePath, flags) {
   const content = fs.readFileSync(filePath, 'utf8')
   const lines = content.split('\n')
   const violations = []
+  const activeRules = flags.strict ? [...RULES, ...STRICT_RULES] : RULES
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i]
@@ -108,7 +120,7 @@ function checkFile(filePath) {
       continue
     }
 
-    for (const rule of RULES) {
+    for (const rule of activeRules) {
       const match = line.match(rule.pattern)
       if (match) {
         violations.push({
@@ -164,7 +176,7 @@ function main() {
   const violationsByFile = new Map()
 
   for (const file of files) {
-    const violations = checkFile(file)
+    const violations = checkFile(file, flags)
     if (violations.length > 0) {
       violationsByFile.set(file, violations)
     }

@@ -101,6 +101,7 @@ npx hivemq-theme-lint src
 
 | Flag | Description |
 |------|-------------|
+| `--strict` | Also flag primitive color tokens (`blue.200`, `gray.500`, etc.) — only semantic tokens allowed |
 | `--warn` | Exit 0 even when violations are found (advisory mode) |
 | `--simple` | One-line-per-violation output for CI parsers |
 

@@ -176,6 +176,44 @@ describe('deprecated-shell rule', () => {
   })
 })
 
+describe('primitive-token rule (--strict)', () => {
+  it('flags primitive color tokens in strict mode', () => {
+    const dir = createTempTsx('<Box color="blue.200">text</Box>')
+    const { stdout, exitCode } = runCli([dir, '--strict'])
+    expect(exitCode).toBe(1)
+    expect(stdout).toContain('primitive-token')
+    expect(stdout).toContain('blue.200')
+  })
+
+  it('flags various primitive palettes in strict mode', () => {
+    const dir = createTempTsx('<Box bg="gray.100" color="red.600">text</Box>')
+    const { stdout, exitCode } = runCli([dir, '--strict'])
+    expect(exitCode).toBe(1)
+    expect(stdout).toContain('gray.100')
+  })
+
+  it('does not flag primitive tokens without --strict', () => {
+    const dir = createTempTsx('<Box color="blue.200">text</Box>')
+    const { stdout, exitCode } = runCli([dir])
+    expect(exitCode).toBe(0)
+    expect(stdout).toContain('No theme violations found')
+  })
+
+  it('allows categorical tokens in strict mode', () => {
+    const dir = createTempTsx('<Box color="categorical.1">text</Box>')
+    const { stdout, exitCode } = runCli([dir, '--strict'])
+    expect(exitCode).toBe(0)
+    expect(stdout).toContain('No theme violations found')
+  })
+
+  it('allows semantic tokens in strict mode', () => {
+    const dir = createTempTsx('<Box bg="info.subtle" color="danger.fg">text</Box>')
+    const { stdout, exitCode } = runCli([dir, '--strict'])
+    expect(exitCode).toBe(0)
+    expect(stdout).toContain('No theme violations found')
+  })
+})
+
 describe('output formats', () => {
   it('uses grouped format by default', () => {
     const dir = createTempTsx('<Box color="#DE2C32">text</Box>')
