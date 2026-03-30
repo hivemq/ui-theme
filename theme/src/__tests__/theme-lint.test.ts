@@ -89,3 +89,21 @@ describe('hardcoded-hex rule', () => {
     expect(stdout).toContain('No theme violations found')
   })
 })
+
+describe('hardcoded-rgb rule', () => {
+  it('flags rgb() values', () => {
+    const dir = createTempTsx("<Box color='rgb(255, 0, 0)'>text</Box>")
+    const { stdout, exitCode } = runCli([dir])
+    expect(exitCode).toBe(1)
+    expect(stdout).toContain('hardcoded-rgb')
+    expect(stdout).toContain('rgb(')
+  })
+
+  it('flags rgba() values', () => {
+    const dir = createTempTsx('<Box bg="rgba(255, 0, 0, 0.5)">text</Box>')
+    const { stdout, exitCode } = runCli([dir])
+    expect(exitCode).toBe(1)
+    expect(stdout).toContain('hardcoded-rgb')
+    expect(stdout).toContain('rgba(')
+  })
+})

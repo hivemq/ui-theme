@@ -83,6 +83,11 @@ const RULES = [
     pattern: /#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{4}|[0-9a-fA-F]{3})\b/,
     message: (match) => `Found "${match}", use a semantic token instead`,
   },
+  {
+    id: 'hardcoded-rgb',
+    pattern: /rgba?\s*\(/,
+    message: (match) => `Found "${match}", use a semantic token instead`,
+  },
 ]
 
 function checkFile(filePath) {
