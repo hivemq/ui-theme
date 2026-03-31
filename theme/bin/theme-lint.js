@@ -72,6 +72,7 @@ function findTsxFiles(dir) {
 }
 
 const IGNORE_COMMENT = 'hivemq-theme-lint-ignore'
+const DISABLE_COMMENT = 'hivemq-theme-lint-disable'
 
 const RULES = [
   {
@@ -109,6 +110,11 @@ const STRICT_RULES = [
 
 function checkFile(filePath, flags) {
   const content = fs.readFileSync(filePath, 'utf8')
+
+  if (content.includes(DISABLE_COMMENT)) {
+    return []
+  }
+
   const lines = content.split('\n')
   const violations = []
   const activeRules = flags.strict ? [...RULES, ...STRICT_RULES] : RULES

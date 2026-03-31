@@ -102,6 +102,15 @@ describe('hardcoded-hex rule', () => {
     expect(exitCode).toBe(0)
     expect(stdout).toContain('No theme violations found')
   })
+
+  it('skips entire file with hivemq-theme-lint-disable comment', () => {
+    const dir = createTempTsx(
+      '// hivemq-theme-lint-disable\n<Box color="#DE2C32" bg="rgb(0,0,0)">text</Box>',
+    )
+    const { stdout, exitCode } = runCli([dir])
+    expect(exitCode).toBe(0)
+    expect(stdout).toContain('No theme violations found')
+  })
 })
 
 describe('hardcoded-rgb rule', () => {
