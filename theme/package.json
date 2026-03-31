@@ -9,8 +9,12 @@
     "module": "./dist/index.es.js"
   },
   "license": "Apache-2.0",
+  "bin": {
+    "hivemq-theme-lint": "./bin/theme-lint.js"
+  },
   "files": [
-    "dist"
+    "dist",
+    "bin"
   ],
   "scripts": {
     "build": "pnpm build:types && pnpm build:lib",

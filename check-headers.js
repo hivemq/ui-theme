@@ -36,7 +36,11 @@ limitations under the License.
 
 // Function to check if a file starts with the expected header
 function checkFileHeader(filePath) {
-  const content = fs.readFileSync(filePath, 'utf8')
+  let content = fs.readFileSync(filePath, 'utf8')
+  // Allow shebang lines (e.g. #!/usr/bin/env node) before the license header
+  if (content.startsWith('#!')) {
+    content = content.slice(content.indexOf('\n') + 1).trimStart()
+  }
   if (!content.startsWith(expectedHeader)) {
     console.error(`File ${filePath} does not start with the expected header.`)
     process.exitCode = 1
