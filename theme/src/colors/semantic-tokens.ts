@@ -19,23 +19,22 @@ export const semanticTokens = {
    * Background tokens
    */
   bg: {
-    DEFAULT: { value: { base: '{colors.gray.50}', _dark: '{colors.gray.950}' } },
+    default: { value: { base: '{colors.gray.50}', _dark: '{colors.gray.950}' } },
+    inverted: { value: { base: '{colors.gray.800}', _dark: '{colors.gray.100}' } },
+    muted: { value: { base: '{colors.black.200}', _dark: '{colors.white.200}' } },
   },
-
   /**
    * Text tokens
    */
   text: {
-    DEFAULT: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.50}' } },
+    default: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.50}' } },
   },
-
   /**
    * Border tokens
    */
   border: {
-    DEFAULT: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.50}' } },
+    default: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.50}' } },
   },
-
   /**
    * Tier 2: Content tokens (text and foreground elements)
    */
@@ -51,20 +50,6 @@ export const semanticTokens = {
     info: { value: { base: '{colors.blue.600}', _dark: '{colors.blue.400}' } },
     brand: { value: { base: '{colors.yellow.600}', _dark: '{colors.yellow.300}' } },
     solid: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.800}' } },
-  },
-
-  /**
-   * Shell tokens (UI shell and layout components)
-   * @deprecated Shell tokens shouldn't exist in the new theming system. Guidance will be added later on what to use instead.
-   */
-  shell: {
-    bg: { value: { base: '{colors.gray.50}', _dark: '{colors.gray.900}' } },
-    muted: { value: { base: '{colors.gray.100}', _dark: '{colors.gray.800}' } },
-    subtle: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.700}' } },
-    contrastBg: { value: { base: '{colors.white}', _dark: '{colors.black}' } },
-    border: { value: { base: '{colors.gray.300}', _dark: '{colors.gray.700}' } },
-    group: { value: { base: '{colors.gray.500}', _dark: '{colors.gray.500}' } },
-    item: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.50}' } },
   },
 
   secondary: {
@@ -88,6 +73,7 @@ export const semanticTokens = {
   success: {
     contrast: { value: { base: '{colors.white}', _dark: '{colors.white}' } },
     fg: { value: { base: '{colors.green.600}', _dark: '{colors.green.400}' } },
+    faint: { value: { base: '{colors.green.50}', _dark: '{colors.green.950}' } },
     subtle: { value: { base: '{colors.green.100}', _dark: '{colors.green.900}' } },
     muted: { value: { base: '{colors.green.200}', _dark: '{colors.green.800}' } },
     emphasized: { value: { base: '{colors.green.300}', _dark: '{colors.green.700}' } },
@@ -97,6 +83,7 @@ export const semanticTokens = {
   danger: {
     contrast: { value: { base: '{colors.white}', _dark: '{colors.white}' } },
     fg: { value: { base: '{colors.red.700}', _dark: '{colors.red.400}' } },
+    faint: { value: { base: '{colors.red.50}', _dark: '{colors.red.950}' } },
     subtle: { value: { base: '{colors.red.100}', _dark: '{colors.red.900}' } },
     muted: { value: { base: '{colors.red.300}', _dark: '{colors.red.800}' } },
     emphasized: { value: { base: '{colors.red.400}', _dark: '{colors.red.700}' } },
@@ -106,6 +93,7 @@ export const semanticTokens = {
   warning: {
     contrast: { value: { base: '{colors.white}', _dark: '{colors.white}' } },
     fg: { value: { base: '{colors.orange.700}', _dark: '{colors.orange.400}' } },
+    faint: { value: { base: '{colors.orange.50}', _dark: '{colors.orange.950}' } },
     subtle: { value: { base: '{colors.orange.100}', _dark: '{colors.orange.900}' } },
     muted: { value: { base: '{colors.orange.300}', _dark: '{colors.orange.800}' } },
     emphasized: { value: { base: '{colors.orange.400}', _dark: '{colors.orange.700}' } },
@@ -115,6 +103,7 @@ export const semanticTokens = {
   info: {
     contrast: { value: { base: '{colors.white}', _dark: '{colors.white}' } },
     fg: { value: { base: '{colors.blue.600}', _dark: '{colors.blue.400}' } },
+    faint: { value: { base: '{colors.blue.50}', _dark: '{colors.blue.950}' } },
     subtle: { value: { base: '{colors.blue.100}', _dark: '{colors.blue.900}' } },
     muted: { value: { base: '{colors.blue.200}', _dark: '{colors.blue.800}' } },
     emphasized: { value: { base: '{colors.blue.300}', _dark: '{colors.blue.700}' } },
@@ -124,10 +113,33 @@ export const semanticTokens = {
   highlight: {
     contrast: { value: { base: '{colors.white}', _dark: '{colors.white}' } },
     fg: { value: { base: '{colors.purple.600}', _dark: '{colors.purple.400}' } },
+    faint: { value: { base: '{colors.purple.50}', _dark: '{colors.purple.950}' } },
     subtle: { value: { base: '{colors.purple.100}', _dark: '{colors.purple.900}' } },
     muted: { value: { base: '{colors.purple.200}', _dark: '{colors.purple.800}' } },
     emphasized: { value: { base: '{colors.purple.300}', _dark: '{colors.purple.700}' } },
     solid: { value: { base: '{colors.purple.500}', _dark: '{colors.purple.500}' } },
     focusRing: { value: { base: '{colors.purple.400}', _dark: '{colors.purple.400}' } },
+  },
+  /**
+   * Chart tokens (for libraries like Recharts that need raw CSS values)
+   * Resolve via useToken('colors', ['chart.primary']) to pass to chart props.
+   */
+  chart: {
+    primary: { value: { base: '{colors.blue.500}', _dark: '{colors.blue.400}' } },
+    selected: { value: { base: '{colors.yellow.400}', _dark: '{colors.yellow.500}' } },
+    grid: { value: { base: '{colors.gray.300}', _dark: '{colors.gray.600}' } },
+  },
+  /**
+   * Shell tokens (UI shell and layout components)
+   * @deprecated Shell tokens shouldn't exist in the new theming system. Guidance will be added later on what to use instead.
+   */
+  shell: {
+    bg: { value: { base: '{colors.gray.50}', _dark: '{colors.gray.900}' } },
+    muted: { value: { base: '{colors.gray.100}', _dark: '{colors.gray.800}' } },
+    subtle: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.700}' } },
+    contrastBg: { value: { base: '{colors.white}', _dark: '{colors.black}' } },
+    border: { value: { base: '{colors.gray.300}', _dark: '{colors.gray.700}' } },
+    group: { value: { base: '{colors.gray.500}', _dark: '{colors.gray.500}' } },
+    item: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.50}' } },
   },
 }
