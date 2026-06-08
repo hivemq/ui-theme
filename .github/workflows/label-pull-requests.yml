@@ -21,8 +21,11 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      # Pin to tag version 4.1.1 https://github.com/TimonVS/pr-labeler-action/commits/v4.1.1
-      - uses: TimonVS/pr-labeler-action@8b99f404a073744885d8021d1de4e40c6eaf38e2
+      - uses: actions/checkout@v4
+
+      - uses: srvaroa/labeler@bf262763a8a8e191f5847873aecc0f29df84f957 # v1.14.0
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          configuration-path: .github/configs/pull-request-labeler-config.yml
+          config_path: .github/configs/pull-request-labeler-config.yml
+          use_local_config: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
