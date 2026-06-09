@@ -1,11 +1,19 @@
-# Define automatic pull request label strategy.
-# Based on the following project where you can also find additional config options.
-# 🪛 https://github.com/TimonVS/pr-labeler-action/
+# Define automatic pull request label strategy based on branch-name patterns.
+# 🪛 https://github.com/srvaroa/labeler
 
-"bug": ['fix/*']
-"documentation": ['documentation/*']
-"test": ['test/*']
-"chore": ['chore/*']
-"enhancement": ["feature/*"]
-"refactor": ["refactor/*"]
-"ci": ["ci/*"]
+version: 1
+labels:
+  - label: "bug"
+    branch: '^fix/'
+  - label: "documentation"
+    branch: '^documentation/'
+  - label: "test"
+    branch: '^test/'
+  - label: "chore"
+    branch: '^chore/'
+  - label: "enhancement"
+    branch: '^feature/'
+  - label: "refactor"
+    branch: '^refactor/'
+  - label: "ci"
+    branch: '^ci/'
