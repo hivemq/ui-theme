@@ -57,6 +57,15 @@ const headingVariants = [
 
 const textVariants = ['default', 'muted', 'subtle', 'danger', 'warning', 'success', 'info'] as const
 
+const semanticFontSizes = [
+  { name: 'Caption', token: 'caption', mapsTo: 'xs (0.75rem / 12px)' },
+  { name: 'Body', token: 'body', mapsTo: 'sm (0.875rem / 14px)' },
+  { name: 'Subtitle', token: 'subtitle', mapsTo: 'md (1rem / 16px)' },
+  { name: 'Title', token: 'title', mapsTo: 'xl (1.25rem / 20px)' },
+  { name: 'Header', token: 'header', mapsTo: '2xl (1.5rem / 24px)' },
+  { name: 'Display', token: 'display', mapsTo: '4xl (2.25rem / 36px)' },
+] as const
+
 const fontFamilies = [
   { name: 'Heading Font', token: 'heading', example: 'Raleway, Roboto, sans-serif' },
   { name: 'Body Font', token: 'body', example: 'Roboto, Segoe UI, sans-serif' },
@@ -85,7 +94,7 @@ export function Typography() {
                 <Table.Row key={font.token}>
                   <Table.Cell fontWeight="bold">{font.name}</Table.Cell>
                   <Table.Cell>
-                    <Code>fonts.{font.token}</Code>
+                    <Code>{font.token}</Code>
                   </Table.Cell>
                   <Table.Cell>
                     <Text fontFamily={font.token} fontSize="lg">
@@ -94,6 +103,41 @@ export function Typography() {
                     <Text fontSize="xs" color="content.secondary" mt={1}>
                       {font.example}
                     </Text>
+                  </Table.Cell>
+                </Table.Row>
+              ))}
+            </Table.Body>
+          </Table.Root>
+        </Box>
+      </Box>
+
+      {/* Semantic Font Sizes Section */}
+      <Box as="section" mb={16}>
+        <Heading as="h2" size="xl" mb={6}>
+          Semantic Font Sizes
+        </Heading>
+        <Box borderWidth="1px" borderRadius="lg" overflowX="auto">
+          <Table.Root>
+            <Table.Header>
+              <Table.Row>
+                <Table.ColumnHeader>Name</Table.ColumnHeader>
+                <Table.ColumnHeader>Token</Table.ColumnHeader>
+                <Table.ColumnHeader>Maps To</Table.ColumnHeader>
+                <Table.ColumnHeader>Example</Table.ColumnHeader>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {semanticFontSizes.map((size) => (
+                <Table.Row key={size.token}>
+                  <Table.Cell fontWeight="bold">{size.name}</Table.Cell>
+                  <Table.Cell>
+                    <CodeWithCopy>{size.token}</CodeWithCopy>
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Code>{size.mapsTo}</Code>
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Text fontSize={size.token}>The quick brown fox jumps over the lazy dog</Text>
                   </Table.Cell>
                 </Table.Row>
               ))}

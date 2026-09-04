@@ -58,10 +58,10 @@ pnpm add @hivemq/ui-theme
 
 Fonts are not being installed by the theme itself, so you have to install them per project.
 For that you can use the following command to install the fonts you want to use in your project.
-For example, [Roboto](https://www.npmjs.com/package/@fontsource/roboto) and [Raleway](https://www.npmjs.com/package/@fontsource/raleway) as these are also the default fonts used in the theme.
+For example, [Roboto](https://www.npmjs.com/package/@fontsource/roboto), [Raleway](https://www.npmjs.com/package/@fontsource/raleway) and [IntelOne Mono](https://www.npmjs.com/package/@fontsource/intel-one-mono) as these are also the default fonts used in the theme.
 
 ```bash
-pnpm add @fontsource/roboto @fontsource/raleway
+pnpm add @fontsource/roboto @fontsource/raleway @fontsource/intel-one-mono
 ```
 
 Then you can import these fonts ether in your `main.ts` file or `global.css` file.
@@ -85,6 +85,11 @@ Then you can import these fonts ether in your `main.ts` file or `global.css` fil
 @import '../node_modules/@fontsource/raleway/700.css';
 @import '../node_modules/@fontsource/raleway/800.css';
 @import '../node_modules/@fontsource/raleway/900.css';
+
+/* Install IntelOne Mono for monospace text */
+@import '../node_modules/@fontsource/intel-one-mono/400.css';
+@import '../node_modules/@fontsource/intel-one-mono/500.css';
+@import '../node_modules/@fontsource/intel-one-mono/700.css';
 ```
 
 ## Dev

@@ -42,11 +42,22 @@ export const config = mergeConfigs(defaultBaseConfig, {
           value:
             "'IntelOne Mono', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'",
         },
+        mono: {
+          value: '{fonts.monospace}',
+        },
       },
     },
     semanticTokens: {
       colors: {
         ...semanticTokens,
+      },
+      fontSizes: {
+        caption: { value: '{fontSizes.xs}' },
+        body: { value: '{fontSizes.sm}' },
+        subtitle: { value: '{fontSizes.md}' },
+        title: { value: '{fontSizes.xl}' },
+        header: { value: '{fontSizes.2xl}' },
+        display: { value: '{fontSizes.4xl}' },
       },
     },
     slotRecipes: {
