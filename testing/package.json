@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "generate": "pnpm generate:theme",
     "generate:theme": "chakra typegen ./src/theme.ts",
+    "lint:theme": "hivemq-theme-lint src",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:unit": "vitest run --coverage",
@@ -25,9 +26,9 @@
   "dependencies": {
     "@chakra-ui/react": "^3.29.0",
     "@emotion/react": "^11.14.0",
+    "@fontsource/intel-one-mono": "^5.2.8",
     "@fontsource/raleway": "^5.2.8",
     "@fontsource/roboto": "^5.2.8",
-    "@fontsource/roboto-mono": "^5.2.8",
     "@hivemq/ui-theme": "workspace:^",
     "framer-motion": "^12.23.24",
     "lucide-react": "^0.553.0",

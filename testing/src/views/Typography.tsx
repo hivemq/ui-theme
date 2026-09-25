@@ -14,310 +14,165 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Box, Code, Heading, HStack, Stack, Table, Text } from '@chakra-ui/react'
-import { ClipboardIconButton, ClipboardRoot } from '~/components/ui/clipboard'
+import { Code, Grid, Heading, Stack, Table, Text } from '@chakra-ui/react'
+import { DataTable } from '~/components/layout/DataTable'
+import { Section, Subheading } from '~/components/layout/Section'
 
-const CodeWithCopy = ({ children }: { children: string }) => {
-  return (
-    <ClipboardRoot value={children}>
-      <HStack gap={1} alignItems="center">
-        <Code>{children}</Code>
-        <ClipboardIconButton size="2xs" />
-      </HStack>
-    </ClipboardRoot>
-  )
-}
-
-const headingSizes = [
-  'xs',
-  'sm',
-  'md',
-  'lg',
-  'xl',
-  '2xl',
-  '3xl',
-  '4xl',
-  '5xl',
-  '6xl',
-  '7xl',
+export const fontFamilies = [
+  {
+    role: 'Heading',
+    token: 'heading',
+    face: 'Raleway',
+    sample: 'Broker cluster overview',
+    props: { fontSize: '3xl', fontWeight: 'bold', lineHeight: '1.15' },
+  },
+  {
+    role: 'Body',
+    token: 'body',
+    face: 'Roboto',
+    sample:
+      'Clients connect over MQTT 5 with TLS. Sessions persist for 24 hours after disconnect, and retained messages are replicated to every node.',
+    props: { fontSize: 'md', maxW: '60ch' },
+  },
+  {
+    role: 'Monospace',
+    token: 'mono',
+    face: 'IntelOne Mono',
+    sample: 'factory/line-3/+/temperature · qos=1 · retain=false · client=edge-gw-07',
+    props: { fontSize: 'md', overflowWrap: 'anywhere' },
+  },
 ] as const
 
-const textSizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl', '7xl'] as const
-
-const headingVariants = [
-  'default',
-  'muted',
-  'subtle',
-  'danger',
-  'warning',
-  'success',
-  'info',
-  'brand',
+export const semanticFontSizes = [
+  {
+    token: 'caption',
+    mapsTo: 'xs · 0.75rem · 12px',
+    sample: 'Last seen 2 min ago',
+    heading: false,
+  },
+  {
+    token: 'body',
+    mapsTo: 'sm · 0.875rem · 14px',
+    sample: 'Subscriptions on this client use shared groups.',
+    heading: false,
+  },
+  { token: 'subtitle', mapsTo: 'md · 1rem · 16px', sample: 'Session expiry', heading: false },
+  { token: 'title', mapsTo: 'xl · 1.25rem · 20px', sample: 'Bridge configuration', heading: true },
+  { token: 'header', mapsTo: '2xl · 1.5rem · 24px', sample: 'Data Hub policies', heading: true },
+  { token: 'display', mapsTo: '4xl · 2.25rem · 36px', sample: 'Broker overview', heading: true },
 ] as const
 
-const textVariants = ['default', 'muted', 'subtle', 'danger', 'warning', 'success', 'info'] as const
-
-const semanticFontSizes = [
-  { name: 'Caption', token: 'caption', mapsTo: 'xs (0.75rem / 12px)' },
-  { name: 'Body', token: 'body', mapsTo: 'sm (0.875rem / 14px)' },
-  { name: 'Subtitle', token: 'subtitle', mapsTo: 'md (1rem / 16px)' },
-  { name: 'Title', token: 'title', mapsTo: 'xl (1.25rem / 20px)' },
-  { name: 'Header', token: 'header', mapsTo: '2xl (1.5rem / 24px)' },
-  { name: 'Display', token: 'display', mapsTo: '4xl (2.25rem / 36px)' },
+// Text and Heading recipe variants and the content token each maps to (theme/src/config.ts)
+export const textVariants = [
+  { variant: 'default', token: 'primary', on: 'Text · Heading' },
+  { variant: 'muted', token: 'secondary', on: 'Text · Heading' },
+  { variant: 'subtle', token: 'tertiary', on: 'Text · Heading' },
+  { variant: 'danger', token: 'danger', on: 'Text · Heading' },
+  { variant: 'warning', token: 'warning', on: 'Text · Heading' },
+  { variant: 'success', token: 'success', on: 'Text · Heading' },
+  { variant: 'info', token: 'info', on: 'Text · Heading' },
+  { variant: 'brand', token: 'brand', on: 'Heading' },
 ] as const
 
-const fontFamilies = [
-  { name: 'Heading Font', token: 'heading', example: 'Raleway, Roboto, sans-serif' },
-  { name: 'Body Font', token: 'body', example: 'Roboto, Segoe UI, sans-serif' },
-  { name: 'Monospace Font', token: 'mono', example: 'IntelOne Mono, Consolas, monospace' },
-] as const
-
+/**
+ * Font families, the semantic size scale and the Text/Heading variants.
+ */
 export function Typography() {
   return (
-    <Box>
-      {/* Font Families Section */}
-      <Box as="section" mb={16}>
-        <Heading as="h2" size="xl" mb={6}>
-          Font Families
-        </Heading>
-        <Box borderWidth="1px" borderRadius="lg" overflowX="auto">
-          <Table.Root>
-            <Table.Header>
-              <Table.Row>
-                <Table.ColumnHeader>Type</Table.ColumnHeader>
-                <Table.ColumnHeader>Token</Table.ColumnHeader>
-                <Table.ColumnHeader>Example</Table.ColumnHeader>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {fontFamilies.map((font) => (
-                <Table.Row key={font.token}>
-                  <Table.Cell fontWeight="bold">{font.name}</Table.Cell>
-                  <Table.Cell>
-                    <Code>{font.token}</Code>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Text fontFamily={font.token} fontSize="lg">
-                      The quick brown fox jumps over the lazy dog
-                    </Text>
-                    <Text fontSize="xs" color="content.secondary" mt={1}>
-                      {font.example}
-                    </Text>
-                  </Table.Cell>
-                </Table.Row>
-              ))}
-            </Table.Body>
-          </Table.Root>
-        </Box>
-      </Box>
-
-      {/* Semantic Font Sizes Section */}
-      <Box as="section" mb={16}>
-        <Heading as="h2" size="xl" mb={6}>
-          Semantic Font Sizes
-        </Heading>
-        <Box borderWidth="1px" borderRadius="lg" overflowX="auto">
-          <Table.Root>
-            <Table.Header>
-              <Table.Row>
-                <Table.ColumnHeader>Name</Table.ColumnHeader>
-                <Table.ColumnHeader>Token</Table.ColumnHeader>
-                <Table.ColumnHeader>Maps To</Table.ColumnHeader>
-                <Table.ColumnHeader>Example</Table.ColumnHeader>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {semanticFontSizes.map((size) => (
-                <Table.Row key={size.token}>
-                  <Table.Cell fontWeight="bold">{size.name}</Table.Cell>
-                  <Table.Cell>
-                    <CodeWithCopy>{size.token}</CodeWithCopy>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Code>{size.mapsTo}</Code>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Text fontSize={size.token}>The quick brown fox jumps over the lazy dog</Text>
-                  </Table.Cell>
-                </Table.Row>
-              ))}
-            </Table.Body>
-          </Table.Root>
-        </Box>
-      </Box>
-
-      {/* Heading Sizes Section */}
-      <Box as="section" mb={16}>
-        <Heading as="h2" size="xl" mb={6}>
-          Heading Sizes
-        </Heading>
-        <Box borderWidth="1px" borderRadius="lg" overflowX="auto">
-          <Table.Root>
-            <Table.Header>
-              <Table.Row>
-                <Table.ColumnHeader>Size</Table.ColumnHeader>
-                <Table.ColumnHeader>Example</Table.ColumnHeader>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {headingSizes.map((size) => (
-                <Table.Row key={size}>
-                  <Table.Cell>
-                    <Code>{size}</Code>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Heading size={size}>Heading {size}</Heading>
-                  </Table.Cell>
-                </Table.Row>
-              ))}
-            </Table.Body>
-          </Table.Root>
-        </Box>
-      </Box>
-
-      {/* Heading Variants Section */}
-      <Box as="section" mb={16}>
-        <Heading as="h2" size="xl" mb={6}>
-          Heading Variants (Semantic Colors)
-        </Heading>
-        <Box borderWidth="1px" borderRadius="lg" overflowX="auto">
-          <Table.Root>
-            <Table.Header>
-              <Table.Row>
-                <Table.ColumnHeader>Variant</Table.ColumnHeader>
-                <Table.ColumnHeader>Example</Table.ColumnHeader>
-                <Table.ColumnHeader>Color Token</Table.ColumnHeader>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {headingVariants.map((variant) => (
-                <Table.Row key={variant}>
-                  <Table.Cell fontWeight="bold" textTransform="capitalize">
-                    {variant}
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Heading
-                      size="lg"
-                      color={variant === 'default' ? 'content.primary' : `content.${variant}`}
-                    >
-                      {variant === 'default' ? 'Default Heading' : `${variant} Heading`}
-                    </Heading>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <CodeWithCopy>{`content.${variant === 'default' ? 'primary' : variant}`}</CodeWithCopy>
-                  </Table.Cell>
-                </Table.Row>
-              ))}
-            </Table.Body>
-          </Table.Root>
-        </Box>
-      </Box>
-
-      {/* Text Sizes Section */}
-      <Box as="section" mb={16}>
-        <Heading as="h2" size="xl" mb={6}>
-          Text Sizes
-        </Heading>
-        <Box borderWidth="1px" borderRadius="lg" overflowX="auto">
-          <Table.Root>
-            <Table.Header>
-              <Table.Row>
-                <Table.ColumnHeader>Size</Table.ColumnHeader>
-                <Table.ColumnHeader>Example</Table.ColumnHeader>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {textSizes.map((size) => (
-                <Table.Row key={size}>
-                  <Table.Cell>
-                    <Code>{size}</Code>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Text fontSize={size}>Text size {size}</Text>
-                  </Table.Cell>
-                </Table.Row>
-              ))}
-            </Table.Body>
-          </Table.Root>
-        </Box>
-      </Box>
-
-      {/* Text Variants Section */}
-      <Box as="section" mb={16}>
-        <Heading as="h2" size="xl" mb={6}>
-          Text Variants (Semantic Colors)
-        </Heading>
-        <Box borderWidth="1px" borderRadius="lg" overflowX="auto">
-          <Table.Root>
-            <Table.Header>
-              <Table.Row>
-                <Table.ColumnHeader>Variant</Table.ColumnHeader>
-                <Table.ColumnHeader>Example</Table.ColumnHeader>
-                <Table.ColumnHeader>Color Token</Table.ColumnHeader>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {textVariants.map((variant) => (
-                <Table.Row key={variant}>
-                  <Table.Cell fontWeight="bold" textTransform="capitalize">
-                    {variant}
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Text color={variant === 'default' ? 'content.primary' : `content.${variant}`}>
-                      This is {variant === 'default' ? 'default' : variant} text. Lorem ipsum dolor
-                      sit amet, consectetur adipiscing elit.
-                    </Text>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <CodeWithCopy>{`content.${variant === 'default' ? 'primary' : variant}`}</CodeWithCopy>
-                  </Table.Cell>
-                </Table.Row>
-              ))}
-            </Table.Body>
-          </Table.Root>
-        </Box>
-      </Box>
-
-      {/* Combined Example Section */}
-      <Box as="section" mb={16}>
-        <Heading as="h2" size="xl" mb={6}>
-          Combined Example
-        </Heading>
-        <Box borderWidth="1px" borderRadius="lg" p={6}>
-          <Stack gap={4}>
-            <Heading size="3xl">Main Title (3xl)</Heading>
-            <Heading size="xl" color="content.secondary">
-              Subtitle with muted variant <Code>content.secondary</Code>
-            </Heading>
-            <Text>
-              This is default body text using the Roboto font family. It demonstrates how regular
-              paragraphs look with the theme's default styling.
-            </Text>
-            <Text color="content.secondary">
-              This is muted text <Code>content.secondary</Code>, useful for secondary information or
-              descriptions.
-            </Text>
-            <Text color="content.tertiary">
-              This is subtle text <Code>content.tertiary</Code>, for less important details.
-            </Text>
-            <Stack gap={2}>
-              <Text color="content.danger">
-                Danger/Error message <Code>content.danger</Code>
-              </Text>
-              <Text color="content.warning">
-                Warning message <Code>content.warning</Code>
-              </Text>
-              <Text color="content.success">
-                Success message <Code>content.success</Code>
-              </Text>
-              <Text color="content.info">
-                Info message <Code>content.info</Code>
+    <Section
+      id="type"
+      title="Typography"
+      description={
+        <>
+          Raleway for headings, Roboto for everything read, and a monospace face for topics, client
+          IDs and payloads. Fonts aren't bundled with the theme; each app installs them through{' '}
+          <Code size="sm">@fontsource</Code>.
+        </>
+      }
+    >
+      <Stack gap={0}>
+        {fontFamilies.map((family) => (
+          <Grid
+            key={family.token}
+            templateColumns={{ base: '1fr', md: '160px 1fr' }}
+            gap={{ base: 1.5, md: 4 }}
+            py={4}
+            borderTopWidth="1px"
+            borderColor="border"
+            alignItems="baseline"
+          >
+            <Stack gap={0.5}>
+              <Text fontWeight="medium">{family.role}</Text>
+              <Text fontSize="caption" color="content.secondary">
+                <Code size="sm">fonts.{family.token}</Code> · {family.face}
               </Text>
             </Stack>
-            <Code>const example = "Monospace code text";</Code>
-          </Stack>
-        </Box>
-      </Box>
-    </Box>
+            <Text fontFamily={family.token} {...family.props}>
+              {family.sample}
+            </Text>
+          </Grid>
+        ))}
+      </Stack>
+
+      <Subheading>Semantic sizes</Subheading>
+      <DataTable minW="600px">
+        <Table.Header>
+          <Table.Row>
+            <Table.ColumnHeader>Token</Table.ColumnHeader>
+            <Table.ColumnHeader>Maps to</Table.ColumnHeader>
+            <Table.ColumnHeader>Sample</Table.ColumnHeader>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {semanticFontSizes.map((size) => (
+            <Table.Row key={size.token}>
+              <Table.Cell fontFamily="mono">{size.token}</Table.Cell>
+              <Table.Cell fontFamily="mono" fontSize="xs" color="content.secondary">
+                {size.mapsTo}
+              </Table.Cell>
+              <Table.Cell>
+                {size.heading ? (
+                  <Heading as="p" fontSize={size.token} fontWeight="bold" lineHeight="1.15">
+                    {size.sample}
+                  </Heading>
+                ) : (
+                  <Text fontSize={size.token}>{size.sample}</Text>
+                )}
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </DataTable>
+
+      <Subheading>Text and Heading variants</Subheading>
+      <DataTable minW="560px">
+        <Table.Header>
+          <Table.Row>
+            <Table.ColumnHeader>variant</Table.ColumnHeader>
+            <Table.ColumnHeader>Token</Table.ColumnHeader>
+            <Table.ColumnHeader>Sample</Table.ColumnHeader>
+            <Table.ColumnHeader>Available on</Table.ColumnHeader>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {textVariants.map((item) => (
+            <Table.Row key={item.variant}>
+              <Table.Cell fontFamily="mono">{item.variant}</Table.Cell>
+              <Table.Cell fontFamily="mono" fontSize="xs" color="content.secondary">
+                content.{item.token}
+              </Table.Cell>
+              <Table.Cell>
+                <Heading as="p" fontSize="md" fontWeight="bold" color={`content.${item.token}`}>
+                  Session queue at 82%
+                </Heading>
+              </Table.Cell>
+              <Table.Cell fontSize="caption" color="content.secondary">
+                {item.on}
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </DataTable>
+    </Section>
   )
 }

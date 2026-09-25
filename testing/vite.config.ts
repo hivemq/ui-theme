@@ -35,6 +35,10 @@ export default defineConfig({
     },
   },
   test: {
+    // The theme package only declares a `module` entry, which Vitest's Node resolution ignores
+    alias: {
+      '@hivemq/ui-theme': fileURLToPath(new URL('../theme/src/index.ts', import.meta.url)),
+    },
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],

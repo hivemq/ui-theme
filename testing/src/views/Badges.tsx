@@ -14,62 +14,59 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Badge, Box, Heading, Table, Text } from '@chakra-ui/react'
+import { Badge, Table } from '@chakra-ui/react'
+import { DataTable } from '~/components/layout/DataTable'
+import { Section } from '~/components/layout/Section'
+import { paletteProp, semanticColorPalettes } from '~/views/ButtonVariations'
 
-const badgeVariants = ['solid', 'outline', 'subtle', 'surface', 'plain'] as const
+export const badgeVariants = ['solid', 'subtle', 'surface', 'outline', 'plain'] as const
 
-const badgeSizes = ['xs', 'sm', 'md', 'lg'] as const
+// Example status labels: pick the palette for its meaning, not its hue
+export const badgeLabels: Record<(typeof semanticColorPalettes)[number], string> = {
+  default: 'Idle',
+  brand: 'Enterprise',
+  secondary: 'Draft',
+  success: 'Connected',
+  info: 'Retained',
+  danger: 'Offline',
+  warning: 'Degraded',
+  highlight: 'Beta',
+}
 
-const semanticColorPalettes = [
-  'default',
-  'brand',
-  'secondary',
-  'success',
-  'info',
-  'danger',
-  'warning',
-  'highlight',
-] as const
-
+/**
+ * Status badges for every semantic palette and variant.
+ */
 export function Badges() {
   return (
-    <Box>
-      {/* Section 2: Color Palettes × Variants */}
-      {semanticColorPalettes.map((colorPalette) => (
-        <Box key={colorPalette} as="section" mb={16}>
-          <Heading as="h2" size="xl" mb={6} textTransform="capitalize">
-            {colorPalette}
-          </Heading>
-          <Box borderWidth="1px" borderRadius="lg" overflowX="auto">
-            <Table.Root>
-              <Table.Header>
-                <Table.Row>
-                  <Table.ColumnHeader>Variant</Table.ColumnHeader>
-                  {badgeSizes.map((size) => (
-                    <Table.ColumnHeader key={size}>{size}</Table.ColumnHeader>
-                  ))}
-                </Table.Row>
-              </Table.Header>
-              <Table.Body>
-                {badgeVariants.map((variant) => (
-                  <Table.Row key={variant}>
-                    <Table.Cell>
-                      <Text fontWeight="bold">{variant}</Text>
-                    </Table.Cell>
-                    {badgeSizes.map((size) => (
-                      <Table.Cell key={size}>
-                        <Badge colorPalette={colorPalette} variant={variant} size={size}>
-                          Badge
-                        </Badge>
-                      </Table.Cell>
-                    ))}
-                  </Table.Row>
-                ))}
-              </Table.Body>
-            </Table.Root>
-          </Box>
-        </Box>
-      ))}
-    </Box>
+    <Section
+      id="badges"
+      title="Badges"
+      description="Status labels for clients, sessions and extensions. Pick the palette for its meaning, not its hue."
+    >
+      <DataTable minW="620px">
+        <Table.Header>
+          <Table.Row>
+            <Table.ColumnHeader>colorPalette</Table.ColumnHeader>
+            {badgeVariants.map((variant) => (
+              <Table.ColumnHeader key={variant}>{variant}</Table.ColumnHeader>
+            ))}
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {semanticColorPalettes.map((palette) => (
+            <Table.Row key={palette}>
+              <Table.Cell fontFamily="mono">{palette}</Table.Cell>
+              {badgeVariants.map((variant) => (
+                <Table.Cell key={variant}>
+                  <Badge colorPalette={paletteProp(palette)} variant={variant}>
+                    {badgeLabels[palette]}
+                  </Badge>
+                </Table.Cell>
+              ))}
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </DataTable>
+    </Section>
   )
 }

@@ -14,17 +14,23 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
 import { type RenderOptions, render as rtlRender } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import type { ReactElement, ReactNode } from 'react'
+import { ColorModeProvider } from '~/components/ui/color-mode'
+import system from '~/theme'
 
 interface WrapperProps {
   children: ReactNode
 }
 
 function Wrapper({ children }: WrapperProps) {
-  return <ChakraProvider value={defaultSystem}>{children}</ChakraProvider>
+  return (
+    <ChakraProvider value={system}>
+      <ColorModeProvider>{children}</ColorModeProvider>
+    </ChakraProvider>
+  )
 }
 
 function render(ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) {
