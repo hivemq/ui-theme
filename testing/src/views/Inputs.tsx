@@ -14,62 +14,62 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Box, Field, Input, Table, Text } from '@chakra-ui/react'
+import { Field, Input, Table } from '@chakra-ui/react'
+import { DataTable } from '~/components/layout/DataTable'
+import { Section } from '~/components/layout/Section'
 
-const inputVariants = ['outline', 'subtle', 'flushed'] as const
+export const inputVariants = ['outline', 'subtle', 'flushed'] as const
 
 /**
- * A component that renders a matrix of input variants.
- * Shows different variants and states for the default input.
+ * Input variants in their default, error and disabled states.
  */
 export function Inputs() {
   return (
-    <Box>
-      <Box borderWidth="1px" borderRadius="lg" overflowX="auto">
-        <Table.Root>
-          <Table.Header>
-            <Table.Row>
-              <Table.ColumnHeader>Variant</Table.ColumnHeader>
-              <Table.ColumnHeader>Default</Table.ColumnHeader>
-              <Table.ColumnHeader>Error</Table.ColumnHeader>
-              <Table.ColumnHeader>Disabled</Table.ColumnHeader>
+    <Section
+      id="inputs"
+      title="Inputs"
+      description="Each variant in its default, error and disabled state."
+    >
+      <DataTable minW="760px">
+        <Table.Header>
+          <Table.Row>
+            <Table.ColumnHeader>variant</Table.ColumnHeader>
+            <Table.ColumnHeader>Default</Table.ColumnHeader>
+            <Table.ColumnHeader>Error</Table.ColumnHeader>
+            <Table.ColumnHeader>Disabled</Table.ColumnHeader>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {inputVariants.map((variant) => (
+            <Table.Row key={variant}>
+              <Table.Cell fontFamily="mono" verticalAlign="top">
+                {variant}
+              </Table.Cell>
+              <Table.Cell verticalAlign="top">
+                <Field.Root>
+                  <Field.Label>Topic filter</Field.Label>
+                  <Input variant={variant} placeholder="factory/+/temperature" />
+                  <Field.HelperText>+ matches one level, # matches the rest.</Field.HelperText>
+                </Field.Root>
+              </Table.Cell>
+              <Table.Cell verticalAlign="top">
+                <Field.Root invalid>
+                  <Field.Label>Topic filter</Field.Label>
+                  <Input variant={variant} defaultValue="factory/#/temp" />
+                  <Field.ErrorText>Put # last: factory/line-3/#</Field.ErrorText>
+                </Field.Root>
+              </Table.Cell>
+              <Table.Cell verticalAlign="top">
+                <Field.Root disabled>
+                  <Field.Label>Client ID</Field.Label>
+                  <Input variant={variant} defaultValue="hmq_edge_01" />
+                  <Field.HelperText>Assigned by the broker.</Field.HelperText>
+                </Field.Root>
+              </Table.Cell>
             </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {inputVariants.map((variant) => (
-              <Table.Row key={variant}>
-                <Table.Cell>
-                  <Text fontWeight="bold">{variant}</Text>
-                </Table.Cell>
-                {/* Default State */}
-                <Table.Cell>
-                  <Field.Root>
-                    <Field.Label>Label</Field.Label>
-                    <Input variant={variant} placeholder="Enter text..." />
-                    <Field.HelperText>Helper text</Field.HelperText>
-                  </Field.Root>
-                </Table.Cell>
-                {/* Error State */}
-                <Table.Cell>
-                  <Field.Root invalid>
-                    <Field.Label>Label</Field.Label>
-                    <Input variant={variant} placeholder="Enter text..." />
-                    <Field.ErrorText>This field has an error</Field.ErrorText>
-                  </Field.Root>
-                </Table.Cell>
-                {/* Disabled State */}
-                <Table.Cell>
-                  <Field.Root disabled>
-                    <Field.Label>Label</Field.Label>
-                    <Input variant={variant} placeholder="Disabled" disabled />
-                    <Field.HelperText>Disabled input</Field.HelperText>
-                  </Field.Root>
-                </Table.Cell>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table.Root>
-      </Box>
-    </Box>
+          ))}
+        </Table.Body>
+      </DataTable>
+    </Section>
   )
 }

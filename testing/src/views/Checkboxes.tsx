@@ -14,185 +14,120 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Box, Checkbox, Heading, Table, Text } from '@chakra-ui/react'
+import { Checkbox, Code, HStack, Table } from '@chakra-ui/react'
+import { DataTable } from '~/components/layout/DataTable'
+import { Section, Subheading } from '~/components/layout/Section'
+import { paletteProp, semanticColorPalettes } from '~/views/ButtonVariations'
 
-const checkboxVariants = ['solid', 'outline', 'subtle'] as const
-const checkboxSizes = ['xs', 'sm', 'md', 'lg'] as const
-const colorPalettes = [
-  'default',
-  'brand',
-  'secondary',
-  'success',
-  'info',
-  'danger',
-  'warning',
-  'highlight',
-] as const
+export const checkboxVariants = ['solid', 'outline', 'subtle'] as const
+export const checkboxSizes = ['xs', 'sm', 'md', 'lg'] as const
+
+type CheckedState = boolean | 'indeterminate'
+
+export const checkboxStates: {
+  label: string
+  name: string
+  checked: CheckedState
+  disabled?: boolean
+}[] = [
+  { label: 'Unchecked', name: 'Clean start', checked: false },
+  { label: 'Checked', name: 'Retain', checked: true },
+  { label: 'Indeterminate', name: 'All topics', checked: 'indeterminate' },
+  { label: 'Disabled', name: 'Persistent', checked: true, disabled: true },
+]
 
 /**
- * A component that renders a matrix of checkbox variants and sizes.
- * Shows different variants, sizes, and states for the themed checkbox.
+ * Checkbox variants, states and sizes.
  */
 export function Checkboxes() {
   return (
-    <Box>
-      {/* Variants × States matrix */}
-      <Box as="section" mb={16}>
-        <Heading as="h2" size="xl" mb={6}>
-          Variants
-        </Heading>
-        <Box borderWidth="1px" borderRadius="lg" overflowX="auto">
-          <Table.Root>
-            <Table.Header>
-              <Table.Row>
-                <Table.ColumnHeader>Variant</Table.ColumnHeader>
-                <Table.ColumnHeader>Unchecked</Table.ColumnHeader>
-                <Table.ColumnHeader>Checked</Table.ColumnHeader>
-                <Table.ColumnHeader>Indeterminate</Table.ColumnHeader>
-                <Table.ColumnHeader>Disabled</Table.ColumnHeader>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {checkboxVariants.map((variant) => (
-                <Table.Row key={variant}>
-                  <Table.Cell>
-                    <Text fontWeight="bold">{variant}</Text>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Checkbox.Root variant={variant}>
-                      <Checkbox.HiddenInput />
-                      <Checkbox.Control />
-                      <Checkbox.Label>Label</Checkbox.Label>
-                    </Checkbox.Root>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Checkbox.Root variant={variant} defaultChecked>
-                      <Checkbox.HiddenInput />
-                      <Checkbox.Control />
-                      <Checkbox.Label>Label</Checkbox.Label>
-                    </Checkbox.Root>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Checkbox.Root variant={variant} checked="indeterminate">
-                      <Checkbox.HiddenInput />
-                      <Checkbox.Control />
-                      <Checkbox.Label>Label</Checkbox.Label>
-                    </Checkbox.Root>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Checkbox.Root variant={variant} disabled defaultChecked>
-                      <Checkbox.HiddenInput />
-                      <Checkbox.Control />
-                      <Checkbox.Label>Label</Checkbox.Label>
-                    </Checkbox.Root>
-                  </Table.Cell>
-                </Table.Row>
+    <Section
+      id="checkboxes"
+      title="Checkboxes"
+      description={
+        <>
+          Checkboxes default to blue (<Code size="sm">blue.600</Code>), with a white control in
+          light mode and <Code size="sm">gray.800</Code> in dark. Pass a{' '}
+          <Code size="sm">colorPalette</Code> to use any semantic palette.
+        </>
+      }
+    >
+      <DataTable minW="680px">
+        <Table.Header>
+          <Table.Row>
+            <Table.ColumnHeader>variant</Table.ColumnHeader>
+            {checkboxStates.map((state) => (
+              <Table.ColumnHeader key={state.label}>{state.label}</Table.ColumnHeader>
+            ))}
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {checkboxVariants.map((variant) => (
+            <Table.Row key={variant}>
+              <Table.Cell fontFamily="mono">{variant}</Table.Cell>
+              {checkboxStates.map((state) => (
+                <Table.Cell key={state.label}>
+                  <Checkbox.Root
+                    variant={variant}
+                    defaultChecked={state.checked}
+                    disabled={state.disabled}
+                  >
+                    <Checkbox.HiddenInput />
+                    <Checkbox.Control />
+                    <Checkbox.Label>{state.name}</Checkbox.Label>
+                  </Checkbox.Root>
+                </Table.Cell>
               ))}
-            </Table.Body>
-          </Table.Root>
-        </Box>
-      </Box>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </DataTable>
 
-      {/* Color Palettes */}
-      <Box as="section" mb={16}>
-        <Heading as="h2" size="xl" mb={6}>
-          Color Palettes
-        </Heading>
-        <Box borderWidth="1px" borderRadius="lg" overflowX="auto">
-          <Table.Root>
-            <Table.Header>
-              <Table.Row>
-                <Table.ColumnHeader>Palette</Table.ColumnHeader>
-                <Table.ColumnHeader>Unchecked</Table.ColumnHeader>
-                <Table.ColumnHeader>Checked</Table.ColumnHeader>
-                <Table.ColumnHeader>Indeterminate</Table.ColumnHeader>
-                <Table.ColumnHeader>Disabled</Table.ColumnHeader>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {colorPalettes.map((palette) => {
-                const paletteValue = palette === 'default' ? undefined : palette
-                return (
-                  <Table.Row key={palette}>
-                    <Table.Cell>
-                      <Text fontWeight="bold">{palette}</Text>
-                    </Table.Cell>
-                    <Table.Cell>
-                      <Checkbox.Root colorPalette={paletteValue}>
-                        <Checkbox.HiddenInput />
-                        <Checkbox.Control />
-                        <Checkbox.Label>Label</Checkbox.Label>
-                      </Checkbox.Root>
-                    </Table.Cell>
-                    <Table.Cell>
-                      <Checkbox.Root colorPalette={paletteValue} defaultChecked>
-                        <Checkbox.HiddenInput />
-                        <Checkbox.Control />
-                        <Checkbox.Label>Label</Checkbox.Label>
-                      </Checkbox.Root>
-                    </Table.Cell>
-                    <Table.Cell>
-                      <Checkbox.Root colorPalette={paletteValue} checked="indeterminate">
-                        <Checkbox.HiddenInput />
-                        <Checkbox.Control />
-                        <Checkbox.Label>Label</Checkbox.Label>
-                      </Checkbox.Root>
-                    </Table.Cell>
-                    <Table.Cell>
-                      <Checkbox.Root colorPalette={paletteValue} disabled defaultChecked>
-                        <Checkbox.HiddenInput />
-                        <Checkbox.Control />
-                        <Checkbox.Label>Label</Checkbox.Label>
-                      </Checkbox.Root>
-                    </Table.Cell>
-                  </Table.Row>
-                )
-              })}
-            </Table.Body>
-          </Table.Root>
-        </Box>
-      </Box>
-
-      {/* Sizes */}
-      <Box as="section" mb={16}>
-        <Heading as="h2" size="xl" mb={6}>
-          Sizes
-        </Heading>
-        <Box borderWidth="1px" borderRadius="lg" overflowX="auto">
-          <Table.Root>
-            <Table.Header>
-              <Table.Row>
-                <Table.ColumnHeader>Size</Table.ColumnHeader>
-                <Table.ColumnHeader>Unchecked</Table.ColumnHeader>
-                <Table.ColumnHeader>Checked</Table.ColumnHeader>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {checkboxSizes.map((size) => (
-                <Table.Row key={size}>
-                  <Table.Cell>
-                    <Text fontWeight="bold">{size}</Text>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Checkbox.Root size={size}>
-                      <Checkbox.HiddenInput />
-                      <Checkbox.Control />
-                      <Checkbox.Label>Label</Checkbox.Label>
-                    </Checkbox.Root>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Checkbox.Root size={size} defaultChecked>
-                      <Checkbox.HiddenInput />
-                      <Checkbox.Control />
-                      <Checkbox.Label>Label</Checkbox.Label>
-                    </Checkbox.Root>
-                  </Table.Cell>
-                </Table.Row>
+      <Subheading>Color palettes</Subheading>
+      <DataTable minW="680px">
+        <Table.Header>
+          <Table.Row>
+            <Table.ColumnHeader>colorPalette</Table.ColumnHeader>
+            {checkboxStates.map((state) => (
+              <Table.ColumnHeader key={state.label}>{state.label}</Table.ColumnHeader>
+            ))}
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {semanticColorPalettes.map((palette) => (
+            <Table.Row key={palette} data-testid={`checkbox-palette-${palette}`}>
+              {/* Without a colorPalette prop the recipe's pinned blue applies, not Chakra's gray */}
+              <Table.Cell fontFamily="mono">
+                {palette === 'default' ? 'default (blue)' : palette}
+              </Table.Cell>
+              {checkboxStates.map((state) => (
+                <Table.Cell key={state.label}>
+                  <Checkbox.Root
+                    colorPalette={paletteProp(palette)}
+                    defaultChecked={state.checked}
+                    disabled={state.disabled}
+                  >
+                    <Checkbox.HiddenInput />
+                    <Checkbox.Control />
+                    <Checkbox.Label>{state.name}</Checkbox.Label>
+                  </Checkbox.Root>
+                </Table.Cell>
               ))}
-            </Table.Body>
-          </Table.Root>
-        </Box>
-      </Box>
-    </Box>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </DataTable>
+
+      <Subheading>Sizes</Subheading>
+      <HStack gap={6} wrap="wrap">
+        {checkboxSizes.map((size) => (
+          <Checkbox.Root key={size} size={size} defaultChecked>
+            <Checkbox.HiddenInput />
+            <Checkbox.Control />
+            <Checkbox.Label>{size}</Checkbox.Label>
+          </Checkbox.Root>
+        ))}
+      </HStack>
+    </Section>
   )
 }

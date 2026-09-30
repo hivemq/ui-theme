@@ -14,10 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Box, Button, type ConditionalValue, Heading, Table, Text } from '@chakra-ui/react'
+import { Button, Code, HStack, Table } from '@chakra-ui/react'
+import { DataTable } from '~/components/layout/DataTable'
+import { Section, Subheading } from '~/components/layout/Section'
 
-// Only semantic color palettes - no primitive colors
-const semanticColorPalettes = [
+// Only semantic color palettes - no primitive colors. 'default' is Chakra's gray palette.
+export const semanticColorPalettes = [
   'default',
   'brand',
   'secondary',
@@ -28,62 +30,67 @@ const semanticColorPalettes = [
   'highlight',
 ] as const
 
-const buttonVariants: ConditionalValue<
-  'outline' | 'solid' | 'ghost' | 'subtle' | 'surface' | 'plain'
->[] = ['solid', 'outline', 'ghost', 'subtle', 'surface', 'plain']
+export const buttonVariants = ['solid', 'subtle', 'surface', 'outline', 'ghost', 'plain'] as const
+
+export const buttonSizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const
+
+export const paletteProp = (palette: (typeof semanticColorPalettes)[number]) =>
+  palette === 'default' ? undefined : palette
 
 /**
- * A component that renders a matrix of button styles for each semantic color.
+ * Every button variant for every semantic palette, plus sizes and states.
  */
 export function ButtonVariations() {
   return (
-    <Box>
-      {semanticColorPalettes.map((colorName) => (
-        <Box key={colorName} as="section" mb={16}>
-          <Heading as="h2" size="xl" mb={6} textTransform="capitalize">
-            {colorName}
-          </Heading>
-          <Box borderWidth="1px" borderRadius="lg" overflowX="auto">
-            <Table.Root>
-              <Table.Header>
-                <Table.Row>
-                  <Table.ColumnHeader>Variant</Table.ColumnHeader>
-                  <Table.ColumnHeader>Default</Table.ColumnHeader>
-                  <Table.ColumnHeader>Loading</Table.ColumnHeader>
-                  <Table.ColumnHeader>Disabled</Table.ColumnHeader>
-                </Table.Row>
-              </Table.Header>
-              <Table.Body>
-                {buttonVariants.map((variant) => (
-                  <Table.Row key={variant.toString()}>
-                    <Table.Cell>
-                      <Text fontWeight="bold">{variant.toString()}</Text>
-                    </Table.Cell>
-                    {/* Default State */}
-                    <Table.Cell>
-                      <Button colorPalette={colorName} variant={variant}>
-                        Button
-                      </Button>
-                    </Table.Cell>
-                    {/* Loading State */}
-                    <Table.Cell>
-                      <Button colorPalette={colorName} variant={variant} loading>
-                        Button
-                      </Button>
-                    </Table.Cell>
-                    {/* Disabled State */}
-                    <Table.Cell>
-                      <Button colorPalette={colorName} variant={variant} disabled>
-                        Button
-                      </Button>
-                    </Table.Cell>
-                  </Table.Row>
-                ))}
-              </Table.Body>
-            </Table.Root>
-          </Box>
-        </Box>
-      ))}
-    </Box>
+    <Section
+      id="buttons"
+      title="Buttons"
+      description={
+        <>
+          Six variants for each of the eight palettes. <Code size="sm">default</Code> is Chakra's
+          gray palette, resolved through HiveMQ's warm grays.
+        </>
+      }
+    >
+      <DataTable minW="820px">
+        <Table.Header>
+          <Table.Row>
+            <Table.ColumnHeader>colorPalette</Table.ColumnHeader>
+            {buttonVariants.map((variant) => (
+              <Table.ColumnHeader key={variant}>{variant}</Table.ColumnHeader>
+            ))}
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {semanticColorPalettes.map((palette) => (
+            <Table.Row key={palette}>
+              <Table.Cell fontFamily="mono">{palette}</Table.Cell>
+              {buttonVariants.map((variant) => (
+                <Table.Cell key={variant}>
+                  <Button size="sm" colorPalette={paletteProp(palette)} variant={variant}>
+                    Publish
+                  </Button>
+                </Table.Cell>
+              ))}
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </DataTable>
+
+      <Subheading>Sizes and states</Subheading>
+      <HStack gap={2.5} wrap="wrap">
+        {buttonSizes.map((size) => (
+          <Button key={size} size={size} colorPalette="brand">
+            {size}
+          </Button>
+        ))}
+        <Button colorPalette="brand" loading loadingText="Deploying">
+          Deploy
+        </Button>
+        <Button colorPalette="brand" disabled>
+          Disabled
+        </Button>
+      </HStack>
+    </Section>
   )
 }

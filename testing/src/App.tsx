@@ -14,110 +14,96 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Box, Tabs, useTabs } from '@chakra-ui/react'
-import { useTheme } from 'next-themes'
+import { Box, Container, Grid, Link, Text } from '@chakra-ui/react'
+import { type NavGroup, SideNav } from '~/components/layout/SideNav'
 import { Toaster } from '~/components/ui/toaster'
-import { Alerts } from '~/views/Alerts.tsx'
-import { Badges } from '~/views/Badges.tsx'
-import { ButtonVariations } from '~/views/ButtonVariations.tsx'
-import { Checkboxes } from '~/views/Checkboxes.tsx'
-import { Colors } from '~/views/Colors.tsx'
-import { Inputs } from '~/views/Inputs.tsx'
-import { SemanticTokens } from '~/views/SemanticColors.tsx'
-import { Toasts } from '~/views/Toasts.tsx'
-import { Typography } from '~/views/Typography.tsx'
+import { themeVersion } from '~/util/tokens'
+import { Alerts } from '~/views/Alerts'
+import { Badges } from '~/views/Badges'
+import { Breakpoints } from '~/views/Breakpoints'
+import { ButtonVariations } from '~/views/ButtonVariations'
+import { ChartColors } from '~/views/ChartColors'
+import { Checkboxes } from '~/views/Checkboxes'
+import { ContentTokens } from '~/views/ContentTokens'
+import { GetStarted, REPOSITORY_URL } from '~/views/GetStarted'
+import { Inputs } from '~/views/Inputs'
+import { Masthead } from '~/views/Masthead'
+import { Primitives } from '~/views/Primitives'
+import { SemanticPalettes } from '~/views/SemanticPalettes'
+import { Toasts } from '~/views/Toasts'
+import { Typography } from '~/views/Typography'
 
-export type ChildProps = {
-  isDarkMode: boolean
-}
+// Ids must match the `id` of each view's Section
+export const navGroups: NavGroup[] = [
+  {
+    label: 'Overview',
+    items: [{ id: 'get-started', label: 'Get started' }],
+  },
+  {
+    label: 'Foundations',
+    items: [
+      { id: 'primitives', label: 'Primitives' },
+      { id: 'palettes', label: 'Semantic palettes' },
+      { id: 'content', label: 'Content & surfaces' },
+      { id: 'charts', label: 'Chart colors' },
+      { id: 'type', label: 'Typography' },
+      { id: 'breakpoints', label: 'Breakpoints' },
+    ],
+  },
+  {
+    label: 'Components',
+    items: [
+      { id: 'buttons', label: 'Buttons' },
+      { id: 'badges', label: 'Badges' },
+      { id: 'alerts', label: 'Alerts' },
+      { id: 'inputs', label: 'Inputs' },
+      { id: 'checkboxes', label: 'Checkboxes' },
+      { id: 'toasts', label: 'Toasts' },
+    ],
+  },
+]
 
 function App() {
-  const { resolvedTheme, setTheme, forcedTheme } = useTheme()
-  const colorMode = forcedTheme || resolvedTheme
-
-  const style: React.CSSProperties = {
-    padding: '2rem',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '2rem',
-    transition: 'background-color 0.2s ease-in-out',
-    minHeight: '100vh',
-  }
-
-  const contentTabs = useTabs({
-    defaultValue: 'color-tokens',
-  })
-
   return (
-    <Box style={style} bg="shell.bg">
-      {/* Theme switcher tabs */}
-      <Box
-        position="sticky"
-        top="0"
-        zIndex={999} // Use a theme value for z-index
-        bg="shell.bg"
-        py={4}
-      >
-        <Tabs.Root
-          size={'lg'}
-          variant={'enclosed'}
-          value={colorMode === 'dark' ? 'dark' : 'light'}
-          onValueChange={(e) => {
-            setTheme(e.value === 'dark' ? 'dark' : 'light')
-          }}
+    // The theme defines fontSizes.body (14px) but doesn't apply it globally, so the page sets it here
+    <Box bg="bg.default" color="content.primary" fontSize="body" lineHeight="tall" minH="100dvh">
+      <Container maxW="1280px" px={{ base: 4, md: 6 }}>
+        <Masthead />
+        <Grid
+          templateColumns={{ base: 'minmax(0, 1fr)', lg: '188px minmax(0, 1fr)' }}
+          gap={{ lg: 12 }}
         >
-          <Tabs.List bg="shell.muted" borderRadius="md" p={1}>
-            <Tabs.Trigger color={'text'} value={'light'}>
-              Light Mode
-            </Tabs.Trigger>
-            <Tabs.Trigger color={'text'} value={'dark'}>
-              Dark Mode
-            </Tabs.Trigger>
-          </Tabs.List>
-        </Tabs.Root>
-      </Box>
-
-      {/* Content tabs */}
-      <Tabs.RootProvider size={'lg'} value={contentTabs} lazyMount={true}>
-        <Tabs.List>
-          <Tabs.Trigger value={'color-tokens'}>Color Tokens</Tabs.Trigger>
-          <Tabs.Trigger value={'semantic-tokens'}>Semantic Tokens</Tabs.Trigger>
-          <Tabs.Trigger value={'typography'}>Typography</Tabs.Trigger>
-          <Tabs.Trigger value={'buttons'}>Buttons</Tabs.Trigger>
-          <Tabs.Trigger value={'inputs'}>Inputs</Tabs.Trigger>
-          <Tabs.Trigger value={'checkboxes'}>Checkboxes</Tabs.Trigger>
-          <Tabs.Trigger value={'badges'}>Badges</Tabs.Trigger>
-          <Tabs.Trigger value={'alerts'}>Alerts</Tabs.Trigger>
-          <Tabs.Trigger value={'toasts'}>Toasts</Tabs.Trigger>
-        </Tabs.List>
-        <Tabs.Content value={'color-tokens'}>
-          <Colors />
-        </Tabs.Content>
-        <Tabs.Content value={'semantic-tokens'}>
-          <SemanticTokens isDarkMode={colorMode === 'dark'} />
-        </Tabs.Content>
-        <Tabs.Content value={'typography'}>
-          <Typography />
-        </Tabs.Content>
-        <Tabs.Content value={'buttons'}>
-          <ButtonVariations />
-        </Tabs.Content>
-        <Tabs.Content value={'inputs'}>
-          <Inputs />
-        </Tabs.Content>
-        <Tabs.Content value={'checkboxes'}>
-          <Checkboxes />
-        </Tabs.Content>
-        <Tabs.Content value={'badges'}>
-          <Badges />
-        </Tabs.Content>
-        <Tabs.Content value={'alerts'}>
-          <Alerts />
-        </Tabs.Content>
-        <Tabs.Content value={'toasts'}>
-          <Toasts />
-        </Tabs.Content>
-      </Tabs.RootProvider>
+          <SideNav groups={navGroups} />
+          <Box as="main" minW={0} pb={16}>
+            <GetStarted />
+            <Primitives />
+            <SemanticPalettes />
+            <ContentTokens />
+            <ChartColors />
+            <Typography />
+            <Breakpoints />
+            <ButtonVariations />
+            <Badges />
+            <Alerts />
+            <Inputs />
+            <Checkboxes />
+            <Toasts />
+          </Box>
+        </Grid>
+        <Text
+          as="footer"
+          py={6}
+          borderTopWidth="1px"
+          borderColor="border"
+          fontSize="caption"
+          color="content.secondary"
+        >
+          Generated from @hivemq/ui-theme {themeVersion} ·{' '}
+          <Link href={REPOSITORY_URL} target="_blank" rel="noreferrer" textDecoration="underline">
+            View on GitHub
+          </Link>
+        </Text>
+      </Container>
       <Toaster />
     </Box>
   )

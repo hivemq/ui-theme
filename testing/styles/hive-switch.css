@@ -1,0 +1,17 @@
+/* biome-ignore-all lint/correctness/noUnknownTypeSelector: "root" is the view-transition-name argument of the pseudo-elements, not a type selector */
+
+/* The color mode switch dissolves the old page into honeycomb (see HiveSwitch.tsx).
+   Replace the default cross-fade so the old snapshot sits on top and is clipped away. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 0;
+}

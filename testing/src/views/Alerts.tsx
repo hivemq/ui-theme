@@ -14,73 +14,80 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Alert, Box, Heading, Table, Text } from '@chakra-ui/react'
+import { Alert, SegmentGroup, SimpleGrid } from '@chakra-ui/react'
+import { useState } from 'react'
+import { Section } from '~/components/layout/Section'
 
-const alertStatuses = ['info', 'warning', 'success', 'danger'] as const
+export const alertVariants = ['subtle', 'surface', 'outline', 'solid'] as const
 
-const alertVariants = ['subtle', 'surface', 'outline', 'solid'] as const
+type AlertVariant = (typeof alertVariants)[number]
 
+export const alertExamples = [
+  {
+    status: 'info',
+    title: 'Retained messages are replicated',
+    description: 'New subscribers on factory/# receive the last value immediately.',
+  },
+  {
+    status: 'success',
+    title: 'Bridge to cloud-cluster connected',
+    description: 'Forwarding 3 topic filters at QoS 1.',
+  },
+  {
+    status: 'warning',
+    title: 'Session queue at 82% capacity',
+    description: 'Client edge-gw-07 is offline. Messages are dropped at 100%.',
+  },
+  {
+    status: 'danger',
+    title: 'TLS handshake failed',
+    description:
+      'The certificate for broker-2.eu expired on 21 Sep 2026. Upload a new one to reconnect.',
+  },
+] as const
+
+/**
+ * The four alert statuses, switchable between variants.
+ */
 export function Alerts() {
+  const [variant, setVariant] = useState<AlertVariant>('subtle')
+
   return (
-    <Box>
-      {alertStatuses.map((colorPalette) => (
-        <Box key={colorPalette} as="section" mb={16}>
-          <Heading as="h2" size="xl" mb={6} textTransform="capitalize">
-            {colorPalette}
-          </Heading>
-          <Box borderWidth="1px" borderRadius="lg" overflowX="auto">
-            <Table.Root>
-              <Table.Header>
-                <Table.Row>
-                  <Table.ColumnHeader>Variant</Table.ColumnHeader>
-                  <Table.ColumnHeader>Small</Table.ColumnHeader>
-                  <Table.ColumnHeader>Medium</Table.ColumnHeader>
-                  <Table.ColumnHeader>Large</Table.ColumnHeader>
-                </Table.Row>
-              </Table.Header>
-              <Table.Body>
-                {alertVariants.map((variant) => (
-                  <Table.Row key={variant}>
-                    <Table.Cell>
-                      <Text fontWeight="bold">{variant}</Text>
-                    </Table.Cell>
-                    {/* Small Size */}
-                    <Table.Cell>
-                      <Alert.Root colorPalette={colorPalette} variant={variant} size="sm">
-                        <Alert.Indicator />
-                        <Alert.Content>
-                          <Alert.Title>Alert Title</Alert.Title>
-                          <Alert.Description>This is a {colorPalette} alert.</Alert.Description>
-                        </Alert.Content>
-                      </Alert.Root>
-                    </Table.Cell>
-                    {/* Medium Size */}
-                    <Table.Cell>
-                      <Alert.Root colorPalette={colorPalette} variant={variant} size="md">
-                        <Alert.Indicator />
-                        <Alert.Content>
-                          <Alert.Title>Alert Title</Alert.Title>
-                          <Alert.Description>This is a {colorPalette} alert.</Alert.Description>
-                        </Alert.Content>
-                      </Alert.Root>
-                    </Table.Cell>
-                    {/* Large Size */}
-                    <Table.Cell>
-                      <Alert.Root colorPalette={colorPalette} variant={variant} size="lg">
-                        <Alert.Indicator />
-                        <Alert.Content>
-                          <Alert.Title>Alert Title</Alert.Title>
-                          <Alert.Description>This is a {colorPalette} alert.</Alert.Description>
-                        </Alert.Content>
-                      </Alert.Root>
-                    </Table.Cell>
-                  </Table.Row>
-                ))}
-              </Table.Body>
-            </Table.Root>
-          </Box>
-        </Box>
-      ))}
-    </Box>
+    <Section
+      id="alerts"
+      title="Alerts"
+      description="Status messages inside a page. Use the palette that matches the status."
+    >
+      <SegmentGroup.Root
+        size="sm"
+        alignSelf="start"
+        aria-label="Alert variant"
+        value={variant}
+        onValueChange={(details) => {
+          if (details.value) {
+            setVariant(details.value as AlertVariant)
+          }
+        }}
+      >
+        <SegmentGroup.Indicator />
+        <SegmentGroup.Items items={[...alertVariants]} />
+      </SegmentGroup.Root>
+      <SimpleGrid columns={{ base: 1, md: 2 }} gap={3}>
+        {alertExamples.map((example) => (
+          <Alert.Root
+            key={example.status}
+            status={example.status === 'danger' ? 'error' : example.status}
+            colorPalette={example.status}
+            variant={variant}
+          >
+            <Alert.Indicator />
+            <Alert.Content>
+              <Alert.Title>{example.title}</Alert.Title>
+              <Alert.Description>{example.description}</Alert.Description>
+            </Alert.Content>
+          </Alert.Root>
+        ))}
+      </SimpleGrid>
+    </Section>
   )
 }

@@ -15,3 +15,27 @@ limitations under the License.
 */
 
 import '@testing-library/jest-dom/vitest'
+
+// jsdom doesn't implement matchMedia, which next-themes needs to read the OS color scheme
+if (!window.matchMedia) {
+  window.matchMedia = (query: string) =>
+    ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+    }) as MediaQueryList
+}
+
+// jsdom doesn't implement ResizeObserver, which Chakra's SegmentGroup indicator uses
+if (!window.ResizeObserver) {
+  window.ResizeObserver = class {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  }
+}
