@@ -62,6 +62,15 @@ export const config = mergeConfigs(defaultBaseConfig, {
     },
     // Recipe keys must match Chakra's (lowercase), or Chakra adds them as unused recipes
     slotRecipes: {
+      table: {
+        slots: ['root', 'caption', 'header', 'body', 'footer', 'row', 'columnHeader', 'cell'],
+        variants: {
+          variant: {
+            // Chakra puts `line` rows on the page background (`bg`); keep them on surfaces instead
+            line: { row: { bg: 'bg.panel' } },
+          },
+        },
+      },
       toast: {
         slots: ['root', 'title', 'description', 'indicator', 'actionTrigger', 'closeTrigger'],
         base: {

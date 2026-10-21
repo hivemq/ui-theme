@@ -27,6 +27,9 @@ export const semanticTokens = {
     default: { value: { _light: '{colors.gray.50}', _dark: '{colors.gray.950}' } },
     inverted: { value: { _light: '{colors.gray.800}', _dark: '{colors.gray.100}' } },
     muted: { value: { _light: '{colors.blackAlpha.200}', _dark: '{colors.whiteAlpha.200}' } },
+    // Surfaces that sit on the page (cards, dialogs, menus, table rows). Chakra's dark value is
+    // gray.950, the same as the page background, so surfaces would disappear in dark mode.
+    panel: { value: { _light: '{colors.white}', _dark: '{colors.gray.900}' } },
   },
   /**
    * Foreground tokens
