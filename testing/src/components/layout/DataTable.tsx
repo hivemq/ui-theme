@@ -34,11 +34,6 @@ export function DataTable({ minW, children }: DataTableProps) {
         size="sm"
         minW={minW}
         css={{
-          // Chakra paints rows with its own `bg` token (white / near-black), which the theme
-          // doesn't override, so rows are cleared to sit on the page's bg.default instead
-          '& tr': {
-            bg: 'transparent',
-          },
           // A faint header band: the page's alpha tint, one step lighter (6%) than swatch rings and hovers
           '& thead tr': {
             bg: { base: 'blackAlpha.100', _dark: 'whiteAlpha.100' },

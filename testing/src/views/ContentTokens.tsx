@@ -30,7 +30,7 @@ import {
 const contentTokens = tokensInGroup('content')
 
 // Groups shown in the base table; palettes and chart tokens have their own sections
-const baseGroups = ['bg', 'text', 'border']
+const baseGroups = ['bg', 'fg', 'text', 'border']
 const baseTokens = semanticTokenList.filter((token) => baseGroups.includes(token.group))
 // Still shipped, so they're named on the page, but not shown alongside the tokens to use
 export const deprecatedShellTokens = tokensInGroup('shell')
