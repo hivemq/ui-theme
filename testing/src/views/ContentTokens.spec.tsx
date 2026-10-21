@@ -38,9 +38,9 @@ describe('ContentTokens', () => {
   })
 
   describe('Base tokens', () => {
-    it('should list only the tokens to use: bg, text and border', () => {
+    it('should list only the tokens to use: bg, fg, text and border', () => {
       render(<ContentTokens />)
-      const expected = ['bg', 'text', 'border'].flatMap((group) => tokensInGroup(group))
+      const expected = ['bg', 'fg', 'text', 'border'].flatMap((group) => tokensInGroup(group))
       const tables = screen.getAllByRole('table')
       const table = tables[tables.length - 1]
       expect(within(table).getAllByRole('row')).toHaveLength(expected.length + 1)

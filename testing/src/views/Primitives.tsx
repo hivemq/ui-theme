@@ -23,8 +23,8 @@ const usage = buildUsageMap()
 
 // Alpha overlays are drawn on the ground each one is meant for
 const alphaGround = {
-  black: 'gray.50',
-  white: 'gray.950',
+  blackAlpha: 'gray.50',
+  whiteAlpha: 'gray.950',
 } as const
 
 interface RampRowProps {

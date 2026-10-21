@@ -88,7 +88,7 @@ const RULES = [
   {
     id: 'hardcoded-font',
     pattern:
-      /(?:fontFamily|['"]?font-family['"]?)[:=]\s*["'].*?(?:Arial|Helvetica|Roboto|Raleway|Segoe UI|IntelOne|Noto Sans|Liberation|Courier|Consolas|Monaco|Menlo|sans-serif|serif|monospace)/i,
+      /(?:fontFamily|['"]?font-family['"]?)[:=]\s*["'].*?(?:Arial|Helvetica|Roboto|Raleway|Segoe UI|IntelOne|Intel One|Noto Sans|Liberation|Courier|Consolas|Monaco|Menlo|sans-serif|serif|monospace)/i,
     message: () =>
       'Found hardcoded font-family, use fontFamily="heading|body|monospace" token instead',
   },

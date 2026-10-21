@@ -16,10 +16,14 @@ limitations under the License.
 
 export const colors = {
   /**
-   * Black and white shades
+   * Black and white, plus their alpha shades.
+   * Chakra defines `black` and `white` as single colors and keeps the shades in `blackAlpha` and
+   * `whiteAlpha`. The theme uses the same names: nesting shades under `black`/`white` makes the merge
+   * with Chakra's config drop them, so references like `{colors.black.200}` never resolve.
    */
-  white: {
-    DEFAULT: { value: 'rgba(255, 255, 255, 1)' },
+  white: { value: 'rgba(255, 255, 255, 1)' },
+  black: { value: 'rgba(1, 1, 1, 1)' },
+  whiteAlpha: {
     '50': { value: 'rgba(255, 255, 255, 0.04)' },
     '100': { value: 'rgba(255, 255, 255, 0.06)' },
     '200': { value: 'rgba(255, 255, 255, 0.08)' },
@@ -32,8 +36,7 @@ export const colors = {
     '900': { value: 'rgba(255, 255, 255, 0.92)' },
     '950': { value: 'rgba(255, 255, 255, 0.95)' },
   },
-  black: {
-    DEFAULT: { value: 'rgba(1, 1, 1, 1)' },
+  blackAlpha: {
     '50': { value: 'rgba(1, 1, 1, 0.04)' },
     '100': { value: 'rgba(1, 1, 1, 0.06)' },
     '200': { value: 'rgba(1, 1, 1, 0.08)' },

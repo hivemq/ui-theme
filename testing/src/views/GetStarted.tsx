@@ -115,8 +115,8 @@ export const system = createSystem(defaultConfig, config)
     title: 'Install the fonts',
     description: (
       <>
-        Fonts aren't bundled with the theme: Raleway for headings, Roboto for body text and IntelOne
-        Mono for code. Install them, then import the weights in your entry file (e.g.{' '}
+        Fonts aren't bundled with the theme: Raleway for headings, Roboto for body text and Intel
+        One Mono for code. Install them, then import the weights in your entry file (e.g.{' '}
         <Code size="sm">main.ts</Code>) or <Code size="sm">index.css</Code>.
       </>
     ),

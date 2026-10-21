@@ -30,35 +30,16 @@ export const toaster = createToaster({
   pauseOnPageIdle: true,
 })
 
-// Map toast types to semantic color palettes
-const getColorPalette = (type?: string) => {
-  switch (type) {
-    case 'success':
-      return 'success'
-    case 'error':
-      return 'danger'
-    case 'warning':
-      return 'warning'
-    case 'info':
-      return 'info'
-    default:
-      return 'brand'
-  }
-}
-
 export const Toaster = () => {
   return (
     <Portal>
       <ChakraToaster toaster={toaster}>
         {(toast) => {
-          const colorPalette = getColorPalette(toast.type)
+          // Colors per toast type come from the theme's toast recipe
           return (
             <Toast.Root
               // @ts-expect-error due to type config in theme this is a bit fried
               type={toast.type}
-              bg={`${colorPalette}.solid`}
-              color={`${colorPalette}.contrast`}
-              borderColor={`${colorPalette}.emphasized`}
               borderWidth="1px"
               borderRadius="md"
               padding="4"

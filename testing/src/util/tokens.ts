@@ -54,7 +54,7 @@ export const HUE_RAMPS = [
   'orange',
 ] as const
 
-export const ALPHA_RAMPS = ['black', 'white'] as const
+export const ALPHA_RAMPS = ['blackAlpha', 'whiteAlpha'] as const
 
 /** Palettes that expose the full set of colorPalette slots */
 export const PALETTES = [
@@ -79,13 +79,18 @@ export const PALETTE_SLOTS = [
 ] as const
 
 type PrimitiveEntry = { value: string }
-type SemanticEntry = { value: { base: string; _dark: string } }
+// Light values are `base`, or `_light` for tokens that override Chakra's own
+type SemanticEntry = { value: { base?: string; _light?: string; _dark: string } }
 
-const primitives = primitiveColors as unknown as Record<string, Record<string, PrimitiveEntry>>
+// A primitive is either a single color (`white`) or a ramp of steps (`gray.50`)
+const primitives = primitiveColors as unknown as Record<
+  string,
+  PrimitiveEntry | Record<string, PrimitiveEntry>
+>
 const semantics = semanticTokens as unknown as Record<string, Record<string, SemanticEntry>>
 
 export interface SemanticToken {
-  /** Full token path, e.g. `brand.solid` */
+  /** Full token path, e.g. `brand.solid`; a DEFAULT key is named by its group alone, e.g. `bg` */
   name: string
   group: string
   key: string
@@ -103,23 +108,28 @@ export function stripReference(reference: string): string {
 }
 
 /**
- * Resolves a primitive path (`gray.50`, `white`, `black.200`, `categorical.3`) to its CSS value.
+ * Resolves a primitive path (`gray.50`, `white`, `blackAlpha.200`, `categorical.3`) to its CSS value.
  * Returns `null` when the path doesn't exist in the primitive colors.
  */
 export function primitiveValue(path: string): string | null {
   const separator = path.indexOf('.')
-  const name = separator === -1 ? path : path.slice(0, separator)
-  const step = separator === -1 ? 'DEFAULT' : path.slice(separator + 1)
-  return primitives[name]?.[step]?.value ?? null
+  const entry = primitives[separator === -1 ? path : path.slice(0, separator)]
+  if (!entry) {
+    return null
+  }
+  if (separator === -1) {
+    return typeof entry.value === 'string' ? entry.value : null
+  }
+  return (entry as Record<string, PrimitiveEntry>)[path.slice(separator + 1)]?.value ?? null
 }
 
 export const semanticTokenList: SemanticToken[] = Object.entries(semantics).flatMap(
   ([group, tokens]) =>
     Object.entries(tokens).map(([key, token]) => ({
-      name: `${group}.${key}`,
+      name: key === 'DEFAULT' ? group : `${group}.${key}`,
       group,
       key,
-      light: stripReference(token.value.base),
+      light: stripReference(token.value._light ?? token.value.base ?? ''),
       dark: stripReference(token.value._dark),
       deprecated: group === 'shell',
     })),

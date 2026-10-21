@@ -17,11 +17,23 @@ limitations under the License.
 export const semanticTokens = {
   /**
    * Background tokens
+   * `bg` and `fg` override tokens Chakra already defines, so their light values use `_light`, like
+   * Chakra's: a `base` value is emitted with lower specificity and Chakra's `_light` value would win.
    */
   bg: {
-    default: { value: { base: '{colors.gray.50}', _dark: '{colors.gray.950}' } },
-    inverted: { value: { base: '{colors.gray.800}', _dark: '{colors.gray.100}' } },
-    muted: { value: { base: '{colors.black.200}', _dark: '{colors.white.200}' } },
+    // DEFAULT overrides Chakra's own `bg`, which components and the page background use
+    DEFAULT: { value: { _light: '{colors.gray.50}', _dark: '{colors.gray.950}' } },
+    // Same value as `bg`, kept for apps that already use it
+    default: { value: { _light: '{colors.gray.50}', _dark: '{colors.gray.950}' } },
+    inverted: { value: { _light: '{colors.gray.800}', _dark: '{colors.gray.100}' } },
+    muted: { value: { _light: '{colors.blackAlpha.200}', _dark: '{colors.whiteAlpha.200}' } },
+  },
+  /**
+   * Foreground tokens
+   */
+  fg: {
+    // DEFAULT overrides Chakra's own `fg`, the page's text color; matches content.primary
+    DEFAULT: { value: { _light: '{colors.gray.900}', _dark: '{colors.gray.50}' } },
   },
   /**
    * Text tokens
@@ -65,7 +77,7 @@ export const semanticTokens = {
     contrast: { value: { base: '{colors.black}', _dark: '{colors.black}' } },
     fg: { value: { base: '{colors.yellow.700}', _dark: '{colors.yellow.500}' } },
     subtle: { value: { base: '{colors.yellow.100}', _dark: '{colors.yellow.800}' } },
-    muted: { value: { base: '{colors.yellow.200}', _dark: '{colors.yellow.7 00}' } },
+    muted: { value: { base: '{colors.yellow.200}', _dark: '{colors.yellow.700}' } },
     emphasized: { value: { base: '{colors.yellow.200}', _dark: '{colors.yellow.700}' } },
     solid: { value: { base: '{colors.yellow.300}', _dark: '{colors.yellow.500}' } },
     focusRing: { value: { base: '{colors.yellow.600}', _dark: '{colors.yellow.500}' } },
