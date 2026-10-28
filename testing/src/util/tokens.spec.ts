@@ -42,18 +42,20 @@ describe('tokens', () => {
       expect(primitiveValue('yellow.300')).toBe('#FFC111')
     })
 
-    it('should resolve a bare color to its DEFAULT value', () => {
+    it('should resolve a single color', () => {
       expect(primitiveValue('white')).toBe('rgba(255, 255, 255, 1)')
     })
 
     it('should resolve alpha and categorical steps', () => {
-      expect(primitiveValue('black.200')).toBe('rgba(1, 1, 1, 0.08)')
+      expect(primitiveValue('blackAlpha.200')).toBe('rgba(1, 1, 1, 0.08)')
       expect(primitiveValue('categorical.1')).toBe('#007DE6')
     })
 
     it('should return null for paths that do not exist', () => {
       expect(primitiveValue('gray.1000')).toBeNull()
       expect(primitiveValue('nope.50')).toBeNull()
+      expect(primitiveValue('white.200')).toBeNull()
+      expect(primitiveValue('gray')).toBeNull()
     })
   })
 
@@ -65,6 +67,14 @@ describe('tokens', () => {
         light: 'yellow.300',
         dark: 'yellow.500',
         deprecated: false,
+      })
+    })
+
+    it('should name a DEFAULT token by its group', () => {
+      expect(getSemanticToken('bg')).toMatchObject({
+        group: 'bg',
+        key: 'DEFAULT',
+        light: 'gray.50',
       })
     })
 

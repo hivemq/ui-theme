@@ -26,13 +26,9 @@ interface SwatchProps {
   usedBy?: string[]
 }
 
-// The theme's bg.muted points at black.200 / white.200, which aren't emitted as CSS variables,
-// so page chrome uses Chakra's built-in alpha colors for the same 8% tint instead.
-export const subtleFill = { base: 'blackAlpha.200', _dark: 'whiteAlpha.200' }
-export const hairline = {
-  base: 'inset 0 0 0 1px var(--chakra-colors-black-alpha-200)',
-  _dark: 'inset 0 0 0 1px var(--chakra-colors-white-alpha-200)',
-}
+// The 8% alpha tint of bg.muted, used for page chrome fills and swatch rings
+export const subtleFill = 'bg.muted'
+export const hairline = 'inset 0 0 0 1px var(--chakra-colors-bg-muted)'
 
 /**
  * A color chip that copies its token path when clicked.

@@ -37,7 +37,7 @@ export const fontFamilies = [
   {
     role: 'Monospace',
     token: 'mono',
-    face: 'IntelOne Mono',
+    face: 'Intel One Mono',
     sample: 'factory/line-3/+/temperature · qos=1 · retain=false · client=edge-gw-07',
     props: { fontSize: 'md', overflowWrap: 'anywhere' },
   },

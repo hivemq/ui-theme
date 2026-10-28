@@ -40,7 +40,7 @@ export const config = mergeConfigs(defaultBaseConfig, {
         },
         monospace: {
           value:
-            "'IntelOne Mono', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'",
+            "'Intel One Mono', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'",
         },
         mono: {
           value: '{fonts.monospace}',
@@ -60,8 +60,18 @@ export const config = mergeConfigs(defaultBaseConfig, {
         display: { value: '{fontSizes.4xl}' },
       },
     },
+    // Recipe keys must match Chakra's (lowercase), or Chakra adds them as unused recipes
     slotRecipes: {
-      Toast: {
+      table: {
+        slots: ['root', 'caption', 'header', 'body', 'footer', 'row', 'columnHeader', 'cell'],
+        variants: {
+          variant: {
+            // Chakra puts `line` rows on the page background (`bg`); keep them on surfaces instead
+            line: { row: { bg: 'bg.panel' } },
+          },
+        },
+      },
+      toast: {
         slots: ['root', 'title', 'description', 'indicator', 'actionTrigger', 'closeTrigger'],
         base: {
           root: {
@@ -108,10 +118,8 @@ export const config = mergeConfigs(defaultBaseConfig, {
       },
     },
     recipes: {
-      Text: {
-        base: {
-          color: 'content.primary',
-        },
+      // No base color: text inherits fg (content.primary) and keeps the color of parents like Alert
+      text: {
         variants: {
           variant: {
             muted: { color: 'content.secondary' },
@@ -123,9 +131,8 @@ export const config = mergeConfigs(defaultBaseConfig, {
           },
         },
       },
-      Heading: {
+      heading: {
         base: {
-          color: 'content.primary',
           fontFamily: 'heading',
         },
         variants: {
