@@ -104,6 +104,18 @@ describe('theme system', () => {
     })
   })
 
+  describe('Dark mode layering', () => {
+    // A hover, selected or divider tint that equals the surface it sits on is invisible. Surfaces
+    // are `bg.panel` in dark mode, so every gray-scale tint has to differ from it (and from the page).
+    const grayTints = ['secondary', 'gray'].flatMap((palette) =>
+      ['subtle', 'muted', 'emphasized'].map((slot) => `${palette}.${slot}`),
+    )
+    it.each(grayTints)('should keep %s off the panel and page background in dark mode', (token) => {
+      expect(dark[cssVar(token)]).not.toBe(dark['--chakra-colors-bg-panel'])
+      expect(dark[cssVar(token)]).not.toBe(dark['--chakra-colors-bg'])
+    })
+  })
+
   describe('Recipes', () => {
     // Chakra components that read a recipe key Chakra itself doesn't define
     const extraRecipeKeys = ['text']

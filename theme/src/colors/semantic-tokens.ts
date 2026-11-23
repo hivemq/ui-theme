@@ -67,14 +67,27 @@ export const semanticTokens = {
     solid: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.800}' } },
   },
 
+  /**
+   * Gray-scale tints (`secondary.*` and Chakra's `gray.*`) are used for hover, selected and
+   * divider states on surfaces. Surfaces are `bg.panel` = gray.900 in dark mode, so the dark ramp
+   * starts at gray.800: a tint that equals the surface is invisible. Light values are unchanged,
+   * surfaces are white there.
+   */
   secondary: {
     contrast: { value: { base: '{colors.black}', _dark: '{colors.white}' } },
     fg: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.500}' } },
-    subtle: { value: { base: '{colors.gray.100}', _dark: '{colors.gray.900}' } },
-    muted: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.800}' } },
-    emphasized: { value: { base: '{colors.gray.300}', _dark: '{colors.gray.700}' } },
+    subtle: { value: { base: '{colors.gray.100}', _dark: '{colors.gray.800}' } },
+    muted: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.700}' } },
+    emphasized: { value: { base: '{colors.gray.300}', _dark: '{colors.gray.600}' } },
     solid: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.500}' } },
     focusRing: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.400}' } },
+  },
+  // Chakra's own gray palette tokens, read by `colorPalette="gray"` and by recipes such as the
+  // table row hover (`colorPalette.subtle`). Same ramp as `secondary`, other keys stay Chakra's.
+  gray: {
+    subtle: { value: { _light: '{colors.gray.100}', _dark: '{colors.gray.800}' } },
+    muted: { value: { _light: '{colors.gray.200}', _dark: '{colors.gray.700}' } },
+    emphasized: { value: { _light: '{colors.gray.300}', _dark: '{colors.gray.600}' } },
   },
   brand: {
     contrast: { value: { base: '{colors.black}', _dark: '{colors.black}' } },
@@ -146,7 +159,12 @@ export const semanticTokens = {
   },
   /**
    * Shell tokens (UI shell and layout components)
-   * @deprecated Shell tokens shouldn't exist in the new theming system. Guidance will be added later on what to use instead.
+   * @deprecated Use the semantic tokens instead; values kept so existing apps don't break:
+   * - `shell.bg` → `bg` (page), `shell.contrastBg` → `bg.panel` (sidebar, cards)
+   * - `shell.muted` / `shell.subtle` (hover, selected, dividers) → `bg.muted` for hover,
+   *   `secondary.muted` for selected, `secondary.emphasized` for dividers and borders
+   * - `shell.border` → `secondary.emphasized`
+   * - `shell.group` → `content.tertiary`, `shell.item` → `content.primary`
    */
   shell: {
     bg: { value: { base: '{colors.gray.50}', _dark: '{colors.gray.900}' } },
