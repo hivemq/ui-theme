@@ -116,6 +116,17 @@ describe('theme system', () => {
     })
   })
 
+  describe('Native controls', () => {
+    const globalCss = (system.getGlobalCss() as unknown as Record<string, CssTree>)['@layer base']
+
+    it('should set the color scheme per mode', () => {
+      expect(globalCss['&:root, &.light']).toMatchObject({ colorScheme: 'light' })
+      expect(globalCss['&.dark, &.dark .chakra-theme:not(.light)']).toMatchObject({
+        colorScheme: 'dark',
+      })
+    })
+  })
+
   describe('Recipes', () => {
     // Chakra components that read a recipe key Chakra itself doesn't define
     const extraRecipeKeys = ['text']

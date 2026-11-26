@@ -75,11 +75,11 @@ export const semanticTokens = {
    */
   secondary: {
     contrast: { value: { base: '{colors.black}', _dark: '{colors.white}' } },
-    fg: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.500}' } },
+    fg: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.50}' } },
     subtle: { value: { base: '{colors.gray.100}', _dark: '{colors.gray.800}' } },
     muted: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.700}' } },
     emphasized: { value: { base: '{colors.gray.300}', _dark: '{colors.gray.600}' } },
-    solid: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.500}' } },
+    solid: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.700}' } },
     focusRing: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.400}' } },
   },
   // Chakra's own gray palette tokens, read by `colorPalette="gray"` and by recipes such as the
