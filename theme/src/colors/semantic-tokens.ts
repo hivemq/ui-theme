@@ -30,6 +30,12 @@ export const semanticTokens = {
     // Surfaces that sit on the page (cards, dialogs, menus, table rows). Chakra's dark value is
     // gray.950, the same as the page background, so surfaces would disappear in dark mode.
     panel: { value: { _light: '{colors.white}', _dark: '{colors.gray.900}' } },
+    // Fill of form fields (inputs, textareas, selects, checkboxes). Fields sit on panels, so the
+    // dark value is one step lighter than `bg.panel`: a transparent field disappears into the panel.
+    input: { value: { _light: '{colors.white}', _dark: '{colors.gray.800}' } },
+    // Label attached to a field (InputAddon). Light value is Chakra's (`bg.muted`); in dark mode
+    // `bg.muted` on a panel is the same gray as `bg.input`, so the addon gets its own step.
+    inputAddon: { value: { _light: '{colors.blackAlpha.200}', _dark: '{colors.gray.700}' } },
   },
   /**
    * Foreground tokens

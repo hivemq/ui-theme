@@ -116,6 +116,64 @@ describe('theme system', () => {
     })
   })
 
+  describe('Form fields', () => {
+    // A field with the panel's or the page's color only shows its border, which is faint in dark mode
+    it('should keep the field background off the panel and page background in dark mode', () => {
+      expect(dark[cssVar('bg.input')]).not.toBe(dark['--chakra-colors-bg-panel'])
+      expect(dark[cssVar('bg.input')]).not.toBe(dark['--chakra-colors-bg'])
+    })
+
+    // Chakra without our theme, to prove an override changes the fill and nothing else: a slot
+    // recipe that is merged wrongly loses its sizes, other variants or slots
+    const chakra = createSystem(defaultConfig)
+
+    it.each(['input', 'textarea'])('should only change the fill of outline %s fields', (recipe) => {
+      const ours = structuredClone(system.getRecipe(recipe))
+      const theirs = structuredClone(chakra.getRecipe(recipe))
+      expect(ours.variants?.variant.outline.bg).toBe('bg.input')
+      ours.variants.variant.outline.bg = theirs.variants?.variant.outline.bg
+      expect(ours).toEqual(theirs)
+    })
+
+    it.each([
+      ['numberInput', 'input'],
+      ['pinInput', 'input'],
+      ['select', 'trigger'],
+      ['nativeSelect', 'field'],
+      ['combobox', 'input'],
+      ['tagsInput', 'control'],
+    ])('should only change the fill of outline %s fields', (recipe, slot) => {
+      const ours = structuredClone(system.getSlotRecipe(recipe))
+      const theirs = structuredClone(chakra.getSlotRecipe(recipe))
+      expect(ours.variants?.variant.outline[slot].bg).toBe('bg.input')
+      ours.variants.variant.outline[slot].bg = theirs.variants?.variant.outline[slot].bg
+      expect(ours).toEqual(theirs)
+    })
+
+    it('should only change the fill of outline input addons', () => {
+      const ours = structuredClone(system.getRecipe('inputAddon'))
+      const theirs = structuredClone(chakra.getRecipe('inputAddon'))
+      expect(ours.variants?.variant.outline.bg).toBe('bg.inputAddon')
+      ours.variants.variant.outline.bg = theirs.variants?.variant.outline.bg
+      expect(ours).toEqual(theirs)
+    })
+
+    // An addon with the field's color reads as part of the field
+    it('should keep input addons apart from the field and the panel in dark mode', () => {
+      expect(dark[cssVar('bg.inputAddon')]).not.toBe(dark[cssVar('bg.input')])
+      expect(dark[cssVar('bg.inputAddon')]).not.toBe(dark['--chakra-colors-bg-panel'])
+    })
+
+    it('should keep Chakra’s input addon fill in light mode', () => {
+      expect(light[cssVar('bg.inputAddon')]).toBe(light[cssVar('bg.muted')])
+    })
+
+    // Light mode keeps the look fields had before: white, like the panels they sit on
+    it('should keep fields white in light mode', () => {
+      expect(light[cssVar('bg.input')]).toBe('var(--chakra-colors-white)')
+    })
+  })
+
   describe('Native controls', () => {
     const globalCss = (system.getGlobalCss() as unknown as Record<string, CssTree>)['@layer base']
 
