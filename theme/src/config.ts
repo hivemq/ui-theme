@@ -19,6 +19,11 @@ import { colors } from './colors/primitive-colors.js'
 import { semanticTokens } from './colors/semantic-tokens.js'
 
 export const config = mergeConfigs(defaultBaseConfig, {
+  // Makes native elements (date pickers, scrollbars, number spinners) follow the colour mode as well
+  globalCss: {
+    ':root, .light': { colorScheme: 'light' },
+    '.dark, .dark .chakra-theme:not(.light)': { colorScheme: 'dark' },
+  },
   theme: {
     breakpoints: {
       sm: '20rem',
@@ -62,6 +67,85 @@ export const config = mergeConfigs(defaultBaseConfig, {
     },
     // Recipe keys must match Chakra's (lowercase), or Chakra adds them as unused recipes
     slotRecipes: {
+      // Form fields: Chakra's `outline` variant is transparent, which hides the field on a dark panel
+      numberInput: {
+        slots: [
+          'root',
+          'label',
+          'input',
+          'control',
+          'valueText',
+          'incrementTrigger',
+          'decrementTrigger',
+          'scrubber',
+        ],
+        variants: { variant: { outline: { input: { bg: 'bg.input' } } } },
+      },
+      pinInput: {
+        slots: ['root', 'label', 'input', 'control'],
+        variants: { variant: { outline: { input: { bg: 'bg.input' } } } },
+      },
+      select: {
+        slots: [
+          'label',
+          'positioner',
+          'trigger',
+          'indicator',
+          'clearTrigger',
+          'item',
+          'itemText',
+          'itemIndicator',
+          'itemGroup',
+          'itemGroupLabel',
+          'list',
+          'content',
+          'root',
+          'control',
+          'valueText',
+          'indicatorGroup',
+        ],
+        variants: { variant: { outline: { trigger: { bg: 'bg.input' } } } },
+      },
+      nativeSelect: {
+        slots: ['root', 'field', 'indicator'],
+        variants: { variant: { outline: { field: { bg: 'bg.input' } } } },
+      },
+      combobox: {
+        slots: [
+          'root',
+          'clearTrigger',
+          'content',
+          'control',
+          'input',
+          'item',
+          'itemGroup',
+          'itemGroupLabel',
+          'itemIndicator',
+          'itemText',
+          'label',
+          'list',
+          'positioner',
+          'trigger',
+          'empty',
+          'indicatorGroup',
+        ],
+        variants: { variant: { outline: { input: { bg: 'bg.input' } } } },
+      },
+      tagsInput: {
+        slots: [
+          'root',
+          'label',
+          'control',
+          'input',
+          'clearTrigger',
+          'item',
+          'itemPreview',
+          'itemInput',
+          'itemText',
+          'itemDeleteTrigger',
+        ],
+        variants: { variant: { outline: { control: { bg: 'bg.input' } } } },
+      },
       table: {
         slots: ['root', 'caption', 'header', 'body', 'footer', 'row', 'columnHeader', 'cell'],
         variants: {
@@ -107,17 +191,17 @@ export const config = mergeConfigs(defaultBaseConfig, {
             colorPalette: 'blue',
           },
           control: {
-            // No semantic token maps to white/gray.800 yet. Candidate for a
-            // bg.surface token if the base surface colors are revised.
-            bg: 'white',
-            _dark: {
-              bg: 'gray.800',
-            },
+            bg: 'bg.input',
           },
         },
       },
     },
     recipes: {
+      // Chakra's `outline` variant is transparent, which hides the field on a dark panel
+      input: { variants: { variant: { outline: { bg: 'bg.input' } } } },
+      textarea: { variants: { variant: { outline: { bg: 'bg.input' } } } },
+      // Keeps the addon apart from the field it is attached to in dark mode
+      inputAddon: { variants: { variant: { outline: { bg: 'bg.inputAddon' } } } },
       // No base color: text inherits fg (content.primary) and keeps the color of parents like Alert
       text: {
         variants: {
