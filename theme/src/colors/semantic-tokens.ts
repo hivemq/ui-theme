@@ -27,6 +27,10 @@ export const semanticTokens = {
     default: { value: { _light: '{colors.gray.50}', _dark: '{colors.gray.950}' } },
     inverted: { value: { _light: '{colors.gray.800}', _dark: '{colors.gray.100}' } },
     muted: { value: { _light: '{colors.blackAlpha.200}', _dark: '{colors.whiteAlpha.200}' } },
+    // A sunken area inside a surface (grouped fields, a hovered row). Chakra's values are the
+    // page's own grays, so the area disappears when it sits on the page. A black tint is darker
+    // than whatever it sits on, in both modes, and fields inside it keep their own lighter fill.
+    subtle: { value: { _light: '{colors.blackAlpha.50}', _dark: '{colors.blackAlpha.400}' } },
     // Surfaces that sit on the page (cards, dialogs, menus, table rows). Chakra's dark value is
     // gray.950, the same as the page background, so surfaces would disappear in dark mode.
     panel: { value: { _light: '{colors.white}', _dark: '{colors.gray.900}' } },
@@ -55,6 +59,8 @@ export const semanticTokens = {
    */
   border: {
     default: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.50}' } },
+    muted: { value: { _light: '{colors.gray.100}', _dark: '{colors.whiteAlpha.100}' } },
+    subtle: { value: { _light: '{colors.blackAlpha.50}', _dark: '{colors.whiteAlpha.50}' } },
   },
   /**
    * Tier 2: Content tokens (text and foreground elements)
@@ -85,7 +91,10 @@ export const semanticTokens = {
     subtle: { value: { base: '{colors.gray.100}', _dark: '{colors.gray.800}' } },
     muted: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.700}' } },
     emphasized: { value: { base: '{colors.gray.300}', _dark: '{colors.gray.600}' } },
-    solid: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.700}' } },
+    // Dark: one step lighter than `muted`, so a solid button differs from a hovered subtle one.
+    // gray.600 is the lightest step that keeps the white label readable (4.5:1); it shares the
+    // step with `emphasized`, the ramp has no free one between the panel and gray.500.
+    solid: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.600}' } },
     focusRing: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.400}' } },
   },
   // Chakra's own gray palette tokens, read by `colorPalette="gray"` and by recipes such as the

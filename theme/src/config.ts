@@ -19,7 +19,7 @@ import { colors } from './colors/primitive-colors.js'
 import { semanticTokens } from './colors/semantic-tokens.js'
 
 export const config = mergeConfigs(defaultBaseConfig, {
-  //RobinAtherton - Added this to make native elements (Datepickers etc.) correctly switch to darkmode as well.
+  // Makes native elements (date pickers, scrollbars, number spinners) follow the colour mode as well
   globalCss: {
     ':root, .light': { colorScheme: 'light' },
     '.dark, .dark .chakra-theme:not(.light)': { colorScheme: 'dark' },
